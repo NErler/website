@@ -1,0 +1,151 @@
+---
+title: Regression Models & Descriptive Statistics
+
+date: 2018-10-21T00:00:00.000Z
+lastmod: 2018-10-21T00:00:00.000Z
+
+draft: false
+type: docs
+
+output:
+  blogdown::html_page:
+    toc: true
+    
+linktitle: Regression Models & Descriptive Statistics
+menu:
+  statsformdl:
+    parent: Overview
+    weight: 2
+---
+
+Sometimes, the results from a multivariable regression analysis seem to disagre
+with with what we find when we look at simple descriptive statistics of the
+data. Do demonstrate the issue we look at a simple example, which we simulate.
+
+### Generate the data
+We simulate some data for this simple example:
+```{r}
+set.seed(2018)
+gender <- rep(c(0,1), c(700, 300))
+exposure <- runif(1000, min = 0 + gender*0.3, 0.5 + gender*0.5)
+disease <- rbinom(1000, size = 1, prob = plogis(1.5 * gender - 0.9 * exposure))
+
+DF = data.frame(gender = factor(gender, labels = c('female', 'male')),
+                exposure = exposure,
+                disease = factor(disease, labels = c('healthy', 'diseased')))
+```
+
+We now have data from 1000 subjects:
+```{r}
+summary(DF)
+```
+
+### Descriptive statistics
+When we look at descriptive statistics of the exposure, stratified by disease
+status, we see that diseased subjects tend to have higher values of the exposure
+than the healthy subjects:
+```{r, fig.width = 4, fig.height = 3, out.width = "80%"}
+library(ggplot2)
+ggplot(DF, aes(x = disease, y = exposure)) + 
+  geom_boxplot()
+
+lapply(split(DF$exposure, DF$disease),
+       function(x) round(summary(x), 3))
+```
+
+### Regression analysis
+The result of a logistic regression, adjusted for gender, tells us something
+else:
+```{r}
+(res <- summary(glm(disease ~ gender + exposure, family = 'binomial', data = DF)))
+```
+The exposure has a negative association with the outcome: the log odds ratio is
+`r round(res$coef['exposure', 1], 3)`
+(odds ratio: `r round(exp(res$coef['exposure', 1]), 3)`).
+
+How can that be?
+
+Looking at the distribution of the exposure within the diseased and healthy
+subjects, we ignored gender. But gender is associated with both the exposure
+and the disease status:
+
+```{r, fig.width = 4, fig.height = 3, out.width = "80%"}
+ggplot(DF, aes(x = gender, y = exposure)) +
+  geom_boxplot()
+
+ggplot(DF, aes(fill = gender, x = disease)) + 
+  geom_bar()
+```
+
+From these plots it becomes clear that men have much higher values of the exposure
+than females and that men are more often diseased than females.
+
+### Looking at gender and disease at the same time
+Only when we plot the distribution of the exposure stratified for disease 
+status AND gender, we see the what the logistic regression has found:
+
+* males have higher values of the exposure than females
+* within the males, diseased subjects have lower values of the exposure
+* within the females diseased subjects have slightly lower values of the exposure
+
+```{r}
+ggplot(DF, aes(x = disease, y = exposure, fill = gender)) + 
+  geom_boxplot()
+```
+
+The positive association between exposure and disease that we saw in the
+descriptive statistics (when ignoring gender) is explained by gender. 
+Because men have higher values of the exposure and are more oftend diseased
+it seemed that higher values of the exposure are associated with disease.
+
+Because gender is associated with the exposure and the response it is called
+a *confounder*.
+
+
+### A collapsible section with markdown
+<details>
+  <summary>Statistical details!</summary>
+  
+  **Heading**
+  
+  1. A numbered
+  2. list
+     * With some
+     * Sub bullets
+     
+```{r}
+summary(rnorm(500))
+```
+
+$$\frac{1}{2}\sum_{i=1}^N \log(x)$$
+
+</details>
+
+
+
+## Take-away message
+$$\frac{1}{2}\sum_{i=1}^N \log(x)$$
+
+\[\frac{1}{2}\sum_{i=1}^N \log(x)\]
+
+
+Associations found in direct comparison of exposure and outcome are biased when
+there is one or more confounding factor(s).
+Resuls from univariable models or descriptive statistics can be misleading when
+there is confounding.
+
+
+## What to do in more complex settings?
+When models are adjusted for more than one confounder, and/or confounders are
+continuous, stratifying the plot or descriptive statistic for all confounding
+variables is often not possible. 
+The results found in a multivariable regression model can still be visualized,
+using the fitted value.
+
+The idea is to predict the outcome for one (or more) patients with specific
+values for the confounders. When interest is only in the exposure, all other
+variables can be set to the reference category (for categorical variables)
+or the median for continuous variables.
+
+This allows to compare two hypothetical subjecs that are identical except in
+the value of the variable of interest (usually the exposure).

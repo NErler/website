@@ -11,8 +11,11 @@ math = true
 publication_types = ["2"]
 selected = true
 tags = ["Bayesian", "epidemiology", "imputation", "missing covariate values", "time-varying covariates"]
-url_pdf = "https://doi.org/10.1177/0962280217730851"
+url_pdf = "http://journals.sagepub.com/doi/pdf/10.1177/0962280217730851"
+[[url_custom]]
+    name = "Link"
+    url = "https://doi.org/10.1177/0962280217730851"
 [[url_custom]]
     name = "Supplementary material"
-    url = "pdf/papers/OnlineSupplement-SMMR-Erler_2017-08-21.pdf"
+    url = "pdf/OnlineSupplement-SMMR-Erler_2017-08-21.pdf"
 +++

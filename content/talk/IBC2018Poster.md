@@ -44,7 +44,7 @@ url_code = ""
 
 [[url_custom]]
     name = "Poster"
-    url = "pdf/slides/Poster-IBC2018_V2b.pdf"
+    url = "pdf/Poster-IBC2018_V2b.pdf"
 
 # Does the content use math formatting?
 math = false
