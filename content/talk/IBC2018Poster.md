@@ -1,0 +1,61 @@
++++
+title = "Imputation model misspecification: how robust are Bayesian methods?"
+date = 2018-10-21T17:44:00  # Schedule page publish date.
+draft = false
+
+# Talk start and end times.
+#   End time can optionally be hidden by prefixing the line with `#`.
+time_start = 2018-07-12T09:00:00
+time_end = 2018-07-13T17:00:00
+
+# Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
+authors = ["Nicole S. Erler", "Dimitris Rizopoulos", "Emmanuel M.E.H. Lesaffre"]
+
+# Abstract and optional shortened version.
+abstract = "Missing values complicate analyses in many studies. Nevertheless, the availability nowadays of methods, such as Multiple Imputation (MI) in standard software, has enabled researchers to perform statistical analysis accounting for missing data. More recently, fully Bayesian approaches and extensions of MI also have become available in statistical packages. These have been shown to be superior to standard MI, particularly in settings with longitudinal data, non-linear and interaction terms.<br>In all these approaches, missing values are imputed by draws from the (posterior) predictive distribution of an incomplete variable, conditional on (all) other variables. Therefore, an important requirement is that these predictive distributions fit the data well. <br>In the literature, relatively little work has been done to investigate robustness of MI to imputation model misspecification, with inconsistent conclusions. In MI with chained equations, the predictive distributions are specified directly and can thus be evaluated directly, however, in practice often no effort is made to check the validity of the postulated model.<br>Previously, we have proposed a fully Bayesian approach that allows simultaneous analysis and imputation by specifying the joint distribution of the response and all incomplete variables as a sequence, i.e., product, of conditional distributions, of which one is the analysis model of interest. The posterior predictive distribution (PPD) used to draw imputations is derived from this joint distribution and does not generally follow any known distribution. Hence, direct evaluation of its fit to the data is not possible.<br>In our current work we hypothesise that, in order for this sequential imputation to provide valid results, it is necessary  that all conditional distributions involved in the PPD are specified correctly. We investigate if the severity of bias introduced by misspecification depends on the conditional distributions in which it occurs, e.g., in the analysis model or the conditional distribution of the variable to be imputed, and consider misspecifications in both the shape and the mean structure of a distribution, as may occur by not considering skewness or multimodality, omission of important interaction effects, or wrongly assuming associations to be linear. Findings are contrasted to results on robustness of MI and recommendations for evaluation of the model fit made."
+
+# Name of event and optional event URL.
+event = "XXVIII International Biometric Conference"
+event_url = "http://2018.biometricconference.org/"
+
+# Location of event.
+location = "Barcelona, Spain"
+
+# Is this a selected talk? (true/false)
+selected = false
+
+# Projects (optional).
+#   Associate this talk with one or more of your projects.
+#   Simply enter your project's folder or file name without extension.
+#   E.g. `projects = ["deep-learning"]` references 
+#   `content/project/deep-learning/index.md`.
+#   Otherwise, set `projects = []`.
+projects = []
+
+# Tags (optional).
+#   Set `tags = []` for no tags, or use the form `tags = ["A Tag", "Another Tag"]` for one or more tags.
+tags = ['imputation', 'missing values', 'misspecification', 'JointAI', 'Bayes']
+
+# Links (optional).
+url_pdf = ""
+url_slides = ""
+url_video = ""
+url_code = ""
+
+[[url_custom]]
+    name = "Poster"
+    url = "pdf/slides/Poster-IBC2018_V2b.pdf"
+
+# Does the content use math formatting?
+math = false
+
+# Featured image
+# To use, add an image named `featured.jpg/png` to your page's folder. 
+[image]
+  # Caption (optional)
+#  caption = "Image credit: [**Unsplash**](https://unsplash.com/photos/bzdhc5b3Bxs)"
+
+  # Focal point (optional)
+  # Options: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight
+  focal_point = "Right"
++++
