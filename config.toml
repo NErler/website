@@ -319,10 +319,10 @@ enableGitInfo = false
   url = "#teaching"
   weight = 7
 
-#[[menu.main]]
-#  name = "Stats4MDL"
-#  url = "/statsformdl/"
-#  weight = 8
+[[menu.main]]
+  name = "Stats4MDL"
+  url = "/statsformdl/"
+  weight = 8
   
 
 [[menu.main]]
