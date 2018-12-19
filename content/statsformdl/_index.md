@@ -20,10 +20,10 @@ type = "docs"  # Do not modify.
 # caption = "Image credit: [**Academic**](https://github.com/gcushen/hugo-academic/)"
 +++
 
-This section contains materials (small simulations, visualizations, 
+<!---This section contains materials (small simulations, visualizations, 
 explanations and links to external materials) concerning topics relevant in and
 questions that have come up in the collaboration with clinicians.
-
+--->
 
 ## Useful links
 * [Glossary of Statistical terms](http://biostat.mc.vanderbilt.edu/wiki/pub/Main/ClinStat/glossary.pdf)
@@ -48,5 +48,11 @@ questions that have come up in the collaboration with clinicians.
 research](http://www.equator-network.org/)
 * [STROBE statement: STrengthening the Reporting of OBservational studies in Epidemiology ](https://www.strobe-statement.org/index.php?id=strobe-home)
 
-## Slides PhD day
+
+## Erasmus MC METC
+* [Leidraad statistiek](https://www.erasmusmc.nl/commissies-cs/metc-cs/574257/leidraadstatistiek.pdf)
+
+
+<!---## Slides PhD day
 * [2017](MDL_PhD-Day_2017_StatsForDummies.pdf)
+--->
