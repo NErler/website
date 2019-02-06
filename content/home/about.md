@@ -17,9 +17,9 @@ weight = 1
 
 # List your qualifications (such as academic degrees).
 [[education.courses]]
-  course = "PhD in Biostatistics"
+  course = "PhD student in Biostatistics"
   institution = "Erasmus University Medical Center, Rotterdam, the Netherlands"
-  year = 2019
+  
 
 [[education.courses]]
   course = "Doctor of Science in Epidemiology"
@@ -38,5 +38,6 @@ weight = 1
 I am a PhD student at the Department of Biostatistics at the Erasmus Medical
 Center in Rotterdam. My research focus is on Bayesian methods for incomplete
 data, specifically for settings with missing covariates.
-Since 2017, I support the department of [Gastroenterology & Hepatology](https://www.erasmusmc.nl/mdl/?lang=en) in the planning and analysis of clinical trials and 
+Since 2017, I support the department of Gastroenterology & Hepatology
+in the planning and analysis of clinical trials and 
 observational studies.
