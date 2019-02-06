@@ -17,7 +17,7 @@ publication_short = "*Gastrointestinal Endoscopy*, 2018"
 abstract_short = "*Gastrointestinal Endoscopy*, 2018"
 math = true
 publication_types = ["2"]
-selected = true
+selected = false
 tags = []
 url_pdf = "https://www.giejournal.org/article/S0016-5107(18)33199-7/pdf"
 [[url_custom]]
