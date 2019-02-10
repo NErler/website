@@ -1,25 +1,24 @@
 +++
 # Recent and Upcoming Talks widget.
-widget = "talks"
-active = true
-date = 2017-01-01T00:00:00  # Schedule page publish date.
+widget = "talks"  # Do not modify this line!
+active = true  # Activate this widget? true/false
 
 title = "Recent & Upcoming Talks"
 subtitle = ""
 
 # Order that this section will appear in.
-weight = 4
+weight = 10
 
 # Number of talks to list.
-count = 10
+count = 5
 
-# List format.
-#   0 = Simple
-#   1 = Detailed
-#   2 = Stream
-list_format = 0
+# View.
+#   1 = List
+#   2 = Compact
+#   3 = Card
+view = 2
 
-# Exclude talks that are shown in the Selected Talks widget?
-exclude_selected = false
+# Exclude talks that are shown in the Featured Talks widget?
+exclude_featured = false
 +++
 

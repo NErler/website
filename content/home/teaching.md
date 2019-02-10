@@ -1,23 +1,25 @@
 +++
-date = "2018-10-20T00:00:00"
-draft = false
+# Custom widget.
+# An example of using the custom widget to create your own homepage section.
+# To create more sections, duplicate this file and edit the values below as desired.
+widget = "custom"  # Do not modify this line!
+active = true  # Activate this widget? true/false
 
+# Note: a full width section format can be enabled by commenting out the `title` and `subtitle` with a `#`.
 title = "Teaching"
 subtitle = ""
-widget = "custom"
 
 # Order that this section will appear in.
-weight = 7
+weight = 60
 
 +++
-
 
 Together with Prof. Geert Molenberghs, I teach [EP16: Missing Data in Clinical Research](https://www.nihes.com/course/ep16_missing_values_in_clinical_research)
 at the [Netherlands Institute of Health Sciences (NIHES)](https://www.nihes.com/)
 
-Materials for the part on multiple imputation can be found on [GitHub](https://github.com/NErler/MultipleImputationCourse):
+Materials for the part on multiple imputation can be found on 
+[GitHub](https://github.com/NErler/EP16_Multiple_Imputation) and the associated
+[website](https://nerler.github.io/EP16_Multiple_Imputation):
 
-* [Slides](https://github.com/NErler/MultipleImputationCourse/blob/master/Slides/MICourse_Slides.pdf)
-* Practicals:
-    * [Imputation using the mice package](https://github.com/NErler/MultipleImputationCourse/blob/master/Practicals/MICE/Practical_MICE.html)
-    * [Imputation in complex settings](https://github.com/NErler/MultipleImputationCourse/blob/master/Practicals/MIadvanced/Practical_MIadvanced.html)
+* [Slides](https://nerler.github.io/EP16_Multiple_Imputation/slide/)
+* [Practicals](https://nerler.github.io/EP16_Multiple_Imputation/practical/)

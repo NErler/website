@@ -1,13 +1,16 @@
 +++
-date = "2018-10-20T00:00:00"
-draft = false
+# Custom widget.
+# An example of using the custom widget to create your own homepage section.
+# To create more sections, duplicate this file and edit the values below as desired.
+widget = "custom"  # Do not modify this line!
+active = true  # Activate this widget? true/false
 
+# Note: a full width section format can be enabled by commenting out the `title` and `subtitle` with a `#`.
 title = "Software"
 subtitle = ""
-widget = "custom"
 
 # Order that this section will appear in.
-weight = 6
+weight = 59
 
 +++
 
@@ -24,9 +27,11 @@ generalized linear regression models or linear mixed models with incomplete
 **Vignettes:**
 
 * [Minimal Example](https://nerler.github.io/JointAI/articles/MinimalExample.html)
+* [Visualizing Incomplete Data](https://nerler.github.io/JointAI/articles/VisualizingIncompleteData.html)
 * [Model Specification](https://nerler.github.io/JointAI/articles/ModelSpecification.html)
 * [Parameter Selection](https://nerler.github.io/JointAI/articles/SelectingParameters.html)
-* [Visualizing Incomplete Data](https://nerler.github.io/JointAI/articles/VisualizingIncompleteData.html)
+* [MCMC Settings](https://nerler.github.io/JointAI/articles/MCMCsettings.html)
+* [After Fitting](https://nerler.github.io/JointAI/articles/AfterFitting.html)
 
 <hr>
 
@@ -38,4 +43,3 @@ Online tool to test for non-linear effects in standard regression models
 (linear, logistic, poisson and Cox regression) using natural cubic splines.
 The non-linear fit is presented in a graph and the test results are given 
 together with the resulting conclusion. 
-
