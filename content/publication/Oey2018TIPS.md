@@ -1,6 +1,6 @@
 +++
 title = "Variable efficacy of TIPSS in the management of ectopic variceal bleeding: a multicentre retrospective study"
-date = "2018-08-22"
+date = "2018-10-15"
 authors = ["Rosalie C. Oey", "Koos de Wit", "Adriaan Moelker", "Tugce Atal",
 "Otto M. van Delden", "Geert Maleux", "Nicole S. Erler", "R. Bart Takkenberg", 
 "Robert A. de Man", "Frederik Nevens", "Henk R. van Buuren"]
