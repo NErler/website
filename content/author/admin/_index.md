@@ -75,7 +75,7 @@ interests = [
 
 +++
 
-I am a PhD student at the Department of Biostatistics at the Erasmus Medical
+I am a Researcher at the Department of Biostatistics at the Erasmus Medical
 Center in Rotterdam. My research focus is on Bayesian methods for incomplete
 data, specifically for settings with missing covariates.
 Since 2017, I support the department of Gastroenterology & Hepatology
