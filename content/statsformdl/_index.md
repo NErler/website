@@ -49,9 +49,6 @@ research](http://www.equator-network.org/)
 * [STROBE statement: STrengthening the Reporting of OBservational studies in Epidemiology ](https://www.strobe-statement.org/index.php?id=strobe-home)
 
 
-## Erasmus MC METC
-* [Leidraad statistiek](https://www.erasmusmc.nl/commissies-cs/metc-cs/574257/leidraadstatistiek.pdf)
-
 
 <!---## Slides PhD day
 * [2017](MDL_PhD-Day_2017_StatsForDummies.pdf)
