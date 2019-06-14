@@ -1,8 +1,8 @@
 +++
-title = "Diet-dependent acid load – the missing link between an animal protein-rich diet and non-alcoholic fatty liver disease?"
+title = "Diet-dependent acid load - the missing link between an animal protein-rich diet and non-alcoholic fatty liver disease?"
 date = "2019-04-12"
 
-draft = true
+draft = false
 featured = false
 math = true
 
