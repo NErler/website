@@ -29,6 +29,7 @@ interests = [
 [[education.courses]]
   course = "PhD student in Biostatistics"
   institution = "Erasmus University Medical Center, Rotterdam, the Netherlands"
+  year = 2019
   
 
 [[education.courses]]
@@ -75,7 +76,7 @@ interests = [
 
 +++
 
-I am a researcher at the Department of Biostatistics at the Erasmus Medical
+I am a postdoctoral researcher at the Department of Biostatistics at the Erasmus Medical
 Center in Rotterdam. My research focus is on Bayesian methods for incomplete
 data, specifically for settings with missing covariates.
 Since 2017, I support the department of Gastroenterology & Hepatology
