@@ -27,7 +27,7 @@ interests = [
 
 # List qualifications (such as academic degrees)
 [[education.courses]]
-  course = "PhD student in Biostatistics"
+  course = "PhD in Biostatistics"
   institution = "Erasmus University Medical Center, Rotterdam, the Netherlands"
   year = 2019
   
