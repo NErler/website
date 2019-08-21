@@ -19,20 +19,26 @@
   url = "#publications_featured"
   weight = 2
 
+
+[[main]]
+  name = "Projects"
+  url = "#projects"
+  weight = 3
+
 [[main]]
   name = "Software"
   url = "#software"
-  weight = 3
+  weight = 4
 
 [[main]]
   name = "Teaching"
   url = "#teaching"
-  weight = 4
+  weight = 5
 
 [[main]]
   name = "Stats4MDL"
   url = "/statsformdl/"
-  weight = 5
+  weight = 6
 
 #[[main]]
 #  name = "Tutorials"
@@ -42,7 +48,7 @@
 [[main]]
   name = "Contact"
   url = "#contact"
-  weight = 6
+  weight = 7
 
 # Link to a PDF of your resume/CV from the menu.
 # To enable, copy your resume/CV to `static/files/cv.pdf` and uncomment the lines below.
