@@ -19,6 +19,7 @@ weight = 59
 [[GitHub](https://github.com/NErler/JointAI)] 
 [[CRAN](https://cran.r-project.org/package=JointAI)]
 [[website](https://NErler.github.io/JointAI/)]
+[[project](project/jointai)]
 
 Provides joint analysis and imputation of linear regression models,
 generalized linear regression models or linear mixed models with incomplete
