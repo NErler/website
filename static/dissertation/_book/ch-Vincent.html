@@ -1,0 +1,2259 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Mothers’ SCB Intake and Body Composition of their Children | Bayesian Imputation of Missing Covariates</title>
+  <meta name="description" content="Chapter 4 Mothers’ SCB Intake and Body Composition of their Children | Bayesian Imputation of Missing Covariates" />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Mothers’ SCB Intake and Body Composition of their Children | Bayesian Imputation of Missing Covariates" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="figures/CoverImage_Erler.jpeg" />
+  <meta property="og:description" content="Chapter 4 Mothers’ SCB Intake and Body Composition of their Children | Bayesian Imputation of Missing Covariates" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Mothers’ SCB Intake and Body Composition of their Children | Bayesian Imputation of Missing Covariates" />
+  
+  <meta name="twitter:description" content="Chapter 4 Mothers’ SCB Intake and Body Composition of their Children | Bayesian Imputation of Missing Covariates" />
+  <meta name="twitter:image" content="figures/CoverImage_Erler.jpeg" />
+
+<meta name="author" content="Nicole S. Erler" />
+
+
+<meta name="date" content="2019-08-21" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="ch-Myrte.html"/>
+<link rel="next" href="ch-SMMR.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.8/datatables.js"></script>
+<link href="libs/dt-core-bootstrap-1.10.16/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="libs/dt-core-bootstrap-1.10.16/css/dataTables.bootstrap.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-bootstrap-1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="libs/dt-core-bootstrap-1.10.16/js/dataTables.bootstrap.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Bayesian imputation of Missing Covariates</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> General Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#mechanisms-and-patterns-of-missing-data"><i class="fa fa-check"></i><b>1.1</b> Mechanisms and Patterns of Missing Data</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#missing-data-mechanism"><i class="fa fa-check"></i><b>1.1.1</b> Missing Data Mechanism</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#missing-data-pattern"><i class="fa fa-check"></i><b>1.1.2</b> Missing Data Pattern</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#multiple-imputed-datasets"><i class="fa fa-check"></i><b>1.2</b> Multiple Imputed Datasets</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#methods-for-imputation"><i class="fa fa-check"></i><b>1.2.1</b> Methods for Imputation</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#pooling-results-from-multiple-imputed-datasets"><i class="fa fa-check"></i><b>1.2.2</b> Pooling Results from Multiple Imputed Datasets</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#the-bayesian-framework"><i class="fa fa-check"></i><b>1.3</b> The Bayesian Framework</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#bayes-theorem"><i class="fa fa-check"></i><b>1.3.1</b> Bayes Theorem</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#monte-carlo-methods"><i class="fa fa-check"></i><b>1.3.2</b> Monte Carlo Methods</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#markov-chain-monte-carlo"><i class="fa fa-check"></i><b>1.3.3</b> Markov Chain Monte Carlo</a></li>
+<li class="chapter" data-level="1.3.4" data-path="index.html"><a href="index.html#gibbs-sampler"><i class="fa fa-check"></i><b>1.3.4</b> Gibbs Sampler</a></li>
+<li class="chapter" data-level="1.3.5" data-path="index.html"><a href="index.html#convergence-mixing-and-thinning"><i class="fa fa-check"></i><b>1.3.5</b> Convergence, Mixing and Thinning</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#motivating-datasets"><i class="fa fa-check"></i><b>1.4</b> Motivating Datasets</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#outline-of-this-thesis"><i class="fa fa-check"></i><b>1.5</b> Outline of this Thesis</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="ch-SIM.html"><a href="ch-SIM.html"><i class="fa fa-check"></i><b>2</b> Dealing with Missing Covariates in Epidemiologic Studies</a><ul>
+<li class="chapter" data-level="" data-path="ch-SIM.html"><a href="ch-SIM.html#abstract"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="2.1" data-path="ch-SIM.html"><a href="ch-SIM.html#sec:introSIM"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.2" data-path="ch-SIM.html"><a href="ch-SIM.html#sec:SIMData"><i class="fa fa-check"></i><b>2.2</b> Generation R Data</a></li>
+<li class="chapter" data-level="2.3" data-path="ch-SIM.html"><a href="ch-SIM.html#sec:MissingData"><i class="fa fa-check"></i><b>2.3</b> Dealing with Missing Data</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="ch-SIM.html"><a href="ch-SIM.html#multiple-imputation-using-chained-equations-1"><i class="fa fa-check"></i><b>2.3.1</b> Multiple Imputation using Chained Equations</a></li>
+<li class="chapter" data-level="2.3.2" data-path="ch-SIM.html"><a href="ch-SIM.html#fully-bayesian-imputation"><i class="fa fa-check"></i><b>2.3.2</b> Fully Bayesian Imputation</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="ch-SIM.html"><a href="ch-SIM.html#sec:DataAnalysis"><i class="fa fa-check"></i><b>2.4</b> Data Analysis</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="ch-SIM.html"><a href="ch-SIM.html#design"><i class="fa fa-check"></i><b>2.4.1</b> Design</a></li>
+<li class="chapter" data-level="2.4.2" data-path="ch-SIM.html"><a href="ch-SIM.html#results"><i class="fa fa-check"></i><b>2.4.2</b> Results</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="ch-SIM.html"><a href="ch-SIM.html#sec:SimulationSIM"><i class="fa fa-check"></i><b>2.5</b> Simulation Study</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="ch-SIM.html"><a href="ch-SIM.html#design-1"><i class="fa fa-check"></i><b>2.5.1</b> Design</a></li>
+<li class="chapter" data-level="2.5.2" data-path="ch-SIM.html"><a href="ch-SIM.html#results-1"><i class="fa fa-check"></i><b>2.5.2</b> Results</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="ch-SIM.html"><a href="ch-SIM.html#sec:DiscussionSIM"><i class="fa fa-check"></i><b>2.6</b> Discussion</a></li>
+<li class="chapter" data-level="" data-path="ch-SIM.html"><a href="ch-SIM.html#appendix"><i class="fa fa-check"></i>Appendix</a><ul>
+<li class="chapter" data-level="" data-path="ch-SIM.html"><a href="ch-SIM.html#a-variable-description"><i class="fa fa-check"></i>2.A Variable Description</a></li>
+<li class="chapter" data-level="" data-path="ch-SIM.html"><a href="ch-SIM.html#b-results-from-the-generation-r-data"><i class="fa fa-check"></i>2.B Results from the Generation R Data</a></li>
+<li class="chapter" data-level="" data-path="ch-SIM.html"><a href="ch-SIM.html#c-simulation-settings"><i class="fa fa-check"></i>2.C Simulation Settings</a></li>
+<li class="chapter" data-level="" data-path="ch-SIM.html"><a href="ch-SIM.html#d-simulation-results"><i class="fa fa-check"></i>2.D Simulation Results</a></li>
+<li class="chapter" data-level="" data-path="ch-SIM.html"><a href="ch-SIM.html#e-jags-syntax-for-simulation-scenario-2"><i class="fa fa-check"></i>2.E JAGS Syntax for Simulation Scenario 2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ch-Myrte.html"><a href="ch-Myrte.html"><i class="fa fa-check"></i><b>3</b> Dietary Patterns and Gestational Weight Gain</a><ul>
+<li class="chapter" data-level="" data-path="ch-Myrte.html"><a href="ch-Myrte.html#abstract-1"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="3.1" data-path="ch-Myrte.html"><a href="ch-Myrte.html#introduction"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="ch-Myrte.html"><a href="ch-Myrte.html#experimental-section"><i class="fa fa-check"></i><b>3.2</b> Experimental Section</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="ch-Myrte.html"><a href="ch-Myrte.html#study-design"><i class="fa fa-check"></i><b>3.2.1</b> Study Design</a></li>
+<li class="chapter" data-level="3.2.2" data-path="ch-Myrte.html"><a href="ch-Myrte.html#population-of-analysis"><i class="fa fa-check"></i><b>3.2.2</b> Population of Analysis</a></li>
+<li class="chapter" data-level="3.2.3" data-path="ch-Myrte.html"><a href="ch-Myrte.html#dietary-assessment"><i class="fa fa-check"></i><b>3.2.3</b> Dietary Assessment</a></li>
+<li class="chapter" data-level="3.2.4" data-path="ch-Myrte.html"><a href="ch-Myrte.html#maternal-weight-gain"><i class="fa fa-check"></i><b>3.2.4</b> Maternal Weight Gain</a></li>
+<li class="chapter" data-level="3.2.5" data-path="ch-Myrte.html"><a href="ch-Myrte.html#covariates"><i class="fa fa-check"></i><b>3.2.5</b> Covariates</a></li>
+<li class="chapter" data-level="3.2.6" data-path="ch-Myrte.html"><a href="ch-Myrte.html#statistical-analyses"><i class="fa fa-check"></i><b>3.2.6</b> Statistical Analyses</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="ch-Myrte.html"><a href="ch-Myrte.html#results-2"><i class="fa fa-check"></i><b>3.3</b> Results</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="ch-Myrte.html"><a href="ch-Myrte.html#study-population"><i class="fa fa-check"></i><b>3.3.1</b> Study Population</a></li>
+<li class="chapter" data-level="3.3.2" data-path="ch-Myrte.html"><a href="ch-Myrte.html#dietary-patterns-and-trajectories-of-gestational-weight"><i class="fa fa-check"></i><b>3.3.2</b> Dietary Patterns and Trajectories of Gestational Weight</a></li>
+<li class="chapter" data-level="3.3.3" data-path="ch-Myrte.html"><a href="ch-Myrte.html#dietary-patterns-and-gestational-weight-gain-in-different-phases-in-pregnancy"><i class="fa fa-check"></i><b>3.3.3</b> Dietary Patterns and Gestational Weight Gain in Different Phases in Pregnancy</a></li>
+<li class="chapter" data-level="3.3.4" data-path="ch-Myrte.html"><a href="ch-Myrte.html#sensitivity-analyses-1"><i class="fa fa-check"></i><b>3.3.4</b> Sensitivity Analyses</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="ch-Myrte.html"><a href="ch-Myrte.html#discussion"><i class="fa fa-check"></i><b>3.4</b> Discussion</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="ch-Myrte.html"><a href="ch-Myrte.html#summary-of-the-main-findings"><i class="fa fa-check"></i><b>3.4.1</b> Summary of the Main Findings</a></li>
+<li class="chapter" data-level="3.4.2" data-path="ch-Myrte.html"><a href="ch-Myrte.html#interpretation-and-comparison-with-other-studies"><i class="fa fa-check"></i><b>3.4.2</b> Interpretation and Comparison with other Studies</a></li>
+<li class="chapter" data-level="3.4.3" data-path="ch-Myrte.html"><a href="ch-Myrte.html#strengths-and-limitations"><i class="fa fa-check"></i><b>3.4.3</b> Strengths and Limitations</a></li>
+<li class="chapter" data-level="3.4.4" data-path="ch-Myrte.html"><a href="ch-Myrte.html#conclusions-and-implications"><i class="fa fa-check"></i><b>3.4.4</b> Conclusions and Implications</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch-Myrte.html"><a href="ch-Myrte.html#appendix-1"><i class="fa fa-check"></i>Appendix</a><ul>
+<li class="chapter" data-level="" data-path="ch-Myrte.html"><a href="ch-Myrte.html#a-supplementary-materials"><i class="fa fa-check"></i>3.A Supplementary Materials</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="ch-Vincent.html"><a href="ch-Vincent.html"><i class="fa fa-check"></i><b>4</b> Mothers’ SCB Intake and Body Composition of their Children</a><ul>
+<li class="chapter" data-level="" data-path="ch-Vincent.html"><a href="ch-Vincent.html#abstract-2"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="4.1" data-path="ch-Vincent.html"><a href="ch-Vincent.html#introduction-1"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="ch-Vincent.html"><a href="ch-Vincent.html#methods"><i class="fa fa-check"></i><b>4.2</b> Methods</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="ch-Vincent.html"><a href="ch-Vincent.html#study-design-1"><i class="fa fa-check"></i><b>4.2.1</b> Study Design</a></li>
+<li class="chapter" data-level="4.2.2" data-path="ch-Vincent.html"><a href="ch-Vincent.html#study-population-1"><i class="fa fa-check"></i><b>4.2.2</b> Study Population</a></li>
+<li class="chapter" data-level="4.2.3" data-path="ch-Vincent.html"><a href="ch-Vincent.html#dietary-assessment-of-the-mother"><i class="fa fa-check"></i><b>4.2.3</b> Dietary Assessment of the Mother</a></li>
+<li class="chapter" data-level="4.2.4" data-path="ch-Vincent.html"><a href="ch-Vincent.html#child-anthropometric-measures-and-body-composition"><i class="fa fa-check"></i><b>4.2.4</b> Child Anthropometric Measures and Body Composition</a></li>
+<li class="chapter" data-level="4.2.5" data-path="ch-Vincent.html"><a href="ch-Vincent.html#covariates-1"><i class="fa fa-check"></i><b>4.2.5</b> Covariates</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="ch-Vincent.html"><a href="ch-Vincent.html#statistical-analyses-1"><i class="fa fa-check"></i><b>4.3</b> Statistical Analyses</a></li>
+<li class="chapter" data-level="4.4" data-path="ch-Vincent.html"><a href="ch-Vincent.html#results-3"><i class="fa fa-check"></i><b>4.4</b> Results</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="ch-Vincent.html"><a href="ch-Vincent.html#subject-characteristics"><i class="fa fa-check"></i><b>4.4.1</b> Subject Characteristics</a></li>
+<li class="chapter" data-level="4.4.2" data-path="ch-Vincent.html"><a href="ch-Vincent.html#maternal-scb-intake-and-child-bmi-trajectory"><i class="fa fa-check"></i><b>4.4.2</b> Maternal SCB Intake and Child BMI Trajectory</a></li>
+<li class="chapter" data-level="4.4.3" data-path="ch-Vincent.html"><a href="ch-Vincent.html#maternal-scb-intake-and-child-body-composition"><i class="fa fa-check"></i><b>4.4.3</b> Maternal SCB Intake and Child Body Composition</a></li>
+<li class="chapter" data-level="4.4.4" data-path="ch-Vincent.html"><a href="ch-Vincent.html#additional-analyses"><i class="fa fa-check"></i><b>4.4.4</b> Additional Analyses</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="ch-Vincent.html"><a href="ch-Vincent.html#discussion-1"><i class="fa fa-check"></i><b>4.5</b> Discussion</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="ch-Vincent.html"><a href="ch-Vincent.html#interpretation-and-comparison-with-previous-studies"><i class="fa fa-check"></i><b>4.5.1</b> Interpretation and Comparison with Previous Studies</a></li>
+<li class="chapter" data-level="4.5.2" data-path="ch-Vincent.html"><a href="ch-Vincent.html#potential-mechanisms"><i class="fa fa-check"></i><b>4.5.2</b> Potential Mechanisms</a></li>
+<li class="chapter" data-level="4.5.3" data-path="ch-Vincent.html"><a href="ch-Vincent.html#strengths-and-limitations-1"><i class="fa fa-check"></i><b>4.5.3</b> Strengths and Limitations</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch-Vincent.html"><a href="ch-Vincent.html#appendix-2"><i class="fa fa-check"></i>Appendix</a><ul>
+<li class="chapter" data-level="" data-path="ch-Vincent.html"><a href="ch-Vincent.html#a-additional-results"><i class="fa fa-check"></i>4.A Additional Results</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="ch-SMMR.html"><a href="ch-SMMR.html"><i class="fa fa-check"></i><b>5</b> Bayesian Imputation of Time-varying Covariates in Mixed Models</a><ul>
+<li class="chapter" data-level="" data-path="ch-SMMR.html"><a href="ch-SMMR.html#abstract-3"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="5.1" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:introSMMR"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:DataSMMR"><i class="fa fa-check"></i><b>5.2</b> Generation R Data</a></li>
+<li class="chapter" data-level="5.3" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:ModelSMMR"><i class="fa fa-check"></i><b>5.3</b> Modelling Longitudinal Data with Time-varying Covariates</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="ch-SMMR.html"><a href="ch-SMMR.html#framework"><i class="fa fa-check"></i><b>5.3.1</b> Framework</a></li>
+<li class="chapter" data-level="5.3.2" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:funcformSMMR"><i class="fa fa-check"></i><b>5.3.2</b> Functional Forms for Time-varying Covariates</a></li>
+<li class="chapter" data-level="5.3.3" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:endoexoSMMR"><i class="fa fa-check"></i><b>5.3.3</b> Endo- and Exogeneity</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:modelsSMMR"><i class="fa fa-check"></i><b>5.4</b> Bayesian Analysis with Incomplete Covariates</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:seq-approachSMMR"><i class="fa fa-check"></i><b>5.4.1</b> Sequential Approach</a></li>
+<li class="chapter" data-level="5.4.2" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:mvn-approachSMMR"><i class="fa fa-check"></i><b>5.4.2</b> Multivariate Normal Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:DataAnalysisSMMR"><i class="fa fa-check"></i><b>5.5</b> Analysis of the Generation R Data</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:DataAnalysisEx1"><i class="fa fa-check"></i><b>5.5.1</b> Association between Blood Pressure and Gestational Weight</a></li>
+<li class="chapter" data-level="5.5.2" data-path="ch-SMMR.html"><a href="ch-SMMR.html#association-between-gestational-weight-gain-and-child-bmi"><i class="fa fa-check"></i><b>5.5.2</b> Association between Gestational Weight Gain and Child BMI</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:simulationSMMR"><i class="fa fa-check"></i><b>5.6</b> Simulation Study</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="ch-SMMR.html"><a href="ch-SMMR.html#design-2"><i class="fa fa-check"></i><b>5.6.1</b> Design</a></li>
+<li class="chapter" data-level="5.6.2" data-path="ch-SMMR.html"><a href="ch-SMMR.html#analysis-models"><i class="fa fa-check"></i><b>5.6.2</b> Analysis Models</a></li>
+<li class="chapter" data-level="5.6.3" data-path="ch-SMMR.html"><a href="ch-SMMR.html#results-4"><i class="fa fa-check"></i><b>5.6.3</b> Results</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:DiscussionSMMR"><i class="fa fa-check"></i><b>5.7</b> Discussion</a></li>
+<li class="chapter" data-level="" data-path="ch-SMMR.html"><a href="ch-SMMR.html#appendix-3"><i class="fa fa-check"></i>Appendix</a><ul>
+<li class="chapter" data-level="" data-path="ch-SMMR.html"><a href="ch-SMMR.html#a-details-on-the-implied-exo--or-endogeneity"><i class="fa fa-check"></i>5.A Details on the Implied Exo- or Endogeneity</a></li>
+<li class="chapter" data-level="" data-path="ch-SMMR.html"><a href="ch-SMMR.html#b-analysis-of-the-generation-r-data"><i class="fa fa-check"></i>5.B Analysis of the Generation R Data</a></li>
+<li class="chapter" data-level="" data-path="ch-SMMR.html"><a href="ch-SMMR.html#c-simulation-study"><i class="fa fa-check"></i>5.C Simulation Study</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="ch-JSS.html"><a href="ch-JSS.html"><i class="fa fa-check"></i><b>6</b> JointAI: Joint Analysis and Imputation of Incomplete Data in R</a><ul>
+<li class="chapter" data-level="" data-path="ch-JSS.html"><a href="ch-JSS.html#abstract-4"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="6.1" data-path="ch-JSS.html"><a href="ch-JSS.html#introduction-2"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:TheoryJSS"><i class="fa fa-check"></i><b>6.2</b> Theoretical Background</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:AnalysisModel"><i class="fa fa-check"></i><b>6.2.1</b> Analysis Model</a></li>
+<li class="chapter" data-level="6.2.2" data-path="ch-JSS.html"><a href="ch-JSS.html#imputation-part"><i class="fa fa-check"></i><b>6.2.2</b> Imputation Part</a></li>
+<li class="chapter" data-level="6.2.3" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:priors"><i class="fa fa-check"></i><b>6.2.3</b> Prior Distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:package"><i class="fa fa-check"></i><b>6.3</b> Package Structure</a></li>
+<li class="chapter" data-level="6.4" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:ExampleDataJSS"><i class="fa fa-check"></i><b>6.4</b> Example Data</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="ch-JSS.html"><a href="ch-JSS.html#the-nhanes-data"><i class="fa fa-check"></i><b>6.4.1</b> The NHANES Data</a></li>
+<li class="chapter" data-level="6.4.2" data-path="ch-JSS.html"><a href="ch-JSS.html#the-simlong-data"><i class="fa fa-check"></i><b>6.4.2</b> The simLong Data</a></li>
+<li class="chapter" data-level="6.4.3" data-path="ch-JSS.html"><a href="ch-JSS.html#the-lung-data"><i class="fa fa-check"></i><b>6.4.3</b> The lung Data</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:ModelSpecification"><i class="fa fa-check"></i><b>6.5</b> Model Specification</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="ch-JSS.html"><a href="ch-JSS.html#interactions"><i class="fa fa-check"></i><b>6.5.1</b> Interactions</a></li>
+<li class="chapter" data-level="6.5.2" data-path="ch-JSS.html"><a href="ch-JSS.html#non-linear-functional-forms"><i class="fa fa-check"></i><b>6.5.2</b> Non-linear Functional Forms</a></li>
+<li class="chapter" data-level="6.5.3" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:multilevel"><i class="fa fa-check"></i><b>6.5.3</b> Multi-level Structure and Longitudinal Covariates</a></li>
+<li class="chapter" data-level="6.5.4" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:survmod"><i class="fa fa-check"></i><b>6.5.4</b> Survival Models</a></li>
+<li class="chapter" data-level="6.5.5" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:methJSS"><i class="fa fa-check"></i><b>6.5.5</b> Imputation / Covariate Model Types</a></li>
+<li class="chapter" data-level="6.5.6" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:auxvars"><i class="fa fa-check"></i><b>6.5.6</b> Auxiliary Variables</a></li>
+<li class="chapter" data-level="6.5.7" data-path="ch-JSS.html"><a href="ch-JSS.html#reference-values-for-categorical-covariates"><i class="fa fa-check"></i><b>6.5.7</b> Reference Values for Categorical Covariates</a></li>
+<li class="chapter" data-level="6.5.8" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:hyperpars"><i class="fa fa-check"></i><b>6.5.8</b> Hyperparameters</a></li>
+<li class="chapter" data-level="6.5.9" data-path="ch-JSS.html"><a href="ch-JSS.html#scaling"><i class="fa fa-check"></i><b>6.5.9</b> Scaling</a></li>
+<li class="chapter" data-level="6.5.10" data-path="ch-JSS.html"><a href="ch-JSS.html#ridge-regression"><i class="fa fa-check"></i><b>6.5.10</b> Ridge Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:MCMCSettings"><i class="fa fa-check"></i><b>6.6</b> MCMC Settings</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="ch-JSS.html"><a href="ch-JSS.html#number-of-chains-iterations-and-samples"><i class="fa fa-check"></i><b>6.6.1</b> Number of Chains, Iterations and Samples</a></li>
+<li class="chapter" data-level="6.6.2" data-path="ch-JSS.html"><a href="ch-JSS.html#parameters-to-follow"><i class="fa fa-check"></i><b>6.6.2</b> Parameters to Follow</a></li>
+<li class="chapter" data-level="6.6.3" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:inits"><i class="fa fa-check"></i><b>6.6.3</b> Initial Values</a></li>
+<li class="chapter" data-level="6.6.4" data-path="ch-JSS.html"><a href="ch-JSS.html#parallel-sampling"><i class="fa fa-check"></i><b>6.6.4</b> Parallel Sampling</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:ResultsJSS"><i class="fa fa-check"></i><b>6.7</b> After Fitting</a><ul>
+<li class="chapter" data-level="6.7.1" data-path="ch-JSS.html"><a href="ch-JSS.html#visualizing-the-posterior-sample"><i class="fa fa-check"></i><b>6.7.1</b> Visualizing the Posterior Sample</a></li>
+<li class="chapter" data-level="6.7.2" data-path="ch-JSS.html"><a href="ch-JSS.html#model-summary"><i class="fa fa-check"></i><b>6.7.2</b> Model Summary</a></li>
+<li class="chapter" data-level="6.7.3" data-path="ch-JSS.html"><a href="ch-JSS.html#evaluation-criteria"><i class="fa fa-check"></i><b>6.7.3</b> Evaluation Criteria</a></li>
+<li class="chapter" data-level="6.7.4" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:subset"><i class="fa fa-check"></i><b>6.7.4</b> Subset of Output</a></li>
+<li class="chapter" data-level="6.7.5" data-path="ch-JSS.html"><a href="ch-JSS.html#predicted-values"><i class="fa fa-check"></i><b>6.7.5</b> Predicted Values</a></li>
+<li class="chapter" data-level="6.7.6" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:getMIdat"><i class="fa fa-check"></i><b>6.7.6</b> Export of Imputed Values</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="ch-JSS.html"><a href="ch-JSS.html#assumptions-and-extensions"><i class="fa fa-check"></i><b>6.8</b> Assumptions and Extensions</a></li>
+<li class="chapter" data-level="" data-path="ch-JSS.html"><a href="ch-JSS.html#appendix-4"><i class="fa fa-check"></i>Appendix</a><ul>
+<li class="chapter" data-level="" data-path="ch-JSS.html"><a href="ch-JSS.html#a-default-hyperparameters"><i class="fa fa-check"></i>6.A Default Hyperparameters</a></li>
+<li class="chapter" data-level="" data-path="ch-JSS.html"><a href="ch-JSS.html#b-density-plot-using-ggplot2"><i class="fa fa-check"></i>6.B Density Plot using ggplot2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="ch-discussion.html"><a href="ch-discussion.html"><i class="fa fa-check"></i><b>7</b> General Discussion</a><ul>
+<li class="chapter" data-level="7.1" data-path="ch-discussion.html"><a href="ch-discussion.html#summary-of-advantages"><i class="fa fa-check"></i><b>7.1</b> Summary of Advantages</a></li>
+<li class="chapter" data-level="7.2" data-path="ch-discussion.html"><a href="ch-discussion.html#assumptions"><i class="fa fa-check"></i><b>7.2</b> Assumptions</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="ch-discussion.html"><a href="ch-discussion.html#model-specification"><i class="fa fa-check"></i><b>7.2.1</b> Model Specification</a></li>
+<li class="chapter" data-level="7.2.2" data-path="ch-discussion.html"><a href="ch-discussion.html#ignorable-missingness"><i class="fa fa-check"></i><b>7.2.2</b> Ignorable Missingness</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="ch-discussion.html"><a href="ch-discussion.html#directions-for-future-work"><i class="fa fa-check"></i><b>7.3</b> Directions for Future Work</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="ch-discussion.html"><a href="ch-discussion.html#implementation-of-flexible-models"><i class="fa fa-check"></i><b>7.3.1</b> Implementation of Flexible Models</a></li>
+<li class="chapter" data-level="7.3.2" data-path="ch-discussion.html"><a href="ch-discussion.html#evaluation-of-model-fit"><i class="fa fa-check"></i><b>7.3.2</b> Evaluation of Model Fit</a></li>
+<li class="chapter" data-level="7.3.3" data-path="ch-discussion.html"><a href="ch-discussion.html#non-ignorable-missingness"><i class="fa fa-check"></i><b>7.3.3</b> Non-ignorable Missingness</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="ch-discussion.html"><a href="ch-discussion.html#conclusion"><i class="fa fa-check"></i><b>7.4</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="summary-samenvatting-zusammenfassung.html"><a href="summary-samenvatting-zusammenfassung.html"><i class="fa fa-check"></i><b>8</b> Summary / Samenvatting / Zusammenfassung</a><ul>
+<li class="chapter" data-level="" data-path="summary-samenvatting-zusammenfassung.html"><a href="summary-samenvatting-zusammenfassung.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+<li class="chapter" data-level="" data-path="summary-samenvatting-zusammenfassung.html"><a href="summary-samenvatting-zusammenfassung.html#samenvatting"><i class="fa fa-check"></i>Samenvatting</a></li>
+<li class="chapter" data-level="" data-path="summary-samenvatting-zusammenfassung.html"><a href="summary-samenvatting-zusammenfassung.html#zusammenfassung"><i class="fa fa-check"></i>Zusammenfassung</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html"><i class="fa fa-check"></i>Appendix: PhD Portfolio &amp; Curriculum Vitae</a><ul>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#phd-portfolio"><i class="fa fa-check"></i>PhD Portfolio</a><ul>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#presentations"><i class="fa fa-check"></i>Presentations</a></li>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#teaching"><i class="fa fa-check"></i>Teaching</a></li>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#courses"><i class="fa fa-check"></i>Courses</a></li>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#seminars-and-workshops"><i class="fa fa-check"></i>Seminars and Workshops</a></li>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#consulting"><i class="fa fa-check"></i>Consulting</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#curriculum-vitae"><i class="fa fa-check"></i>Curriculum Vitae</a><ul>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#education"><i class="fa fa-check"></i>Education</a></li>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#work-experience"><i class="fa fa-check"></i>Work Experience</a></li>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#awards"><i class="fa fa-check"></i>Awards</a></li>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#collaborations-and-consulting"><i class="fa fa-check"></i>Collaborations and Consulting</a></li>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#publications"><i class="fa fa-check"></i>Publications</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Bayesian Imputation of Missing Covariates</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="ch:Vincent" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Mothers’ SCB Intake and Body Composition of their Children</h1>
+
+<hr />
+<p>This chapter is based on</p>
+<blockquote>
+<p>Vincent Jen, Nicole S. Erler, Myrte J. Tielemans, Kim V.E. Braun,
+Vincent W.V. Jaddoe, Oscar H. Franco and Trudy Voortman.
+Mothers’ intake of sugar-containing beverages during pregnancy and body
+composition of their children during childhood: the Generation R Study.
+<em>The American Journal of Clinical Nutrition</em>, 2017; <strong>105</strong>(4), 834–841.
+<a href="https://doi.org/10.3945/ajcn.116.147934">doi:10.3945/ajcn.116.147934</a></p>
+</blockquote>
+
+
+
+<div id="abstract-2" class="section level3 unnumbered">
+<h3>Abstract</h3>
+<p><strong>Background:</strong>
+High intake of sugar-containing beverages (SCBs) has been linked to
+increased risk of obesity. However, associations of SCB intake during pregnancy
+with child body composition have been unclear.</p>
+<p><strong>Objectives:</strong>
+We explored whether SCB intake during pregnancy was associated with
+children’s body mass index (BMI) and detailed measures of body composition.
+In addition, we examined different types of SCBs (i.e., fruit juice, soda, and
+concentrate).</p>
+<p><strong>Design:</strong>
+We included 3312 mother-child pairs of the Generation R Study, a prospective
+cohort from fetal life onward in the Netherlands. Energy-adjusted SCB intake was
+assessed in the first trimester with a food-frequency questionnaire.
+Anthropometric data of the children were collected repeatedly until six years of age,
+and BMI was calculated. At six years of age, we further measured the fat mass index (FMI)
+and fat-free mass index with dual-energy X-ray absorptiometry. All outcomes
+were sex- and age-standardized. Associations of SCB intake with children’s
+body composition and BMI trajectories were analysed with multivariable linear and
+multivariable linear mixed models.</p>
+<p><strong>Results:</strong>
+Results from linear mixed models showed that, after adjustment for
+confounders including the SCB intake of the child itself, mothers’ total SCB
+intake was positively associated with children’s BMI until six years of age
+(per serving per day: 0.04 SD score (SDS); 95% CI: [0.00, 0.07]).
+In addition, intakes of total SCBs and fruit juice, but not of soda or
+concentrate, were associated with a higher FMI (total SCBs: 0.05 SDS,
+95% CI: [0.01, 0.08]; fruit juice: 0.04 SDS, 95% CI: [0.01, 0.06])
+of the six-year-old children. These associations remained significant
+after additional adjustment for gestational weight gain, birth weight,
+and children’s insulin concentrations.</p>
+<p><strong>Conclusion:</strong>
+Our study suggests that maternal SCB intake during pregnancy is positively
+associated with children’s BMI during early childhood and particularly with
+higher fat mass.</p>
+
+</div>
+<div id="introduction-1" class="section level2">
+<h2><span class="header-section-number">4.1</span> Introduction</h2>
+<p>The rapidly increasing prevalence of childhood overweight and obesity is of
+great concern because excess weight during childhood is associated with health
+problems over the child’s life course, including cardiometabolic disturbances
+<span class="citation">(Batch and Baur <a href="#ref-batch2005management" role="doc-biblioref">2005</a>)</span>.
+Intake of sugar-containing beverages (SCBs) has increased substantially during
+the past decades <span class="citation">(Malik et al. <a href="#ref-malik2010sugar" role="doc-biblioref">2010</a>)</span>.
+Several studies have revealed that high intakes of SCBs
+by adults and children are related to overweight and obesity
+<span class="citation">(Malik et al. <a href="#ref-malik2010sugar" role="doc-biblioref">2010</a>; Krebs and Jacobson <a href="#ref-krebs2003prevention" role="doc-biblioref">2003</a>; Leermakers et al. <a href="#ref-leermakers2015sugar" role="doc-biblioref">2015</a>)</span>. Although
+this relation has been well established in the general population,
+the association of pregnant women’s SCB intake with their offspring’s growth
+and body composition has been unclear. Intake of SCBs during pregnancy may
+influence the intrauterine programming of the child toward obesity <span class="citation">(Phelan et al. <a href="#ref-phelan2011maternal" role="doc-biblioref">2011</a>)</span>.
+Potential effects of SCB intake during pregnancy on child body composition may
+be hypothesized by several mechanisms including changes in the insulin response.</p>
+<p>To our knowledge, only one study has prospectively investigated the association
+between intake of SCBs during pregnancy and child body weight <span class="citation">(Phelan et al. <a href="#ref-phelan2011maternal" role="doc-biblioref">2011</a>)</span>.
+In a US cohort of 285 mothers and their infants, <span class="citation">Phelan et al. (<a href="#ref-phelan2011maternal" role="doc-biblioref">2011</a>)</span> observed that
+intakes of soft drinks and fruit juice during pregnancy were not associated
+with child birth weight or weight at 6 months of age. However, the later onset of
+childhood overweight and obesity was not explored. Also, more detailed
+measurements of body composition (i.e., fat mass and lean mass) were not
+explored in the study. Previous studies in the general population have
+suggested that higher intake of SCBs may be associated with a higher fat
+mass but not lean mass <span class="citation">(Zheng et al. <a href="#ref-zheng2015substituting" role="doc-biblioref">2015</a>; Raben et al. <a href="#ref-raben2002sucrose" role="doc-biblioref">2002</a>; Tordoff and Alleva <a href="#ref-tordoff1990effect" role="doc-biblioref">1990</a>)</span>.
+Therefore, we hypothesized that mothers’ SCB
+intakes during pregnancy would be associated with higher BMI (in kg/m<sup>2</sup>) and,
+in particular, with higher fat mass in their children.</p>
+<p>The aim of this study was to explore the associations of mothers’ SCB intakes
+during early pregnancy with BMI trajectories of their children until six years of age and
+with the children’s fat masses and fat-free masses at six years of age.
+In addition, we analysed whether these associations differed by types of SCBs
+(fruit juice, concentrate, and soda).</p>
+</div>
+<div id="methods" class="section level2">
+<h2><span class="header-section-number">4.2</span> Methods</h2>
+<div id="study-design-1" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> Study Design</h3>
+<p>This study was embedded in the Generation R Study, which is an ongoing
+population-based prospective cohort from fetal life onwards in Rotterdam, the
+Netherlands. Details of the study design and procedures have been described
+previously <span class="citation">(Kooijman et al. <a href="#ref-GenR2017" role="doc-biblioref">2016</a>)</span>.
+The study was approved by the Medical Ethics Committee at the
+Erasmus Medical Center. Pregnant women with an expected delivery date between
+2002 and 2006 were included. Written informed consent was obtained for all
+participants. No measurements were performed when a child was not willing to
+participate.</p>
+</div>
+<div id="study-population-1" class="section level3">
+<h3><span class="header-section-number">4.2.2</span> Study Population</h3>
+<div class="figure" style="text-align: center"><span id="fig:flowdiagVincent"></span>
+<img src="Dissertation_files/figure-html/flowdiagVincent-1.png" alt="Flowchart of the population for analysis." width="100%"  />
+<p class="caption">
+Figure 4.1: Flowchart of the population for analysis.
+</p>
+</div>
+<p>The selection process of the population for analysis is shown in Figure .
+We restricted our analyses to women who were of Dutch origin (n = 4545).
+Of these women, 3558 individuals provided valid dietary data of whom 3478 had singleton
+live births. Of these children, 3312 had available information on BMI for
+at least one time point. More detailed body-composition outcomes were available for
+2660 children at six years of age.</p>
+</div>
+<div id="dietary-assessment-of-the-mother" class="section level3">
+<h3><span class="header-section-number">4.2.3</span> Dietary Assessment of the Mother</h3>
+<p>We assessed dietary intake in pregnant women at enrolment (median: 13.4 weeks
+of gestation; 2.5% and 97.5% quantiles: 9.9 and 22.8 weeks of gestation)
+with the use of a self-administered semi-quantitative food-frequency
+questionnaire (FFQ) <span class="citation">(Klipstein-Grobusch et al. <a href="#ref-KlipsteinGrobusch1998" role="doc-biblioref">1998</a>)</span>.
+The FFQ covered intakes of 293 food items that were consumed in the preceding
+three months and included questions about their consumption frequencies and
+portion sizes.
+We obtained information on the following three types of SCBs:
+soda (soft drinks, sports drinks, and energy drinks), fruit juice
+(fresh and boxed; 100% fruit juice only), and concentrate (juice and
+lemonades concentrate with added sugars). In this study, we defined total
+intake of SCBs as the sum of soda, fruit juice, and concentrate intakes,
+which were expressed as servings per day. We chose not to include
+sugar-containing milk products because of their different macronutrient
+composition <span class="citation">(Malik, Schulze, and Hu <a href="#ref-malik2006intake" role="doc-biblioref">2006</a>)</span>.
+Daily energy and macronutrient intakes of the pregnant women were calculated
+with the use of the Dutch food-composition table <span class="citation">(Netherlands Nutrition Center <a href="#ref-Netherlands2006" role="doc-biblioref">2006</a>)</span>.</p>
+</div>
+<div id="child-anthropometric-measures-and-body-composition" class="section level3">
+<h3><span class="header-section-number">4.2.4</span> Child Anthropometric Measures and Body Composition</h3>
+<p>Children visited Child Health Centres at the median (2.5%, 97.5% quantiles)
+ages of
+1.1 months (0.8, 1.8),
+2.2 months (2.0, 2.9),
+3.3 months (3.0, 3.9),
+4.4 months (4.0, 4.9),
+6.2 months (5.3, 8.2),
+11.1 months (10.1, 12.5),
+14.3 months (13.5, 16.0),
+18.3 months (17.3, 21.4),
+24.9 months (23.4, 28.0),
+30.6 months (29.2, 33.8),
+36.7 months (35.4, 40.6) and
+45.8 months (44.4, 48.5).
+During all visits,
+heights and weights of the children were measured with the children not
+wearing shoes or heavy clothing. When children were a median age of
+six years (2.5% and 97.5% quantiles: 5.7, 7.4),
+well-trained staff measured children’s
+anthropometric variables and body compositions in a dedicated research
+centre of Sophia Children’s Hospital in Rotterdam <span class="citation">(Kooijman et al. <a href="#ref-GenR2017" role="doc-biblioref">2016</a>)</span>.
+We measured height
+in a standing position to the nearest millimetre with the use of a Harpenden
+stadiometer (Holtain Ltd.). Weight was measured with the use of a mechanical
+personal scale (SECA). BMI was calculated for all time points.</p>
+<p>In addition, to measure the body composition of children at six years of age,
+we used a dual-energy X-ray absorptiometry (DXA) scanner
+(iDXA; Ge-Lunar, 2008) <span class="citation">(Kooijman et al. <a href="#ref-GenR2017" role="doc-biblioref">2016</a>)</span>.
+The DXA scanner measured fat mass, lean mass,
+and bone mass of the total body with the use of enCORE software
+(v.13.6; GE Healthcare). We calculated the fat mass index (FMI) as fat mass
+(kilograms) divided by the square of height (in meters) and the fat-free
+mass index (FFMI) as lean mass plus bone mass (both in kilograms)
+divided by the square of height (in meters). All outcomes were
+standardized for age and sex on the basis of the Generation R Study population.
+We used cut-offs that were recommended by <span class="citation">Cole et al. (<a href="#ref-cole2000establishing" role="doc-biblioref">2000</a>)</span> to determine
+the weight status of each child at six years of age as normal, or as overweight or obese.</p>
+</div>
+<div id="covariates-1" class="section level3">
+<h3><span class="header-section-number">4.2.5</span> Covariates</h3>
+<p>At enrolment, we used self-administered questionnaires to collect information
+on maternal age,
+marital status (no partner, married / living together),
+education (low or high) <span class="citation">(Statistics Netherlands <a href="#ref-StatNed20003" role="doc-biblioref">2003</a>)</span>,
+use of folic acid supplements (never, started during the first 10 weeks, or started periconceptional),
+parity (nulliparous or multiparous),
+and net household income (<span class="math inline">\(&lt;\)</span> € 2400/month or <span class="math inline">\(\geq\)</span> € 2400/month).
+Maternal height and weight were measured at enrolment to calculate BMI, and
+a fetal ultrasound was performed to determine the gestational age.
+The maternal diet quality (range: 0 to 14) was scored on the basis of
+adherence to Dutch dietary guidelines with the use of the dietary intake
+data that were obtained from the FFQ at enrolment. This score included
+items on intakes of vegetables, fruit, legumes, whole grains, nut, fish,
+dairy, tea, soft fat and oils, red meat, alcohol, salt, and folic acid
+supplements <span class="citation">(Nguyen et al. <a href="#ref-nguyen2017maternal" role="doc-biblioref">2017</a>)</span>.
+Psychiatric symptoms during pregnancy
+(Global Severity Index; range: 0 to 4) <span class="citation">(Derogatis and Melisaratos <a href="#ref-derogatis1983brief" role="doc-biblioref">1983</a>)</span> and
+vomiting (<span class="math inline">\(\geq 1\)</span> or <span class="math inline">\(&lt;1\)</span> time/week) were also assessed with the use of questionnaires
+at enrolment, but also during pregnancy.</p>
+<p>With the use of questionnaires, we assessed smoking (never, until the
+pregnancy was known, or continued during pregnancy) and alcohol consumption
+(never, until the pregnancy was known, occasionally during pregnancy,
+or frequently during pregnancy). Body weight was measured in each trimester,
+and the total gestational weight gain was calculated by subtracting weight
+that was assessed at enrolment from weight that was measured in the third
+trimester <span class="citation">(Kooijman et al. <a href="#ref-GenR2017" role="doc-biblioref">2016</a>)</span>.</p>
+<p>After pregnancy, we obtained information on pregnancy-related diseases
+including pregnancy-induced hypertension, pre-eclampsia <span class="citation">(Coolman et al. <a href="#ref-Coolman2010" role="doc-biblioref">2010</a>)</span>,
+and gestational diabetes from midwives and obstetricians. We collected information on
+child sex, gestational age, and birth weight from hospital medical records,
+and <span class="math inline">\(z\)</span>-scores were calculated for birth weight with the use of reference data <span class="citation">(Niklasson et al. <a href="#ref-niklasson1991update" role="doc-biblioref">1991</a>)</span>.
+When a child was six years old, information on screen time (watching television and
+the use of the computer in hours per day), sports participation (yes or no),
+and intake of SCBs (servings per day) was obtained with the use of a
+questionnaire. In addition, nonfasting blood was collected at the research
+centre, and insulin concentrations were analysed with the use of
+enzymatic methods (Cobas 8000; Roche) <span class="citation">(Voortman, van den Hooven, et al. <a href="#ref-voortman2016protein" role="doc-biblioref">2016</a>)</span>.</p>
+</div>
+</div>
+<div id="statistical-analyses-1" class="section level2">
+<h2><span class="header-section-number">4.3</span> Statistical Analyses</h2>
+<p>To reduce bias due to missing values (<span class="math inline">\(\leq 22.8\%\)</span> per covariate),
+we used a fully Bayesian approach that allowed for simultaneous imputation
+of missing covariates and analysis of associations with multiple
+cross-sectional and longitudinal outcomes.
+A detailed description of this approach can be found elsewhere <span class="citation">(Erler et al. <a href="#ref-Erler2016" role="doc-biblioref">2016</a>)</span>.
+Results of the main analyses were obtained directly from the Bayesian approach
+and are presented as posterior means and 95% credible intervals (CIs).
+To perform subsequent sensitivity analyses, 10 imputed datasets were created
+by random selection of imputed values from the Bayesian approach.
+These analyses were performed separately in each of the imputed datasets,
+and pooled effect estimates and 95% confidence intervals (CIs) are presented.
+All decisions with regards to the structure of the final models were based
+on preliminary analyses conducted in the unimputed data.</p>
+<p>We specified linear mixed models to analyse associations of SCB intake during
+pregnancy with trajectories of children’s BMI between one month and six years of age.
+To explore these associations, we constructed three models with a fixed-effects
+structure that included maternal SCB intake and possible confounders, and a
+random-effects structure that included a random intercept and slope (for age).
+In Model 1 (crude model), we adjusted for child sex and further included
+energy intake in the model. Model 2 (confounder model) was additionally adjusted for
+the following covariates: maternal parity, age, gestational age at enrolment,
+marital status, income, education, psychiatric symptoms during pregnancy,
+protein intake (percentage of energy intake), diet quality, smoking during
+pregnancy, alcohol intake during pregnancy, use of folic acid supplements,
+and child sports and screen times. The confounders were selected on the basis
+of previous literature and a <span class="math inline">\(\geq\)</span> 10% change in effect estimates <span class="citation">(Mickey and Greenland <a href="#ref-mickey1989impact" role="doc-biblioref">1989</a>)</span>.
+In Model 3 (SCB child model), we adjusted for child SCB intake at age six years in
+addition to the confounders used in Model 2 <span class="citation">(Leermakers et al. <a href="#ref-leermakers2015sugar" role="doc-biblioref">2015</a>)</span>.
+We investigated non-linearity of trajectories of children’s BMI over
+time and potential effect modification of the trajectories by SCB intake
+using natural cubic splines for age and an interaction term
+between the spline and SCB intake.
+Based on this preliminary analysis there was no evidence for the need of either
+non-linear trajectories or the interaction term and the simpler model assuming
+linear trajectories and associations was used in the final analysis.</p>
+<p>In addition, we specified linear regression models to examine the association
+between intake of SCBs during pregnancy and children’s FMI and FFMI at age six years.
+We used the previously mentioned Models 2 and 3 to which we further added
+child age at the six-year visit. The analyses for BMI trajectories, FMI, and FFMI
+were modelled jointly in the Bayesian analysis.</p>
+<p>Intake of SCBs was examined both with and without energy adjustment.
+Adjustment for energy intake was performed using the residual method <span class="citation">(Willett, Howe, and Kushi <a href="#ref-willett1997adjustment" role="doc-biblioref">1997</a>)</span>.
+We report results from energy-adjusted SCBs as the main results in this study.
+To study whether the associations differed by the type of SCB, the analyses
+were repeated for intakes of fruit juice, concentrate, and soda instead of
+total SCB intake.</p>
+<p>For relevant associations (i.e., when the 95% CI excluded zero in Model 3),
+we also examined the role of the potential mediators gestational weight gain,
+child birth weight, maternal BMI at enrolment <span class="citation">(Kalk et al. <a href="#ref-kalk2009impact" role="doc-biblioref">2009</a>)</span>,
+and child serum insulin concentrations at six years of age <span class="citation">(Reichetzeder et al. <a href="#ref-reichetzeder2016developmental" role="doc-biblioref">2016</a>)</span>
+by including them in the model. These analyses were performed in the multiply
+imputed data obtained from the Bayesian model.
+Moreover, we tested whether associations were modified by child sex <span class="citation">(Reichetzeder et al. <a href="#ref-reichetzeder2016developmental" role="doc-biblioref">2016</a>)</span>
+or by maternal BMI at enrolment by adding the product term of the potential
+effect modifier and maternal SCB intake to Models 1 and 2 and re-evaluating them
+in the imputed data.
+Main analyses were stratified if the pooled estimate of the interaction term was
+significantly different from zero.</p>
+<p>To test the robustness of our findings, we performed two sensitivity analyses based on the imputed data.
+First, we repeated our analyses by restricting them to women who vomited
+less than one time per week because vomiting in pregnancy may alter dietary
+intake <span class="citation">(Chortatos et al. <a href="#ref-chortatos2013nausea" role="doc-biblioref">2013</a>)</span>.
+Second, we restricted analyses to women who did not experience comorbidities
+during pregnancy (i.e., diabetes mellitus, gestational diabetes, or
+hypertensive disorders) because these comorbidities could alter the maternal
+diet during pregnancy and may affect child birth weight <span class="citation">(Hutcheon, Lisonkova, and Joseph <a href="#ref-hutcheon2011epidemiology" role="doc-biblioref">2011</a>; Boerschmann et al. <a href="#ref-boerschmann2010prevalence" role="doc-biblioref">2010</a>)</span>.
+All statistical analyses were performed with the use of
+SPSS 21.0 (IBM Corp.), R version 3.3.1 <span class="citation">(R Core Team <a href="#ref-R2016" role="doc-biblioref">2016</a>)</span>, and JAGS
+(version 4.2.0; )<span class="citation">(Plummer <a href="#ref-JAGS" role="doc-biblioref">2003</a>)</span>.</p>
+</div>
+<div id="results-3" class="section level2">
+<h2><span class="header-section-number">4.4</span> Results</h2>
+<div id="subject-characteristics" class="section level3">
+<h3><span class="header-section-number">4.4.1</span> Subject Characteristics</h3>
+<p>Characteristics of the 3312 mothers and their children included in this study
+are presented in Table <a href="ch-Vincent.html#tab:Table1Vincent">4.1</a>.
+Median intake of total SCBs during pregnancy was 1.9 servings/day
+(2.5% and 97.5% quantiles: 0.1 and 7.4 servings/day).
+Most intake came from fruit juices, with a median intake of 1.0 serving/day
+(2.5% and 97.5% quantiles: 0.0 and 5.0 servings/day), whereas for both
+concentrate (2.5% and 97.5% quantiles: 0.0 and 4.5 servings/day) and soda
+(2.5% and 97.5% quantiles: 0.0 and 2.5 servings/day)
+median intake was only 0.1 serving/day.
+Most of the women who were included were highly educated (60.7%), had never
+smoked during pregnancy (75.2%), and used folic acid supplementation during
+pregnancy (88.8%). The mean ± SD birth weight of the children was
+3488 ± 561 gram. At six years of age, median BMI of the children was
+15.7 (2.5% and 97.5% quantiles: 13.7 and 19.3) with 9.2% of the children being classified as
+overweight or obese.</p>
+<table>
+<caption>
+<span id="tab:Table1Vincent">Table 4.1: </span>Characteristics of the analysis population (n = 3312).
+Values are means <span class="math inline">\(\pm\)</span> SDs for approximately normal variables, medians
+(2.5%, 97.5% quantile) for continuous non-normal variables, and valid percentages for
+categorical variables.
+</caption>
+<tbody>
+<tr grouplength="26">
+<td colspan="2" style="border-bottom: 1px solid;">
+<strong>Maternal Characteristics during Pregnancy</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+age at enrolment in years
+</td>
+<td style="text-align:left;">
+31.6 <span class="math inline">\(\pm\)</span> 4.3
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+BMI at enrolment in kg/m<sup>2</sup>
+</td>
+<td style="text-align:left;">
+23.4 (18.9, 35.1)
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+nulliparous, %
+</td>
+<td style="text-align:left;">
+59.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+gestational age at enrolment in weeks
+</td>
+<td style="text-align:left;">
+13.4 (9.8, 22.8)
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+gestational weight gain in kg
+</td>
+<td style="text-align:left;">
+8.1 <span class="math inline">\(\pm\)</span> 3.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+educational level, higher, %
+</td>
+<td style="text-align:left;">
+60.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+net household income <span class="math inline">\(\geq\)</span> € 2400/month, %
+</td>
+<td style="text-align:left;">
+80.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+alcohol consumption, %
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 4em;" indentlevel="2">
+never
+</td>
+<td style="text-align:left;">
+31.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 4em;" indentlevel="2">
+until pregnancy was known
+</td>
+<td style="text-align:left;">
+16.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 4em;" indentlevel="2">
+occasionally during pregnancy
+</td>
+<td style="text-align:left;">
+40.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 4em;" indentlevel="2">
+frequently during pregnancy
+</td>
+<td style="text-align:left;">
+12.4
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+smoking, %
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 4em;" indentlevel="2">
+never
+</td>
+<td style="text-align:left;">
+75.2
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 4em;" indentlevel="2">
+until pregnancy was known
+</td>
+<td style="text-align:left;">
+9.1
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 4em;" indentlevel="2">
+continued during pregnancy
+</td>
+<td style="text-align:left;">
+15.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+folic acid supplementation, %
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 4em;" indentlevel="2">
+never
+</td>
+<td style="text-align:left;">
+11.2
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 4em;" indentlevel="2">
+until pregnancy was known
+</td>
+<td style="text-align:left;">
+54.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 4em;" indentlevel="2">
+started in the first 10 weeks
+</td>
+<td style="text-align:left;">
+34.2
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+total energy intake in kcal/day
+</td>
+<td style="text-align:left;">
+2148 <span class="math inline">\(\pm\)</span> 506
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 4em;" indentlevel="2">
+sugar-containing beverages in servings/day
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 4em;" indentlevel="2">
+total
+</td>
+<td style="text-align:left;">
+1.9 (0.1, 7.4)
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 4em;" indentlevel="2">
+fruit juice (57.2%)
+</td>
+<td style="text-align:left;">
+1.0 (0.0, 5.0)
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 4em;" indentlevel="2">
+concentrate (27.6%)
+</td>
+<td style="text-align:left;">
+0.1 (0.0, 4.5)
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 4em;" indentlevel="2">
+soda (15.1%)
+</td>
+<td style="text-align:left;">
+0.1 (0.0, 2.5)
+</td>
+</tr>
+<tr grouplength="3">
+<td colspan="2" style="border-bottom: 1px solid;">
+<strong>Child Characteristics at Birth</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+girls, %
+</td>
+<td style="text-align:left;">
+49.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+birth weight in gram
+</td>
+<td style="text-align:left;">
+3488 <span class="math inline">\(\pm\)</span> 561
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+gestational age at birth in weeks
+</td>
+<td style="text-align:left;">
+13.4 (9.8, 22.8)
+</td>
+</tr>
+<tr grouplength="7">
+<td colspan="2" style="border-bottom: 1px solid;">
+<strong>Child Characteristics at 6-year Visit (n = 2736)</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+age in years
+</td>
+<td style="text-align:left;">
+6.0 (5.6, 7.3)
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+BMI in kg/m<sup>2</sup>
+</td>
+<td style="text-align:left;">
+15.7 (13.7, 19.3)
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+overweight or obese, %
+</td>
+<td style="text-align:left;">
+9.2
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Fat Mass Index in kg/m<sup>2</sup> (n = 2660)
+</td>
+<td style="text-align:left;">
+3.6 (2.4, 6.7)
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Fat-Free Mass Index in kg/m<sup>2</sup> (n = 2660)
+</td>
+<td style="text-align:left;">
+11.9 <span class="math inline">\(\pm\)</span> 0.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+participation in sports, % (n = 3312)
+</td>
+<td style="text-align:left;">
+50.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+screen time <span class="math inline">\(\geq\)</span> 2 hours/day, % (n = 3312)
+</td>
+<td style="text-align:left;">
+21.3
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="maternal-scb-intake-and-child-bmi-trajectory" class="section level3">
+<h3><span class="header-section-number">4.4.2</span> Maternal SCB Intake and Child BMI Trajectory</h3>
+<p>In the linear mixed-model analyses, we observed no relevant associations between
+energy-adjusted SCB intake during pregnancy and BMI trajectories of children
+from birth to six years of age in Model 1 (0.01 SD score (SDS);
+95% CI: [-0.02, 0.04]) and Model 2 (0.03 SDS; 95% CI [0.00, 0.07]; Table <a href="ch-Vincent.html#tab:Table2Vincent">4.2</a>).
+After adjustment for child SCB intake, we observed that higher
+SCB intake during pregnancy was associated with higher BMI of children
+(Model 3: 0.04 SDS; 95% CI [0.00, 0.07]).
+This association was not explained by specific intakes of fruit juice, concentrate, or soda
+during pregnancy.</p>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:Table2Vincent">Table 4.2: </span>Associations of SCB intake during pregnancy with child BMI trajectories
+until six years of age.
+Shown are the posterior mean and 95% CIs of the regression coefficient for
+SCB intake from the Bayesian linear mixed models.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+Model 1 (crude)
+</th>
+<th style="text-align:left;">
+Model 2 (confounder)
+</th>
+<th style="text-align:left;">
+Model 3 (SCB child)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr grouplength="1">
+<td colspan="4" style="border-bottom: 1px solid;">
+<strong>total, servings per day</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+total SCB
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.01 [-0.02, 0.04]
+</td>
+<td style="text-align:left;background-color: white !important;">
+0.03 [-0.00, 0.07]
+</td>
+<td style="text-align:left;background-color: white !important;">
+0.04 [ 0.00, 0.07]
+</td>
+</tr>
+<tr grouplength="3">
+<td colspan="4" style="border-bottom: 1px solid;">
+<strong>fruit juice, soda and concentrate, servings per day</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+fruit juice
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.01 [-0.02, 0.03]
+</td>
+<td style="text-align:left;background-color: white !important;">
+0.02 [-0.01, 0.04]
+</td>
+<td style="text-align:left;background-color: white !important;">
+0.02 [-0.01, 0.04]
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+soda
+</td>
+<td style="text-align:left;background-color: white !important;">
+-0.01 [-0.02, 0.01]
+</td>
+<td style="text-align:left;background-color: white !important;">
+0.00 [-0.02, 0.02]
+</td>
+<td style="text-align:left;background-color: white !important;">
+0.00 [-0.01, 0.02]
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+concentrate
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.00 [-0.02, 0.02]
+</td>
+<td style="text-align:left;background-color: white !important;">
+0.00 [-0.01, 0.02]
+</td>
+<td style="text-align:left;background-color: white !important;">
+0.00 [-0.01, 0.02]
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="maternal-scb-intake-and-child-body-composition" class="section level3">
+<h3><span class="header-section-number">4.4.3</span> Maternal SCB Intake and Child Body Composition</h3>
+<p>In the linear regression analyses, we found in Model 1 that one additional
+daily serving of SCBs during pregnancy was associated with a 0.05-SDS higher
+FMI (95% CI [0.02, 0.09]) but not with FFMI of the offspring at age six years
+(Tables <a href="ch-Vincent.html#tab:Table3Vincent">4.3</a> and <a href="ch-Vincent.html#tab:Table4Vincent">4.4</a>).
+This association remained after further adjustment for
+sociodemographic and lifestyle factors (Model 2: 0.04 SDS,
+95% CI [0.01, 0.07]; Model 3: 0.05 SDS, 95% CI [0.01, 0.08]).
+To study fruit juice, concentrate, and soda intakes as exposures,
+we replaced total SCB intake for these types of beverages in the analyses.
+We observed an association between a higher daily serving of fruit juice,
+but not of concentrate or soda, during pregnancy and higher FMI (Model 3:
+0.04 SDS, 95% CI [0.01, 0.06]; Table <a href="ch-Vincent.html#tab:Table3Vincent">4.3</a>)
+but not higher FFMI (Model 3: 0.02 SDS,
+95% CI [-0.01, 0.05]; Table <a href="ch-Vincent.html#tab:Table4Vincent">4.4</a>).
+These effect estimates remained similar
+after adjustment for the potential mediators gestational weight gain,
+child birth weight, maternal BMI at enrolment, and child insulin
+concentrations (Table <a href="ch-Vincent.html#tab:SupTab1Vincent">4.5</a> in <a href="ch-Vincent.html#a-additional-results">Appendix 4.A</a>).</p>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:Table3Vincent">Table 4.3: </span>Associations of SCB intake during pregnancy with child FMI at six years of age.
+Shown are the posterior mean and 95% CIs of the regression coefficient for SCB intake from the Bayesian linear models.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+Model 1 (crude)
+</th>
+<th style="text-align:left;">
+Model 2 (confounder)
+</th>
+<th style="text-align:left;">
+Model 3 (SCB child)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr grouplength="1">
+<td colspan="4" style="border-bottom: 1px solid;">
+<strong>total, servings per day</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+total SCB
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.05 [ 0.02,  0.09]
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.04 [ 0.01, 0.07]
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.05 [ 0.01, 0.08]
+</td>
+</tr>
+<tr grouplength="3">
+<td colspan="4" style="border-bottom: 1px solid;">
+<strong>fruit juice, soda and concentrate, servings per day</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+juice
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.03 [ 0.00,  0.06]
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.03 [ 0.01, 0.06]
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.04 [ 0.01, 0.06]
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+soda
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.02 [ 0.00,  0.03]
+</td>
+<td style="text-align:left;background-color: white !important;">
+-0.01 [-0.02, 0.01]
+</td>
+<td style="text-align:left;background-color: white !important;">
+-0.01 [-0.02, 0.01]
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+concentrate
+</td>
+<td style="text-align:left;background-color: white !important;">
+-0.02 [-0.04, -0.00]
+</td>
+<td style="text-align:left;background-color: white !important;">
+-0.02 [-0.03, 0.00]
+</td>
+<td style="text-align:left;background-color: white !important;">
+-0.02 [-0.03, 0.00]
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:Table4Vincent">Table 4.4: </span>Associations of SCB intake during pregnancy with child FFMI at six years of age.
+Shown are the posterior mean and 95% CIs of the regression coefficient for SCB intake from the Bayesian linear models.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+Model 1 (crude)
+</th>
+<th style="text-align:left;">
+Model 2 (confounder)
+</th>
+<th style="text-align:left;">
+Model 3 (SCB child)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr grouplength="1">
+<td colspan="4" style="border-bottom: 1px solid;">
+<strong>total, servings per day</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+total SCB
+</td>
+<td style="text-align:left;background-color: white !important;">
+-0.01 [-0.05,  0.03]
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.03 [-0.02, 0.07]
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.03 [-0.01, 0.07]
+</td>
+</tr>
+<tr grouplength="3">
+<td colspan="4" style="border-bottom: 1px solid;">
+<strong>fruit juice, soda and concentrate, servings per day</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+juice
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.01 [-0.02,  0.04]
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.02 [-0.01, 0.05]
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.02 [-0.01, 0.05]
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+soda
+</td>
+<td style="text-align:left;background-color: white !important;">
+-0.02 [-0.04, -0.00]
+</td>
+<td style="text-align:left;background-color: white !important;">
+-0.00 [-0.02, 0.02]
+</td>
+<td style="text-align:left;background-color: white !important;">
+-0.02 [-0.02, 0.02]
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+concentrate
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.01 [-0.01,  0.03]
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.01 [-0.01, 0.03]
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.01 [-0.01, 0.03]
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="additional-analyses" class="section level3">
+<h3><span class="header-section-number">4.4.4</span> Additional Analyses</h3>
+<p>We did not observe interactions between SCB intake and maternal BMI for
+children’s BMI, FMI, or FFMI and consequently our analyses were not stratified by this factor.
+We did observe an interaction of total SCB and fruit
+juice intake with child sex on children’s FMI but not on BMI or FFMI.
+Therefore, we stratified analyses for FMI by sex, and we observed
+higher effect estimates in girls than in boys. In addition, we observed no
+association between SCB intake and FMI in boys (Table <a href="ch-Vincent.html#tab:SupTab2Vincent">4.6</a>
+in <a href="ch-Vincent.html#a-additional-results">Appendix 4.A</a>).
+Furthermore, we obtained similar effect estimates as were observed in the
+whole group after restricting our analyses to women who vomited less than one time per week
+(n = 2099) (Tables <a href="ch-Vincent.html#tab:SubTab3aVincent">4.7</a> and <a href="ch-Vincent.html#tab:SubTab3bVincent">4.8</a>
+in <a href="ch-Vincent.html#a-additional-results">Appendix 4.A</a>)
+or to women with no comorbidities during
+pregnancy (n = 2308) (Tables <a href="ch-Vincent.html#tab:SubTab4aVincent">4.9</a> and
+<a href="ch-Vincent.html#tab:SubTab4bVincent">4.10</a> in <a href="ch-Vincent.html#a-additional-results">Appendix 4.A</a>).
+Findings for SCB intake that was unadjusted for total energy intake were similar
+to those obtained for energy-adjusted SCBs (data not shown).</p>
+
+</div>
+</div>
+<div id="discussion-1" class="section level2">
+<h2><span class="header-section-number">4.5</span> Discussion</h2>
+<p>The results of this longitudinal observational study suggest that higher
+intake of SCBs during pregnancy is associated with higher BMI of the child
+until six years of age.
+Furthermore, we observed that higher SCB intakes of mothers
+were associated with higher fat masses, but not higher fat-free masses,
+of their children, particularly in girls, and that this association was
+mainly explained by intake of fruit juice. These associations were
+independent of gestational weight gain, birth weight, child SCB intake, or
+child insulin concentration.</p>
+<div id="interpretation-and-comparison-with-previous-studies" class="section level3">
+<h3><span class="header-section-number">4.5.1</span> Interpretation and Comparison with Previous Studies</h3>
+<p>In our study population, intake of SCBs during pregnancy was associated
+with trajectories of BMI in children during early childhood. This result
+is not in line with that of the previously mentioned study that was performed
+by <span class="citation">Phelan et al. (<a href="#ref-phelan2011maternal" role="doc-biblioref">2011</a>)</span> in which they observed that intakes of soft drinks and
+fruit juice in 285 pregnant women were not associated with birth weight or
+weight after 6 months of age. However, our findings suggest an association
+between maternal SCB intake and children’s BMI at a later age, which was not
+explained by a higher birth weight, thereby suggesting that an effect may be
+stronger later in childhood. Furthermore, BMI has several limitations as a
+marker of adiposity in children <span class="citation">(Freedman et al. <a href="#ref-freedman2005relation" role="doc-biblioref">2005</a>)</span>.
+First, BMI does not measure excess fat
+mass because of the many combinations of FMI and FFMI that result in the
+same BMI. Second, the amounts of both fat mass and fat-free mass vary within
+children <span class="citation">(Freedman et al. <a href="#ref-freedman2005relation" role="doc-biblioref">2005</a>)</span>.
+In our study population, we observed that higher intake of
+SCBs during pregnancy was associated with higher FMI, but not higher FFMI,
+of children at six years of age. This finding is in line with results from previous
+studies that have studied SCB intakes in children and the body compositions
+of these children <span class="citation">(Zheng et al. <a href="#ref-zheng2015substituting" role="doc-biblioref">2015</a>, <a href="#ref-zheng2014sugar" role="doc-biblioref">2014</a>; Ruyter et al. <a href="#ref-de2012trial" role="doc-biblioref">2012</a>)</span>.</p>
+<p>Moreover, we observed associations between maternal intake of fruit juice, but
+not of other beverages, and higher FMI of their six-year-old children. In our
+study population, intake of fruit juice was 10 times higher (median: 1.0
+serving per day) than intakes of concentrate and soda. Consequently, intakes of
+concentrate and soda in our study may have been too low to detect potential
+associations with adverse body-composition outcomes of the children.
+Although fruit juice also provides vitamins and minerals <span class="citation">(Caswell <a href="#ref-caswell2009role" role="doc-biblioref">2009</a>)</span>,
+our results suggest that fruit juice could be harmful for a child’s body composition.</p>
+<p>For FMI, but not for the other outcomes, we observed stronger associations
+in girls than in boys. We previously also observed stronger associations of
+early life nutrition with body fat in girls than in boys at approximately six
+years of age <span class="citation">(Leermakers et al. <a href="#ref-leermakers2015sugar" role="doc-biblioref">2015</a>; Voortman, Braun, et al. <a href="#ref-voortman2016protein2" role="doc-biblioref">2016</a>)</span>.
+These associations have been suggested to be related to differences in
+insulin responses between boys and girls <span class="citation">(Voortman, van den Hooven, et al. <a href="#ref-voortman2016protein" role="doc-biblioref">2016</a>)</span> or to differences in the
+timing of the adiposity rebound, which usually occurs between the ages of
+five and seven years <span class="citation">(Rolland-Cachera et al. <a href="#ref-rolland2006early" role="doc-biblioref">2006</a>)</span>.</p>
+</div>
+<div id="potential-mechanisms" class="section level3">
+<h3><span class="header-section-number">4.5.2</span> Potential Mechanisms</h3>
+<p>We observed that SCB intake during pregnancy was positively associated with
+child BMI and FMI during early childhood. One possible mechanism that may
+explain this relation could be excessive energy intake from the SCBs
+themselves or from other food sources because caloric intake in a liquid
+form leads to a lower and shorter feeling of satiation <span class="citation">(Pan and Hu <a href="#ref-pan2011effects" role="doc-biblioref">2011</a>; Cassady, Considine, and Mattes <a href="#ref-cassady2012beverage" role="doc-biblioref">2012</a>; Drewnowski and Bellisle <a href="#ref-drewnowski2007liquid" role="doc-biblioref">2007</a>; DiMeglio and Mattes <a href="#ref-dimeglio2000liquid" role="doc-biblioref">2000</a>)</span>.
+However,
+in our analyses, effect estimates were similar after adjustment for energy
+intake, and associations remained between SCB intake and child BMI and FMI,
+which suggested that the associations were due to other factors than energy intake.</p>
+<p>Another possible mechanism could be that the epigenetics of the fetus
+changes when a mother has frequent intake of SCBs during pregnancy <span class="citation">(Mateo-Fernández et al. <a href="#ref-mateo2016vivo" role="doc-biblioref">2016</a>)</span>.
+These changes could lead to altered gene expression <span class="citation">(De Boo and Harding <a href="#ref-de2006developmental" role="doc-biblioref">2006</a>)</span>,
+which may result in children becoming more susceptible to having higher fat mass.</p>
+<p>Furthermore, because SCB intake leads to high peak concentration of insulin <span class="citation">(Hu and Malik <a href="#ref-hu2010sugar" role="doc-biblioref">2010</a>)</span>,
+the role of insulin should be further elucidated. Hyperinsulinemia during
+the development of the fetus could have long-lasting consequences to the
+central nervous systems that regulates body weight, possibly resulting in
+the stimulation of fat mass development <span class="citation">(Franke et al. <a href="#ref-franke2005programming" role="doc-biblioref">2005</a>)</span>.
+In addition, SCB intake during pregnancy might affect the insulin sensitivity
+of the child <span class="citation">(Reichetzeder et al. <a href="#ref-reichetzeder2016developmental" role="doc-biblioref">2016</a>)</span>
+with the subsequent stimulation of the development of fat mass in the child.
+However, our findings suggest that a child’s insulin concentration is not
+part of this pathway. Unfortunately, we had no information available on serum
+insulin during pregnancy.</p>
+<p>Our results could also be explained by residual confounding because intake
+of SCBs is associated with other lifestyle factors <span class="citation">(Kvaavik, Andersen, and Klepp <a href="#ref-kvaavik2005stability" role="doc-biblioref">2005</a>)</span>.
+Although we had
+information available on several potential lifestyle confounders, including
+smoking, alcohol intake, and the overall diet quality during pregnancy,
+we had, for instance, no information on the physical activity of the mother <span class="citation">(Schulze et al. <a href="#ref-schulze2004sugar" role="doc-biblioref">2004</a>)</span>.
+Furthermore, confounding that could have been due to child factors is
+difficult to take into account because lifestyle patterns may change during
+childhood <span class="citation">(Lytle et al. <a href="#ref-lytle2000children" role="doc-biblioref">2000</a>)</span>.
+As part of these lifestyle patterns, intake of sweet foods,
+including SCBs, by the child could have partially determined the child’s
+body composition. Prenatal exposures such as flavours of the maternal diet
+can transmit to the amniotic fluid, which consequently may lead to greater
+acceptance by the child of these foods after birth <span class="citation">(Mennella, Johnson, and Beauchamp <a href="#ref-mennella1995garlic" role="doc-biblioref">1995</a>)</span>.
+We attempted to
+take this potential confounding by child diet into account by adjusting for
+SCB intake of the child, and the association between SCB intake of the mother
+with her offspring’s fat mass remained.</p>
+</div>
+<div id="strengths-and-limitations-1" class="section level3">
+<h3><span class="header-section-number">4.5.3</span> Strengths and Limitations</h3>
+<p>Strengths of this study are the prospective population-based design, the
+large sample size, and the available information on numerous confounders of
+the mothers and children. Additionally, the repeated measurement of child BMI was an
+important strength in this study. Furthermore, we had extensive measurements
+on child body composition at six years of age with the use of DXA. This method has
+been proven to measure fat mass accurately <span class="citation">(Svendsen et al. <a href="#ref-svendsen1993accuracy" role="doc-biblioref">1993</a>)</span>,
+which allowed us to
+distinguish the child’s body fat mass and fat-free mass. Another strength
+is that we also studied different types of SCBs rather than only examining
+overall intake. Finally, we applied the Bayesian approach which allowed us to
+use all available information of the outcome measurements to impute missing
+covariate values. The use of
+this approach provides a better method to deal with bias that is associated
+with incomplete information on covariates than is achieved with the use of
+less-sophisticated missing-data methods <span class="citation">(Erler et al. <a href="#ref-Erler2016" role="doc-biblioref">2016</a>)</span>.</p>
+<p>This study also has several limitations. One limitation is that dietary
+intakes were estimated by self-report, which has been shown to be prone to
+measurement errors <span class="citation">(Kipnis et al. <a href="#ref-kipnis2003structure" role="doc-biblioref">2003</a><a href="#ref-kipnis2003structure" role="doc-biblioref">b</a>)</span>.
+However, we reduced the magnitude of the
+measurement errors by adjusting for total energy intake with the use of the
+residual method. Because all mothers included in our analyses were of Dutch
+origin and were, on average, highly educated, the generalizability of our
+findings to other ethnic or socioeconomic groups may be limited. Another
+limitation may be the single assessment of SCB intake during the first
+trimester. Repeated measurements of dietary intake would have been better
+to study whether there may have been an accumulative or trimester-specific
+effect of maternal SCB intake on child BMI and body composition. Although
+we adjusted the analyses for numerous sociodemographic and lifestyle factors
+related to both mother and child, residual confounding was still possible.
+An example was the absence of information on the energy expenditure or
+physical activity of the mother <span class="citation">(Dewey and McCrory <a href="#ref-dewey1994effects" role="doc-biblioref">1994</a>)</span> or on the diet of the father <span class="citation">(Li et al. <a href="#ref-li2016paternal" role="doc-biblioref">2016</a>)</span>,
+which might have influenced our results. Finally, although we had information
+that was available on total SCB intake of the child at six years, we did not
+collect information on different types of SCB intake, total energy intake,
+or other components of the diet of the child.</p>
+<p>In conclusion, in this prospective cohort, we observe that higher intake of
+SCBs during pregnancy is associated with higher child BMI until six years of age.
+Moreover, higher intakes of total SCBs and fruit juice, but not of soda or
+concentrate, are associated with higher FMI of the child at six years of age.
+These associations are stronger in girls than in boys. Future studies
+should further explore whether SCB intake during pregnancy is associated
+with child body composition, which should preferably be assessed repeatedly
+to observe whether changes occur in later stages during childhood.</p>
+
+</div>
+</div>
+<div id="appendix-2" class="section level2 unnumbered">
+<h2>Appendix</h2>
+<div id="a-additional-results" class="section level3 unnumbered">
+<h3>4.A Additional Results</h3>
+
+<table>
+<caption>
+<span id="tab:SupTab1Vincent">Table 4.5: </span>Associations of sugar-containing beverages intake during pregnancy with
+children’s fat mass index (FMI) at six years, after adjustment for potential mediators.
+Shown are pooled estimates and 95% CIs from linear regression on multiply imputed data.
+</caption>
+<tbody>
+<tr grouplength="5">
+<td colspan="3" style="border-bottom: 1px solid;">
+<strong>total, servings per day</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Model 3
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(+\)</span> gestational weight gain
+</td>
+<td style="text-align:left;">
+0.04 [0.01, 0.08]
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Model 3
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(+\)</span> birth weight <span class="math inline">\(z\)</span>-score
+</td>
+<td style="text-align:left;">
+0.04 [0.01, 0.08]
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Model 3
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(+\)</span> maternal baseline BMI
+</td>
+<td style="text-align:left;">
+0.04 [0.00, 0.07]
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Model 3
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(+\)</span> child insulin at six years
+</td>
+<td style="text-align:left;">
+0.05 [0.00, 0.09]
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Model 3
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(+\)</span> gestational weight gain <span class="math inline">\(+\)</span> birth weight <span class="math inline">\(z\)</span>-scores <span class="math inline">\(+\)</span> maternal BMI at enrolment <span class="math inline">\(+\)</span> child insulin
+</td>
+<td style="text-align:left;">
+0.04 [0.00, 0.08]
+</td>
+</tr>
+<tr grouplength="5">
+<td colspan="3" style="border-bottom: 1px solid;">
+<strong>fruit juice, servings per day</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Model 3
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(+\)</span> gestational weight gain
+</td>
+<td style="text-align:left;">
+0.04 [0.01, 0.06]
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Model 3
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(+\)</span> birth weight <span class="math inline">\(z\)</span>-score
+</td>
+<td style="text-align:left;">
+0.03 [0.01, 0.06]
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Model 3
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(+\)</span> maternal baseline BMI
+</td>
+<td style="text-align:left;">
+0.03 [0.00, 0.06]
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Model 3
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(+\)</span> child insulin at six years
+</td>
+<td style="text-align:left;">
+0.04 [0.01, 0.07]
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Model 3
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(+\)</span> gestational weight gain <span class="math inline">\(+\)</span> birth weight <span class="math inline">\(z\)</span>-scores <span class="math inline">\(+\)</span> maternal baseline BMI <span class="math inline">\(+\)</span> child insulin
+</td>
+<td style="text-align:left;">
+0.03 [0.00, 0.06]
+</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption>
+<span id="tab:SupTab2Vincent">Table 4.6: </span>Associations of sugar-containing beverages intake during pregnancy with
+children’s fat mass index (FMI) at six years in boys and girls separately.
+Shown are pooled regression coefficients and 95% CIs from linear regression
+of multiply imputed data.
+</caption>
+<thead>
+<tr>
+<th style="border-bottom:hidden" colspan="1">
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+all<br>(n = 2660)
+</div>
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+girls<br>(n = 1329)
+</div>
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+boys<br>(n = 1331)
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+</th>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+</th>
+</tr>
+</thead>
+<tbody>
+<tr grouplength="1">
+<td colspan="4" style="border-bottom: 1px solid;">
+<strong>total, servings per day</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Model 3 (SCB child)
+</td>
+<td style="text-align:right;">
+0.05 [0.01, 0.08]
+</td>
+<td style="text-align:left;">
+0.09 [0.05, 0.14]
+</td>
+<td style="text-align:right;">
+-0.01 [-0.06, 0.04]
+</td>
+</tr>
+<tr grouplength="1">
+<td colspan="4" style="border-bottom: 1px solid;">
+<strong>fruit juice, servings per day</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Model 3 (SCB child)
+</td>
+<td style="text-align:right;">
+0.04 [0.01, 0.06]
+</td>
+<td style="text-align:left;">
+0.04 [0.01, 0.08]
+</td>
+<td style="text-align:right;">
+0.03 [-0.01, 0.06]
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:SubTab3aVincent">Table 4.7: </span>Associations of sugar-containing beverage intake during pregnancy with
+children’s fat mass index (FMI) at six years in women who vomited less than once a week (n = 2099).
+Shown are pooled estimates and 95% CIs from linear regression of multiply imputed data.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+Model 1 (crude)
+</th>
+<th style="text-align:left;">
+Model 2 (confounder)
+</th>
+<th style="text-align:left;">
+Model 3 (SCB child)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr grouplength="1">
+<td colspan="4" style="border-bottom: 1px solid;">
+<strong>total, servings per day</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+total SCB
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.05 [ 0.01, 0.09]
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.04 [-0.00, 0.08]
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.04 [ 0.00, 0.08]
+</td>
+</tr>
+<tr grouplength="3">
+<td colspan="4" style="border-bottom: 1px solid;">
+<strong>fruit juice, soda and concentrate, servings per day</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+juice
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.03 [ 0.00, 0.06]
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.03 [ 0.00, 0.06]
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.04 [ 0.01, 0.06]
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+soda
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.01 [-0.01, 0.03]
+</td>
+<td style="text-align:left;background-color: white !important;">
+-0.01 [-0.03, 0.01]
+</td>
+<td style="text-align:left;background-color: white !important;">
+-0.01 [-0.03, 0.01]
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+concentrate
+</td>
+<td style="text-align:left;background-color: white !important;">
+-0.01 [-0.03, 0.01]
+</td>
+<td style="text-align:left;background-color: white !important;">
+-0.01 [-0.03, 0.01]
+</td>
+<td style="text-align:left;background-color: white !important;">
+-0.01 [-0.03, 0.01]
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:SubTab3bVincent">Table 4.8: </span>Associations of sugar-containing beverage intake during pregnancy with
+children’s fat-free mass index (FFMI) at six years in women who vomited less than once a week (n = 2099).
+Shown are pooled estimates and 95% CIs from linear regression of multiply imputed data.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+Model 1 (crude)
+</th>
+<th style="text-align:left;">
+Model 2 (confounder)
+</th>
+<th style="text-align:left;">
+Model 3 (SCB child)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr grouplength="1">
+<td colspan="4" style="border-bottom: 1px solid;">
+<strong>total, servings per day</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+total SCB
+</td>
+<td style="text-align:left;background-color: white !important;">
+-0.02 [-0.07,  0.03]
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.01 [-0.04, 0.06]
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.02 [-0.03, 0.06]
+</td>
+</tr>
+<tr grouplength="3">
+<td colspan="4" style="border-bottom: 1px solid;">
+<strong>fruit juice, soda and concentrate, servings per day</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+juice
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.01 [-0.03,  0.04]
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.01 [-0.02, 0.05]
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.01 [-0.02, 0.05]
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+soda
+</td>
+<td style="text-align:left;background-color: white !important;">
+-0.03 [-0.05, -0.01]
+</td>
+<td style="text-align:left;background-color: white !important;">
+-0.01 [-0.03, 0.02]
+</td>
+<td style="text-align:left;background-color: white !important;">
+-0.01 [-0.03, 0.02]
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+concentrate
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.01 [-0.01,  0.04]
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.02 [-0.01, 0.04]
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.02 [-0.01, 0.04]
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:SubTab4aVincent">Table 4.9: </span>Associations of sugar-containing beverage intake during pregnancy with
+children’s fat mass index (FMI) at six years in women who had no comorbidities during pregnancy (n = 2308).
+Shown are the pooled estimates and 95% CIs for SCB intake from linear regression on multiply imputed data.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+Model 1 (crude)
+</th>
+<th style="text-align:left;">
+Model 2 (confounder)
+</th>
+<th style="text-align:left;">
+Model 3 (SCB child)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr grouplength="1">
+<td colspan="4" style="border-bottom: 1px solid;">
+<strong>total, servings per day</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+total SCB
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.05 [ 0.02, 0.09]
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.03 [ 0.00, 0.07]
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.04 [ 0.01, 0.07]
+</td>
+</tr>
+<tr grouplength="3">
+<td colspan="4" style="border-bottom: 1px solid;">
+<strong>fruit juice, soda and concentrate, servings per day</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+fruit juice
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.03 [ 0.01, 0.06]
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.04 [ 0.01, 0.06]
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.04 [ 0.01, 0.07]
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+soda
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.01 [ 0.00, 0.03]
+</td>
+<td style="text-align:left;background-color: white !important;">
+-0.01 [-0.03, 0.01]
+</td>
+<td style="text-align:left;background-color: white !important;">
+-0.01 [-0.03, 0.01]
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+concentrate
+</td>
+<td style="text-align:left;background-color: white !important;">
+-0.02 [-0.03, 0.00]
+</td>
+<td style="text-align:left;background-color: white !important;">
+-0.01 [-0.03, 0.00]
+</td>
+<td style="text-align:left;background-color: white !important;">
+-0.01 [-0.03, 0.00]
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:SubTab4bVincent">Table 4.10: </span>Associations of sugar-containing beverage intake during pregnancy with
+children’s fat-free mass index (FFMI) at six years in women who had no comorbidities during pregnancy (n = 2308).
+Shown are the pooled estimates and 95% CIs for SCB intake from linear regression on multiply imputed data.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+Model 1 (crude)
+</th>
+<th style="text-align:left;">
+Model 2 (confounder)
+</th>
+<th style="text-align:left;">
+Model 3 (SCB child)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr grouplength="1">
+<td colspan="4" style="border-bottom: 1px solid;">
+<strong>total, servings per day</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+total SCB
+</td>
+<td style="text-align:left;background-color: white !important;">
+-0.01 [-0.06,  0.03]
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.02 [-0.03, 0.06]
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.02 [-0.02, 0.07]
+</td>
+</tr>
+<tr grouplength="3">
+<td colspan="4" style="border-bottom: 1px solid;">
+<strong>fruit juice, soda and concentrate, servings per day</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+fruit juice
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.01 [-0.02,  0.05]
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.02 [-0.01, 0.05]
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.01 [-0.02, 0.04]
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+soda
+</td>
+<td style="text-align:left;background-color: white !important;">
+-0.03 [-0.05, -0.01]
+</td>
+<td style="text-align:left;background-color: white !important;">
+-0.01 [-0.04, 0.01]
+</td>
+<td style="text-align:left;background-color: white !important;">
+-0.01 [-0.04, 0.01]
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+concentrate
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.01 [-0.01,  0.03]
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.01 [-0.01, 0.04]
+</td>
+<td style="text-align:left;background-color: white !important;">
+ 0.00 [-0.01, 0.04]
+</td>
+</tr>
+</tbody>
+</table>
+
+
+
+</div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-batch2005management">
+<p>Batch, Jennifer A., and Louise A. Baur. 2005. “Management and Prevention of Obesity and Its Complications in Children and Adolescents.” <em>The Medical Journal of Australia</em> 182 (3): 130–5.</p>
+</div>
+<div id="ref-boerschmann2010prevalence">
+<p>Boerschmann, Heike, Maren Pflüger, Lydia Henneberger, Anette-G. Ziegler, and Sandra Hummel. 2010. “Prevalence and Predictors of Overweight and Insulin Resistance in Offspring of Mothers with Gestational Diabetes Mellitus.” <em>Diabetes Care</em>. <a href="https://doi.org/10.2337/dc10-0139">https://doi.org/10.2337/dc10-0139</a>.</p>
+</div>
+<div id="ref-cassady2012beverage">
+<p>Cassady, Bridget A., Robert V. Considine, and Richard D. Mattes. 2012. “Beverage Consumption, Appetite, and Energy Intake: What Did You Expect?” <em>The American Journal of Clinical Nutrition</em> 95 (3): 587–93. <a href="https://doi.org/10.3945/ajcn.111.025437">https://doi.org/10.3945/ajcn.111.025437</a>.</p>
+</div>
+<div id="ref-caswell2009role">
+<p>Caswell, Heather. 2009. “The Role of Fruit Juice in the Diet: An Overview.” <em>Nutrition Bulletin</em> 34 (3): 273–88. <a href="https://doi.org/10.1111/j.1467-3010.2009.01760.x">https://doi.org/10.1111/j.1467-3010.2009.01760.x</a>.</p>
+</div>
+<div id="ref-chortatos2013nausea">
+<p>Chortatos, A., M. Haugen, P. O. Iversen, Å. Vikanes, P. Magnus, and M. B. Veierød. 2013. “Nausea and vomiting in pregnancy: associations with maternal gestational diet and lifestyle factors in the Norwegian Mother and Child Cohort Study.” <em>BJOG: An International Journal of Obstetrics &amp; Gynaecology</em> 120 (13): 1642–53. <a href="https://doi.org/10.1111/1471-0528.12406">https://doi.org/10.1111/1471-0528.12406</a>.</p>
+</div>
+<div id="ref-cole2000establishing">
+<p>Cole, Tim J., Mary C. Bellizzi, Katherine M. Flegal, and William Hm Dietz. 2000. “Establishing a Standard Definition for Child Overweight and Obesity Worldwide: International Survey.” <em>BMJ</em> 320 (7244): 1240. <a href="https://doi.org/10.1136/bmj.320.7244.1240">https://doi.org/10.1136/bmj.320.7244.1240</a>.</p>
+</div>
+<div id="ref-Coolman2010">
+<p>Coolman, Marianne, Christianne J. M. de Groot, Vincent W. V. Jaddoe, Albert Hofman, Hein Raat, and Eric A. P. Steegers. 2010. “Medical Record Validation of Maternally Reported History of Preeclampsia.” <em>Journal of Clinical Epidemiology</em> 63 (8): 932–37. <a href="https://doi.org/10.1016/j.jclinepi.2009.10.010">https://doi.org/10.1016/j.jclinepi.2009.10.010</a>.</p>
+</div>
+<div id="ref-de2006developmental">
+<p>De Boo, Hendrina A, and Jane E Harding. 2006. “The Developmental Origins of Adult Disease (Barker) Hypothesis.” <em>Australian and New Zealand Journal of Obstetrics and Gynaecology</em> 46 (1): 4–14. <a href="https://doi.org/10.1111/j.1479-828X.2006.00506.x">https://doi.org/10.1111/j.1479-828X.2006.00506.x</a>.</p>
+</div>
+<div id="ref-derogatis1983brief">
+<p>Derogatis, Leonard R., and Nick Melisaratos. 1983. “The Brief Symptom Inventory: an introductory report.” <em>Psychological Medicine</em> 13 (3): 595–605. <a href="https://doi.org/10.1017/S0033291700048017">https://doi.org/10.1017/S0033291700048017</a>.</p>
+</div>
+<div id="ref-dewey1994effects">
+<p>Dewey, Kathryn G., and Megan A. McCrory. 1994. “Effects of Dieting and Physical Activity on Pregnancy and Lactation.” <em>The American Journal of Clinical Nutrition</em> 59 (2): 446S–453S. <a href="https://doi.org/10.1093/ajcn/59.2.446S">https://doi.org/10.1093/ajcn/59.2.446S</a>.</p>
+</div>
+<div id="ref-dimeglio2000liquid">
+<p>DiMeglio, Doreen P., and Richard D. Mattes. 2000. “Liquid Versus Solid Carbohydrate: Effects on Food Intake and Body Weight.” <em>International Journal of Obesity</em> 24 (6): 794. <a href="https://doi.org/10.1038/sj.ijo.0801229">https://doi.org/10.1038/sj.ijo.0801229</a>.</p>
+</div>
+<div id="ref-drewnowski2007liquid">
+<p>Drewnowski, Adam, and France Bellisle. 2007. “Liquid Calories, Sugar, and Body Weight.” <em>The American Journal of Clinical Nutrition</em> 85 (3): 651–61. <a href="https://doi.org/10.1093/ajcn/85.3.651">https://doi.org/10.1093/ajcn/85.3.651</a>.</p>
+</div>
+<div id="ref-Erler2016">
+<p>Erler, Nicole S., Dimitris Rizopoulos, Joost van Rosmalen, Vincent W. V. Jaddoe, Oscar H. Franco, and Emmanuel M. E. H. Lesaffre. 2016. “Dealing with Missing Covariates in Epidemiologic Studies: A Comparison Between Multiple Imputation and a Full Bayesian Approach.” <em>Statistics in Medicine</em> 35 (17): 2955–74. <a href="https://doi.org/10.1002/sim.6944">https://doi.org/10.1002/sim.6944</a>.</p>
+</div>
+<div id="ref-franke2005programming">
+<p>Franke, Kerstin, Thomas Harder, Leona Aerts, Kerstin Melchior, Sonja Fahrenkrog, Elke Rodekamp, Thomas Ziska, F André Van Assche, Joachim W. Dudenhausen, and Andreas Plagemann. 2005. “‘Programming’of Orexigenic and Anorexigenic Hypothalamic Neurons in Offspring of Treated and Untreated Diabetic Mother Rats.” <em>Brain Research</em> 1031 (2): 276–83. <a href="https://doi.org/10.1016/j.brainres.2004.11.006">https://doi.org/10.1016/j.brainres.2004.11.006</a>.</p>
+</div>
+<div id="ref-freedman2005relation">
+<p>Freedman, David S., Jack Wang, L. Michele Maynard, John C. Thornton, Zuguo Mei, Richard N. Pierson Jr., William H. Dietz, and Mary Horlick. 2005. “Relation of BMI to fat and fat-free mass among children and adolescents.” <em>International Journal of Obesity</em> 29 (1): 1–8. <a href="https://doi.org/10.1038/sj.ijo.0802735">https://doi.org/10.1038/sj.ijo.0802735</a>.</p>
+</div>
+<div id="ref-hu2010sugar">
+<p>Hu, Frank B., and Vasanti S. Malik. 2010. “Sugar-sweetened beverages and risk of obesity and type 2 diabetes: Epidemiologic evidence.” <em>Physiology &amp; Behavior</em> 100 (1): 47–54. <a href="https://doi.org/10.1016/j.physbeh.2010.01.036">https://doi.org/10.1016/j.physbeh.2010.01.036</a>.</p>
+</div>
+<div id="ref-hutcheon2011epidemiology">
+<p>Hutcheon, Jennifer A., Sarka Lisonkova, and K. S. Joseph. 2011. “Epidemiology of Pre-Eclampsia and the Other Hypertensive Disorders of Pregnancy.” <em>Best Practice &amp; Research Clinical Obstetrics &amp; Gynaecology</em> 25 (4): 391–403. <a href="https://doi.org/10.1016/j.bpobgyn.2011.01.006">https://doi.org/10.1016/j.bpobgyn.2011.01.006</a>.</p>
+</div>
+<div id="ref-kalk2009impact">
+<p>Kalk, P., F. Guthmann, K. Krause, K. Relle, M. Godes, G. Gossing, H. Halle, R. Wauer, and B. Hocher. 2009. “Impact of Maternal Body Mass Index on Neonatal Outcome.” <em>European Journal of Medical Research</em> 14 (5): 216. <a href="https://doi.org/10.1186/2047-783X-14-5-216">https://doi.org/10.1186/2047-783X-14-5-216</a>.</p>
+</div>
+<div id="ref-kipnis2003structure">
+<p>Kipnis, Victor, Amy F. 2003b. “Structure of Dietary Measurement Error: Results of the Open Biomarker Study.” <em>American Journal of Epidemiology</em> 158 (1): 14–21. <a href="https://doi.org/10.1093/aje/kwg091">https://doi.org/10.1093/aje/kwg091</a>.</p>
+</div>
+<div id="ref-KlipsteinGrobusch1998">
+<p>Klipstein-Grobusch, Kerstin, J. H. den Breeijen, R. A. Goldbohm, J. M. Geleijnse, A. Hofman, D. E. Grobbee, and J. C. M. Witteman. 1998. “Dietary Assessment in the Elderly: Validation of a Semiquantitative Food Frequency Questionnaire.” <em>European Journal of Clinical Nutrition</em> 52 (8): 588–96. <a href="https://doi.org/10.1038/sj.ejcn.1600611">https://doi.org/10.1038/sj.ejcn.1600611</a>.</p>
+</div>
+<div id="ref-GenR2017">
+<p>Kooijman, Marjolein N., Claudia J. Kruithof, Cornelia M. van Duijn, Liesbeth Duijts, Oscar H. Franco, Marinus H. van IJzendoorn, Johan C. de Jongste, et al. 2016. “The Generation R Study: Design and Cohort Update 2017.” <em>European Journal of Epidemiology</em> 31 (12): 1243–64. <a href="https://doi.org/10.1007/s10654-016-0224-9">https://doi.org/10.1007/s10654-016-0224-9</a>.</p>
+</div>
+<div id="ref-krebs2003prevention">
+<p>Krebs, Nancy F., and Marc S. Jacobson. 2003. “Prevention of Pediatric Overweight and Obesity.” <em>Pediatrics</em> 112 (2): 424–30. <a href="https://doi.org/10.1542/peds.112.2.424">https://doi.org/10.1542/peds.112.2.424</a>.</p>
+</div>
+<div id="ref-kvaavik2005stability">
+<p>Kvaavik, Elisabeth, Lene Frost Andersen, and Knut-Inge Klepp. 2005. “The Stability of Soft Drinks Intake from Adolescence to Adult Age and the Association Between Long-Term Consumption of Soft Drinks and Lifestyle Factors and Body Weight.” <em>Public Health Nutrition</em> 8 (2): 149–57. <a href="https://doi.org/10.1079/PHN2004669">https://doi.org/10.1079/PHN2004669</a>.</p>
+</div>
+<div id="ref-leermakers2015sugar">
+<p>Leermakers, Elisabeth T. M., Janine F. Felix, Nicole S. Erler, A. Ćerimagić, A. I. Wijtzes, Albert Hofman, Hein Raat, et al. 2015. “Sugar-containing beverage intake in toddlers and body composition up to age 6 years: The Generation R Study.” <em>European Journal of Clinical Nutrition</em> 69 (3): 314. <a href="https://doi.org/10.1038/ejcn.2015.2">https://doi.org/10.1038/ejcn.2015.2</a>.</p>
+</div>
+<div id="ref-li2016paternal">
+<p>Li, Jian, Oleg Tsuprykov, Xiaoping Yang, and Berthold Hocher. 2016. “Paternal Programming of Offspring Cardiometabolic Diseases in Later Life.” <em>Journal of Hypertension</em> 34 (11): 2111. <a href="https://doi.org/10.1097/HJH.0000000000001051">https://doi.org/10.1097/HJH.0000000000001051</a>.</p>
+</div>
+<div id="ref-lytle2000children">
+<p>Lytle, Leslie A., Sara Seifert, Jessica Greenstein, and Paul McGovern. 2000. “How Do Children’s Eating Patterns and Food Choices Change over Time? Results from a Cohort Study.” <em>American Journal of Health Promotion</em> 14 (4): 222–28. <a href="https://doi.org/10.4278/0890-1171-14.4.222">https://doi.org/10.4278/0890-1171-14.4.222</a>.</p>
+</div>
+<div id="ref-malik2010sugar">
+<p>Malik, Vasanti S., Barry M. Popkin, George A. Bray, Jean-Pierre Després, and Frank B. Hu. 2010. “Sugar-Sweetened Beverages, Obesity, Type 2 Diabetes Mellitus, and Cardiovascular Disease Risk.” <em>Circulation</em> 121 (11): 1356–64. <a href="https://doi.org/10.1161/CIRCULATIONAHA.109.876185">https://doi.org/10.1161/CIRCULATIONAHA.109.876185</a>.</p>
+</div>
+<div id="ref-malik2006intake">
+<p>Malik, Vasanti S., Matthias B. Schulze, and Frank B. Hu. 2006. “Intake of Sugar-Sweetened Beverages and Weight Gain: A Systematic Review.” <em>The American Journal of Clinical Nutrition</em> 84 (2): 274–88. <a href="https://doi.org/10.1093/ajcn/84.2.274">https://doi.org/10.1093/ajcn/84.2.274</a>.</p>
+</div>
+<div id="ref-mateo2016vivo">
+<p>Mateo-Fernández, Marcos, Tania Merinas-Amo, Miguel Moreno-Millán, Ángeles Alonso-Moraga, and Sebastián Demyda-Peyrás. 2016. “In Vivo and In Vitro Genotoxic and Epigenetic Effects of Two Types of Cola Beverages and Caffeine: A Multiassay Approach.” <em>BioMed Research International</em> 2016. <a href="https://doi.org/10.1155/2016/7574843">https://doi.org/10.1155/2016/7574843</a>.</p>
+</div>
+<div id="ref-mennella1995garlic">
+<p>Mennella, Julie A, Anthony Johnson, and Gary K Beauchamp. 1995. “Garlic Ingestion by Pregnant Women Alters the Odor of Amniotic Fluid.” <em>Chemical Senses</em> 20 (2): 207–9. <a href="https://doi.org/10.1093/chemse/20.2.207">https://doi.org/10.1093/chemse/20.2.207</a>.</p>
+</div>
+<div id="ref-mickey1989impact">
+<p>Mickey, Ruth M., and Sander Greenland. 1989. “The Impact of Confounder Selection Criteria on Effect Estimation.” <em>American Journal of Epidemiology</em> 129 (1): 125–37. <a href="https://doi.org/10.1093/oxfordjournals.aje.a115101">https://doi.org/10.1093/oxfordjournals.aje.a115101</a>.</p>
+</div>
+<div id="ref-Netherlands2006">
+<p>Netherlands Nutrition Center. 2006. “Nevo: Dutch Food Composition Database 2006.” <em>The Hague, the Netherlands: Netherlands Nutrition Centre</em>.</p>
+</div>
+<div id="ref-nguyen2017maternal">
+<p>Nguyen, Anh N., Lisanne M. de Barse, Henning Tiemeier, Vincent W. V. Jaddoe, Oscar H. Franco, Pauline W. Jansen, and Trudy Voortman. 2017. “Maternal history of eating disorders: Diet quality during pregnancy and infant feeding.” <em>Appetite</em> 109: 108–14. <a href="https://doi.org/10.1016/j.appet.2016.11.030">https://doi.org/10.1016/j.appet.2016.11.030</a>.</p>
+</div>
+<div id="ref-niklasson1991update">
+<p>Niklasson, A., A. Ericson, J. G. Fryer, J. Karlberg, C. Lawrence, and P. Karlberg. 1991. “An Update of the Swedish Reference Standards for Weight, Length and Head Circumference at Birth for Given Gestational Age (1977‐1981).” <em>Acta Paediatrica</em> 80 (8-9): 756–62. <a href="https://doi.org/10.1111/j.1651-2227.1991.tb11945.x">https://doi.org/10.1111/j.1651-2227.1991.tb11945.x</a>.</p>
+</div>
+<div id="ref-pan2011effects">
+<p>Pan, An, and Frank B. Hu. 2011. “Effects of Carbohydrates on Satiety: Differences Between Liquid and Solid Food.” <em>Current Opinion in Clinical Nutrition &amp; Metabolic Care</em> 14 (4): 385–90. <a href="https://doi.org/10.1097/MCO.0b013e328346df36">https://doi.org/10.1097/MCO.0b013e328346df36</a>.</p>
+</div>
+<div id="ref-phelan2011maternal">
+<p>Phelan, Suzanne, Chantelle Hart, Maureen Phipps, Barbara Abrams, Andrew Schaffner, Angelica Adams, and Rena Wing. 2011. “Maternal Behaviors during Pregnancy Impact Offspring Obesity Risk.” <em>Experimental Diabetes Research</em> 2011. <a href="https://doi.org/10.1155/2011/985139">https://doi.org/10.1155/2011/985139</a>.</p>
+</div>
+<div id="ref-JAGS">
+<p>Plummer, M. 2003. “JAGS: A Program for Analysis of Bayesian Graphical Models Using Gibbs Sampling.” Edited by Kurt Hornik, Friedrich Leisch, and Achim Zeileis.</p>
+</div>
+<div id="ref-raben2002sucrose">
+<p>Raben, Anne, Tatjana H. Vasilaras, A. Christina Møller, and Arne Astrup. 2002. “Sucrose Compared with Artificial Sweeteners: Different Effects on Ad Libitum Food Intake and Body Weight After 10 Wk of Supplementation in Overweight Subjects.” <em>The American Journal of Clinical Nutrition</em> 76 (4): 721–29. <a href="https://doi.org/10.1093/ajcn/76.4.721">https://doi.org/10.1093/ajcn/76.4.721</a>.</p>
+</div>
+<div id="ref-R2016">
+<p>R Core Team. 2016. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="http://www.R-project.org/">http://www.R-project.org/</a>.</p>
+</div>
+<div id="ref-reichetzeder2016developmental">
+<p>Reichetzeder, Christoph, Sulistyo Emantoko Dwi Putra, Jian Li, and Berthold Hocher. 2016. “Developmental Origins of Disease – Crisis Precipitates Change.” <em>Cellular Physiology and Biochemistry</em> 39 (3): 919–38. <a href="https://doi.org/10.1159/000447801">https://doi.org/10.1159/000447801</a>.</p>
+</div>
+<div id="ref-rolland2006early">
+<p>Rolland-Cachera, M. F., M. Deheeger, M. Maillot, and F. Bellisle. 2006. “Early Adiposity Rebound: Causes and Consequences for Obesity in Children and Adults.” <em>International Journal of Obesity</em> 30 (S4): S11. <a href="https://doi.org/10.1038/sj.ijo.0803514">https://doi.org/10.1038/sj.ijo.0803514</a>.</p>
+</div>
+<div id="ref-de2012trial">
+<p>Ruyter, Janne C. de, Margreet R. Olthof, Jacob C. Seidell, and Martijn B. Katan. 2012. “A Trial of Sugar-free or Sugar-Sweetened Beverages and Body Weight in Children.” <em>New England Journal of Medicine</em> 367 (15): 1397–1406. <a href="https://doi.org/10.1056/NEJMoa1203034">https://doi.org/10.1056/NEJMoa1203034</a>.</p>
+</div>
+<div id="ref-schulze2004sugar">
+<p>Schulze, Matthias B., JoAnn E. Manson, David S. Ludwig, Graham A. Colditz, Meir J. Stampfer, Walter C. Willett, and Frank B. Hu. 2004. “Sugar-Sweetened Beverages, Weight Gain, and Incidence of Type 2 Diabetes in Young and Middle-Aged Women.” <em>JAMA</em> 292 (8): 927–34. <a href="https://doi.org/10.1001/jama.292.8.927">https://doi.org/10.1001/jama.292.8.927</a>.</p>
+</div>
+<div id="ref-StatNed20003">
+<p>Statistics Netherlands. 2003. “Standaard Onderwijsindeling 2003.” <em>Den Haag/Heerlen (Netherlands): Statistics Netherlands</em>.</p>
+</div>
+<div id="ref-svendsen1993accuracy">
+<p>Svendsen, Ole Lander, Jens Haarbo, Christian Hassager, and Clans Christiansen. 1993. “Accuracy of Measurements of Body Composition by Dual-Energy X-Ray Absorptiometry in Vivo.” <em>The American Journal of Clinical Nutrition</em> 57 (5): 605–8. <a href="https://doi.org/10.1093/ajcn/57.5.605">https://doi.org/10.1093/ajcn/57.5.605</a>.</p>
+</div>
+<div id="ref-tordoff1990effect">
+<p>Tordoff, Michael G., and Annette M. Alleva. 1990. “Effect of Drinking Soda Sweetened with Aspartame or High-Fructose Corn Syrup on Food Intake and Body Weight.” <em>The American Journal of Clinical Nutrition</em> 51 (6): 963–69. <a href="https://doi.org/10.1093/ajcn/51.6.963">https://doi.org/10.1093/ajcn/51.6.963</a>.</p>
+</div>
+<div id="ref-voortman2016protein2">
+<p>Voortman, Trudy, K. V. E. Braun, J. C. Kiefte-de Jong, Vincent W. V. Jaddoe, O. H. Franco, and E. H. van den Hooven. 2016. “Protein intake in early childhood and body composition at the age of 6 years: The Generation R Study.” <em>International Journal of Obesity</em> 40 (6). <a href="https://doi.org/10.1038/ijo.2016.29">https://doi.org/10.1038/ijo.2016.29</a>.</p>
+</div>
+<div id="ref-voortman2016protein">
+<p>Voortman, Trudy, Edith H. van den Hooven, Myrte J. Tielemans, Albert Hofman, Jessica C. Kiefte-de Jong, Vincent W. V. Jaddoe, and Oscar H. Franco. 2016. “Protein intake in early childhood and cardiometabolic health at school age: the Generation R Study.” <em>European Journal of Nutrition</em> 55 (6): 2117–27. <a href="https://doi.org/10.1007/s00394-015-1026-7">https://doi.org/10.1007/s00394-015-1026-7</a>.</p>
+</div>
+<div id="ref-willett1997adjustment">
+<p>Willett, Walter C., Geoffrey R. Howe, and Lawrence H. Kushi. 1997. “Adjustment for Total Energy Intake in Epidemiologic Studies.” <em>The American Journal of Clinical Nutrition</em> 65 (4): 1220S–1228S. <a href="https://doi.org/10.1093/ajcn/65.4.1220S">https://doi.org/10.1093/ajcn/65.4.1220S</a>.</p>
+</div>
+<div id="ref-zheng2015substituting">
+<p>Zheng, Miaobing, Anna Rangan, Nanna Julie Olsen, Lars Bo Andersen, Niels Wedderkopp, Peter Kristensen, Anders Grøntved, et al. 2015. “Substituting Sugar-Sweetened Beverages with Water or Milk Is Inversely Associated with Body Fatness Development from Childhood to Adolescence.” <em>Nutrition</em> 31 (1): 38–44. <a href="https://doi.org/10.1016/j.nut.2014.04.017">https://doi.org/10.1016/j.nut.2014.04.017</a>.</p>
+</div>
+<div id="ref-zheng2014sugar">
+<p>Zheng, Miaobing, Anna Rangan, Nanna Julie Olsen, L. Bo Andersen, Niels Wedderkopp, Peter Kristensen, Anders Grøntved, et al. 2014. “Sugar-sweetened beverages consumption in relation to changes in body fatness over 6 and 12 years among 9-year-old children: the European Youth Heart Study.” <em>European Journal of Clinical Nutrition</em> 68 (1): 77. <a href="https://doi.org/10.1038/ejcn.2013.243">https://doi.org/10.1038/ejcn.2013.243</a>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="ch-Myrte.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ch-SMMR.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

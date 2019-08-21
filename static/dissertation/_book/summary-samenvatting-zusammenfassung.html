@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 8 Summary / Samenvatting / Zusammenfassung | Bayesian Imputation of Missing Covariates</title>
+  <meta name="description" content="Chapter 8 Summary / Samenvatting / Zusammenfassung | Bayesian Imputation of Missing Covariates" />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 8 Summary / Samenvatting / Zusammenfassung | Bayesian Imputation of Missing Covariates" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="figures/CoverImage_Erler.jpeg" />
+  <meta property="og:description" content="Chapter 8 Summary / Samenvatting / Zusammenfassung | Bayesian Imputation of Missing Covariates" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 8 Summary / Samenvatting / Zusammenfassung | Bayesian Imputation of Missing Covariates" />
+  
+  <meta name="twitter:description" content="Chapter 8 Summary / Samenvatting / Zusammenfassung | Bayesian Imputation of Missing Covariates" />
+  <meta name="twitter:image" content="figures/CoverImage_Erler.jpeg" />
+
+<meta name="author" content="Nicole S. Erler" />
+
+
+<meta name="date" content="2019-08-21" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="ch-discussion.html"/>
+<link rel="next" href="appendix-phd-portfolio-curriculum-vitae.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.8/datatables.js"></script>
+<link href="libs/dt-core-bootstrap-1.10.16/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="libs/dt-core-bootstrap-1.10.16/css/dataTables.bootstrap.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-bootstrap-1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="libs/dt-core-bootstrap-1.10.16/js/dataTables.bootstrap.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Bayesian imputation of Missing Covariates</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> General Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#mechanisms-and-patterns-of-missing-data"><i class="fa fa-check"></i><b>1.1</b> Mechanisms and Patterns of Missing Data</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#missing-data-mechanism"><i class="fa fa-check"></i><b>1.1.1</b> Missing Data Mechanism</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#missing-data-pattern"><i class="fa fa-check"></i><b>1.1.2</b> Missing Data Pattern</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#multiple-imputed-datasets"><i class="fa fa-check"></i><b>1.2</b> Multiple Imputed Datasets</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#methods-for-imputation"><i class="fa fa-check"></i><b>1.2.1</b> Methods for Imputation</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#pooling-results-from-multiple-imputed-datasets"><i class="fa fa-check"></i><b>1.2.2</b> Pooling Results from Multiple Imputed Datasets</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#the-bayesian-framework"><i class="fa fa-check"></i><b>1.3</b> The Bayesian Framework</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#bayes-theorem"><i class="fa fa-check"></i><b>1.3.1</b> Bayes Theorem</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#monte-carlo-methods"><i class="fa fa-check"></i><b>1.3.2</b> Monte Carlo Methods</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#markov-chain-monte-carlo"><i class="fa fa-check"></i><b>1.3.3</b> Markov Chain Monte Carlo</a></li>
+<li class="chapter" data-level="1.3.4" data-path="index.html"><a href="index.html#gibbs-sampler"><i class="fa fa-check"></i><b>1.3.4</b> Gibbs Sampler</a></li>
+<li class="chapter" data-level="1.3.5" data-path="index.html"><a href="index.html#convergence-mixing-and-thinning"><i class="fa fa-check"></i><b>1.3.5</b> Convergence, Mixing and Thinning</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#motivating-datasets"><i class="fa fa-check"></i><b>1.4</b> Motivating Datasets</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#outline-of-this-thesis"><i class="fa fa-check"></i><b>1.5</b> Outline of this Thesis</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="ch-SIM.html"><a href="ch-SIM.html"><i class="fa fa-check"></i><b>2</b> Dealing with Missing Covariates in Epidemiologic Studies</a><ul>
+<li class="chapter" data-level="" data-path="ch-SIM.html"><a href="ch-SIM.html#abstract"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="2.1" data-path="ch-SIM.html"><a href="ch-SIM.html#sec:introSIM"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.2" data-path="ch-SIM.html"><a href="ch-SIM.html#sec:SIMData"><i class="fa fa-check"></i><b>2.2</b> Generation R Data</a></li>
+<li class="chapter" data-level="2.3" data-path="ch-SIM.html"><a href="ch-SIM.html#sec:MissingData"><i class="fa fa-check"></i><b>2.3</b> Dealing with Missing Data</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="ch-SIM.html"><a href="ch-SIM.html#multiple-imputation-using-chained-equations-1"><i class="fa fa-check"></i><b>2.3.1</b> Multiple Imputation using Chained Equations</a></li>
+<li class="chapter" data-level="2.3.2" data-path="ch-SIM.html"><a href="ch-SIM.html#fully-bayesian-imputation"><i class="fa fa-check"></i><b>2.3.2</b> Fully Bayesian Imputation</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="ch-SIM.html"><a href="ch-SIM.html#sec:DataAnalysis"><i class="fa fa-check"></i><b>2.4</b> Data Analysis</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="ch-SIM.html"><a href="ch-SIM.html#design"><i class="fa fa-check"></i><b>2.4.1</b> Design</a></li>
+<li class="chapter" data-level="2.4.2" data-path="ch-SIM.html"><a href="ch-SIM.html#results"><i class="fa fa-check"></i><b>2.4.2</b> Results</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="ch-SIM.html"><a href="ch-SIM.html#sec:SimulationSIM"><i class="fa fa-check"></i><b>2.5</b> Simulation Study</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="ch-SIM.html"><a href="ch-SIM.html#design-1"><i class="fa fa-check"></i><b>2.5.1</b> Design</a></li>
+<li class="chapter" data-level="2.5.2" data-path="ch-SIM.html"><a href="ch-SIM.html#results-1"><i class="fa fa-check"></i><b>2.5.2</b> Results</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="ch-SIM.html"><a href="ch-SIM.html#sec:DiscussionSIM"><i class="fa fa-check"></i><b>2.6</b> Discussion</a></li>
+<li class="chapter" data-level="" data-path="ch-SIM.html"><a href="ch-SIM.html#appendix"><i class="fa fa-check"></i>Appendix</a><ul>
+<li class="chapter" data-level="" data-path="ch-SIM.html"><a href="ch-SIM.html#a-variable-description"><i class="fa fa-check"></i>2.A Variable Description</a></li>
+<li class="chapter" data-level="" data-path="ch-SIM.html"><a href="ch-SIM.html#b-results-from-the-generation-r-data"><i class="fa fa-check"></i>2.B Results from the Generation R Data</a></li>
+<li class="chapter" data-level="" data-path="ch-SIM.html"><a href="ch-SIM.html#c-simulation-settings"><i class="fa fa-check"></i>2.C Simulation Settings</a></li>
+<li class="chapter" data-level="" data-path="ch-SIM.html"><a href="ch-SIM.html#d-simulation-results"><i class="fa fa-check"></i>2.D Simulation Results</a></li>
+<li class="chapter" data-level="" data-path="ch-SIM.html"><a href="ch-SIM.html#e-jags-syntax-for-simulation-scenario-2"><i class="fa fa-check"></i>2.E JAGS Syntax for Simulation Scenario 2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ch-Myrte.html"><a href="ch-Myrte.html"><i class="fa fa-check"></i><b>3</b> Dietary Patterns and Gestational Weight Gain</a><ul>
+<li class="chapter" data-level="" data-path="ch-Myrte.html"><a href="ch-Myrte.html#abstract-1"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="3.1" data-path="ch-Myrte.html"><a href="ch-Myrte.html#introduction"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="ch-Myrte.html"><a href="ch-Myrte.html#experimental-section"><i class="fa fa-check"></i><b>3.2</b> Experimental Section</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="ch-Myrte.html"><a href="ch-Myrte.html#study-design"><i class="fa fa-check"></i><b>3.2.1</b> Study Design</a></li>
+<li class="chapter" data-level="3.2.2" data-path="ch-Myrte.html"><a href="ch-Myrte.html#population-of-analysis"><i class="fa fa-check"></i><b>3.2.2</b> Population of Analysis</a></li>
+<li class="chapter" data-level="3.2.3" data-path="ch-Myrte.html"><a href="ch-Myrte.html#dietary-assessment"><i class="fa fa-check"></i><b>3.2.3</b> Dietary Assessment</a></li>
+<li class="chapter" data-level="3.2.4" data-path="ch-Myrte.html"><a href="ch-Myrte.html#maternal-weight-gain"><i class="fa fa-check"></i><b>3.2.4</b> Maternal Weight Gain</a></li>
+<li class="chapter" data-level="3.2.5" data-path="ch-Myrte.html"><a href="ch-Myrte.html#covariates"><i class="fa fa-check"></i><b>3.2.5</b> Covariates</a></li>
+<li class="chapter" data-level="3.2.6" data-path="ch-Myrte.html"><a href="ch-Myrte.html#statistical-analyses"><i class="fa fa-check"></i><b>3.2.6</b> Statistical Analyses</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="ch-Myrte.html"><a href="ch-Myrte.html#results-2"><i class="fa fa-check"></i><b>3.3</b> Results</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="ch-Myrte.html"><a href="ch-Myrte.html#study-population"><i class="fa fa-check"></i><b>3.3.1</b> Study Population</a></li>
+<li class="chapter" data-level="3.3.2" data-path="ch-Myrte.html"><a href="ch-Myrte.html#dietary-patterns-and-trajectories-of-gestational-weight"><i class="fa fa-check"></i><b>3.3.2</b> Dietary Patterns and Trajectories of Gestational Weight</a></li>
+<li class="chapter" data-level="3.3.3" data-path="ch-Myrte.html"><a href="ch-Myrte.html#dietary-patterns-and-gestational-weight-gain-in-different-phases-in-pregnancy"><i class="fa fa-check"></i><b>3.3.3</b> Dietary Patterns and Gestational Weight Gain in Different Phases in Pregnancy</a></li>
+<li class="chapter" data-level="3.3.4" data-path="ch-Myrte.html"><a href="ch-Myrte.html#sensitivity-analyses-1"><i class="fa fa-check"></i><b>3.3.4</b> Sensitivity Analyses</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="ch-Myrte.html"><a href="ch-Myrte.html#discussion"><i class="fa fa-check"></i><b>3.4</b> Discussion</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="ch-Myrte.html"><a href="ch-Myrte.html#summary-of-the-main-findings"><i class="fa fa-check"></i><b>3.4.1</b> Summary of the Main Findings</a></li>
+<li class="chapter" data-level="3.4.2" data-path="ch-Myrte.html"><a href="ch-Myrte.html#interpretation-and-comparison-with-other-studies"><i class="fa fa-check"></i><b>3.4.2</b> Interpretation and Comparison with other Studies</a></li>
+<li class="chapter" data-level="3.4.3" data-path="ch-Myrte.html"><a href="ch-Myrte.html#strengths-and-limitations"><i class="fa fa-check"></i><b>3.4.3</b> Strengths and Limitations</a></li>
+<li class="chapter" data-level="3.4.4" data-path="ch-Myrte.html"><a href="ch-Myrte.html#conclusions-and-implications"><i class="fa fa-check"></i><b>3.4.4</b> Conclusions and Implications</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch-Myrte.html"><a href="ch-Myrte.html#appendix-1"><i class="fa fa-check"></i>Appendix</a><ul>
+<li class="chapter" data-level="" data-path="ch-Myrte.html"><a href="ch-Myrte.html#a-supplementary-materials"><i class="fa fa-check"></i>3.A Supplementary Materials</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="ch-Vincent.html"><a href="ch-Vincent.html"><i class="fa fa-check"></i><b>4</b> Mothers’ SCB Intake and Body Composition of their Children</a><ul>
+<li class="chapter" data-level="" data-path="ch-Vincent.html"><a href="ch-Vincent.html#abstract-2"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="4.1" data-path="ch-Vincent.html"><a href="ch-Vincent.html#introduction-1"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="ch-Vincent.html"><a href="ch-Vincent.html#methods"><i class="fa fa-check"></i><b>4.2</b> Methods</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="ch-Vincent.html"><a href="ch-Vincent.html#study-design-1"><i class="fa fa-check"></i><b>4.2.1</b> Study Design</a></li>
+<li class="chapter" data-level="4.2.2" data-path="ch-Vincent.html"><a href="ch-Vincent.html#study-population-1"><i class="fa fa-check"></i><b>4.2.2</b> Study Population</a></li>
+<li class="chapter" data-level="4.2.3" data-path="ch-Vincent.html"><a href="ch-Vincent.html#dietary-assessment-of-the-mother"><i class="fa fa-check"></i><b>4.2.3</b> Dietary Assessment of the Mother</a></li>
+<li class="chapter" data-level="4.2.4" data-path="ch-Vincent.html"><a href="ch-Vincent.html#child-anthropometric-measures-and-body-composition"><i class="fa fa-check"></i><b>4.2.4</b> Child Anthropometric Measures and Body Composition</a></li>
+<li class="chapter" data-level="4.2.5" data-path="ch-Vincent.html"><a href="ch-Vincent.html#covariates-1"><i class="fa fa-check"></i><b>4.2.5</b> Covariates</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="ch-Vincent.html"><a href="ch-Vincent.html#statistical-analyses-1"><i class="fa fa-check"></i><b>4.3</b> Statistical Analyses</a></li>
+<li class="chapter" data-level="4.4" data-path="ch-Vincent.html"><a href="ch-Vincent.html#results-3"><i class="fa fa-check"></i><b>4.4</b> Results</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="ch-Vincent.html"><a href="ch-Vincent.html#subject-characteristics"><i class="fa fa-check"></i><b>4.4.1</b> Subject Characteristics</a></li>
+<li class="chapter" data-level="4.4.2" data-path="ch-Vincent.html"><a href="ch-Vincent.html#maternal-scb-intake-and-child-bmi-trajectory"><i class="fa fa-check"></i><b>4.4.2</b> Maternal SCB Intake and Child BMI Trajectory</a></li>
+<li class="chapter" data-level="4.4.3" data-path="ch-Vincent.html"><a href="ch-Vincent.html#maternal-scb-intake-and-child-body-composition"><i class="fa fa-check"></i><b>4.4.3</b> Maternal SCB Intake and Child Body Composition</a></li>
+<li class="chapter" data-level="4.4.4" data-path="ch-Vincent.html"><a href="ch-Vincent.html#additional-analyses"><i class="fa fa-check"></i><b>4.4.4</b> Additional Analyses</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="ch-Vincent.html"><a href="ch-Vincent.html#discussion-1"><i class="fa fa-check"></i><b>4.5</b> Discussion</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="ch-Vincent.html"><a href="ch-Vincent.html#interpretation-and-comparison-with-previous-studies"><i class="fa fa-check"></i><b>4.5.1</b> Interpretation and Comparison with Previous Studies</a></li>
+<li class="chapter" data-level="4.5.2" data-path="ch-Vincent.html"><a href="ch-Vincent.html#potential-mechanisms"><i class="fa fa-check"></i><b>4.5.2</b> Potential Mechanisms</a></li>
+<li class="chapter" data-level="4.5.3" data-path="ch-Vincent.html"><a href="ch-Vincent.html#strengths-and-limitations-1"><i class="fa fa-check"></i><b>4.5.3</b> Strengths and Limitations</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch-Vincent.html"><a href="ch-Vincent.html#appendix-2"><i class="fa fa-check"></i>Appendix</a><ul>
+<li class="chapter" data-level="" data-path="ch-Vincent.html"><a href="ch-Vincent.html#a-additional-results"><i class="fa fa-check"></i>4.A Additional Results</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="ch-SMMR.html"><a href="ch-SMMR.html"><i class="fa fa-check"></i><b>5</b> Bayesian Imputation of Time-varying Covariates in Mixed Models</a><ul>
+<li class="chapter" data-level="" data-path="ch-SMMR.html"><a href="ch-SMMR.html#abstract-3"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="5.1" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:introSMMR"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:DataSMMR"><i class="fa fa-check"></i><b>5.2</b> Generation R Data</a></li>
+<li class="chapter" data-level="5.3" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:ModelSMMR"><i class="fa fa-check"></i><b>5.3</b> Modelling Longitudinal Data with Time-varying Covariates</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="ch-SMMR.html"><a href="ch-SMMR.html#framework"><i class="fa fa-check"></i><b>5.3.1</b> Framework</a></li>
+<li class="chapter" data-level="5.3.2" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:funcformSMMR"><i class="fa fa-check"></i><b>5.3.2</b> Functional Forms for Time-varying Covariates</a></li>
+<li class="chapter" data-level="5.3.3" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:endoexoSMMR"><i class="fa fa-check"></i><b>5.3.3</b> Endo- and Exogeneity</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:modelsSMMR"><i class="fa fa-check"></i><b>5.4</b> Bayesian Analysis with Incomplete Covariates</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:seq-approachSMMR"><i class="fa fa-check"></i><b>5.4.1</b> Sequential Approach</a></li>
+<li class="chapter" data-level="5.4.2" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:mvn-approachSMMR"><i class="fa fa-check"></i><b>5.4.2</b> Multivariate Normal Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:DataAnalysisSMMR"><i class="fa fa-check"></i><b>5.5</b> Analysis of the Generation R Data</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:DataAnalysisEx1"><i class="fa fa-check"></i><b>5.5.1</b> Association between Blood Pressure and Gestational Weight</a></li>
+<li class="chapter" data-level="5.5.2" data-path="ch-SMMR.html"><a href="ch-SMMR.html#association-between-gestational-weight-gain-and-child-bmi"><i class="fa fa-check"></i><b>5.5.2</b> Association between Gestational Weight Gain and Child BMI</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:simulationSMMR"><i class="fa fa-check"></i><b>5.6</b> Simulation Study</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="ch-SMMR.html"><a href="ch-SMMR.html#design-2"><i class="fa fa-check"></i><b>5.6.1</b> Design</a></li>
+<li class="chapter" data-level="5.6.2" data-path="ch-SMMR.html"><a href="ch-SMMR.html#analysis-models"><i class="fa fa-check"></i><b>5.6.2</b> Analysis Models</a></li>
+<li class="chapter" data-level="5.6.3" data-path="ch-SMMR.html"><a href="ch-SMMR.html#results-4"><i class="fa fa-check"></i><b>5.6.3</b> Results</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:DiscussionSMMR"><i class="fa fa-check"></i><b>5.7</b> Discussion</a></li>
+<li class="chapter" data-level="" data-path="ch-SMMR.html"><a href="ch-SMMR.html#appendix-3"><i class="fa fa-check"></i>Appendix</a><ul>
+<li class="chapter" data-level="" data-path="ch-SMMR.html"><a href="ch-SMMR.html#a-details-on-the-implied-exo--or-endogeneity"><i class="fa fa-check"></i>5.A Details on the Implied Exo- or Endogeneity</a></li>
+<li class="chapter" data-level="" data-path="ch-SMMR.html"><a href="ch-SMMR.html#b-analysis-of-the-generation-r-data"><i class="fa fa-check"></i>5.B Analysis of the Generation R Data</a></li>
+<li class="chapter" data-level="" data-path="ch-SMMR.html"><a href="ch-SMMR.html#c-simulation-study"><i class="fa fa-check"></i>5.C Simulation Study</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="ch-JSS.html"><a href="ch-JSS.html"><i class="fa fa-check"></i><b>6</b> JointAI: Joint Analysis and Imputation of Incomplete Data in R</a><ul>
+<li class="chapter" data-level="" data-path="ch-JSS.html"><a href="ch-JSS.html#abstract-4"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="6.1" data-path="ch-JSS.html"><a href="ch-JSS.html#introduction-2"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:TheoryJSS"><i class="fa fa-check"></i><b>6.2</b> Theoretical Background</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:AnalysisModel"><i class="fa fa-check"></i><b>6.2.1</b> Analysis Model</a></li>
+<li class="chapter" data-level="6.2.2" data-path="ch-JSS.html"><a href="ch-JSS.html#imputation-part"><i class="fa fa-check"></i><b>6.2.2</b> Imputation Part</a></li>
+<li class="chapter" data-level="6.2.3" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:priors"><i class="fa fa-check"></i><b>6.2.3</b> Prior Distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:package"><i class="fa fa-check"></i><b>6.3</b> Package Structure</a></li>
+<li class="chapter" data-level="6.4" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:ExampleDataJSS"><i class="fa fa-check"></i><b>6.4</b> Example Data</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="ch-JSS.html"><a href="ch-JSS.html#the-nhanes-data"><i class="fa fa-check"></i><b>6.4.1</b> The NHANES Data</a></li>
+<li class="chapter" data-level="6.4.2" data-path="ch-JSS.html"><a href="ch-JSS.html#the-simlong-data"><i class="fa fa-check"></i><b>6.4.2</b> The simLong Data</a></li>
+<li class="chapter" data-level="6.4.3" data-path="ch-JSS.html"><a href="ch-JSS.html#the-lung-data"><i class="fa fa-check"></i><b>6.4.3</b> The lung Data</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:ModelSpecification"><i class="fa fa-check"></i><b>6.5</b> Model Specification</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="ch-JSS.html"><a href="ch-JSS.html#interactions"><i class="fa fa-check"></i><b>6.5.1</b> Interactions</a></li>
+<li class="chapter" data-level="6.5.2" data-path="ch-JSS.html"><a href="ch-JSS.html#non-linear-functional-forms"><i class="fa fa-check"></i><b>6.5.2</b> Non-linear Functional Forms</a></li>
+<li class="chapter" data-level="6.5.3" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:multilevel"><i class="fa fa-check"></i><b>6.5.3</b> Multi-level Structure and Longitudinal Covariates</a></li>
+<li class="chapter" data-level="6.5.4" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:survmod"><i class="fa fa-check"></i><b>6.5.4</b> Survival Models</a></li>
+<li class="chapter" data-level="6.5.5" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:methJSS"><i class="fa fa-check"></i><b>6.5.5</b> Imputation / Covariate Model Types</a></li>
+<li class="chapter" data-level="6.5.6" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:auxvars"><i class="fa fa-check"></i><b>6.5.6</b> Auxiliary Variables</a></li>
+<li class="chapter" data-level="6.5.7" data-path="ch-JSS.html"><a href="ch-JSS.html#reference-values-for-categorical-covariates"><i class="fa fa-check"></i><b>6.5.7</b> Reference Values for Categorical Covariates</a></li>
+<li class="chapter" data-level="6.5.8" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:hyperpars"><i class="fa fa-check"></i><b>6.5.8</b> Hyperparameters</a></li>
+<li class="chapter" data-level="6.5.9" data-path="ch-JSS.html"><a href="ch-JSS.html#scaling"><i class="fa fa-check"></i><b>6.5.9</b> Scaling</a></li>
+<li class="chapter" data-level="6.5.10" data-path="ch-JSS.html"><a href="ch-JSS.html#ridge-regression"><i class="fa fa-check"></i><b>6.5.10</b> Ridge Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:MCMCSettings"><i class="fa fa-check"></i><b>6.6</b> MCMC Settings</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="ch-JSS.html"><a href="ch-JSS.html#number-of-chains-iterations-and-samples"><i class="fa fa-check"></i><b>6.6.1</b> Number of Chains, Iterations and Samples</a></li>
+<li class="chapter" data-level="6.6.2" data-path="ch-JSS.html"><a href="ch-JSS.html#parameters-to-follow"><i class="fa fa-check"></i><b>6.6.2</b> Parameters to Follow</a></li>
+<li class="chapter" data-level="6.6.3" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:inits"><i class="fa fa-check"></i><b>6.6.3</b> Initial Values</a></li>
+<li class="chapter" data-level="6.6.4" data-path="ch-JSS.html"><a href="ch-JSS.html#parallel-sampling"><i class="fa fa-check"></i><b>6.6.4</b> Parallel Sampling</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:ResultsJSS"><i class="fa fa-check"></i><b>6.7</b> After Fitting</a><ul>
+<li class="chapter" data-level="6.7.1" data-path="ch-JSS.html"><a href="ch-JSS.html#visualizing-the-posterior-sample"><i class="fa fa-check"></i><b>6.7.1</b> Visualizing the Posterior Sample</a></li>
+<li class="chapter" data-level="6.7.2" data-path="ch-JSS.html"><a href="ch-JSS.html#model-summary"><i class="fa fa-check"></i><b>6.7.2</b> Model Summary</a></li>
+<li class="chapter" data-level="6.7.3" data-path="ch-JSS.html"><a href="ch-JSS.html#evaluation-criteria"><i class="fa fa-check"></i><b>6.7.3</b> Evaluation Criteria</a></li>
+<li class="chapter" data-level="6.7.4" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:subset"><i class="fa fa-check"></i><b>6.7.4</b> Subset of Output</a></li>
+<li class="chapter" data-level="6.7.5" data-path="ch-JSS.html"><a href="ch-JSS.html#predicted-values"><i class="fa fa-check"></i><b>6.7.5</b> Predicted Values</a></li>
+<li class="chapter" data-level="6.7.6" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:getMIdat"><i class="fa fa-check"></i><b>6.7.6</b> Export of Imputed Values</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="ch-JSS.html"><a href="ch-JSS.html#assumptions-and-extensions"><i class="fa fa-check"></i><b>6.8</b> Assumptions and Extensions</a></li>
+<li class="chapter" data-level="" data-path="ch-JSS.html"><a href="ch-JSS.html#appendix-4"><i class="fa fa-check"></i>Appendix</a><ul>
+<li class="chapter" data-level="" data-path="ch-JSS.html"><a href="ch-JSS.html#a-default-hyperparameters"><i class="fa fa-check"></i>6.A Default Hyperparameters</a></li>
+<li class="chapter" data-level="" data-path="ch-JSS.html"><a href="ch-JSS.html#b-density-plot-using-ggplot2"><i class="fa fa-check"></i>6.B Density Plot using ggplot2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="ch-discussion.html"><a href="ch-discussion.html"><i class="fa fa-check"></i><b>7</b> General Discussion</a><ul>
+<li class="chapter" data-level="7.1" data-path="ch-discussion.html"><a href="ch-discussion.html#summary-of-advantages"><i class="fa fa-check"></i><b>7.1</b> Summary of Advantages</a></li>
+<li class="chapter" data-level="7.2" data-path="ch-discussion.html"><a href="ch-discussion.html#assumptions"><i class="fa fa-check"></i><b>7.2</b> Assumptions</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="ch-discussion.html"><a href="ch-discussion.html#model-specification"><i class="fa fa-check"></i><b>7.2.1</b> Model Specification</a></li>
+<li class="chapter" data-level="7.2.2" data-path="ch-discussion.html"><a href="ch-discussion.html#ignorable-missingness"><i class="fa fa-check"></i><b>7.2.2</b> Ignorable Missingness</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="ch-discussion.html"><a href="ch-discussion.html#directions-for-future-work"><i class="fa fa-check"></i><b>7.3</b> Directions for Future Work</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="ch-discussion.html"><a href="ch-discussion.html#implementation-of-flexible-models"><i class="fa fa-check"></i><b>7.3.1</b> Implementation of Flexible Models</a></li>
+<li class="chapter" data-level="7.3.2" data-path="ch-discussion.html"><a href="ch-discussion.html#evaluation-of-model-fit"><i class="fa fa-check"></i><b>7.3.2</b> Evaluation of Model Fit</a></li>
+<li class="chapter" data-level="7.3.3" data-path="ch-discussion.html"><a href="ch-discussion.html#non-ignorable-missingness"><i class="fa fa-check"></i><b>7.3.3</b> Non-ignorable Missingness</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="ch-discussion.html"><a href="ch-discussion.html#conclusion"><i class="fa fa-check"></i><b>7.4</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="summary-samenvatting-zusammenfassung.html"><a href="summary-samenvatting-zusammenfassung.html"><i class="fa fa-check"></i><b>8</b> Summary / Samenvatting / Zusammenfassung</a><ul>
+<li class="chapter" data-level="" data-path="summary-samenvatting-zusammenfassung.html"><a href="summary-samenvatting-zusammenfassung.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+<li class="chapter" data-level="" data-path="summary-samenvatting-zusammenfassung.html"><a href="summary-samenvatting-zusammenfassung.html#samenvatting"><i class="fa fa-check"></i>Samenvatting</a></li>
+<li class="chapter" data-level="" data-path="summary-samenvatting-zusammenfassung.html"><a href="summary-samenvatting-zusammenfassung.html#zusammenfassung"><i class="fa fa-check"></i>Zusammenfassung</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html"><i class="fa fa-check"></i>Appendix: PhD Portfolio &amp; Curriculum Vitae</a><ul>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#phd-portfolio"><i class="fa fa-check"></i>PhD Portfolio</a><ul>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#presentations"><i class="fa fa-check"></i>Presentations</a></li>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#teaching"><i class="fa fa-check"></i>Teaching</a></li>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#courses"><i class="fa fa-check"></i>Courses</a></li>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#seminars-and-workshops"><i class="fa fa-check"></i>Seminars and Workshops</a></li>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#consulting"><i class="fa fa-check"></i>Consulting</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#curriculum-vitae"><i class="fa fa-check"></i>Curriculum Vitae</a><ul>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#education"><i class="fa fa-check"></i>Education</a></li>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#work-experience"><i class="fa fa-check"></i>Work Experience</a></li>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#awards"><i class="fa fa-check"></i>Awards</a></li>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#collaborations-and-consulting"><i class="fa fa-check"></i>Collaborations and Consulting</a></li>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#publications"><i class="fa fa-check"></i>Publications</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Bayesian Imputation of Missing Covariates</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="summary-samenvatting-zusammenfassung" class="section level1">
+<h1><span class="header-section-number">Chapter 8</span> Summary / Samenvatting / Zusammenfassung</h1>
+
+
+
+<div id="summary" class="section level2 unnumbered">
+<h2>Summary</h2>
+<p>Missing values are a pervasive problem in almost all kinds of studies. In large
+cohort studies, the type of study most often conducted in the field of
+epidemiology, missing observations in covariates pose the major challenge.
+Since measurements are taken in an uncontrolled environment, typically many
+covariates need to be considered as potential confounders to filter out
+unwanted influences that environmental factors may have on the estimates of interest.
+Due to the large number of variables measured and the fact that measurement often
+relies on participants recalling and reporting detailed information,
+large proportions of missing data are common in these types of studies.
+In light of the above, the research that forms this thesis focuses on the analysis
+of incomplete cohort study data where missingness is in the covariates.</p>
+<p>Chapter <a href="index.html#ch:intro">1</a> provides a brief introduction into the history of the
+most popular approach to handle incomplete data, multiple
+imputation (MI), and gives an overview of common approaches to perform multiple
+imputation or to directly perform inference with incomplete data.
+Moreover, concepts relevant to the analysis under the
+Bayesian paradigm are outlined.</p>
+<p>The focus of Chapter <a href="ch-SIM.html#ch:SIM">2</a> is the analysis of longitudinal data with
+incomplete baseline covariates. We describe a fully Bayesian approach to analyse
+and impute data in this setting and discuss a number of naive and more
+sophisticated approaches to impute such data in wide format using
+multiple imputation with chained equations (MICE).
+Results from the analysis of the motivating dataset from the Generation R Study
+as well as two simulation studies demonstrate that with MICE omission of the outcome
+from the imputation models, or even the use of simple summaries, can lead
+to severe bias. Only when more sophisticated summaries of the outcome, which
+captured important features associated with the missingness, were used,
+bias was negligible.
+Since it is generally not known which features of the outcome are relevant to the
+missingness, the fully Bayesian approach, in which the outcome is included
+automatically and implicitly without the need to summarize it,
+and which provided unbiased results throughout all analyses, is the preferred
+method for imputation of incomplete baseline covariates in longitudinal data.</p>
+<p>The fully Bayesian approach is applied to data from the Generation
+R Study in Chapter <a href="ch-Myrte.html#ch:Myrte">3</a>,
+in which the association between gestational weight (gain) and dietary patterns
+is investigated. In the primary analysis, a stratified Bayesian linear mixed model
+is fitted to repeated measures of gestational weight, and missing covariate values
+are imputed. Extracting these imputed values and creating multiple completed
+datasets allows performing secondary analyses of gestational weight
+gain during different periods of pregnancy as well as sensitivity analyses
+using the idea of multiple imputation.</p>
+<p>Chapter <a href="ch-Vincent.html#ch:Vincent">4</a> provides another application of the proposed approach
+to data from the Generation R Study. The association between child body
+composition and maternal sugar containing beverage consumption during pregnancy
+is investigated. Three different measures of child body composition are of
+interest in the primary analysis:
+BMI, measured repeatedly until six years of age, and fat mass index (FMI) and fat free
+mass index (FFMI), measured at the age of six. The three outcomes are modelled jointly
+in the Bayesian framework using a linear mixed model for BMI and linear models for
+FMI and FFMI, and missing values in covariates are imputed simultaneously.
+Again, imputed values are extracted to perform additional analyses, in this case
+analyses on subgroups within the data.</p>
+<p>The Bayesian approach is further extended to settings with time-varying covariates
+in Chapter <a href="ch-SMMR.html#ch:SMMR">5</a>. Additional challenges that arise with time-varying
+covariates, such as the functional form of the association between outcome
+and covariate, and potential endogeneity, are investigated.
+The previously described Bayesian approach, extended to settings with time-varying
+covariates, is compared to joint model multiple imputation using a multivariate
+normal distribution, with regards to its ability to handle the additional challenges.
+Simulation studies show that misspecification of the functional form
+or misspecification of an endogenous covariate as exogenous can lead to severe bias.
+Even though joint model MI assumes endogeneity, the subsequent analysis of the
+imputed data usually assumes exogeneity for all covariates, and associations
+between outcome and time-varying covariates are assumed to be linear during
+imputation. Since the (extended) fully Bayesian approach allows inclusion of
+endogenous covariates, flexible non-linear associations and performs simultaneous
+analysis and imputation, it is the superior approach in this setting.</p>
+<p>Chapter <a href="ch-JSS.html#ch:JSS">6</a> describes the implementation of the fully Bayesian approach
+in the R package <strong>JointAI</strong> and illustrates the use of the package
+by means of various examples.</p>
+<p>This thesis is concluded in Chapter <a href="ch-discussion.html#ch:discussion">7</a> with a short summary of the
+advantages of the fully Bayesian approach, discusses implications by the
+assumptions made by the approach and explores extensions and directions for
+future work.</p>
+
+</div>
+<div id="samenvatting" class="section level2 unnumbered">
+<h2>Samenvatting</h2>
+<p>Ontbrekende waardes zijn een veelvoorkomend probleem in bijna alle soorten
+studies. In grote cohortstudies, het meest gebruikte type studie in de
+epidemiologie, vormen ontbrekende waardes in de covariabelen het grootste probleem.
+Omdat metingen in een niet gecontroleerde omgeving worden gedaan moet er
+doorgaans met veel covariabelen rekening gehouden worden om ongewenste invloed
+van omgevingsfactoren op de schattingen van belangrijke parameters te voorkomen.
+Door het grote aantal gemeten variabelen en door het feit dat metingen vaak vereisen dat
+deelnemers zich gedetailleerde informatie herinneren en deze informatie ook rapporteren,
+komen grote hoeveelheden ontbrekende waardes vaak voor in dit type studies.
+Naar aanleiding van het bovenstaande, focust het onderzoek in deze dissertatie
+zich op de analyse van incomplete data uit cohortstudies met ontbrekende waardes in
+de covariabelen.</p>
+<p>Hoofdstuk <a href="index.html#ch:intro">1</a> geeft een korte inleiding in de geschiedenis van de
+meest populaire manier om onvolledige gegevens te benaderen; multiple imputatie (MI),
+en geeft een overzicht van gebruikelijke methodes om MI uit te voeren
+of incomplete data direct te analyseren.
+Bovendien worden concepten geschetst die relevant zijn in het kader van het Bayesiaanse
+paradigma.</p>
+<p>De focus van hoofdstuk <a href="ch-SIM.html#ch:SIM">2</a> is de analyse van longitudinale gegevens met
+onvolledige “baseline” covariaten. We beschrijven een volledig Bayesiaanse benadering
+om data in deze situatie te analyseren en imputeren en bespreken zowel een aantal
+naïeve, als ook meer verfijnde benaderingen om dergelijke gegevens in het zogenaamde
+“wide format” te imputeren met “Multiple Imputation with Chained Equations” (MICE).
+Resultaten van de analyse van de motiverende dataset uit de Generation R studie
+en twee simulatiestudies tonen aan dat met MICE het niet includeren van de uitkomst
+in de imputatiemodellen, of zelfs het gebruik van eenvoudige samenvattingen
+van de uitkomst, kan leiden tot ernstige systematische fouten.
+Alleen wanneer meer uitgebreide samenvattingen van de uitkomst werden gebruikt,
+welke belangrijke karakteristieken van de “missingness” bevatten, was de
+systematische fout verwaarloosbaar.
+Omdat in het algemeen niet bekend is welke kenmerken van de uitkomst relevant
+zijn voor de “missingness”, heeft de volledig Bayesiaanse benadering, waarin de
+uitkomst automatisch en impliciet in de imputatie geïncludeerd is,
+zonder de noodzaak om het samen te vatten, en die tijdens alle analyses resultaten zonder
+systematische fouten opleverde, de voorkeur voor imputatie van onvolledige baseline
+gegevens in longitudinale studies.</p>
+<p>De Bayesiaanse benadering wordt toegepast op gegevens van de Generation R studie
+in hoofdstuk <a href="ch-Myrte.html#ch:Myrte">3</a>, waarin de associatie tussen (de toename van)
+gewicht tijdens zwangerschap en voedingspatronen wordt onderzocht.
+In de primaire analyse wordt een gestratificeerd Bayesiaans lineair gemengd model
+toegepast op herhaalde metingen van zwangerschapsgewicht en worden ontbrekende
+waardes in de covariabelen geïmputeerd.
+Het extraheren van deze geïmputeerde waardes en het creëren van meerdere volledige
+datasets maakt het mogelijk om in het kader van MI secundaire analyses van
+gewichtstoename tijdens verschillende periodes van de zwangerschap,
+evenals gevoeligheidsanalyses, uit te voeren.</p>
+<p>Hoofdstuk <a href="ch-Vincent.html#ch:Vincent">4</a> laat een verdere toepassing zien van de voorgestelde methode
+op data uit de Generation R studie. De associatie tussen lichaamssamenstelling
+van kinderen en de consumptie van suikerhoudende dranken door hun moeders
+tijdens de zwangerschap wordt onderzocht.
+Er zijn drie belangrijke maten van lichaamssamenstelling in de primaire analyse:
+BMI, herhaald gemeten tot zes jaar, vetmassa index (FMI) en
+vetvrije massa index (FFMI), beiden gemeten op zesjarige leeftijd.
+De drie uitkomsten worden gezamenlijk gemodelleerd in het Bayesiaanse kader met
+behulp van een lineair gemengd model voor BMI en lineaire modellen voor
+FMI en FFMI, waarbij ontbrekende waardes in covariaten binnen dezelfde procedure
+worden geïmputeerd.
+Wederom worden deze geïmputeerde waarden geëxtraheerd om extra analyses,
+in dit geval in subgroepen, uit te voeren.</p>
+<p>De Bayesiaanse benadering wordt in hoofdstuk <a href="ch-SMMR.html#ch:SMMR">5</a> verder uitgebreid
+naar situaties met covariaten die in de tijd variëren.
+Bijkomende uitdagingen die horen bij tijds variërende covariaten,
+zoals de functionele vorm van de associatie tussen uitkomst en covariaat en
+mogelijke endogeniteit, worden onderzocht.
+De eerder beschreven Bayesiaanse benadering, uitgebreid naar situaties met in de
+tijd varieerde covariaten, wordt vergeleken met “joint model” MI met behulp van
+een multivariate normale verdeling, op het vermogen om de
+additionele uitdagingen aan te gaan.
+Simulatiestudies tonen aan dat een verkeerde specificatie van de functionele
+vorm of een specificatie van een endogene covariabel als exogeen,
+tot ernstige systematische fouten kan leiden.
+Hoewel “joint model” MI endogeniteit veronderstelt, neemt de daaropvolgende analyse
+van de geïmputeerde gegevens meestal exogeniteit aan voor alle covariaten,
+en er wordt tijdens de imputatie van uitgegaan dat associaties tussen uitkomst
+en tijdsvariërende covariaten lineair zijn.
+Omdat de (uitgebreide) volledig Bayesiaanse benadering zowel rekening kan houden
+met endogeniteit van covariabelen en flexibele niet-lineaire associaties,
+als analyse en imputatie simultaan uitvoert, is dit de superieure methode
+in deze situatie.</p>
+<p>Hoofdstuk <a href="ch-JSS.html#ch:JSS">6</a> beschrijft de implementatie van de volledig Bayesiaanse
+benadering in het R pakket <strong>JointAI</strong> en illustreert het gebruik van het
+pakket aan de hand van verschillende voorbeelden.</p>
+<p>Dit proefschrift wordt afgesloten in hoofdstuk <a href="ch-discussion.html#ch:discussion">7</a> met een
+korte samenvatting van de voordelen van de volledig Bayesiaanse methode,
+de implicaties van de aannames die gemaakt worden in deze benadering
+en mogelijke verbeteringen en onderwerpen voor toekomstig werk.</p>
+<!-- \newpage -->
+</div>
+<div id="zusammenfassung" class="section level2 unnumbered">
+<h2>Zusammenfassung</h2>
+<p>Fehlende Werte sind ein allgegenwärtiges Problem in vielerlei Studien.
+In großen Kohortenstudien, dem Studientyp, der in der Epidemiologie am häufigsten durchgeführt wird, stellen fehlende Werten in Kovariablen die größte Herausforderung dar.
+Da Daten nicht in einem kontrollierten Umfeld erhoben werden, müssen üblicherweise viele Kovariablen als potentielle Störfaktoren berücksichtigt werden, um so zumindest einen Teil der unerwünschten Einflüsse herauszufiltern, die das Ergebnis verzerren können.
+Aufgrund der großen Anzahl von Werten, die deshalb erhoben werden, und da es oft notwendig ist, dass Probanden sich an detaillierte Informationen erinnern und diese auch wiedergeben, ist ein hoher Prozentsatz fehlender Werte keine Seltenheit.
+Die wissenschaftlichen Arbeiten, die dieser Dissertation zugrunde liegen, konzentrieren sich daher auf die Analyse unvollständiger Daten aus Kohortenstudien, wobei die fehlenden Werte in den Kovariablen auftreten.</p>
+<p>Kapitel <a href="index.html#ch:intro">1</a> gibt eine kurze Einführung in die Geschichte der derzeit bekanntesten Methode zum Umgang mit fehlenden Werten: „Multiple Imputation“ (MI), und eine Übersicht häufig verwendeter Methoden, mit denen entweder MI oder direkt Inferenz aus unvollständigen Daten durchgeführt werden können.
+Außerdem werden Konzepte skizziert, die im Zusammenhang mit bayesianischer Statistik relevant sind.</p>
+<p>Der Fokus in Kapitel <a href="ch-SIM.html#ch:SIM">2</a> liegt auf der Analyse longitudinaler Daten mit unvollständigen zeitunabhängigen Kovariablen. Wir beschreiben eine vollständig bayesianische Methode um derartige Daten zeitgleich zu analysieren und zu imputieren, und erörtern einige einfache sowie kompliziertere Ansätze um diese Daten, in horizontalem Format, mit der gebräuchlicheren Methode „Multiple Imputation using Chained Equations“ (MICE), d.h. durch eine Reihe von univariaten Modellen zu imputieren.
+Ergebnisse aus der Analyse des motivierenden Datensatzes aus der „Generation R“ Studie sowie aus zwei Simulationsstudien zeigen, dass bei MICE das Weglassen der Zielvariablen aus den Imputationsmodellen, oder auch die Verwendung einfacher Zusammenfassungen der Zielvariablen zu schwerwiegenden systematischen Fehlern führen kann.
+Nur wenn komplexere Zusammenfassungen der Zielvariablen verwendet wurden, die die im Zusammenhang mit den fehlenden Werten wichtigen Merkmale erfassen, war der systematische Fehler vernachlässigbar.
+Bei der vollständig bayesianischen Methode wird die Zielvariable automatisch und implizit berücksichtigt ohne dass eine Zusammenfassung notwendig ist.
+Da im Allgemeinen nicht bekannt ist welche Merkmale relevant sind und die bayesianische Methode in allen Analysen korrekte Ergebnisse lieferte, ist sie die überlegene Methode, um fehlende Werte in zeitkonstanten Kovariablen in longitudinalen Datensätzen zu imputieren bzw. solche Daten zu analysieren.</p>
+<p>Die vollständig bayesianische Methode wird in Kapitel <a href="ch-Myrte.html#ch:Myrte">3</a> auf eine Fragestellung aus der „Generation R“ Studie angewendet, in der die Beziehung zwischen Ernährungsmustern und Gewicht bzw. Gewichtszunahme während der Schwangerschaft untersucht wird.
+Für die primäre Fragestellung wird ein stratifiziertes, bayesianisches, lineares gemischtes Model für die wiederholten Messungen des Gewichts der Mutter aufgestellt, womit gleichzeitig fehlende Werte in Kovariablen imputiert werden. Dem Konzept von MI folgend werden mit diesen imputierten Werten vervollständigte Versionen des ursprünglichen Datensatzes generiert, und somit die Analyse der sekundären Frage nach der Beziehung zwischen Ernährung und Gewichtszunahme in verschiedenen Phasen der Schwangerschaft sowie Sensitivitätsanalysen ermöglicht.</p>
+<p>Kapitel <a href="ch-Vincent.html#ch:Vincent">4</a> stellt eine weitere Anwendung der vorgeschlagenen bayesianischen Methode auf Daten aus der „Generation R“ Studie dar. Der Zusammenhang zwischen der Menge von mit Zucker gesüßten Getränken, die Frauen während der Schwangerschaft zu sich nehmen, und dem Körperbau ihrer Kinder nach der Geburt wird untersucht.
+Drei verschiedene Kennzahlen des Körperbaus sind in der primären Analyse von Interesse: BMI, mehrfach gemessen von der Geburt ab bis zum Alter von sechs Jahren, Fett-Masse-Index (FMI) und Fettfreie-Masse-Index (FFMI), gemessen im Alter von sechs Jahren.
+Zugleich mit der gemeinsamen Modellierung der drei Zielvariablen in einem bayesianischen Model werden fehlende Werte in Kovariablen imputiert. Dabei werden ein lineares gemischtes Model für BMI sowie lineare Regressionsmodelle für FMI und FFMI verwendet.
+Zur Durchführung weitere Analysen, in diesem Fall in Untergruppen, werden auch hier die imputierten Werte extrahiert.</p>
+<p>In Kapitel <a href="ch-SMMR.html#ch:SMMR">5</a> wird die bayesianische Methode auf Situationen mit zeitabhängigen Kovariablen erweitert.
+Dabei werden Herausforderungen untersucht, wie sie bei zeitabhängigen Kovariablen entstehen. In diesem Falle die funktionelle Form der Beziehung zwischen Zielvariable und Kovariable, sowie die mögliche Endogenität der Kovariable.
+Anhand von Simulationsstudien wird die zuvor beschriebenen, für zeitabhängigen Kovariablen erweiterten, bayesianische Methode mit einer alternativen Methode verglichen, in der fehlende Werte mit Hilfe einer gemeinsamen multivariaten Normalverteilung imputiert werden („joint model“ MI).
+Es ergibt sich, dass Fehlspezifikation der funktionellen Form oder Fehlspezifikation einer endogenen Kovariablen als exogen zu schwerwiegenden systematischen Fehlern führen kann.
+Obwohl “joint model” MI Endogenität annimmt, ist dies bei den meisten Methoden, die im Anschluss auf die imputierten Daten angewendet werden nicht der Fall. Außerdem wird die Beziehung zwischen Kovariable und Zielvariabel bei “joint model” MI als linear angenommen.
+Da bei der erweiterten vollständig bayesianischen Methode endogenen Kovariablen sowie flexible Formen für die funktionelle Beziehung zwischen Zielvariabel und Kovariablen berücksichtigt werden können, ist sie die überlegene Methode für derartige Daten.</p>
+<p>Kapitel <a href="ch-JSS.html#ch:JSS">6</a> beschreibt die Implementierung der vorgestellten vollständig bayesianischen Methode im R Paket <strong>JointAI</strong> und illustriert die Verwendung dieses Paketes anhand zahlreicher Beispiele.</p>
+<p>Das abschließende Kapitel <a href="ch-discussion.html#ch:discussion">7</a> fasst die Vorteile der von uns verwendeten bayesianischen Methode zusammen, und erläutert wesentliche Konsequenzen der Annahmen dieser Methode. Zusätzlich werden Ideen aufgezeigt wie die Methode und ihre Implementierung erweitert und verbessert werden kann.</p>
+<!-- Fehlende Werte sind ein allgegenwärtiges Problem in vielerlei Studien. -->
+<!-- In großen Kohortenstudien, dem Typ Studie der in der Epidemiologie am häufigsten durchgeführt wird, stellen fehlende Werten in Kovariablen die größte Herausforderung dar. -->
+<!-- Da Daten nicht in einem kontrollierten Umfeld erhoben werden müssen üblicherweise viele Kovariablen als potentielle Störfaktoren berücksichtigt werden um so zumindest einen Teil der unerwünschten Einflüsse, die das Ergebnis verzerren können herauszufiltern. -->
+<!-- Aufgrund der großen Anzahl von Werten die deshalb erhoben werden und da es oft notwendig ist, dass Teilnehmer sich an detaillierte Informationen erinnern und diese auch wiedergeben, sind hohe prozentuale Anteile fehlender Werte keine Seltenheit in diesen Studien. -->
+<!-- Die wissenschaftlichen Arbeiten die diese Dissertation bilden konzentrieren sich daher auf die Analyse von unvollständigen Daten aus Kohortenstudien, wobei die fehlenden Werte in den Kovariablen auftreten. -->
+<!-- Kapitel \@ref(ch:intro) gibt eine kurze Einführung in die Geschichte der derzeit bekanntesten Methode mit fehlenden Werten umzugehen, „Multiple Imputation“ (MI), und eine Übersicht häufig verwendeter Methoden um entweder MI oder direkt Inferenz mit unvollständigen Daten durchzuführen. -->
+<!-- Außerdem werden Konzepte skizziert, die im Zusammenhang mit bayesianischer Statistik relevant sind. -->
+<!-- Der Fokus in Kapitel \@ref(ch:SIM) ist die Analyse longitudinaler Daten mit unvollständigen zeitunabhängigen Kovariablen. Wir beschreiben eine vollständig bayesianische Methode derartige Daten zeitgleich zu analysieren und zu imputieren, und erörtern einige einfache sowie kompliziertere Ansätze um diese Daten, in horizontalem Format, mit der gebräuchlicheren Methode „Multiple Imputation using Chained Equations“ (MICE), d.h., durch eine Reihe von univariaten Modellen, zu imputieren. -->
+<!-- Ergebnisse aus der Analyse des motivierenden Datensatzes aus der Generation R Studie sowie aus zwei Simulationsstudien zeigen, dass bei MICE das Weglassen der Zielvariablen aus den Imputationsmodellen, oder auch die Verwendung von einfachen Zusammenfassungen der Zielvariablen, zu schwerwiegenden systematischen Fehlern führen kann. -->
+<!-- Nur wenn durchdachte Zusammenfassungen der Zielvariablen, die die im Zusammenhang mit den fehlenden Werten wichtigen Merkmale erfassen, verwendet wurden, war der systematische Fehler zu vernachlässigen. -->
+<!-- Da im Allgemeinen nicht bekannt ist welche Merkmale relevant sind war die vollständig bayesianische Methode, bei welcher die Zielvariable automatisch und implizit berücksichtigt wird ohne dass eine Zusammenfassung notwendig ist, und welche in allen Analysen korrekte Ergebnisse lieferte, die überlegene Methode um fehlende Werte in zeitkonstanten Kovariablen in longitudinalen Datensätzen zu imputieren bzw. solche Daten zu analysieren. -->
+<!-- Die vollständig bayesianische Methode wird in Kapitel \@ref(ch:Myrte) auf eine Fragestellung aus der Generation R Studie angewandt, wobei die Beziehung zwischen Ernährungsmustern und Gewicht bzw. Gewichtszunahme während der Schwangerschaft untersucht wird.  -->
+<!-- Für die primäre Fragestellung wird ein stratifiziertes bayesianisches lineares gemischtes Model für wiederholte Messungen des Gewichts der Mutter aufgestellt womit gleichzeitig fehlende Werte in Kovariablen imputiert werden. Dem Konzept von MI folgend werden diese imputierten Werte extrahiert um vervollständigte Versionen des ursprünglichen Datensatzes zu generieren, und somit die Analyse der sekundären Frage nach der Beziehung zwischen Ernährung und Gewichtszunahme in verschiedenen Phasen der Schwangerschaft sowie Sensitivitätsanalysen zu ermöglichen. -->
+<!-- Kapitel \@ref(ch:Vincent) stellt eine weitere Anwendung der vorgeschlagenen bayesianischen Methode auf Daten aus der Generation R Studie dar. Der Zusammenhang zwischen der Menge von mit Zucker gesüßten Getränken die Frauen während der Schwangerschaft zu sich nehmen und dem Körperbau ihrer Kinder nach deren Geburt wird untersucht. -->
+<!-- Drei verschiedene Maße des Körperbaus sind von Interesse in der primären Analyse: BMI, mehrfach gemessen von der Geburt ab bis zum Alter von sechs Jahren, und Fett-Masse-Index (FMI) und Fettfreie-Masse-Index (FFMI), gemessen beim Alter von sechs Jahren. -->
+<!-- Zeitgleich mit der gemeinsamen Modellierung der drei Zielvariablen in einem bayesianischen Model, wobei ein lineares gemischtes Model für BMI und lineare Regressionsmodelle für FMI und FFMI verwendet werden, werden fehlende Werte in Kovariablen imputiert. -->
+<!-- Wiederum werden imputierte Werte extrahiert um zusätzliche Analysen, in diesem Fall in Untergruppen, durchzuführen. -->
+<!-- Die bayesianische Methode wird in Kapitel \@ref(ch:SMMR) auf Situationen mit zeitabhängigen Kovariablen erweitert.  -->
+<!-- Zusätzliche Herausforderungen die bei zeitabhängigen Kovariablen entstehen, wie die funktionelle Form der Beziehung zwischen Zielvariable und Kovariable, sowie die mögliche Endogenität der Kovariable, werden untersucht. -->
+<!-- Die zuvor beschriebene bayesianische Methode, erweitert zu zeitabhängigen Kovariablen, wird mit Imputation durch eine gemeinsame multivariate Normalverteilung („joint model“ MI) bezüglich ihrer Fähigkeit diese zusätzlichen Schwierigkeiten zu meistern verglichen. -->
+<!-- Simulationsstudien zeigen das Fehlspezifikation der funktionellen Form oder Fehlspezifikation einer endogenen Kovariablen als exogen zu schwerwiegenden systematischen Fehlern führen kann. -->
+<!-- Obwohl "joint model" MI Endogenität annimmt, ist dies bei den meisten Methoden die im Anschluss auf die imputierten Daten angewendet werden nicht der Fall. Außerdem wird die Beziehung zwischen Kovariable und Zielvariabel bei "joint model" MI als linear angenommen. -->
+<!-- Da die erweiterte vollständig bayesianische Methode die Berücksichtigung von endogenen Kovariablen sowie flexibler Formen für die funktionelle Beziehung zwischen Zielvariabel und Kovariablen ermöglicht und außerdem Analyse und Imputation simultan durchführt, ist dies die überlegene Methode für derartige Daten.  -->
+<!-- Kapitel \@ref(ch:JSS) beschreib die Implementierung der vorgestellten vollständig bayesianischen Methode im R Paket **JointAI** und illustriert die Verwendung dieses Paketes anhand von zahlreichen Beispielen. -->
+<!-- Diese Dissertation schließt in Kapitel \@ref(ch:discussion) mit einer kurzen Zusammenfassung der Vorteile der von uns verwendeten bayesianischen Methode, sowie der Erläuterung einiger Konsequenzen, die aus den Annahmen dieser Methode entstehen, und Ideen um die Methode und ihre Implementierung zu erweitern und verbessern. -->
+
+
+
+
+
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="ch-discussion.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="appendix-phd-portfolio-curriculum-vitae.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

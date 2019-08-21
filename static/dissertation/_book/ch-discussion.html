@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 General Discussion | Bayesian Imputation of Missing Covariates</title>
+  <meta name="description" content="Chapter 7 General Discussion | Bayesian Imputation of Missing Covariates" />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 General Discussion | Bayesian Imputation of Missing Covariates" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="figures/CoverImage_Erler.jpeg" />
+  <meta property="og:description" content="Chapter 7 General Discussion | Bayesian Imputation of Missing Covariates" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 General Discussion | Bayesian Imputation of Missing Covariates" />
+  
+  <meta name="twitter:description" content="Chapter 7 General Discussion | Bayesian Imputation of Missing Covariates" />
+  <meta name="twitter:image" content="figures/CoverImage_Erler.jpeg" />
+
+<meta name="author" content="Nicole S. Erler" />
+
+
+<meta name="date" content="2019-08-21" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="ch-JSS.html"/>
+<link rel="next" href="summary-samenvatting-zusammenfassung.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.8/datatables.js"></script>
+<link href="libs/dt-core-bootstrap-1.10.16/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="libs/dt-core-bootstrap-1.10.16/css/dataTables.bootstrap.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-bootstrap-1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="libs/dt-core-bootstrap-1.10.16/js/dataTables.bootstrap.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Bayesian imputation of Missing Covariates</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> General Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#mechanisms-and-patterns-of-missing-data"><i class="fa fa-check"></i><b>1.1</b> Mechanisms and Patterns of Missing Data</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#missing-data-mechanism"><i class="fa fa-check"></i><b>1.1.1</b> Missing Data Mechanism</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#missing-data-pattern"><i class="fa fa-check"></i><b>1.1.2</b> Missing Data Pattern</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#multiple-imputed-datasets"><i class="fa fa-check"></i><b>1.2</b> Multiple Imputed Datasets</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#methods-for-imputation"><i class="fa fa-check"></i><b>1.2.1</b> Methods for Imputation</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#pooling-results-from-multiple-imputed-datasets"><i class="fa fa-check"></i><b>1.2.2</b> Pooling Results from Multiple Imputed Datasets</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#the-bayesian-framework"><i class="fa fa-check"></i><b>1.3</b> The Bayesian Framework</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#bayes-theorem"><i class="fa fa-check"></i><b>1.3.1</b> Bayes Theorem</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#monte-carlo-methods"><i class="fa fa-check"></i><b>1.3.2</b> Monte Carlo Methods</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#markov-chain-monte-carlo"><i class="fa fa-check"></i><b>1.3.3</b> Markov Chain Monte Carlo</a></li>
+<li class="chapter" data-level="1.3.4" data-path="index.html"><a href="index.html#gibbs-sampler"><i class="fa fa-check"></i><b>1.3.4</b> Gibbs Sampler</a></li>
+<li class="chapter" data-level="1.3.5" data-path="index.html"><a href="index.html#convergence-mixing-and-thinning"><i class="fa fa-check"></i><b>1.3.5</b> Convergence, Mixing and Thinning</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#motivating-datasets"><i class="fa fa-check"></i><b>1.4</b> Motivating Datasets</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#outline-of-this-thesis"><i class="fa fa-check"></i><b>1.5</b> Outline of this Thesis</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="ch-SIM.html"><a href="ch-SIM.html"><i class="fa fa-check"></i><b>2</b> Dealing with Missing Covariates in Epidemiologic Studies</a><ul>
+<li class="chapter" data-level="" data-path="ch-SIM.html"><a href="ch-SIM.html#abstract"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="2.1" data-path="ch-SIM.html"><a href="ch-SIM.html#sec:introSIM"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.2" data-path="ch-SIM.html"><a href="ch-SIM.html#sec:SIMData"><i class="fa fa-check"></i><b>2.2</b> Generation R Data</a></li>
+<li class="chapter" data-level="2.3" data-path="ch-SIM.html"><a href="ch-SIM.html#sec:MissingData"><i class="fa fa-check"></i><b>2.3</b> Dealing with Missing Data</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="ch-SIM.html"><a href="ch-SIM.html#multiple-imputation-using-chained-equations-1"><i class="fa fa-check"></i><b>2.3.1</b> Multiple Imputation using Chained Equations</a></li>
+<li class="chapter" data-level="2.3.2" data-path="ch-SIM.html"><a href="ch-SIM.html#fully-bayesian-imputation"><i class="fa fa-check"></i><b>2.3.2</b> Fully Bayesian Imputation</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="ch-SIM.html"><a href="ch-SIM.html#sec:DataAnalysis"><i class="fa fa-check"></i><b>2.4</b> Data Analysis</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="ch-SIM.html"><a href="ch-SIM.html#design"><i class="fa fa-check"></i><b>2.4.1</b> Design</a></li>
+<li class="chapter" data-level="2.4.2" data-path="ch-SIM.html"><a href="ch-SIM.html#results"><i class="fa fa-check"></i><b>2.4.2</b> Results</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="ch-SIM.html"><a href="ch-SIM.html#sec:SimulationSIM"><i class="fa fa-check"></i><b>2.5</b> Simulation Study</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="ch-SIM.html"><a href="ch-SIM.html#design-1"><i class="fa fa-check"></i><b>2.5.1</b> Design</a></li>
+<li class="chapter" data-level="2.5.2" data-path="ch-SIM.html"><a href="ch-SIM.html#results-1"><i class="fa fa-check"></i><b>2.5.2</b> Results</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="ch-SIM.html"><a href="ch-SIM.html#sec:DiscussionSIM"><i class="fa fa-check"></i><b>2.6</b> Discussion</a></li>
+<li class="chapter" data-level="" data-path="ch-SIM.html"><a href="ch-SIM.html#appendix"><i class="fa fa-check"></i>Appendix</a><ul>
+<li class="chapter" data-level="" data-path="ch-SIM.html"><a href="ch-SIM.html#a-variable-description"><i class="fa fa-check"></i>2.A Variable Description</a></li>
+<li class="chapter" data-level="" data-path="ch-SIM.html"><a href="ch-SIM.html#b-results-from-the-generation-r-data"><i class="fa fa-check"></i>2.B Results from the Generation R Data</a></li>
+<li class="chapter" data-level="" data-path="ch-SIM.html"><a href="ch-SIM.html#c-simulation-settings"><i class="fa fa-check"></i>2.C Simulation Settings</a></li>
+<li class="chapter" data-level="" data-path="ch-SIM.html"><a href="ch-SIM.html#d-simulation-results"><i class="fa fa-check"></i>2.D Simulation Results</a></li>
+<li class="chapter" data-level="" data-path="ch-SIM.html"><a href="ch-SIM.html#e-jags-syntax-for-simulation-scenario-2"><i class="fa fa-check"></i>2.E JAGS Syntax for Simulation Scenario 2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ch-Myrte.html"><a href="ch-Myrte.html"><i class="fa fa-check"></i><b>3</b> Dietary Patterns and Gestational Weight Gain</a><ul>
+<li class="chapter" data-level="" data-path="ch-Myrte.html"><a href="ch-Myrte.html#abstract-1"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="3.1" data-path="ch-Myrte.html"><a href="ch-Myrte.html#introduction"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="ch-Myrte.html"><a href="ch-Myrte.html#experimental-section"><i class="fa fa-check"></i><b>3.2</b> Experimental Section</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="ch-Myrte.html"><a href="ch-Myrte.html#study-design"><i class="fa fa-check"></i><b>3.2.1</b> Study Design</a></li>
+<li class="chapter" data-level="3.2.2" data-path="ch-Myrte.html"><a href="ch-Myrte.html#population-of-analysis"><i class="fa fa-check"></i><b>3.2.2</b> Population of Analysis</a></li>
+<li class="chapter" data-level="3.2.3" data-path="ch-Myrte.html"><a href="ch-Myrte.html#dietary-assessment"><i class="fa fa-check"></i><b>3.2.3</b> Dietary Assessment</a></li>
+<li class="chapter" data-level="3.2.4" data-path="ch-Myrte.html"><a href="ch-Myrte.html#maternal-weight-gain"><i class="fa fa-check"></i><b>3.2.4</b> Maternal Weight Gain</a></li>
+<li class="chapter" data-level="3.2.5" data-path="ch-Myrte.html"><a href="ch-Myrte.html#covariates"><i class="fa fa-check"></i><b>3.2.5</b> Covariates</a></li>
+<li class="chapter" data-level="3.2.6" data-path="ch-Myrte.html"><a href="ch-Myrte.html#statistical-analyses"><i class="fa fa-check"></i><b>3.2.6</b> Statistical Analyses</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="ch-Myrte.html"><a href="ch-Myrte.html#results-2"><i class="fa fa-check"></i><b>3.3</b> Results</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="ch-Myrte.html"><a href="ch-Myrte.html#study-population"><i class="fa fa-check"></i><b>3.3.1</b> Study Population</a></li>
+<li class="chapter" data-level="3.3.2" data-path="ch-Myrte.html"><a href="ch-Myrte.html#dietary-patterns-and-trajectories-of-gestational-weight"><i class="fa fa-check"></i><b>3.3.2</b> Dietary Patterns and Trajectories of Gestational Weight</a></li>
+<li class="chapter" data-level="3.3.3" data-path="ch-Myrte.html"><a href="ch-Myrte.html#dietary-patterns-and-gestational-weight-gain-in-different-phases-in-pregnancy"><i class="fa fa-check"></i><b>3.3.3</b> Dietary Patterns and Gestational Weight Gain in Different Phases in Pregnancy</a></li>
+<li class="chapter" data-level="3.3.4" data-path="ch-Myrte.html"><a href="ch-Myrte.html#sensitivity-analyses-1"><i class="fa fa-check"></i><b>3.3.4</b> Sensitivity Analyses</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="ch-Myrte.html"><a href="ch-Myrte.html#discussion"><i class="fa fa-check"></i><b>3.4</b> Discussion</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="ch-Myrte.html"><a href="ch-Myrte.html#summary-of-the-main-findings"><i class="fa fa-check"></i><b>3.4.1</b> Summary of the Main Findings</a></li>
+<li class="chapter" data-level="3.4.2" data-path="ch-Myrte.html"><a href="ch-Myrte.html#interpretation-and-comparison-with-other-studies"><i class="fa fa-check"></i><b>3.4.2</b> Interpretation and Comparison with other Studies</a></li>
+<li class="chapter" data-level="3.4.3" data-path="ch-Myrte.html"><a href="ch-Myrte.html#strengths-and-limitations"><i class="fa fa-check"></i><b>3.4.3</b> Strengths and Limitations</a></li>
+<li class="chapter" data-level="3.4.4" data-path="ch-Myrte.html"><a href="ch-Myrte.html#conclusions-and-implications"><i class="fa fa-check"></i><b>3.4.4</b> Conclusions and Implications</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch-Myrte.html"><a href="ch-Myrte.html#appendix-1"><i class="fa fa-check"></i>Appendix</a><ul>
+<li class="chapter" data-level="" data-path="ch-Myrte.html"><a href="ch-Myrte.html#a-supplementary-materials"><i class="fa fa-check"></i>3.A Supplementary Materials</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="ch-Vincent.html"><a href="ch-Vincent.html"><i class="fa fa-check"></i><b>4</b> Mothers’ SCB Intake and Body Composition of their Children</a><ul>
+<li class="chapter" data-level="" data-path="ch-Vincent.html"><a href="ch-Vincent.html#abstract-2"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="4.1" data-path="ch-Vincent.html"><a href="ch-Vincent.html#introduction-1"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="ch-Vincent.html"><a href="ch-Vincent.html#methods"><i class="fa fa-check"></i><b>4.2</b> Methods</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="ch-Vincent.html"><a href="ch-Vincent.html#study-design-1"><i class="fa fa-check"></i><b>4.2.1</b> Study Design</a></li>
+<li class="chapter" data-level="4.2.2" data-path="ch-Vincent.html"><a href="ch-Vincent.html#study-population-1"><i class="fa fa-check"></i><b>4.2.2</b> Study Population</a></li>
+<li class="chapter" data-level="4.2.3" data-path="ch-Vincent.html"><a href="ch-Vincent.html#dietary-assessment-of-the-mother"><i class="fa fa-check"></i><b>4.2.3</b> Dietary Assessment of the Mother</a></li>
+<li class="chapter" data-level="4.2.4" data-path="ch-Vincent.html"><a href="ch-Vincent.html#child-anthropometric-measures-and-body-composition"><i class="fa fa-check"></i><b>4.2.4</b> Child Anthropometric Measures and Body Composition</a></li>
+<li class="chapter" data-level="4.2.5" data-path="ch-Vincent.html"><a href="ch-Vincent.html#covariates-1"><i class="fa fa-check"></i><b>4.2.5</b> Covariates</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="ch-Vincent.html"><a href="ch-Vincent.html#statistical-analyses-1"><i class="fa fa-check"></i><b>4.3</b> Statistical Analyses</a></li>
+<li class="chapter" data-level="4.4" data-path="ch-Vincent.html"><a href="ch-Vincent.html#results-3"><i class="fa fa-check"></i><b>4.4</b> Results</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="ch-Vincent.html"><a href="ch-Vincent.html#subject-characteristics"><i class="fa fa-check"></i><b>4.4.1</b> Subject Characteristics</a></li>
+<li class="chapter" data-level="4.4.2" data-path="ch-Vincent.html"><a href="ch-Vincent.html#maternal-scb-intake-and-child-bmi-trajectory"><i class="fa fa-check"></i><b>4.4.2</b> Maternal SCB Intake and Child BMI Trajectory</a></li>
+<li class="chapter" data-level="4.4.3" data-path="ch-Vincent.html"><a href="ch-Vincent.html#maternal-scb-intake-and-child-body-composition"><i class="fa fa-check"></i><b>4.4.3</b> Maternal SCB Intake and Child Body Composition</a></li>
+<li class="chapter" data-level="4.4.4" data-path="ch-Vincent.html"><a href="ch-Vincent.html#additional-analyses"><i class="fa fa-check"></i><b>4.4.4</b> Additional Analyses</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="ch-Vincent.html"><a href="ch-Vincent.html#discussion-1"><i class="fa fa-check"></i><b>4.5</b> Discussion</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="ch-Vincent.html"><a href="ch-Vincent.html#interpretation-and-comparison-with-previous-studies"><i class="fa fa-check"></i><b>4.5.1</b> Interpretation and Comparison with Previous Studies</a></li>
+<li class="chapter" data-level="4.5.2" data-path="ch-Vincent.html"><a href="ch-Vincent.html#potential-mechanisms"><i class="fa fa-check"></i><b>4.5.2</b> Potential Mechanisms</a></li>
+<li class="chapter" data-level="4.5.3" data-path="ch-Vincent.html"><a href="ch-Vincent.html#strengths-and-limitations-1"><i class="fa fa-check"></i><b>4.5.3</b> Strengths and Limitations</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch-Vincent.html"><a href="ch-Vincent.html#appendix-2"><i class="fa fa-check"></i>Appendix</a><ul>
+<li class="chapter" data-level="" data-path="ch-Vincent.html"><a href="ch-Vincent.html#a-additional-results"><i class="fa fa-check"></i>4.A Additional Results</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="ch-SMMR.html"><a href="ch-SMMR.html"><i class="fa fa-check"></i><b>5</b> Bayesian Imputation of Time-varying Covariates in Mixed Models</a><ul>
+<li class="chapter" data-level="" data-path="ch-SMMR.html"><a href="ch-SMMR.html#abstract-3"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="5.1" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:introSMMR"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:DataSMMR"><i class="fa fa-check"></i><b>5.2</b> Generation R Data</a></li>
+<li class="chapter" data-level="5.3" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:ModelSMMR"><i class="fa fa-check"></i><b>5.3</b> Modelling Longitudinal Data with Time-varying Covariates</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="ch-SMMR.html"><a href="ch-SMMR.html#framework"><i class="fa fa-check"></i><b>5.3.1</b> Framework</a></li>
+<li class="chapter" data-level="5.3.2" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:funcformSMMR"><i class="fa fa-check"></i><b>5.3.2</b> Functional Forms for Time-varying Covariates</a></li>
+<li class="chapter" data-level="5.3.3" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:endoexoSMMR"><i class="fa fa-check"></i><b>5.3.3</b> Endo- and Exogeneity</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:modelsSMMR"><i class="fa fa-check"></i><b>5.4</b> Bayesian Analysis with Incomplete Covariates</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:seq-approachSMMR"><i class="fa fa-check"></i><b>5.4.1</b> Sequential Approach</a></li>
+<li class="chapter" data-level="5.4.2" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:mvn-approachSMMR"><i class="fa fa-check"></i><b>5.4.2</b> Multivariate Normal Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:DataAnalysisSMMR"><i class="fa fa-check"></i><b>5.5</b> Analysis of the Generation R Data</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:DataAnalysisEx1"><i class="fa fa-check"></i><b>5.5.1</b> Association between Blood Pressure and Gestational Weight</a></li>
+<li class="chapter" data-level="5.5.2" data-path="ch-SMMR.html"><a href="ch-SMMR.html#association-between-gestational-weight-gain-and-child-bmi"><i class="fa fa-check"></i><b>5.5.2</b> Association between Gestational Weight Gain and Child BMI</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:simulationSMMR"><i class="fa fa-check"></i><b>5.6</b> Simulation Study</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="ch-SMMR.html"><a href="ch-SMMR.html#design-2"><i class="fa fa-check"></i><b>5.6.1</b> Design</a></li>
+<li class="chapter" data-level="5.6.2" data-path="ch-SMMR.html"><a href="ch-SMMR.html#analysis-models"><i class="fa fa-check"></i><b>5.6.2</b> Analysis Models</a></li>
+<li class="chapter" data-level="5.6.3" data-path="ch-SMMR.html"><a href="ch-SMMR.html#results-4"><i class="fa fa-check"></i><b>5.6.3</b> Results</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:DiscussionSMMR"><i class="fa fa-check"></i><b>5.7</b> Discussion</a></li>
+<li class="chapter" data-level="" data-path="ch-SMMR.html"><a href="ch-SMMR.html#appendix-3"><i class="fa fa-check"></i>Appendix</a><ul>
+<li class="chapter" data-level="" data-path="ch-SMMR.html"><a href="ch-SMMR.html#a-details-on-the-implied-exo--or-endogeneity"><i class="fa fa-check"></i>5.A Details on the Implied Exo- or Endogeneity</a></li>
+<li class="chapter" data-level="" data-path="ch-SMMR.html"><a href="ch-SMMR.html#b-analysis-of-the-generation-r-data"><i class="fa fa-check"></i>5.B Analysis of the Generation R Data</a></li>
+<li class="chapter" data-level="" data-path="ch-SMMR.html"><a href="ch-SMMR.html#c-simulation-study"><i class="fa fa-check"></i>5.C Simulation Study</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="ch-JSS.html"><a href="ch-JSS.html"><i class="fa fa-check"></i><b>6</b> JointAI: Joint Analysis and Imputation of Incomplete Data in R</a><ul>
+<li class="chapter" data-level="" data-path="ch-JSS.html"><a href="ch-JSS.html#abstract-4"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="6.1" data-path="ch-JSS.html"><a href="ch-JSS.html#introduction-2"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:TheoryJSS"><i class="fa fa-check"></i><b>6.2</b> Theoretical Background</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:AnalysisModel"><i class="fa fa-check"></i><b>6.2.1</b> Analysis Model</a></li>
+<li class="chapter" data-level="6.2.2" data-path="ch-JSS.html"><a href="ch-JSS.html#imputation-part"><i class="fa fa-check"></i><b>6.2.2</b> Imputation Part</a></li>
+<li class="chapter" data-level="6.2.3" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:priors"><i class="fa fa-check"></i><b>6.2.3</b> Prior Distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:package"><i class="fa fa-check"></i><b>6.3</b> Package Structure</a></li>
+<li class="chapter" data-level="6.4" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:ExampleDataJSS"><i class="fa fa-check"></i><b>6.4</b> Example Data</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="ch-JSS.html"><a href="ch-JSS.html#the-nhanes-data"><i class="fa fa-check"></i><b>6.4.1</b> The NHANES Data</a></li>
+<li class="chapter" data-level="6.4.2" data-path="ch-JSS.html"><a href="ch-JSS.html#the-simlong-data"><i class="fa fa-check"></i><b>6.4.2</b> The simLong Data</a></li>
+<li class="chapter" data-level="6.4.3" data-path="ch-JSS.html"><a href="ch-JSS.html#the-lung-data"><i class="fa fa-check"></i><b>6.4.3</b> The lung Data</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:ModelSpecification"><i class="fa fa-check"></i><b>6.5</b> Model Specification</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="ch-JSS.html"><a href="ch-JSS.html#interactions"><i class="fa fa-check"></i><b>6.5.1</b> Interactions</a></li>
+<li class="chapter" data-level="6.5.2" data-path="ch-JSS.html"><a href="ch-JSS.html#non-linear-functional-forms"><i class="fa fa-check"></i><b>6.5.2</b> Non-linear Functional Forms</a></li>
+<li class="chapter" data-level="6.5.3" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:multilevel"><i class="fa fa-check"></i><b>6.5.3</b> Multi-level Structure and Longitudinal Covariates</a></li>
+<li class="chapter" data-level="6.5.4" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:survmod"><i class="fa fa-check"></i><b>6.5.4</b> Survival Models</a></li>
+<li class="chapter" data-level="6.5.5" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:methJSS"><i class="fa fa-check"></i><b>6.5.5</b> Imputation / Covariate Model Types</a></li>
+<li class="chapter" data-level="6.5.6" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:auxvars"><i class="fa fa-check"></i><b>6.5.6</b> Auxiliary Variables</a></li>
+<li class="chapter" data-level="6.5.7" data-path="ch-JSS.html"><a href="ch-JSS.html#reference-values-for-categorical-covariates"><i class="fa fa-check"></i><b>6.5.7</b> Reference Values for Categorical Covariates</a></li>
+<li class="chapter" data-level="6.5.8" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:hyperpars"><i class="fa fa-check"></i><b>6.5.8</b> Hyperparameters</a></li>
+<li class="chapter" data-level="6.5.9" data-path="ch-JSS.html"><a href="ch-JSS.html#scaling"><i class="fa fa-check"></i><b>6.5.9</b> Scaling</a></li>
+<li class="chapter" data-level="6.5.10" data-path="ch-JSS.html"><a href="ch-JSS.html#ridge-regression"><i class="fa fa-check"></i><b>6.5.10</b> Ridge Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:MCMCSettings"><i class="fa fa-check"></i><b>6.6</b> MCMC Settings</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="ch-JSS.html"><a href="ch-JSS.html#number-of-chains-iterations-and-samples"><i class="fa fa-check"></i><b>6.6.1</b> Number of Chains, Iterations and Samples</a></li>
+<li class="chapter" data-level="6.6.2" data-path="ch-JSS.html"><a href="ch-JSS.html#parameters-to-follow"><i class="fa fa-check"></i><b>6.6.2</b> Parameters to Follow</a></li>
+<li class="chapter" data-level="6.6.3" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:inits"><i class="fa fa-check"></i><b>6.6.3</b> Initial Values</a></li>
+<li class="chapter" data-level="6.6.4" data-path="ch-JSS.html"><a href="ch-JSS.html#parallel-sampling"><i class="fa fa-check"></i><b>6.6.4</b> Parallel Sampling</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:ResultsJSS"><i class="fa fa-check"></i><b>6.7</b> After Fitting</a><ul>
+<li class="chapter" data-level="6.7.1" data-path="ch-JSS.html"><a href="ch-JSS.html#visualizing-the-posterior-sample"><i class="fa fa-check"></i><b>6.7.1</b> Visualizing the Posterior Sample</a></li>
+<li class="chapter" data-level="6.7.2" data-path="ch-JSS.html"><a href="ch-JSS.html#model-summary"><i class="fa fa-check"></i><b>6.7.2</b> Model Summary</a></li>
+<li class="chapter" data-level="6.7.3" data-path="ch-JSS.html"><a href="ch-JSS.html#evaluation-criteria"><i class="fa fa-check"></i><b>6.7.3</b> Evaluation Criteria</a></li>
+<li class="chapter" data-level="6.7.4" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:subset"><i class="fa fa-check"></i><b>6.7.4</b> Subset of Output</a></li>
+<li class="chapter" data-level="6.7.5" data-path="ch-JSS.html"><a href="ch-JSS.html#predicted-values"><i class="fa fa-check"></i><b>6.7.5</b> Predicted Values</a></li>
+<li class="chapter" data-level="6.7.6" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:getMIdat"><i class="fa fa-check"></i><b>6.7.6</b> Export of Imputed Values</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="ch-JSS.html"><a href="ch-JSS.html#assumptions-and-extensions"><i class="fa fa-check"></i><b>6.8</b> Assumptions and Extensions</a></li>
+<li class="chapter" data-level="" data-path="ch-JSS.html"><a href="ch-JSS.html#appendix-4"><i class="fa fa-check"></i>Appendix</a><ul>
+<li class="chapter" data-level="" data-path="ch-JSS.html"><a href="ch-JSS.html#a-default-hyperparameters"><i class="fa fa-check"></i>6.A Default Hyperparameters</a></li>
+<li class="chapter" data-level="" data-path="ch-JSS.html"><a href="ch-JSS.html#b-density-plot-using-ggplot2"><i class="fa fa-check"></i>6.B Density Plot using ggplot2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="ch-discussion.html"><a href="ch-discussion.html"><i class="fa fa-check"></i><b>7</b> General Discussion</a><ul>
+<li class="chapter" data-level="7.1" data-path="ch-discussion.html"><a href="ch-discussion.html#summary-of-advantages"><i class="fa fa-check"></i><b>7.1</b> Summary of Advantages</a></li>
+<li class="chapter" data-level="7.2" data-path="ch-discussion.html"><a href="ch-discussion.html#assumptions"><i class="fa fa-check"></i><b>7.2</b> Assumptions</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="ch-discussion.html"><a href="ch-discussion.html#model-specification"><i class="fa fa-check"></i><b>7.2.1</b> Model Specification</a></li>
+<li class="chapter" data-level="7.2.2" data-path="ch-discussion.html"><a href="ch-discussion.html#ignorable-missingness"><i class="fa fa-check"></i><b>7.2.2</b> Ignorable Missingness</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="ch-discussion.html"><a href="ch-discussion.html#directions-for-future-work"><i class="fa fa-check"></i><b>7.3</b> Directions for Future Work</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="ch-discussion.html"><a href="ch-discussion.html#implementation-of-flexible-models"><i class="fa fa-check"></i><b>7.3.1</b> Implementation of Flexible Models</a></li>
+<li class="chapter" data-level="7.3.2" data-path="ch-discussion.html"><a href="ch-discussion.html#evaluation-of-model-fit"><i class="fa fa-check"></i><b>7.3.2</b> Evaluation of Model Fit</a></li>
+<li class="chapter" data-level="7.3.3" data-path="ch-discussion.html"><a href="ch-discussion.html#non-ignorable-missingness"><i class="fa fa-check"></i><b>7.3.3</b> Non-ignorable Missingness</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="ch-discussion.html"><a href="ch-discussion.html#conclusion"><i class="fa fa-check"></i><b>7.4</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="summary-samenvatting-zusammenfassung.html"><a href="summary-samenvatting-zusammenfassung.html"><i class="fa fa-check"></i><b>8</b> Summary / Samenvatting / Zusammenfassung</a><ul>
+<li class="chapter" data-level="" data-path="summary-samenvatting-zusammenfassung.html"><a href="summary-samenvatting-zusammenfassung.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+<li class="chapter" data-level="" data-path="summary-samenvatting-zusammenfassung.html"><a href="summary-samenvatting-zusammenfassung.html#samenvatting"><i class="fa fa-check"></i>Samenvatting</a></li>
+<li class="chapter" data-level="" data-path="summary-samenvatting-zusammenfassung.html"><a href="summary-samenvatting-zusammenfassung.html#zusammenfassung"><i class="fa fa-check"></i>Zusammenfassung</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html"><i class="fa fa-check"></i>Appendix: PhD Portfolio &amp; Curriculum Vitae</a><ul>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#phd-portfolio"><i class="fa fa-check"></i>PhD Portfolio</a><ul>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#presentations"><i class="fa fa-check"></i>Presentations</a></li>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#teaching"><i class="fa fa-check"></i>Teaching</a></li>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#courses"><i class="fa fa-check"></i>Courses</a></li>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#seminars-and-workshops"><i class="fa fa-check"></i>Seminars and Workshops</a></li>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#consulting"><i class="fa fa-check"></i>Consulting</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#curriculum-vitae"><i class="fa fa-check"></i>Curriculum Vitae</a><ul>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#education"><i class="fa fa-check"></i>Education</a></li>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#work-experience"><i class="fa fa-check"></i>Work Experience</a></li>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#awards"><i class="fa fa-check"></i>Awards</a></li>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#collaborations-and-consulting"><i class="fa fa-check"></i>Collaborations and Consulting</a></li>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#publications"><i class="fa fa-check"></i>Publications</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Bayesian Imputation of Missing Covariates</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="ch:discussion" class="section level1">
+<h1><span class="header-section-number">Chapter 7</span> General Discussion</h1>
+
+<p>In this thesis, we have presented a fully Bayesian approach for simultaneous
+analysis and imputation of incomplete data. Here, we summarize some of its
+advantages, highlight important assumptions made by the approach and its
+current implementation in the R package <strong>JointAI</strong>, and discuss possible
+extensions and directions for future work.</p>
+<div id="summary-of-advantages" class="section level2">
+<h2><span class="header-section-number">7.1</span> Summary of Advantages</h2>
+<p>Modelling the joint distribution as a sequence of univariate distributions
+yields several advantages.
+Contrary to MICE, the joint distribution always exists and, since the
+predictive distributions used to draw imputations are derived from this joint
+distribution, compatibility among imputation models and congeniality with the
+analysis model is assured. Factorization of the joint distribution using
+univariable conditional distributions facilitates its specification in settings
+with variables of mixed type, where the joint multivariate distribution does not
+have a known form.
+This avoids the need to make any general approximation, as is the
+case with joint model MI, thereby improving model fit. Moreover, since the
+analysis model is part of the factorization, non-linear associations between
+outcome and covariates, or between covariates, can be handled adequately.
+Choosing the analysis model as the first factor in the sequence of conditional distributions,
+i.e., the model for the outcome conditional on all covariates,
+prevents the need to include the outcome in any of the linear predictors of the other
+distributions, and makes analysis and imputation in settings with complex
+data structures straightforward.</p>
+<p>In Chapters <a href="ch-Myrte.html#ch:Myrte">3</a> and <a href="ch-Vincent.html#ch:Vincent">4</a>
+we demonstrated that analysis with the sequential
+fully Bayesian approach also allows obtaining imputed values, which may be used
+for secondary analyses of the same data, and can thus be used
+in a multiple imputation framework.
+Data were imputed during the main analysis, and used in subsequent analyses of
+outcomes derived from the longitudinal outcome, or sensitivity analysis in subsets
+of the data.
+Naturally, congeniality of the imputation models with these secondary analysis
+models is then no longer assured, but bias is
+likely to be small, provided that the secondary analysis models are in a sense
+contained in the analysis model assumed during imputation.
+In Chapter <a href="ch-Myrte.html#ch:Myrte">3</a> this is the case, since the outcome of the secondary models,
+gestational weight gain during different periods of pregnancy,
+is calculated from the longitudinal trajectories of
+weight, which were taken into account during imputation, and the same set of
+baseline covariates is used.</p>
+<p>In settings where multiple related outcomes are of interest and their models
+share incomplete covariates, it may be desirable to model these outcomes jointly
+and to perform imputation in this joint model. This was the case in Chapter
+<a href="ch-Vincent.html#ch:Vincent">4</a>, where the association of the consumption of sugar containing
+beverages of the mother during pregnancy with child body composition, consisting
+of repeated measures of BMI, and measurements of the fat mass index (FMI) and
+fat-free mass index (FFMI) at age six, were modelled jointly. Correlation
+between different outcomes can be taken into account by specification of a joint
+distribution for error terms of univariate outcomes and random
+effects in models for longitudinal outcomes, following the same principle
+used in <a href="ch-SMMR.html#eq:connecttoMVN">(5.8)</a> in the multivariate normal approach to multiple
+imputation applied in Chapter <a href="ch-SMMR.html#ch:SMMR">5</a>.</p>
+<p>Another advantage of the Bayesian approach is its ability to take into account
+endogeneity of, usually longitudinal, covariates by jointly modelling their
+random effects, and potentially also the error terms, with the corresponding
+parts of the analysis model. Standard methods that are commonly applied after
+multiple imputation only specify models for the outcome, which implicitly
+assumes that all covariates are exogenous, and may lead to bias.</p>
+<p>The implementation of the sequential Bayesian approach in the R package
+<strong></strong> provides a convenient tool for researchers from various backgrounds,
+who are familiar with commonly used base R functions and do not have
+specific experience in Bayesian methodology or software for Bayesian inference,
+such as JAGS or WinBUGS.</p>
+</div>
+<div id="assumptions" class="section level2">
+<h2><span class="header-section-number">7.2</span> Assumptions</h2>
+<p>Like all statistical methods, the sequential fully Bayesian approach is based on
+certain assumptions that must be met in order to obtain correct results.
+In the following, we highlight two assumptions that are crucial to the
+validity of the analysis: correctness of the model specification and the
+assumption of ignorable missingness.</p>
+<div id="model-specification" class="section level3">
+<h3><span class="header-section-number">7.2.1</span> Model Specification</h3>
+<p>An implicit assumption of the sequential Bayesian approach to handle missing
+data is that the model is correctly specified. This assumption is not
+particular for our approach but made in all parametric models.
+Even though in practice it may usually not be possible to specify a correct
+model, and the specified model can only approximate the “truth”, it is
+important that this approximation is precise enough to avoid relevant bias.</p>
+<p>In the model presented in the previous chapters, it is the joint distribution
+<span class="math inline">\(p(\mathbf y, \mathbf X_{obs}, \mathbf X_{mis} \mid \boldsymbol\theta)\)</span> that
+needs to be specified correctly or at least needs to fit the data well.
+Since the joint distribution is specified as a sequence of conditional
+distributions, this requirement translates to the conditional distributions.</p>
+<p>When there are more than just a few incomplete variables, choosing conditional
+distributions that fit the data sufficiently well can become a tedious task.
+Variables in the linear predictor of the conditional models may have non-linear
+effects and interact with other variables, and which variables are included in
+a particular linear predictor depends on the order of the sequence of
+conditional distributions. Moreover, except for the conditional distribution
+for the first incomplete covariate in the sequence, models have incomplete
+variables in their linear predictor, complicating evaluation of model fit.
+For continuous variables, additionally, different choices for the error
+distribution need to be considered.
+It is unrealistic to expect such time-consuming model building to happen in practice.
+Many researchers will rely on the default choices set in
+the software implementation and, at most, consider alternative distributions
+for continuous, non-normal variables.</p>
+<p>A useful implementation in a software package should, therefore, make it easy to
+use models that are flexible enough to fit a wide range of data sufficiently
+well to provide valid results. When each of the conditional
+distributions in the sequential fully Bayesian approach is specified correctly,
+the order chosen for the sequence is irrelevant for the validity of
+the results. In its current version (0.5.1) the R package <strong>JointAI</strong>
+provides multiple parametric options for imputation of continuous variables
+(using a normal, log-normal, gamma or beta distribution), but makes the default
+assumption that all associations between covariates are linear and do not
+interact with each other. Even though this assumption is appropriate in many
+settings, relaxing them may be necessary for some analyses.</p>
+</div>
+<div id="ignorable-missingness" class="section level3">
+<h3><span class="header-section-number">7.2.2</span> Ignorable Missingness</h3>
+<p>The second crucial assumption necessary to obtain valid results when using the
+approach presented in the preceding chapters is that the missing data process is
+ignorable.</p>
+<p>Imputation under the MAR assumption is attractive since MAR implies that
+non-responders are the same as responders in the sense that the conditional
+distribution of a variable <span class="math inline">\(\mathbf x\)</span> is the same for cases where <span class="math inline">\(\mathbf x\)</span> is missing and
+for cases where <span class="math inline">\(\mathbf x\)</span> is observed. This facilitates a straightforward specification
+of the posterior predictive distribution to impute missing values.</p>
+<p>Throughout this thesis we have made the ignorability assumption, however, for
+some variables, like maternal smoking or alcohol use during pregnancy, the
+assumption of MAR, i.e., that the probability of the smoking or drinking status
+being missing is independent of the true status, is questionable.
+It is widely known that the use of alcohol or cigarettes during pregnancy is
+not advised, and mothers disregarding this advice may feel guilty or do
+not dare to respond to the question due to fear of judgement.</p>
+<p>When missing data are indeed MNAR conditional on the available information,
+ignoring the missingness process when analysing or imputing the data may lead
+to severe bias and faulty conclusions.
+This issue is not limited to missing values in covariates.
+Primarily in clinical trials, missingness of outcome values is often associated
+with what is investigated in the study. For instance, critically ill patients may
+feel too sick to fill in questionnaires regarding their quality of life, or patients
+who believe that the treatment or intervention they have been assigned to does not
+have the desired effect may leave the study.
+Especially in conjunction with the usually small number of covariates that is
+(available to be) included in the analysis, it is unlikely that the probability
+of a value being missing can be fully explained by the recorded information.
+In such settings, where MNAR is the more plausible assumption, omitting missing
+outcome values would lead to biased results.</p>
+</div>
+</div>
+<div id="directions-for-future-work" class="section level2">
+<h2><span class="header-section-number">7.3</span> Directions for Future Work</h2>
+<p>To reduce bias due to violation of the assumptions implied by the
+approach described in this thesis, future work should focus on extensions
+that help researchers to model their data appropriately.
+In this section, we briefly discuss some approaches that address the aforementioned
+assumptions of model fit and ignorability of the
+missingness mechanism.</p>
+<div id="implementation-of-flexible-models" class="section level3">
+<h3><span class="header-section-number">7.3.1</span> Implementation of Flexible Models</h3>
+<p>A possible extension to improve the fit of the conditional
+distributions for incomplete covariates is to allow for a more general
+specification of the mean structure, relaxing the assumption of linear
+associations. One way to do this in an automated way that can be
+implemented in JAGS would be to provide the option to include pair-wise
+interactions between all covariates in the linear predictors of the models for
+incomplete covariates.
+Since this may lead to a large number of coefficients and, hence,
+likely leads to overfitting and convergence issues, it may be necessary to
+shrink parameters that contribute little to the model fit.
+In the Bayesian framework, shrinkage can be applied through specification
+of the prior distribution. A popular choice is the use of Bayesian ridge regression,
+where instead of using a vague normal prior for the regression coefficients
+<span class="math inline">\(\boldsymbol\alpha\)</span>, a hyperprior <span class="math inline">\(\sigma_\alpha^2 \sim Inv-\chi^2(\nu, u^2)\)</span>,
+where <span class="math inline">\(u^2\)</span> has a gamma prior <span class="citation">(Mallick and Yi <a href="#ref-Mallick2013" role="doc-biblioref">2013</a>)</span>, is specified for the variance of
+this prior distribution.
+Alternatively, Bayesian elastic net priors, like the one used in Chapter
+<a href="ch-SMMR.html#ch:SMMR">5</a>, may be chosen.</p>
+<p>To relax the assumption of a parametric error distribution for continuous
+variables, non-parametric Bayesian methods can be applied.
+In this framework, uncertainty about the probability density function <span class="math inline">\(G\)</span> of an
+incompletely observed covariate <span class="math inline">\(\mathbf x\)</span> can be reflected by not specifying <span class="math inline">\(G\)</span>
+directly, but assuming a prior probability model for <span class="math inline">\(G\)</span>.
+A convenient and popular choice for such a prior probability model is the
+Dirichlet process prior, which allows the specification of an infinite mixture of simple
+parametric distributions, often normal distributions, where the values of the
+parameters of these parametric distributions are determined by the Dirichlet
+process <span class="citation">(Escobar and West <a href="#ref-escobar1995bayesian" role="doc-biblioref">1995</a>; Müller et al. <a href="#ref-muller2015bayesian" role="doc-biblioref">2015</a>)</span>.
+Due to the clustering property of the Dirichlet process, in practice, only a
+finite number of clusters are used, but since the number of clusters needed is
+determined by the data and does not need to be pre-specified, this approach
+facilitates automated and very flexible density estimation.</p>
+</div>
+<div id="evaluation-of-model-fit" class="section level3">
+<h3><span class="header-section-number">7.3.2</span> Evaluation of Model Fit</h3>
+<p>Even when flexible models are used, model fit should be evaluated to ensure the
+assumption of a correctly specified model is not violated.
+In Chapters <a href="ch-SIM.html#ch:SIM">2</a> and <a href="ch-SMMR.html#ch:SMMR">5</a>, the fit of the conditional
+distributions was evaluated using posterior predictive checks <span class="citation">(Gelman, Meng, and Stern <a href="#ref-Gelman1996" role="doc-biblioref">1996</a>)</span>.</p>
+<p>A common approach to posterior predictive checks is to calculate a <span class="math inline">\(\chi^2\)</span>-type statistic
+<span class="math display">\[ \sum_{i=1}^N \frac{\left\{x_i - \text{E}(x_i\mid \boldsymbol\theta)\right\}^2}{\text{Var}(x_i\mid \boldsymbol\theta)}.\]</span>
+The statistic is calculated twice, once for the observed values and once for
+the corresponding values sampled from the estimated posterior predictive distribution.
+If the specified model fits the observed data well, comparison of the two
+statistics should show that on average (over all iterations) one is not larger
+than the other.</p>
+<p>To advocate and facilitate the use of posterior predictive checks for model fit
+when using the sequential Bayesian approach, functionality to automatically
+perform such model evaluation will be added to <strong>JointAI</strong> in the future.</p>
+</div>
+<div id="non-ignorable-missingness" class="section level3">
+<h3><span class="header-section-number">7.3.3</span> Non-ignorable Missingness</h3>
+<p>Most popular software for handling incomplete data is limited to settings
+with MAR mechanisms, posing an often insurmountable hurdle for applied researchers
+to perform imputation or analysis under the MNAR assumption.</p>
+<p>It is not possible to provide a completely automated procedure since the handling
+of non-randomly missing data requires external information on the
+missingness mechanism. Under MNAR the unobserved data are assumed to
+have a different distribution (conditional on covariates) than the observed
+data, but since this distribution cannot be obtained from the observed data,
+assumptions about this unknown distribution need to be made by the researcher.
+Nevertheless, the use of MNAR analysis can be supported by providing software
+that allows the researcher to introduce his or her assumption into the analysis.</p>
+<p>By factorizing the likelihood
+<span class="math inline">\(p(\mathbf X,\mathbf R\mid\boldsymbol\psi,\boldsymbol\theta) = p(\mathbf X\mid \mathbf R, \boldsymbol\theta)\; p(\mathbf R\mid \boldsymbol\psi)\)</span>,
+i.e., using a <em>pattern mixture model</em> specification instead of the
+<em>selection model</em> factorization used in Chapter <a href="index.html#ch:intro">1</a>, MNAR can be
+modelled as a deviation from MAR:
+<span class="math display">\[\begin{eqnarray*}
+p(\mathbf X,\mathbf R\mid \boldsymbol\psi,\boldsymbol\theta) &amp;=&amp; p(\mathbf X_{obs}, \mathbf X_{mis}\mid \mathbf R, \boldsymbol\theta)\; p(\mathbf R\mid \boldsymbol\psi)\\
+&amp;=&amp; p(\mathbf X_{mis} \mid \mathbf X_{obs}, \mathbf R, \boldsymbol \theta_{mis})\;
+    p(\mathbf X_{obs} \mid \mathbf R, \boldsymbol\theta_{obs})\; p(\mathbf R\mid \boldsymbol\psi),
+\end{eqnarray*}\]</span>
+where <span class="math inline">\((\boldsymbol\theta_{mis}, \boldsymbol\theta_{obs}) = g(\boldsymbol\theta)\)</span>,
+<span class="math inline">\(\boldsymbol\theta_{mis} = f(\boldsymbol\theta_{obs}, \boldsymbol\Delta)\)</span> and <span class="math inline">\(\boldsymbol\Delta\)</span> represents the deviation from MAR.
+Since no information about <span class="math inline">\(\boldsymbol\Delta\)</span> is available from the data, <span class="math inline">\(\boldsymbol\Delta\)</span> or a prior distribution <span class="math inline">\(p(\boldsymbol\Delta)\)</span> must be specified, reflecting the analyst’s hypothesis about the missing data mechanism.</p>
+<p>The R package <strong>JointAI</strong> could be extended to enable users
+to specify for which incomplete variables they assume MNAR, and allow them
+to provide a value or distribution for <span class="math inline">\(\boldsymbol\Delta\)</span>.</p>
+<p>Offering researchers the opportunity to perform analysis and imputation under
+the assumption of MNAR with only slightly more effort than analysis under the
+assumption of MAR would require, will substantially improve the quality of
+research;
+researchers will be more likely to make appropriate assumptions and perform the
+sensitivity analyses required for those (untestable) assumptions.</p>
+<!-- To model the assumption that women who did not respond to the question about their alcohol consumption during pregnancy have a higher probability to have continued drinking during pregnancy, the cumulative logit model used for imputation of the three category varaible `alc`, would be -->
+<!-- ```{r} -->
+<!-- if (knitr:::is_latex_output()) { -->
+<!--     knitr::asis_output('\\begin{eqnarray*} -->
+<!-- \\alc_i &\\sim& Mult(\\pi_{i1}, \\pi_{i2}, \\pi_{i3})\\\\ -->
+<!-- \\pi_{i1} &=& \\frac{\\exp(\\gamma_1 + \\eta_i)} -->
+<!--                   {1 + \\exp(\\gamma_1 + \\eta_i)}\\\\ -->
+<!-- \\pi_{i2} &=& \\frac{\\exp(\\gamma_{i2} + \\eta_i)} -->
+<!--                   {1 + \\exp(\\gamma_{i2} + \\eta_i)} - \\pi_{i1}\\\\ -->
+<!-- \\pi_{i3} &=& 1 - \\pi_{i1} - \\pi_{i2}\\\\[1ex] -->
+<!-- \\gamma_{1} &\\sim& N(\\mu_\\gamma, \\sigma_\\gamma^2)\\\\ -->
+<!-- \\gamma_{i2} &=& \\gamma_1 + \\exp(\\delta_{i1})\\\\ -->
+<!-- \\delta_{i1} &\\sim& N(\\mu_\\delta, \\sigma_\\delta^2) + \\mathds{1}(r_{alc} = 0)\\Delta\\\\ -->
+<!-- \\Delta &\\sim& Ga(a, b), -->
+<!-- \\end{eqnarray*}') -->
+<!--   } else { -->
+<!--     knitr::asis_output('\\begin{eqnarray*} -->
+<!-- \\alc_i &\\sim& Mult(\\pi_{i1}, \\pi_{i2}, \\pi_{i3})\\\\ -->
+<!-- \\pi_{i1} &=& \\frac{\\exp(\\gamma_1 + \\eta_i)} -->
+<!--                   {1 + \\exp(\\gamma_1 + \\eta_i)}\\\\ -->
+<!-- \\pi_{i2} &=& \\frac{\\exp(\\gamma_{i2} + \\eta_i)} -->
+<!--                   {1 + \\exp(\\gamma_{i2} + \\eta_i)} - \\pi_{i1}\\\\ -->
+<!-- \\pi_{i3} &=& 1 - \\pi_{i1} - \\pi_{i2}\\\\[1ex] -->
+<!-- \\gamma_{1} &\\sim& N(\\mu_\\gamma, \\sigma_\\gamma^2)\\\\ -->
+<!-- \\gamma_{i2} &=& \\gamma_1 + \\exp(\\delta_{i1})\\\\ -->
+<!-- \\delta_{i1} &\\sim& N(\\mu_\\delta, \\sigma_\\delta^2) + \\unicode{x1D7D9}\\;\\,(r_{alc} = 0)\\Delta\\\\ -->
+<!-- \\Delta &\\sim& Ga(a, b), -->
+<!-- \\end{eqnarray*}') -->
+<!-- } -->
+<!-- ``` -->
+<!-- where $\eta_i$ is the linear predictor for subject $i$ excluding the intercept -->
+<!-- and $r_{alc}$ is the missing data indicator for `alc`. -->
+<!-- The hyperparameters in the Gamma prior for $\Delta$ control the deviation from MAR and the uncertainty about this deviation. -->
+</div>
+</div>
+<div id="conclusion" class="section level2">
+<h2><span class="header-section-number">7.4</span> Conclusion</h2>
+<p>Missing data occur in a wide range of studies but in practice their treatment
+is often not given adequate time and consideration, as they are regarded
+a frustrating complication that needs to be resolved before the actual
+research question can be answered.
+Applied researchers, hence, often prefer off-the-shelf solutions that
+require minimal knowledge about specific statistical approaches and little time
+to apply. This is in conflict with the careful consideration that is necessary
+to make appropriate assumptions about the missing data mechanism and the
+shape of the models used to impute missing values.</p>
+<p>To support the correct use of statistical methodology, software is necessary that
+provides an accessible interface to valid statistical approaches. Such software
+needs to be flexible enough to handle data with different characteristics,
+non-restrictive enough to make it more likely that assumptions are met, and
+should provide options allowing straightforward evaluation of potential violations.
+Since the analysis of incomplete data involves untestable assumptions,
+additional functionality allowing sensitivity analyses about these assumptions
+is needed.</p>
+<p>The implementation of the fully Bayesian approach to analysis of incomplete data
+in the R package <strong>JointAI</strong> is a first step to provide such software.
+Extensions, as discussed above and in Chapter <a href="ch-JSS.html#ch:JSS">6</a> are necessary to
+fully reach this goal.</p>
+
+
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-escobar1995bayesian">
+<p>Escobar, Michael D., and Mike West. 1995. “Bayesian Density Estimation and Inference Using Mixtures.” <em>Journal of the American Statistical Association</em> 90 (430): 577–88. <a href="https://doi.org/10.2307/2291069">https://doi.org/10.2307/2291069</a>.</p>
+</div>
+<div id="ref-Gelman1996">
+<p>Gelman, Andrew, Xiao-Li Meng, and Hal Stern. 1996. “Posterior Predictive Assessment of Model Fitness via Realized Discrepancies.” <em>Statistica Sinica</em> 6 (4): 733–60.</p>
+</div>
+<div id="ref-Mallick2013">
+<p>Mallick, Himel, and Nengjun Yi. 2013. “Bayesian Methods for High Dimensional Linear Models.” <em>Journal of Biometrics &amp; Biostatistics</em> 4 (S3): S1–005. <a href="https://doi.org/10.4172/2155-6180.S1-005">https://doi.org/10.4172/2155-6180.S1-005</a>.</p>
+</div>
+<div id="ref-muller2015bayesian">
+<p>Müller, Peter, Fernando Andrés Quintana, Alejandro Jara, and Tim Hanson. 2015. <em>Bayesian Nonparametric Data Analysis</em>. Springer. <a href="https://doi.org/10.1007/978-3-319-18968-0">https://doi.org/10.1007/978-3-319-18968-0</a>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="ch-JSS.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="summary-samenvatting-zusammenfassung.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

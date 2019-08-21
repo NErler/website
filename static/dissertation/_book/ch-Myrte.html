@@ -1,0 +1,2943 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Dietary Patterns and Gestational Weight Gain | Bayesian Imputation of Missing Covariates</title>
+  <meta name="description" content="Chapter 3 Dietary Patterns and Gestational Weight Gain | Bayesian Imputation of Missing Covariates" />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Dietary Patterns and Gestational Weight Gain | Bayesian Imputation of Missing Covariates" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="figures/CoverImage_Erler.jpeg" />
+  <meta property="og:description" content="Chapter 3 Dietary Patterns and Gestational Weight Gain | Bayesian Imputation of Missing Covariates" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Dietary Patterns and Gestational Weight Gain | Bayesian Imputation of Missing Covariates" />
+  
+  <meta name="twitter:description" content="Chapter 3 Dietary Patterns and Gestational Weight Gain | Bayesian Imputation of Missing Covariates" />
+  <meta name="twitter:image" content="figures/CoverImage_Erler.jpeg" />
+
+<meta name="author" content="Nicole S. Erler" />
+
+
+<meta name="date" content="2019-08-21" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="ch-SIM.html"/>
+<link rel="next" href="ch-Vincent.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.8/datatables.js"></script>
+<link href="libs/dt-core-bootstrap-1.10.16/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="libs/dt-core-bootstrap-1.10.16/css/dataTables.bootstrap.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-bootstrap-1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="libs/dt-core-bootstrap-1.10.16/js/dataTables.bootstrap.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Bayesian imputation of Missing Covariates</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> General Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#mechanisms-and-patterns-of-missing-data"><i class="fa fa-check"></i><b>1.1</b> Mechanisms and Patterns of Missing Data</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#missing-data-mechanism"><i class="fa fa-check"></i><b>1.1.1</b> Missing Data Mechanism</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#missing-data-pattern"><i class="fa fa-check"></i><b>1.1.2</b> Missing Data Pattern</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#multiple-imputed-datasets"><i class="fa fa-check"></i><b>1.2</b> Multiple Imputed Datasets</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#methods-for-imputation"><i class="fa fa-check"></i><b>1.2.1</b> Methods for Imputation</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#pooling-results-from-multiple-imputed-datasets"><i class="fa fa-check"></i><b>1.2.2</b> Pooling Results from Multiple Imputed Datasets</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#the-bayesian-framework"><i class="fa fa-check"></i><b>1.3</b> The Bayesian Framework</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#bayes-theorem"><i class="fa fa-check"></i><b>1.3.1</b> Bayes Theorem</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#monte-carlo-methods"><i class="fa fa-check"></i><b>1.3.2</b> Monte Carlo Methods</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#markov-chain-monte-carlo"><i class="fa fa-check"></i><b>1.3.3</b> Markov Chain Monte Carlo</a></li>
+<li class="chapter" data-level="1.3.4" data-path="index.html"><a href="index.html#gibbs-sampler"><i class="fa fa-check"></i><b>1.3.4</b> Gibbs Sampler</a></li>
+<li class="chapter" data-level="1.3.5" data-path="index.html"><a href="index.html#convergence-mixing-and-thinning"><i class="fa fa-check"></i><b>1.3.5</b> Convergence, Mixing and Thinning</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#motivating-datasets"><i class="fa fa-check"></i><b>1.4</b> Motivating Datasets</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#outline-of-this-thesis"><i class="fa fa-check"></i><b>1.5</b> Outline of this Thesis</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="ch-SIM.html"><a href="ch-SIM.html"><i class="fa fa-check"></i><b>2</b> Dealing with Missing Covariates in Epidemiologic Studies</a><ul>
+<li class="chapter" data-level="" data-path="ch-SIM.html"><a href="ch-SIM.html#abstract"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="2.1" data-path="ch-SIM.html"><a href="ch-SIM.html#sec:introSIM"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.2" data-path="ch-SIM.html"><a href="ch-SIM.html#sec:SIMData"><i class="fa fa-check"></i><b>2.2</b> Generation R Data</a></li>
+<li class="chapter" data-level="2.3" data-path="ch-SIM.html"><a href="ch-SIM.html#sec:MissingData"><i class="fa fa-check"></i><b>2.3</b> Dealing with Missing Data</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="ch-SIM.html"><a href="ch-SIM.html#multiple-imputation-using-chained-equations-1"><i class="fa fa-check"></i><b>2.3.1</b> Multiple Imputation using Chained Equations</a></li>
+<li class="chapter" data-level="2.3.2" data-path="ch-SIM.html"><a href="ch-SIM.html#fully-bayesian-imputation"><i class="fa fa-check"></i><b>2.3.2</b> Fully Bayesian Imputation</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="ch-SIM.html"><a href="ch-SIM.html#sec:DataAnalysis"><i class="fa fa-check"></i><b>2.4</b> Data Analysis</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="ch-SIM.html"><a href="ch-SIM.html#design"><i class="fa fa-check"></i><b>2.4.1</b> Design</a></li>
+<li class="chapter" data-level="2.4.2" data-path="ch-SIM.html"><a href="ch-SIM.html#results"><i class="fa fa-check"></i><b>2.4.2</b> Results</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="ch-SIM.html"><a href="ch-SIM.html#sec:SimulationSIM"><i class="fa fa-check"></i><b>2.5</b> Simulation Study</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="ch-SIM.html"><a href="ch-SIM.html#design-1"><i class="fa fa-check"></i><b>2.5.1</b> Design</a></li>
+<li class="chapter" data-level="2.5.2" data-path="ch-SIM.html"><a href="ch-SIM.html#results-1"><i class="fa fa-check"></i><b>2.5.2</b> Results</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="ch-SIM.html"><a href="ch-SIM.html#sec:DiscussionSIM"><i class="fa fa-check"></i><b>2.6</b> Discussion</a></li>
+<li class="chapter" data-level="" data-path="ch-SIM.html"><a href="ch-SIM.html#appendix"><i class="fa fa-check"></i>Appendix</a><ul>
+<li class="chapter" data-level="" data-path="ch-SIM.html"><a href="ch-SIM.html#a-variable-description"><i class="fa fa-check"></i>2.A Variable Description</a></li>
+<li class="chapter" data-level="" data-path="ch-SIM.html"><a href="ch-SIM.html#b-results-from-the-generation-r-data"><i class="fa fa-check"></i>2.B Results from the Generation R Data</a></li>
+<li class="chapter" data-level="" data-path="ch-SIM.html"><a href="ch-SIM.html#c-simulation-settings"><i class="fa fa-check"></i>2.C Simulation Settings</a></li>
+<li class="chapter" data-level="" data-path="ch-SIM.html"><a href="ch-SIM.html#d-simulation-results"><i class="fa fa-check"></i>2.D Simulation Results</a></li>
+<li class="chapter" data-level="" data-path="ch-SIM.html"><a href="ch-SIM.html#e-jags-syntax-for-simulation-scenario-2"><i class="fa fa-check"></i>2.E JAGS Syntax for Simulation Scenario 2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ch-Myrte.html"><a href="ch-Myrte.html"><i class="fa fa-check"></i><b>3</b> Dietary Patterns and Gestational Weight Gain</a><ul>
+<li class="chapter" data-level="" data-path="ch-Myrte.html"><a href="ch-Myrte.html#abstract-1"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="3.1" data-path="ch-Myrte.html"><a href="ch-Myrte.html#introduction"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="ch-Myrte.html"><a href="ch-Myrte.html#experimental-section"><i class="fa fa-check"></i><b>3.2</b> Experimental Section</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="ch-Myrte.html"><a href="ch-Myrte.html#study-design"><i class="fa fa-check"></i><b>3.2.1</b> Study Design</a></li>
+<li class="chapter" data-level="3.2.2" data-path="ch-Myrte.html"><a href="ch-Myrte.html#population-of-analysis"><i class="fa fa-check"></i><b>3.2.2</b> Population of Analysis</a></li>
+<li class="chapter" data-level="3.2.3" data-path="ch-Myrte.html"><a href="ch-Myrte.html#dietary-assessment"><i class="fa fa-check"></i><b>3.2.3</b> Dietary Assessment</a></li>
+<li class="chapter" data-level="3.2.4" data-path="ch-Myrte.html"><a href="ch-Myrte.html#maternal-weight-gain"><i class="fa fa-check"></i><b>3.2.4</b> Maternal Weight Gain</a></li>
+<li class="chapter" data-level="3.2.5" data-path="ch-Myrte.html"><a href="ch-Myrte.html#covariates"><i class="fa fa-check"></i><b>3.2.5</b> Covariates</a></li>
+<li class="chapter" data-level="3.2.6" data-path="ch-Myrte.html"><a href="ch-Myrte.html#statistical-analyses"><i class="fa fa-check"></i><b>3.2.6</b> Statistical Analyses</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="ch-Myrte.html"><a href="ch-Myrte.html#results-2"><i class="fa fa-check"></i><b>3.3</b> Results</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="ch-Myrte.html"><a href="ch-Myrte.html#study-population"><i class="fa fa-check"></i><b>3.3.1</b> Study Population</a></li>
+<li class="chapter" data-level="3.3.2" data-path="ch-Myrte.html"><a href="ch-Myrte.html#dietary-patterns-and-trajectories-of-gestational-weight"><i class="fa fa-check"></i><b>3.3.2</b> Dietary Patterns and Trajectories of Gestational Weight</a></li>
+<li class="chapter" data-level="3.3.3" data-path="ch-Myrte.html"><a href="ch-Myrte.html#dietary-patterns-and-gestational-weight-gain-in-different-phases-in-pregnancy"><i class="fa fa-check"></i><b>3.3.3</b> Dietary Patterns and Gestational Weight Gain in Different Phases in Pregnancy</a></li>
+<li class="chapter" data-level="3.3.4" data-path="ch-Myrte.html"><a href="ch-Myrte.html#sensitivity-analyses-1"><i class="fa fa-check"></i><b>3.3.4</b> Sensitivity Analyses</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="ch-Myrte.html"><a href="ch-Myrte.html#discussion"><i class="fa fa-check"></i><b>3.4</b> Discussion</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="ch-Myrte.html"><a href="ch-Myrte.html#summary-of-the-main-findings"><i class="fa fa-check"></i><b>3.4.1</b> Summary of the Main Findings</a></li>
+<li class="chapter" data-level="3.4.2" data-path="ch-Myrte.html"><a href="ch-Myrte.html#interpretation-and-comparison-with-other-studies"><i class="fa fa-check"></i><b>3.4.2</b> Interpretation and Comparison with other Studies</a></li>
+<li class="chapter" data-level="3.4.3" data-path="ch-Myrte.html"><a href="ch-Myrte.html#strengths-and-limitations"><i class="fa fa-check"></i><b>3.4.3</b> Strengths and Limitations</a></li>
+<li class="chapter" data-level="3.4.4" data-path="ch-Myrte.html"><a href="ch-Myrte.html#conclusions-and-implications"><i class="fa fa-check"></i><b>3.4.4</b> Conclusions and Implications</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch-Myrte.html"><a href="ch-Myrte.html#appendix-1"><i class="fa fa-check"></i>Appendix</a><ul>
+<li class="chapter" data-level="" data-path="ch-Myrte.html"><a href="ch-Myrte.html#a-supplementary-materials"><i class="fa fa-check"></i>3.A Supplementary Materials</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="ch-Vincent.html"><a href="ch-Vincent.html"><i class="fa fa-check"></i><b>4</b> Mothers’ SCB Intake and Body Composition of their Children</a><ul>
+<li class="chapter" data-level="" data-path="ch-Vincent.html"><a href="ch-Vincent.html#abstract-2"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="4.1" data-path="ch-Vincent.html"><a href="ch-Vincent.html#introduction-1"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="ch-Vincent.html"><a href="ch-Vincent.html#methods"><i class="fa fa-check"></i><b>4.2</b> Methods</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="ch-Vincent.html"><a href="ch-Vincent.html#study-design-1"><i class="fa fa-check"></i><b>4.2.1</b> Study Design</a></li>
+<li class="chapter" data-level="4.2.2" data-path="ch-Vincent.html"><a href="ch-Vincent.html#study-population-1"><i class="fa fa-check"></i><b>4.2.2</b> Study Population</a></li>
+<li class="chapter" data-level="4.2.3" data-path="ch-Vincent.html"><a href="ch-Vincent.html#dietary-assessment-of-the-mother"><i class="fa fa-check"></i><b>4.2.3</b> Dietary Assessment of the Mother</a></li>
+<li class="chapter" data-level="4.2.4" data-path="ch-Vincent.html"><a href="ch-Vincent.html#child-anthropometric-measures-and-body-composition"><i class="fa fa-check"></i><b>4.2.4</b> Child Anthropometric Measures and Body Composition</a></li>
+<li class="chapter" data-level="4.2.5" data-path="ch-Vincent.html"><a href="ch-Vincent.html#covariates-1"><i class="fa fa-check"></i><b>4.2.5</b> Covariates</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="ch-Vincent.html"><a href="ch-Vincent.html#statistical-analyses-1"><i class="fa fa-check"></i><b>4.3</b> Statistical Analyses</a></li>
+<li class="chapter" data-level="4.4" data-path="ch-Vincent.html"><a href="ch-Vincent.html#results-3"><i class="fa fa-check"></i><b>4.4</b> Results</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="ch-Vincent.html"><a href="ch-Vincent.html#subject-characteristics"><i class="fa fa-check"></i><b>4.4.1</b> Subject Characteristics</a></li>
+<li class="chapter" data-level="4.4.2" data-path="ch-Vincent.html"><a href="ch-Vincent.html#maternal-scb-intake-and-child-bmi-trajectory"><i class="fa fa-check"></i><b>4.4.2</b> Maternal SCB Intake and Child BMI Trajectory</a></li>
+<li class="chapter" data-level="4.4.3" data-path="ch-Vincent.html"><a href="ch-Vincent.html#maternal-scb-intake-and-child-body-composition"><i class="fa fa-check"></i><b>4.4.3</b> Maternal SCB Intake and Child Body Composition</a></li>
+<li class="chapter" data-level="4.4.4" data-path="ch-Vincent.html"><a href="ch-Vincent.html#additional-analyses"><i class="fa fa-check"></i><b>4.4.4</b> Additional Analyses</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="ch-Vincent.html"><a href="ch-Vincent.html#discussion-1"><i class="fa fa-check"></i><b>4.5</b> Discussion</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="ch-Vincent.html"><a href="ch-Vincent.html#interpretation-and-comparison-with-previous-studies"><i class="fa fa-check"></i><b>4.5.1</b> Interpretation and Comparison with Previous Studies</a></li>
+<li class="chapter" data-level="4.5.2" data-path="ch-Vincent.html"><a href="ch-Vincent.html#potential-mechanisms"><i class="fa fa-check"></i><b>4.5.2</b> Potential Mechanisms</a></li>
+<li class="chapter" data-level="4.5.3" data-path="ch-Vincent.html"><a href="ch-Vincent.html#strengths-and-limitations-1"><i class="fa fa-check"></i><b>4.5.3</b> Strengths and Limitations</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch-Vincent.html"><a href="ch-Vincent.html#appendix-2"><i class="fa fa-check"></i>Appendix</a><ul>
+<li class="chapter" data-level="" data-path="ch-Vincent.html"><a href="ch-Vincent.html#a-additional-results"><i class="fa fa-check"></i>4.A Additional Results</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="ch-SMMR.html"><a href="ch-SMMR.html"><i class="fa fa-check"></i><b>5</b> Bayesian Imputation of Time-varying Covariates in Mixed Models</a><ul>
+<li class="chapter" data-level="" data-path="ch-SMMR.html"><a href="ch-SMMR.html#abstract-3"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="5.1" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:introSMMR"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:DataSMMR"><i class="fa fa-check"></i><b>5.2</b> Generation R Data</a></li>
+<li class="chapter" data-level="5.3" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:ModelSMMR"><i class="fa fa-check"></i><b>5.3</b> Modelling Longitudinal Data with Time-varying Covariates</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="ch-SMMR.html"><a href="ch-SMMR.html#framework"><i class="fa fa-check"></i><b>5.3.1</b> Framework</a></li>
+<li class="chapter" data-level="5.3.2" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:funcformSMMR"><i class="fa fa-check"></i><b>5.3.2</b> Functional Forms for Time-varying Covariates</a></li>
+<li class="chapter" data-level="5.3.3" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:endoexoSMMR"><i class="fa fa-check"></i><b>5.3.3</b> Endo- and Exogeneity</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:modelsSMMR"><i class="fa fa-check"></i><b>5.4</b> Bayesian Analysis with Incomplete Covariates</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:seq-approachSMMR"><i class="fa fa-check"></i><b>5.4.1</b> Sequential Approach</a></li>
+<li class="chapter" data-level="5.4.2" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:mvn-approachSMMR"><i class="fa fa-check"></i><b>5.4.2</b> Multivariate Normal Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:DataAnalysisSMMR"><i class="fa fa-check"></i><b>5.5</b> Analysis of the Generation R Data</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:DataAnalysisEx1"><i class="fa fa-check"></i><b>5.5.1</b> Association between Blood Pressure and Gestational Weight</a></li>
+<li class="chapter" data-level="5.5.2" data-path="ch-SMMR.html"><a href="ch-SMMR.html#association-between-gestational-weight-gain-and-child-bmi"><i class="fa fa-check"></i><b>5.5.2</b> Association between Gestational Weight Gain and Child BMI</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:simulationSMMR"><i class="fa fa-check"></i><b>5.6</b> Simulation Study</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="ch-SMMR.html"><a href="ch-SMMR.html#design-2"><i class="fa fa-check"></i><b>5.6.1</b> Design</a></li>
+<li class="chapter" data-level="5.6.2" data-path="ch-SMMR.html"><a href="ch-SMMR.html#analysis-models"><i class="fa fa-check"></i><b>5.6.2</b> Analysis Models</a></li>
+<li class="chapter" data-level="5.6.3" data-path="ch-SMMR.html"><a href="ch-SMMR.html#results-4"><i class="fa fa-check"></i><b>5.6.3</b> Results</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="ch-SMMR.html"><a href="ch-SMMR.html#sec:DiscussionSMMR"><i class="fa fa-check"></i><b>5.7</b> Discussion</a></li>
+<li class="chapter" data-level="" data-path="ch-SMMR.html"><a href="ch-SMMR.html#appendix-3"><i class="fa fa-check"></i>Appendix</a><ul>
+<li class="chapter" data-level="" data-path="ch-SMMR.html"><a href="ch-SMMR.html#a-details-on-the-implied-exo--or-endogeneity"><i class="fa fa-check"></i>5.A Details on the Implied Exo- or Endogeneity</a></li>
+<li class="chapter" data-level="" data-path="ch-SMMR.html"><a href="ch-SMMR.html#b-analysis-of-the-generation-r-data"><i class="fa fa-check"></i>5.B Analysis of the Generation R Data</a></li>
+<li class="chapter" data-level="" data-path="ch-SMMR.html"><a href="ch-SMMR.html#c-simulation-study"><i class="fa fa-check"></i>5.C Simulation Study</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="ch-JSS.html"><a href="ch-JSS.html"><i class="fa fa-check"></i><b>6</b> JointAI: Joint Analysis and Imputation of Incomplete Data in R</a><ul>
+<li class="chapter" data-level="" data-path="ch-JSS.html"><a href="ch-JSS.html#abstract-4"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="6.1" data-path="ch-JSS.html"><a href="ch-JSS.html#introduction-2"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:TheoryJSS"><i class="fa fa-check"></i><b>6.2</b> Theoretical Background</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:AnalysisModel"><i class="fa fa-check"></i><b>6.2.1</b> Analysis Model</a></li>
+<li class="chapter" data-level="6.2.2" data-path="ch-JSS.html"><a href="ch-JSS.html#imputation-part"><i class="fa fa-check"></i><b>6.2.2</b> Imputation Part</a></li>
+<li class="chapter" data-level="6.2.3" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:priors"><i class="fa fa-check"></i><b>6.2.3</b> Prior Distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:package"><i class="fa fa-check"></i><b>6.3</b> Package Structure</a></li>
+<li class="chapter" data-level="6.4" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:ExampleDataJSS"><i class="fa fa-check"></i><b>6.4</b> Example Data</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="ch-JSS.html"><a href="ch-JSS.html#the-nhanes-data"><i class="fa fa-check"></i><b>6.4.1</b> The NHANES Data</a></li>
+<li class="chapter" data-level="6.4.2" data-path="ch-JSS.html"><a href="ch-JSS.html#the-simlong-data"><i class="fa fa-check"></i><b>6.4.2</b> The simLong Data</a></li>
+<li class="chapter" data-level="6.4.3" data-path="ch-JSS.html"><a href="ch-JSS.html#the-lung-data"><i class="fa fa-check"></i><b>6.4.3</b> The lung Data</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:ModelSpecification"><i class="fa fa-check"></i><b>6.5</b> Model Specification</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="ch-JSS.html"><a href="ch-JSS.html#interactions"><i class="fa fa-check"></i><b>6.5.1</b> Interactions</a></li>
+<li class="chapter" data-level="6.5.2" data-path="ch-JSS.html"><a href="ch-JSS.html#non-linear-functional-forms"><i class="fa fa-check"></i><b>6.5.2</b> Non-linear Functional Forms</a></li>
+<li class="chapter" data-level="6.5.3" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:multilevel"><i class="fa fa-check"></i><b>6.5.3</b> Multi-level Structure and Longitudinal Covariates</a></li>
+<li class="chapter" data-level="6.5.4" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:survmod"><i class="fa fa-check"></i><b>6.5.4</b> Survival Models</a></li>
+<li class="chapter" data-level="6.5.5" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:methJSS"><i class="fa fa-check"></i><b>6.5.5</b> Imputation / Covariate Model Types</a></li>
+<li class="chapter" data-level="6.5.6" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:auxvars"><i class="fa fa-check"></i><b>6.5.6</b> Auxiliary Variables</a></li>
+<li class="chapter" data-level="6.5.7" data-path="ch-JSS.html"><a href="ch-JSS.html#reference-values-for-categorical-covariates"><i class="fa fa-check"></i><b>6.5.7</b> Reference Values for Categorical Covariates</a></li>
+<li class="chapter" data-level="6.5.8" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:hyperpars"><i class="fa fa-check"></i><b>6.5.8</b> Hyperparameters</a></li>
+<li class="chapter" data-level="6.5.9" data-path="ch-JSS.html"><a href="ch-JSS.html#scaling"><i class="fa fa-check"></i><b>6.5.9</b> Scaling</a></li>
+<li class="chapter" data-level="6.5.10" data-path="ch-JSS.html"><a href="ch-JSS.html#ridge-regression"><i class="fa fa-check"></i><b>6.5.10</b> Ridge Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:MCMCSettings"><i class="fa fa-check"></i><b>6.6</b> MCMC Settings</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="ch-JSS.html"><a href="ch-JSS.html#number-of-chains-iterations-and-samples"><i class="fa fa-check"></i><b>6.6.1</b> Number of Chains, Iterations and Samples</a></li>
+<li class="chapter" data-level="6.6.2" data-path="ch-JSS.html"><a href="ch-JSS.html#parameters-to-follow"><i class="fa fa-check"></i><b>6.6.2</b> Parameters to Follow</a></li>
+<li class="chapter" data-level="6.6.3" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:inits"><i class="fa fa-check"></i><b>6.6.3</b> Initial Values</a></li>
+<li class="chapter" data-level="6.6.4" data-path="ch-JSS.html"><a href="ch-JSS.html#parallel-sampling"><i class="fa fa-check"></i><b>6.6.4</b> Parallel Sampling</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:ResultsJSS"><i class="fa fa-check"></i><b>6.7</b> After Fitting</a><ul>
+<li class="chapter" data-level="6.7.1" data-path="ch-JSS.html"><a href="ch-JSS.html#visualizing-the-posterior-sample"><i class="fa fa-check"></i><b>6.7.1</b> Visualizing the Posterior Sample</a></li>
+<li class="chapter" data-level="6.7.2" data-path="ch-JSS.html"><a href="ch-JSS.html#model-summary"><i class="fa fa-check"></i><b>6.7.2</b> Model Summary</a></li>
+<li class="chapter" data-level="6.7.3" data-path="ch-JSS.html"><a href="ch-JSS.html#evaluation-criteria"><i class="fa fa-check"></i><b>6.7.3</b> Evaluation Criteria</a></li>
+<li class="chapter" data-level="6.7.4" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:subset"><i class="fa fa-check"></i><b>6.7.4</b> Subset of Output</a></li>
+<li class="chapter" data-level="6.7.5" data-path="ch-JSS.html"><a href="ch-JSS.html#predicted-values"><i class="fa fa-check"></i><b>6.7.5</b> Predicted Values</a></li>
+<li class="chapter" data-level="6.7.6" data-path="ch-JSS.html"><a href="ch-JSS.html#sec:getMIdat"><i class="fa fa-check"></i><b>6.7.6</b> Export of Imputed Values</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="ch-JSS.html"><a href="ch-JSS.html#assumptions-and-extensions"><i class="fa fa-check"></i><b>6.8</b> Assumptions and Extensions</a></li>
+<li class="chapter" data-level="" data-path="ch-JSS.html"><a href="ch-JSS.html#appendix-4"><i class="fa fa-check"></i>Appendix</a><ul>
+<li class="chapter" data-level="" data-path="ch-JSS.html"><a href="ch-JSS.html#a-default-hyperparameters"><i class="fa fa-check"></i>6.A Default Hyperparameters</a></li>
+<li class="chapter" data-level="" data-path="ch-JSS.html"><a href="ch-JSS.html#b-density-plot-using-ggplot2"><i class="fa fa-check"></i>6.B Density Plot using ggplot2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="ch-discussion.html"><a href="ch-discussion.html"><i class="fa fa-check"></i><b>7</b> General Discussion</a><ul>
+<li class="chapter" data-level="7.1" data-path="ch-discussion.html"><a href="ch-discussion.html#summary-of-advantages"><i class="fa fa-check"></i><b>7.1</b> Summary of Advantages</a></li>
+<li class="chapter" data-level="7.2" data-path="ch-discussion.html"><a href="ch-discussion.html#assumptions"><i class="fa fa-check"></i><b>7.2</b> Assumptions</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="ch-discussion.html"><a href="ch-discussion.html#model-specification"><i class="fa fa-check"></i><b>7.2.1</b> Model Specification</a></li>
+<li class="chapter" data-level="7.2.2" data-path="ch-discussion.html"><a href="ch-discussion.html#ignorable-missingness"><i class="fa fa-check"></i><b>7.2.2</b> Ignorable Missingness</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="ch-discussion.html"><a href="ch-discussion.html#directions-for-future-work"><i class="fa fa-check"></i><b>7.3</b> Directions for Future Work</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="ch-discussion.html"><a href="ch-discussion.html#implementation-of-flexible-models"><i class="fa fa-check"></i><b>7.3.1</b> Implementation of Flexible Models</a></li>
+<li class="chapter" data-level="7.3.2" data-path="ch-discussion.html"><a href="ch-discussion.html#evaluation-of-model-fit"><i class="fa fa-check"></i><b>7.3.2</b> Evaluation of Model Fit</a></li>
+<li class="chapter" data-level="7.3.3" data-path="ch-discussion.html"><a href="ch-discussion.html#non-ignorable-missingness"><i class="fa fa-check"></i><b>7.3.3</b> Non-ignorable Missingness</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="ch-discussion.html"><a href="ch-discussion.html#conclusion"><i class="fa fa-check"></i><b>7.4</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="summary-samenvatting-zusammenfassung.html"><a href="summary-samenvatting-zusammenfassung.html"><i class="fa fa-check"></i><b>8</b> Summary / Samenvatting / Zusammenfassung</a><ul>
+<li class="chapter" data-level="" data-path="summary-samenvatting-zusammenfassung.html"><a href="summary-samenvatting-zusammenfassung.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+<li class="chapter" data-level="" data-path="summary-samenvatting-zusammenfassung.html"><a href="summary-samenvatting-zusammenfassung.html#samenvatting"><i class="fa fa-check"></i>Samenvatting</a></li>
+<li class="chapter" data-level="" data-path="summary-samenvatting-zusammenfassung.html"><a href="summary-samenvatting-zusammenfassung.html#zusammenfassung"><i class="fa fa-check"></i>Zusammenfassung</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html"><i class="fa fa-check"></i>Appendix: PhD Portfolio &amp; Curriculum Vitae</a><ul>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#phd-portfolio"><i class="fa fa-check"></i>PhD Portfolio</a><ul>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#presentations"><i class="fa fa-check"></i>Presentations</a></li>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#teaching"><i class="fa fa-check"></i>Teaching</a></li>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#courses"><i class="fa fa-check"></i>Courses</a></li>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#seminars-and-workshops"><i class="fa fa-check"></i>Seminars and Workshops</a></li>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#consulting"><i class="fa fa-check"></i>Consulting</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#curriculum-vitae"><i class="fa fa-check"></i>Curriculum Vitae</a><ul>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#education"><i class="fa fa-check"></i>Education</a></li>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#work-experience"><i class="fa fa-check"></i>Work Experience</a></li>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#awards"><i class="fa fa-check"></i>Awards</a></li>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#collaborations-and-consulting"><i class="fa fa-check"></i>Collaborations and Consulting</a></li>
+<li class="chapter" data-level="" data-path="appendix-phd-portfolio-curriculum-vitae.html"><a href="appendix-phd-portfolio-curriculum-vitae.html#publications"><i class="fa fa-check"></i>Publications</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Bayesian Imputation of Missing Covariates</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="ch:Myrte" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> Dietary Patterns and Gestational Weight Gain</h1>
+
+<hr />
+<p>This chapter is based on</p>
+<blockquote>
+<p>Myrte J. Tielemans, Nicole S. Erler, Elisabeth T.M. Leermakers, Marion van den
+Broek, Vincent W.V. Jaddoe, Eric A.P. Steegers, Jessica C. Kiefte-de Jong
+and Oscar H. Franco.
+A priori and a posteriori dietary patterns during pregnancy and gestational
+weight gain: The Generation R Study.
+<em>Nutrients</em>, 2015; <strong>7</strong>(11), 9383–9399.
+<a href="https://doi.org/10.3390/nu7115476">doi:10.3390/nu7115476</a></p>
+</blockquote>
+
+
+
+<div id="abstract-1" class="section level3 unnumbered">
+<h3>Abstract</h3>
+<p>Abnormal gestational weight gain (GWG) is associated with adverse pregnancy
+outcomes. We examined whether dietary patterns are associated with GWG in
+3374 pregnant women participating in a population-based cohort study in the
+Netherlands. Dietary intake during pregnancy was assessed with food-frequency
+questionnaires. Three <em>a posteriori</em>-derived dietary patterns were identified
+using factor analysis:
+a “Vegetable, oil and fish”, a “Nuts, high-fibre cereals and soy”, and a
+“Margarine, sugar and snacks” pattern.
+An <em>a priori</em>-defined dietary pattern was based on national dietary
+recommendations. Weight was repeatedly measured around 13, 20 and 30 weeks of
+pregnancy; pre-pregnancy and maximum weight were self-reported.
+Normal-weight women with 1 SDS higher score on the “Nuts, high-fibre cereals and soy”
+pattern gained weight slightly slower, while normal-weight women with higher
+adherence to the “Margarine, sugar and snacks” pattern had
+higher weight (0.3kg; 95% CI [0.07, 0.52]) throughout pregnancy.
+Normal-weight women with higher adherence to the “Vegetable, oil and fish”
+pattern had 16 g/week (95% CI [6.5, 25.6]) higher early-pregnancy GWG.
+<!-- Adherence to the "Margarine, sugar and snacks" pattern was associated with a higher prevalence -->
+<!-- of excessive GWG (OR Q4 vs Q1: 1.45; 95% CI [1.06, 1.99]). -->
+The <em>a priori</em>-defined pattern was not associated with GWG.
+In conclusion, specific dietary patterns may play a role in early pregnancy but
+were not consistently associated with GWG in our data.</p>
+
+</div>
+<div id="introduction" class="section level2">
+<h2><span class="header-section-number">3.1</span> Introduction</h2>
+<p>Abnormal maternal weight gain during pregnancy (i.e., too little or too much)
+has been associated with unfavourable pregnancy outcomes in both mother and child.
+Insufficient gestational weight gain (GWG) is associated with both preterm
+birth and low birthweight <span class="citation">(Han et al. <a href="#ref-Han2011" role="doc-biblioref">2011</a>)</span>, and excessive GWG increases the risk of giving
+birth to large-for-gestational-age infants <span class="citation">(Kim et al. <a href="#ref-Kim2014" role="doc-biblioref">2014</a>)</span>. Excessive GWG is also associated
+with maternal pregnancy complications, including hypertensive disorders <span class="citation">(Johnson et al. <a href="#ref-Johnson2013" role="doc-biblioref">2013</a>; Gaillard et al. <a href="#ref-Gaillard2013" role="doc-biblioref">2013</a>)</span>
+and gestational diabetes <span class="citation">(Hedderson, Gunderson, and Ferrara <a href="#ref-Hedderson2010" role="doc-biblioref">2010</a>)</span>, which can increase the risk of the mother
+developing cardiometabolic diseases after pregnancy <span class="citation">(Brown et al. <a href="#ref-Brown2013" role="doc-biblioref">2013</a>; Bellamy et al. <a href="#ref-Bellamy2009" role="doc-biblioref">2009</a>)</span>.</p>
+<p>Energy intake during pregnancy is associated with GWG
+<span class="citation">(Gaillard et al. <a href="#ref-Gaillard2013" role="doc-biblioref">2013</a>; Streuling et al. <a href="#ref-Streuling2011" role="doc-biblioref">2011</a>)</span>, but literature is scarce on whether GWG
+could be influenced by dietary composition.
+Some studies have examined the influence of food groups on GWG <span class="citation">(Stuebe, Oken, and Gillman <a href="#ref-Stuebe2009" role="doc-biblioref">2009</a>; Olafsdottir et al. <a href="#ref-Olafsdottir2006" role="doc-biblioref">2006</a>; Martins and Benicio <a href="#ref-Martins2011" role="doc-biblioref">2011</a>)</span>.
+These studies found no association of fruit or vegetable intake with GWG
+<span class="citation">(Stuebe, Oken, and Gillman <a href="#ref-Stuebe2009" role="doc-biblioref">2009</a>; Martins and Benicio <a href="#ref-Martins2011" role="doc-biblioref">2011</a>)</span> but unhealthier foods (e.g., sweets and
+processed foods) were associated with higher prevalence of excessive
+GWG <span class="citation">(Stuebe, Oken, and Gillman <a href="#ref-Stuebe2009" role="doc-biblioref">2009</a>; Olafsdottir et al. <a href="#ref-Olafsdottir2006" role="doc-biblioref">2006</a>; Martins and Benicio <a href="#ref-Martins2011" role="doc-biblioref">2011</a>)</span>.
+Weight gain during pregnancy
+involves both maternal components (e.g., blood volume increase, fat accretion)
+and fetal components (e.g., weight of the fetus, amniotic fluid) <span class="citation">(Pitkin <a href="#ref-Pitkin1976" role="doc-biblioref">1976</a>)</span>.
+Therefore, the effect of diet on weight gain may differ between pregnant and
+non-pregnant women.</p>
+<p>Assessing overall diet in relation to GWG has several advantages over studying
+individual foods or nutrients. First, the intakes of different nutrients are
+often highly correlated, which complicates the assessment of individual
+nutrients <span class="citation">(Hu <a href="#ref-Hu2002" role="doc-biblioref">2002</a>)</span>.
+Second, possible associations between nutrient intake and GWG
+might be affected by biological interactions between nutrients <span class="citation">(Hu <a href="#ref-Hu2002" role="doc-biblioref">2002</a>)</span>.
+For these reasons, evaluating diet using a dietary pattern approach may improve
+our understanding of which patterns of diet are most beneficial during pregnancy.
+Moreover, this approach can facilitate future food-based dietary guidelines <span class="citation">(World Health Organization and Food and Agriculture Organization of the United Nations <a href="#ref-World1998" role="doc-biblioref">1998</a>)</span>.</p>
+<p>Only a few studies have focused on the relationship between dietary patterns
+and GWG <span class="citation">(Uusitalo et al. <a href="#ref-Uusitalo2009" role="doc-biblioref">2009</a>; Shin et al. <a href="#ref-Shin2014" role="doc-biblioref">2014</a>; Rifas-Shiman et al. <a href="#ref-Rifas2009" role="doc-biblioref">2009</a>; Hillesund et al. <a href="#ref-Hillesund2014" role="doc-biblioref">2014</a>)</span>.
+However, no study evaluated dietary patterns and
+longitudinal development of weight during pregnancy. We hypothesized that
+specific dietary patterns may influence the development of maternal weight
+during pregnancy. In addition, dietary patterns are likely to differ between
+countries and populations <span class="citation">(Hu <a href="#ref-Hu2002" role="doc-biblioref">2002</a>)</span>, hence, it is important to identify
+country-specific dietary patterns that may be associated with GWG.</p>
+<p>Therefore, the purpose of our study was to determine whether <em>a priori</em>-defined
+and <em>a posteriori</em>-derived dietary patterns are associated with weight development
+during pregnancy and GWG during different phases in pregnancy in
+Dutch women participating in a population-based cohort.</p>
+</div>
+<div id="experimental-section" class="section level2">
+<h2><span class="header-section-number">3.2</span> Experimental Section</h2>
+<div id="study-design" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> Study Design</h3>
+<p>This study was embedded in the Generation R Study, a population-based
+prospective cohort from fetal life onwards in Rotterdam, the Netherlands.
+Details of this study have been described previously <span class="citation">(Kruithof et al. <a href="#ref-Kruithof2014" role="doc-biblioref">2014</a>)</span>.
+Briefly, pregnant women with an expected delivery date between April 2002 and January 2006,
+living in the urban area around Rotterdam, were approached to participate.
+All participants provided written informed consent. The study was conducted
+according to the World Medical Association Declaration of Helsinki and was
+approved by the Medical Ethics Committee, Erasmus Medical Center Rotterdam
+(the Netherlands, MEC 198.782.2001.31).</p>
+</div>
+<div id="population-of-analysis" class="section level3">
+<h3><span class="header-section-number">3.2.2</span> Population of Analysis</h3>
+<p>For the current analysis, women of Dutch ancestry who entered the
+Generation R Study during pregnancy (n = 4097) were included. Women of
+non-Dutch ancestry were excluded from the analysis since
+the dietary assessment method that was used was
+designed to evaluate a Dutch diet. Furthermore, women with missing dietary
+information (n = 538) were excluded and only women with singleton live
+births (n = 3479) were considered.
+For five women weight during pregnancy was not measured and
+women who were underweight before pregnancy
+(body mass index (BMI) &lt; 18.5 kg/m<sup>2</sup>; n = 100) were excluded,
+leaving 3374 women for the
+current analysis (Figure ).</p>
+<div class="figure" style="text-align: center"><span id="fig:flowdiagMyrte"></span>
+<img src="Dissertation_files/figure-html/flowdiagMyrte-1.png" alt="Flow chart of the study population: the Generation R Study
+(2002–2006). * Population in which the \textit{a posteriori}-derived dietary patterns
+were determined.
+(BMI: body mass index; FFQ: food-frequency questionnaire)" width="100%"  />
+<p class="caption">
+Figure 3.1: Flow chart of the study population: the Generation R Study
+(2002–2006). * Population in which the -derived dietary patterns
+were determined.
+(BMI: body mass index; FFQ: food-frequency questionnaire)
+</p>
+</div>
+</div>
+<div id="dietary-assessment" class="section level3">
+<h3><span class="header-section-number">3.2.3</span> Dietary Assessment</h3>
+<p>Dietary intake in early pregnancy was assessed at enrolment (median: 13.4 weeks
+of gestation, Q3 – Q1: 12.2 – 15.5) using a 293-item
+semi-quantitative food-frequency questionnaire (FFQ) that covered dietary intake
+over the preceding three months.
+The FFQ contained questions regarding foods
+that are frequently consumed in a traditional Dutch diet, their consumption
+frequency, portion size <span class="citation">(Donders-Engelen and Heijden <a href="#ref-DondersEngelen2003" role="doc-biblioref">2003</a>)</span>, preparation methods, and additions to foods.
+The average daily intake of energy and nutrients was calculated using the Dutch
+food-composition table <span class="citation">(Netherlands Nutrition Center <a href="#ref-Netherlands2006" role="doc-biblioref">2006</a>)</span>. The FFQ was designed for and validated in an
+elderly population <span class="citation">(Klipstein-Grobusch et al. <a href="#ref-KlipsteinGrobusch1998" role="doc-biblioref">1998</a>)</span>, and has additionally been
+validated against three 24-h
+dietary recalls in 71 Dutch pregnant women who visited a midwifery in Rotterdam.
+The intra-class correlation coefficients for energy-adjusted macronutrients
+ranged between 0.48 and 0.68.</p>
+<div id="a-posteriori-derived-dietary-patterns" class="section level4 unnumbered">
+<h4><em>A Posteriori</em>-Derived Dietary Patterns</h4>
+<p>We used three <em>a posteriori</em>-derived dietary patterns, which had been identified
+previously by factor analysis using the principal component method and Varimax rotation
+<span class="citation">(Hu <a href="#ref-Hu2002" role="doc-biblioref">2002</a>; Kaiser <a href="#ref-Kaiser1958" role="doc-biblioref">1958</a>)</span>, and are described in detail elsewhere <span class="citation">(Van den Broek et al. <a href="#ref-Broek2015" role="doc-biblioref">2015</a>)</span>.
+Briefly, the 293 individual food items from the FFQ were aggregated into
+23 food groups.
+Subsequently, factors that had an eigenvalue of <span class="math inline">\(\geq\)</span> 1.5 were extracted
+and are regarded as dietary patterns <span class="citation">(Jolliffe <a href="#ref-Jolliffe2011" role="doc-biblioref">2011</a>)</span>.
+The factor loadings, which describe the contribution of each food group to each
+of the patterns, are presented in Table <a href="ch-Myrte.html#tab:loadingsMyrthe">3.1</a>.
+Finally, factor scores (i.e., adherence scores) for each
+participant and each pattern were determined by calculating the individual sum
+of the intake of the food groups, weighting them with their factor loadings and
+standardizing those weighted sums to have mean zero and standard deviation one
+(standard deviation score).
+A higher factor score indicates that a woman’s diet was closer to that dietary pattern.</p>
+<p>Three <em>a posteriori</em>-derived dietary patterns were thereby identified, namely a
+“Vegetable, oil and fish” pattern, a “Nuts, high-fibre cereals and soy”
+pattern and a “Margarine, sugar and snacks” pattern, together explaining
+25.8% of the variance in maternal dietary intake.</p>
+<table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:loadingsMyrthe">Table 3.1: </span>Factor loadings food groups in the <i>a posteriori</i>-derived dietary patterns <span class="citation">(Van den Broek et al. <a href="#ref-Broek2015" role="doc-biblioref">2015</a>)</span>.
+Food groups that are considered to have a strong association with a
+dietary pattern (factor loading <span class="math inline">\(\geq\)</span> 0.2 or <span class="math inline">\(\leq\)</span> -0.2) are shown in
+bold. The three factor loadings with the highest positive factor loading
+are used to name the dietary pattern and are highlighted in blue.
+</caption>
+<thead>
+<tr>
+<th style="border-bottom:hidden" colspan="1">
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Dietary Pattern
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:right;">
+Food Group
+</th>
+<th style="text-align:right;">
+Vegetable, Oil and Fish
+</th>
+<th style="text-align:right;">
+Nuts, High-Fibre Cereals and Soy
+</th>
+<th style="text-align:right;">
+Margarine, Sugar and Snacks
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;background-color: white !important;">
+potatoes and other tubers
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style="     color: #666666 !important;">0.05</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style=" font-weight: bold;    color: #666666 !important;">-0.53</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style=" font-weight: bold;    color: #666666 !important;">0.21</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;background-color: white !important;">
+vegetables
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style=" font-weight: bold;    color: blue !important;">0.78</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style="     color: #666666 !important;">0.17</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style="     color: #666666 !important;">-0.03</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;background-color: white !important;">
+fruits
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style="     color: #666666 !important;">0.13</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style=" font-weight: bold;    color: #666666 !important;">0.37</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style="     color: #666666 !important;">0.02</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;background-color: white !important;">
+dairy products—high fat
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style=" font-weight: bold;    color: #666666 !important;">0.26</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style=" font-weight: bold;    color: #666666 !important;">-0.26</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style=" font-weight: bold;    color: #666666 !important;">0.29</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;background-color: white !important;">
+dairy products—low fat
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style="     color: #666666 !important;">-0.15</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style=" font-weight: bold;    color: #666666 !important;">0.29</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style="     color: #666666 !important;">0.16</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;background-color: white !important;">
+cereals—high fiber
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style=" font-weight: bold;    color: #666666 !important;">0.24</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style=" font-weight: bold;    color: blue !important;">0.43</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style=" font-weight: bold;    color: #666666 !important;">0.36</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;background-color: white !important;">
+cereals—low fiber
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style=" font-weight: bold;    color: #666666 !important;">0.23</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style="     color: #666666 !important;">-0.16</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style=" font-weight: bold;    color: #666666 !important;">0.25</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;background-color: white !important;">
+meat and meat products
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style="     color: #666666 !important;">0.08</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style=" font-weight: bold;    color: #666666 !important;">-0.54</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style=" font-weight: bold;    color: #666666 !important;">0.33</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;background-color: white !important;">
+fish and shellfish
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style=" font-weight: bold;    color: blue !important;">0.45</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style=" font-weight: bold;    color: #666666 !important;">0.24</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style="     color: #666666 !important;">-0.11</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;background-color: white !important;">
+eggs and egg products
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style=" font-weight: bold;    color: #666666 !important;">0.27</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style="     color: #666666 !important;">0.05</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style="     color: #666666 !important;">0.19</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;background-color: white !important;">
+vegetable oils
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style=" font-weight: bold;    color: blue !important;">0.74</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style="     color: #666666 !important;">0.08</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style="     color: #666666 !important;">-0.12</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;background-color: white !important;">
+margarine and butter
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style="     color: #666666 !important;">-0.06</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style="     color: #666666 !important;">-0.03</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style=" font-weight: bold;    color: blue !important;">0.61</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;background-color: white !important;">
+sugar and confectionary and cakes
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style="     color: #666666 !important;">-0.11</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style="     color: #666666 !important;">0.13</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style=" font-weight: bold;    color: blue !important;">0.56</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;background-color: white !important;">
+snacks
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style="     color: #666666 !important;">0.05</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style="     color: #666666 !important;">0.08</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style=" font-weight: bold;    color: blue !important;">0.4</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;background-color: white !important;">
+coffee and tea
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style=" font-weight: bold;    color: #666666 !important;">0.28</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style=" font-weight: bold;    color: #666666 !important;">0.34</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style="     color: #666666 !important;">0.1</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;background-color: white !important;">
+sugar-containing beverages
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style="     color: #666666 !important;">-0.14</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style=" font-weight: bold;    color: #666666 !important;">-0.28</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style=" font-weight: bold;    color: #666666 !important;">0.29</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;background-color: white !important;">
+light soft drinks
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style="     color: #666666 !important;">0.13</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style=" font-weight: bold;    color: #666666 !important;">0.28</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style="     color: #666666 !important;">0.02</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;background-color: white !important;">
+alcoholic beverages
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style=" font-weight: bold;    color: #666666 !important;">0.35</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style="     color: #666666 !important;">0</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style="     color: #666666 !important;">-0.04</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;background-color: white !important;">
+condiments and sauces
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style="     color: #666666 !important;">0.05</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style="     color: #666666 !important;">-0.09</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style=" font-weight: bold;    color: #666666 !important;">0.39</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;background-color: white !important;">
+soups and bouillon
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style="     color: #666666 !important;">0.19</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style="     color: #666666 !important;">-0.02</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style="     color: #666666 !important;">0.15</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;background-color: white !important;">
+nuts, seeds and olives
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style="     color: #666666 !important;">0.03</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style=" font-weight: bold;    color: blue !important;">0.64</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style=" font-weight: bold;    color: #666666 !important;">0.3</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;background-color: white !important;">
+soy products
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style="     color: #666666 !important;">0.01</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style=" font-weight: bold;    color: blue !important;">0.39</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style="     color: #666666 !important;">-0.1</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;background-color: white !important;">
+legumes
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style=" font-weight: bold;    color: #666666 !important;">0.44</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style="     color: #666666 !important;">-0.02</span>
+</td>
+<td style="text-align:right;background-color: white !important;">
+<span style="     color: #666666 !important;">0.07</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="a-priori-defined-dietary-pattern" class="section level4">
+<h4><span class="header-section-number">3.2.3.1</span> <em>A Priori</em>-Defined Dietary Pattern</h4>
+<p>The <em>a priori</em>-defined dietary pattern was based on the Dutch Healthy
+Diet Index <span class="citation">(Van Lee et al. <a href="#ref-Lee2012" role="doc-biblioref">2012</a>)</span>.
+This index was developed to measure adherence to the Dutch
+guidelines for a healthy diet <span class="citation">(Health Council of the Netherlands <a href="#ref-HealthCounsil2006" role="doc-biblioref">2006</a>)</span> and consisted of ten components:
+physical activity, vegetable, fruit, dietary fibre, fish, saturated fatty acids,
+trans-fatty acids, consumption of acidic drinks and foods, sodium, and alcohol.
+We omitted the components physical activity, trans-fatty acids, and the
+consumption of acidic drinks and foods because this information had not been
+collected. Furthermore, we did not include the alcohol component as alcohol
+abstinence is recommended during pregnancy. The score of each component ranged
+between 0 and 10 points, resulting in a total score ranging from 0 to 60 points.
+A higher score on the Dutch Healthy Diet Index
+corresponds with a higher adherence to the 2006 Dutch healthy diet guidelines
+and thus reflects a healthier diet.
+Finally, to facilitate comparison between all dietary patterns, we standardized
+the “Dutch Healthy Diet Index” pattern to a standard deviation score.</p>
+</div>
+</div>
+<div id="maternal-weight-gain" class="section level3">
+<h3><span class="header-section-number">3.2.4</span> Maternal Weight Gain</h3>
+<p>Information on pre-pregnancy weight was collected at enrolment using a
+questionnaire and was used to calculate pre-pregnancy BMI (kg/m<sup>2</sup>).
+Women visited our research centre three times at median gestational ages
+of 12.9 (Q3 – Q1: 12.1 – 14.4) weeks (first visit), 20.4 (Q3 – Q1: 19.9 –- 21.1)
+weeks (second visit),
+and 30.2 (Q3 – Q1: 29.9 – 30.8) weeks (third visit).
+During each visit, maternal height
+and weight were measured without shoes and heavy clothing. Six weeks after
+childbirth, women were asked to report their highest weight during pregnancy
+using a questionnaire, which we used as maximum weight in pregnancy.</p>
+<!-- Pre-pregnancy weight was highly correlated with weight measured during the first -->
+<!-- visit ($\rho = 0.96$, p-value < 0.001, n = 2425), and there was no indication for -->
+<!-- systematic measurement error (Figure \@ref(fig:App1Myrthe)). -->
+<!-- Moreover, high correlation was found between weight during the third visit and -->
+<!-- maximum weight in pregnancy ($\rho = 0.89$, p-value < 0.001, n = 2177) without an -->
+<!-- indication for systematic measurement error (Figure \@ref(fig:App1_Myrthe)). -->
+<!-- To evaluate long-term maternal weight gain, we -->
+<!-- measured maternal weight at our research centre six years after childbirth. -->
+<div id="gestational-weight-gain-during-different-phases-in-pregnancy" class="section level4 unnumbered">
+<h4>Gestational Weight Gain during Different Phases in Pregnancy</h4>
+<p>GWG in different phases of pregnancy was calculated for three consecutive
+periods, namely early-pregnancy GWG (calculated as weight at the first visit
+minus pre-pregnancy weight, divided by follow-up duration (g/week), n = 2425),
+mid-pregnancy GWG (calculated as weight at the second visit minus weight the
+first visit, divided by follow-up duration (g/week), n = 2748), and
+late-pregnancy GWG (calculated as weight at the third visit minus weight at the
+second visit, divided by follow-up duration (g/week), n = 3158).
+GWG until early-third trimester was calculated as weight at the third visit
+minus pre-pregnancy weight, divided by follow up duration (g/week, n = 2815).</p>
+<!-- #### Adequacy of Gestational Weight Gain {-} -->
+<!-- Women's total GWG (calculated as maximum weight in pregnancy minus -->
+<!-- pre-pregnancy weight, n = 1917) was used to classify their GWG into inadequate, -->
+<!-- adequate, or excessive GWG. Cut-off values of GWG adequacy were based on -->
+<!-- recommendations published by the US Institute of Medicine and were -->
+<!-- BMI-specific [@Rasmussen2009]. Normal-weight women (BMI 18.5–-24.9 kg/m^2^) were categorized -->
+<!-- as having an adequate GWG with a GWG between 11.5 and 16 kg, overweight women -->
+<!-- (BMI 25--29.9 kg/m^2^) were classified as adequate GWG with GWG between 7 and -->
+<!-- 11.5 kg, and adequate GWG for obese women (BMI $\geq$ 30 kg/m^2^) was between 5 and -->
+<!-- 9 kg. -->
+</div>
+</div>
+<div id="covariates" class="section level3">
+<h3><span class="header-section-number">3.2.5</span> Covariates</h3>
+<p>Several maternal sociodemographic and lifestyle characteristics were considered
+as potential confounders. We obtained information from prenatal questionnaires
+that were sent in different trimesters regarding maternal age, educational
+level <span class="citation">(Van Rossem et al. <a href="#ref-Rossem2009" role="doc-biblioref">2009</a>)</span>, household income (<span class="math inline">\(\leq\)</span> 2200 vs &gt;2200 euro/month),
+parity (no child vs <span class="math inline">\(\geq\)</span> 1 child), pre-pregnancy weight, pre-existing
+comorbidities, vomiting, smoking or alcohol consumption (both categorized as
+never during pregnancy, stopped when pregnancy was known, or continued
+throughout pregnancy), folic acid supplementation (started periconceptionally,
+started first 10 weeks, or no supplementation), energy intake, and stress during
+pregnancy (using the Global Severity Index <span class="citation">(Derogatis and Spencer <a href="#ref-Derogatis1993" role="doc-biblioref">1993</a>)</span>). To calculate pre-pregnancy BMI,
+height was measured at enrolment. Gestational age was determined based on
+ultrasound examination, and during the third visit an ultrasound was performed
+to estimate fetal weight. Information on fetal sex was obtained from delivery
+reports.</p>
+</div>
+<div id="statistical-analyses" class="section level3">
+<h3><span class="header-section-number">3.2.6</span> Statistical Analyses</h3>
+<p>In order to adequately estimate the relationship between <em>a posteriori</em>-derived
+dietary patterns and trajectories
+of gestational weight in the presence of incomplete covariates, we performed a
+longitudinal analysis using linear mixed modelling in the Bayesian framework.
+This method has been described in detail previously <span class="citation">(Erler et al. <a href="#ref-Erler2016" role="doc-biblioref">2016</a>)</span> and allows
+for simultaneous analysis and imputation of missing values.
+Briefly, by modelling the joint distribution of exposure, outcome and covariates,
+all available information is used to impute the missing values, and parameter
+estimates are obtained that take into account the added uncertainty due to the
+missing values.</p>
+<p>We considered two sets of possible confounders in the analysis.
+Model 1 was adjusted for gestational age at the mid-point of the follow-up interval
+and pre-pregnancy BMI.
+Model 2 was further adjusted for age, educational level, household income,
+parity, smoking during pregnancy, alcohol consumption during pregnancy,
+stress during pregnancy, and fetal sex.
+The selection of potential confounders was based on factors found in the
+literature and on a change of at least 10% in effect estimate in a preliminary
+analysis assessing the association of dietary patterns with GWG until
+early-third trimester.
+As GWG is related to BMI <span class="citation">(Institute of Medicine and National Research Council <a href="#ref-Rasmussen2009" role="doc-biblioref">2009</a>)</span> and preliminary
+analyses showed significant interaction terms for the “Vegetable, oil and fish”
+pattern and the “Nuts, high-fibre cereals and soy” pattern with pre-pregnancy
+BMI, we stratified all analyses (including the Bayesian linear mixed model)
+on the basis of weight status
+(normal-weight: BMI &lt; 25 kg/m<sup>2</sup> and overweight: BMI <span class="math inline">\(\geq\)</span> 25 kg/m<sup>2</sup>).</p>
+<p>In the Bayesian linear mixed model, all main effects from Model 2 (except gestational
+age at the mid-point of the follow-up interval), interaction
+terms between the dietary pattern variables and a linear
+and quadratic effect for gestational age were included in the fixed effects
+structure. Correlation between weight measurements within each individual
+was modelled by including random effects for the intercept and slope (for
+gestational age) into the model.
+For this analysis, the reported parameter estimates
+and 95% credible intervals were obtained by taking the mean and 2.5% and
+97.5% quantiles of the posterior samples.</p>
+<p>To analyse the association of the <em>a priori</em>-defined and <em>a posteriori</em>-derived
+dietary patterns with GWG during different phases in pregnancy, specifically
+GWG during each trimester, until early third trimester and maximal GWG, we
+performed multivariable linear regression analysis on imputed datasets.
+For these analyses, ten imputed values were drawn from the posterior samples
+of each of the incomplete covariates derived in the Bayesian analysis described
+above.
+Missing observations of gestational weight were not imputed.
+The reported results from the cross-sectional models were pooled over
+all ten completed datasets using Rubin’s rules <span class="citation">(Rubin <a href="#ref-Rubin1987" role="doc-biblioref">1987</a>)</span>.
+<!-- Separate models were fitted with the dietary patterns -->
+<!-- discretized into quartiles, with the lowest quartile (Q1) as a reference -->
+<!-- category, as well as continuously per SD score. Quartiles were constructed -->
+<!-- separately for normal-weight and overweight women; each of these analyses was -->
+<!-- done for Model 1 and Model 2. -->
+<!-- To identify cases that have an influence on the regression models Cook's distance was calculated [@Cook1977]. --></p>
+<!-- Since GWG is a physiological process in pregnancy resulting in weight -->
+<!-- gain in almost all women during pregnancy [@Rasmussen2009], we also evaluated the -->
+<!-- associations between dietary patterns and GWG adequacy (inadequate, adequate -->
+<!-- or excessive GWG) using multinomial regression models (on imputed data).  -->
+<!-- We included all covariates from Model 2 and used "adequate GWG" as a reference category. -->
+<div id="sensitivity-analyses" class="section level4 unnumbered">
+<h4>Sensitivity Analyses</h4>
+<p>To test the stability of the results, four sensitivity analyses for the
+association between dietary patterns and GWG until early-third trimester were
+performed in Model 2.
+First, because energy intake may be an intermediate factor in the association
+of maternal diet with GWG, we further adjusted for energy intake (kcal/day).
+<!-- Second, motivated by the previous finding that specific dietary patterns may be -->
+<!-- associated with fetal weight [@Timmermans2012], we additionally adjusted for  -->
+<!-- estimated fetal weight in the early-third trimester to evaluate whether higher -->
+<!-- GWG could be explained by greater fetal growth. -->
+Second, we excluded women with pre-existing comorbidities (n = 182) and women
+with hypertensive complications in pregnancy <span class="citation">(Coolman et al. <a href="#ref-Coolman2010" role="doc-biblioref">2010</a>)</span> or gestational
+diabetes (n = 272) since these conditions may influence both dietary intake and GWG.
+Third, we excluded women who reported vomiting more than once per week during
+the three months prior to enrolment (n = 421), since this might alter dietary
+intake and GWG.
+Moreover, we explored effect modification of the association between dietary
+patterns and GWG with educational level and household income.</p>
+<p>Additionally, we evaluated whether the associations of dietary patterns with
+GWG would markedly change when using self-reported maximum weight during
+pregnancy instead of measured weight at the third visit (n = 1917).
+<!-- Furthermore, because some measurement error was found in the self-reported weights, -->
+<!-- we evaluated whether the associations found between the dietary -->
+<!-- patterns and adequacy of weekly GWG (between the first and the third visit) were -->
+<!-- similar to those with adequacy of total GWG (n = 2745; Figure \@ref(fig:BAplot)). -->
+Furthermore, we explored long-term maternal weight gain and evaluated whether
+this long-term weight gain differed in women with inadequate, adequate or
+excessive GWG using Analysis of Variance (ANOVA).
+The cut-off values of adequate weekly GWG were 0.35 –- 0.50 kg/week for normal
+weight women, 0.23 –- 0.33 kg/week for overweight women, and 0.17 –- 0.27 kg/week
+for obese women <span class="citation">(Institute of Medicine and National Research Council <a href="#ref-Rasmussen2009" role="doc-biblioref">2009</a>)</span>.
+Finally, we calculated the correlation between weight at the third visit and
+weight 6 years after childbirth.</p>
+<p>All statistical analyses were performed in SPSS version 21.0
+(IBM Corp., Armonk, NY, USA) or R version 3.2.1 (R Foundation for Statistical
+Computing, Vienna, Austria) and JAGS version 3.4.0 <span class="citation">(Plummer <a href="#ref-JAGS" role="doc-biblioref">2003</a>)</span>.</p>
+
+</div>
+</div>
+</div>
+<div id="results-2" class="section level2">
+<h2><span class="header-section-number">3.3</span> Results</h2>
+<div id="study-population" class="section level3">
+<h3><span class="header-section-number">3.3.1</span> Study Population</h3>
+<p>Baseline characteristics for normal-weight women (n = 2544; 75%) and
+overweight women (n = 830; 25%) are presented in Table <a href="ch-Myrte.html#tab:Table1Myrte">3.2</a>.
+The mean score <span class="math inline">\(\pm\)</span> SD on the Dutch Healthy Diet Index was <span class="math inline">\(32 \pm 8\)</span> and ranged
+from 8 to 59.
+Overall, 43% of women had excessive GWG (n = 826); excessive GWG was found in
+37% of the normal-weight women (n = 557) and in 63% of the overweight women
+(n = 269).</p>
+<!-- We did not identify women with large influence on the effect estimates of the -->
+<!-- association between dietary patterns and GWG (all Cook’s distances were < 1). -->
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:Table1Myrte">Table 3.2: </span>Subject characteristics.
+Values represent n (%) for categorical variables, and mean
+(<span class="math inline">\(\pm\)</span> SD) or median (Q1, Q3) for continuous variables.
+Numbers may not add up to total due to rounding after imputation.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+subject characteristic
+</th>
+<th style="text-align:center;">
+normal-weight women<br>(n = 2544)
+</th>
+<th style="text-align:center;">
+overweight women<br>(n = 830)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;background-color: white !important;width: 24em; ">
+Age (years)
+</td>
+<td style="text-align:center;background-color: white !important;">
+31.6 (<span class="math inline">\(\pm\)</span> 4.3)
+</td>
+<td style="text-align:center;background-color: white !important;">
+31.0 (<span class="math inline">\(\pm\)</span> 4.4)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: white !important;width: 24em; ">
+Educational level (1.3% NA)
+</td>
+<td style="text-align:center;background-color: white !important;">
+</td>
+<td style="text-align:center;background-color: white !important;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;width: 24em; " indentlevel="1">
+Low and midlow
+</td>
+<td style="text-align:center;background-color: white !important;">
+307 (12.1%)
+</td>
+<td style="text-align:center;background-color: white !important;">
+201 (24.2%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;width: 24em; " indentlevel="1">
+Midhigh
+</td>
+<td style="text-align:center;background-color: white !important;">
+1283 (50.4%)
+</td>
+<td style="text-align:center;background-color: white !important;">
+436 (52.5%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;width: 24em; " indentlevel="1">
+High
+</td>
+<td style="text-align:center;background-color: white !important;">
+954 (37.5%)
+</td>
+<td style="text-align:center;background-color: white !important;">
+193 (23.3%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: white !important;width: 24em; ">
+Household income (10.3% NA)
+</td>
+<td style="text-align:center;background-color: white !important;">
+</td>
+<td style="text-align:center;background-color: white !important;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;width: 24em; " indentlevel="1">
+&lt; 2200 Euro/month
+</td>
+<td style="text-align:center;background-color: white !important;">
+620 (24.4%)
+</td>
+<td style="text-align:center;background-color: white !important;">
+266 (32.1%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;width: 24em; " indentlevel="1">
+<span class="math inline">\(\geq\)</span> 2200 Euro/month
+</td>
+<td style="text-align:center;background-color: white !important;">
+1924 (75.6%)
+</td>
+<td style="text-align:center;background-color: white !important;">
+564 (67.9%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: white !important;width: 24em; ">
+Parity (0.2% NA)
+</td>
+<td style="text-align:center;background-color: white !important;">
+</td>
+<td style="text-align:center;background-color: white !important;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;width: 24em; " indentlevel="1">
+0
+</td>
+<td style="text-align:center;background-color: white !important;">
+1554 (61.1%)
+</td>
+<td style="text-align:center;background-color: white !important;">
+465 (56.0%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;width: 24em; " indentlevel="1">
+<span class="math inline">\(\geq\)</span> 1
+</td>
+<td style="text-align:center;background-color: white !important;">
+990 (38.9%)
+</td>
+<td style="text-align:center;background-color: white !important;">
+365 (44.0%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: white !important;width: 24em; ">
+Pre-pregnancy BMI (kg/m<sup>2</sup>; 14.2% NA)
+</td>
+<td style="text-align:center;background-color: white !important;">
+21.6 [20.4, 23.0]
+</td>
+<td style="text-align:center;background-color: white !important;">
+27.7, [26.0, 30.5]
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: white !important;width: 24em; ">
+Smoking during pregnancy (7.4% NA)
+</td>
+<td style="text-align:center;background-color: white !important;">
+</td>
+<td style="text-align:center;background-color: white !important;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;width: 24em; " indentlevel="1">
+Never during pregnancy
+</td>
+<td style="text-align:center;background-color: white !important;">
+1911 (75.1%)
+</td>
+<td style="text-align:center;background-color: white !important;">
+612 (73.7%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;width: 24em; " indentlevel="1">
+Until pregnancy was known
+</td>
+<td style="text-align:center;background-color: white !important;">
+233 (9.2%)
+</td>
+<td style="text-align:center;background-color: white !important;">
+61 (7.3%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;width: 24em; " indentlevel="1">
+Continued throughout pregnancy
+</td>
+<td style="text-align:center;background-color: white !important;">
+400 (15.7%)
+</td>
+<td style="text-align:center;background-color: white !important;">
+157 (19.0%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: white !important;width: 24em; ">
+Alcohol consumption during pregnancy (8.1% NA)
+</td>
+<td style="text-align:center;background-color: white !important;">
+</td>
+<td style="text-align:center;background-color: white !important;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;width: 24em; " indentlevel="1">
+Never during pregnancy
+</td>
+<td style="text-align:center;background-color: white !important;">
+764 (30.0%)
+</td>
+<td style="text-align:center;background-color: white !important;">
+359 (43.2%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;width: 24em; " indentlevel="1">
+Until pregnancy was known
+</td>
+<td style="text-align:center;background-color: white !important;">
+416 (16.4%)
+</td>
+<td style="text-align:center;background-color: white !important;">
+138 (16.6%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;width: 24em; " indentlevel="1">
+Continued throughout pregnancy
+</td>
+<td style="text-align:center;background-color: white !important;">
+1364 (53.6%)
+</td>
+<td style="text-align:center;background-color: white !important;">
+334 (40.2%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: white !important;width: 24em; ">
+Stress during pregnancy (score 0–4; 12% NA)
+</td>
+<td style="text-align:center;background-color: white !important;">
+0.12 [0.06, 0.24]
+</td>
+<td style="text-align:center;background-color: white !important;">
+0.13 [0.06; 0.26]
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: white !important;width: 24em; ">
+Energy intake (kcal/day)
+</td>
+<td style="text-align:center;background-color: white !important;">
+2162 (<span class="math inline">\(\pm\)</span> 507)
+</td>
+<td style="text-align:center;background-color: white !important;">
+2090 (<span class="math inline">\(\pm\)</span> 514)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: white !important;width: 24em; ">
+Dutch Healthy Diet Index (score 0–60)
+</td>
+<td style="text-align:center;background-color: white !important;">
+32 (<span class="math inline">\(\pm\)</span> 8)
+</td>
+<td style="text-align:center;background-color: white !important;">
+30 (<span class="math inline">\(\pm\)</span> 8)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: white !important;width: 24em; ">
+Fetal sex
+</td>
+<td style="text-align:center;background-color: white !important;">
+</td>
+<td style="text-align:center;background-color: white !important;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;width: 24em; " indentlevel="1">
+Male
+</td>
+<td style="text-align:center;background-color: white !important;">
+1287 (50.6%)
+</td>
+<td style="text-align:center;background-color: white !important;">
+415 (50.0%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;width: 24em; " indentlevel="1">
+Female
+</td>
+<td style="text-align:center;background-color: white !important;">
+1257 (49.4%)
+</td>
+<td style="text-align:center;background-color: white !important;">
+415 (50.0%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: white !important;width: 24em; ">
+Gestational weight gain (kg; 43.2% NA)
+</td>
+<td style="text-align:center;background-color: white !important;">
+14.7 (<span class="math inline">\(\pm\)</span> 7.3)
+</td>
+<td style="text-align:center;background-color: white !important;">
+12.9 (<span class="math inline">\(\pm\)</span> 7.7)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: white !important;width: 24em; ">
+Adequacy of gestational weight gain (43.2% NA)
+</td>
+<td style="text-align:center;background-color: white !important;">
+</td>
+<td style="text-align:center;background-color: white !important;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;width: 24em; " indentlevel="1">
+Inadequate
+</td>
+<td style="text-align:center;background-color: white !important;">
+370 (24.8%)
+</td>
+<td style="text-align:center;background-color: white !important;">
+89 (20.9%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;width: 24em; " indentlevel="1">
+Adequate
+</td>
+<td style="text-align:center;background-color: white !important;">
+565 (37.9%)
+</td>
+<td style="text-align:center;background-color: white !important;">
+67 (15.8%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;width: 24em; " indentlevel="1">
+Excessive
+</td>
+<td style="text-align:center;background-color: white !important;">
+557 (37.3%)
+</td>
+<td style="text-align:center;background-color: white !important;">
+269 (63.3%)
+</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+<div id="dietary-patterns-and-trajectories-of-gestational-weight" class="section level3">
+<h3><span class="header-section-number">3.3.2</span> Dietary Patterns and Trajectories of Gestational Weight</h3>
+<p>Results from the Bayesian linear mixed models for normal-weight and overweight
+women are summarized in Table <a href="ch-Myrte.html#tab:Bayesres">3.3</a> and visualized in Figure
+<a href="ch-Myrte.html#fig:TrajMyrthe">3.2</a>. The figure shows the expected gestational weight over time
+with corresponding 95% credible intervals under six different scenarios. In each
+scenario the expected weight, either for normal-weight or overweight women,
+is shown for a -0.5 SDS and 0.5 SDS adherence to
+one of the <em>a posteriori</em>-derived dietary patterns, while the adherence to the other patterns and confounders
+are held constant at reference values (0 SDS for adherence to other dietary patterns,
+and population median and reference category for continuous and categorical confounders,
+respectively).</p>
+<p>In both normal-weight and overweight women, there was no evidence of either main
+effects of diet or interaction with gestational age for most dietary patterns
+(Table <a href="ch-Myrte.html#tab:Bayesres">3.3</a>).
+Only adherence to the “Margarine, sugar and snacks” pattern was associated with
+higher weight in normal-weight women (0.30; 95% CI [0.07, 0.52])
+and the “Nuts, high-fibre cereals and soy” pattern was associated
+with slightly slower weight gain in normal-weight women (-0.01; 95% CI [-0.02, -0.00]).</p>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:Bayesres">Table 3.3: </span>Posterior means and 95% credible intervals of the
+longitudinal analysis of <em>a posteriori</em>-derived dietary patterns and weight
+development in pregnancy in normal-weight and overweight women using Bayesian
+linear mixed models.
+(pattern<sub>VOF</sub>: “Vegetable, oil and fish”,
+pattern<sub>{NCS}</sub>: “Nuts, high-fibre cereals and soy”,
+pattern<sub>{MSS}</sub>: “Margarine, sugar and snacks”)
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+
+</th>
+<th style="text-align:center;">
+
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;background-color: white !important;">
+pattern
+</td>
+<td style="text-align:center;background-color: white !important;">
+0.22 [-0.01, 0.44]
+</td>
+<td style="text-align:center;background-color: white !important;">
+0.26 [-0.18, 0.72]
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: white !important;">
+pattern
+</td>
+<td style="text-align:center;background-color: white !important;">
+0.15 [-0.08, 0.39]
+</td>
+<td style="text-align:center;background-color: white !important;">
+-0.31 [-0.77, 0.14]
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: white !important;">
+pattern
+</td>
+<td style="text-align:center;background-color: white !important;">
+0.30 [0.07, 0.52]
+</td>
+<td style="text-align:center;background-color: white !important;">
+0.32 [-0.07, 0.71]
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: white !important;">
+gest. age
+</td>
+<td style="text-align:center;background-color: white !important;">
+0.13 [0.12, 0.14]
+</td>
+<td style="text-align:center;background-color: white !important;">
+0.10 [0.08, 0.12]
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: white !important;">
+gest. age
+</td>
+<td style="text-align:center;background-color: white !important;">
+0.01 [0.01, 0.01]
+</td>
+<td style="text-align:center;background-color: white !important;">
+0.01 [0.01, 0.01]
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: white !important;">
+gest. age <span class="math inline">\(\times\)</span> pattern
+</td>
+<td style="text-align:center;background-color: white !important;">
+-0.00 [-0.01, 0.01]
+</td>
+<td style="text-align:center;background-color: white !important;">
+0.01 [-0.01, 0.02]
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: white !important;">
+gest. age <span class="math inline">\(\times\)</span> pattern
+</td>
+<td style="text-align:center;background-color: white !important;">
+-0.01 [-0.02, -0.00]
+</td>
+<td style="text-align:center;background-color: white !important;">
+0.01 [-0.00, 0.02]
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: white !important;">
+gest. age <span class="math inline">\(\times\)</span> pattern
+</td>
+<td style="text-align:center;background-color: white !important;">
+0.01 [-0.00, 0.01]
+</td>
+<td style="text-align:center;background-color: white !important;">
+0.00 [-0.01, 0.02]
+</td>
+</tr>
+</tbody>
+</table>
+<div class="figure" style="text-align: center"><span id="fig:TrajMyrthe"></span>
+<img src="Dissertation_files/figure-html/TrajMyrthe-1.png" alt="Visualization of the effect of diet on gestational weight over time.
+Shown are the expected value and corresponding
+95\% CIs for hypothetical cases that have either -0.5 or 0.5 SDS for adherence to
+the respective dietary pattern and reference values for the other patterns and confounders." width="100%"  />
+<p class="caption">
+Figure 3.2: Visualization of the effect of diet on gestational weight over time.
+Shown are the expected value and corresponding
+95% CIs for hypothetical cases that have either -0.5 or 0.5 SDS for adherence to
+the respective dietary pattern and reference values for the other patterns and confounders.
+</p>
+</div>
+</div>
+<div id="dietary-patterns-and-gestational-weight-gain-in-different-phases-in-pregnancy" class="section level3">
+<h3><span class="header-section-number">3.3.3</span> Dietary Patterns and Gestational Weight Gain in Different Phases in Pregnancy</h3>
+<p>For normal-weight women a 1 SDS higher adherence to the “Vegetable, oil and fish”
+pattern was associated with a 16 g/week (95% CI [6.5, 25.6]) greater
+early-pregnancy GWG when adjusting for lifestyle and sociodemographic variables
+(Table <a href="ch-Myrte.html#tab:Table3aMyrte">3.4</a>).
+We observed no such association in overweight women (Table <a href="ch-Myrte.html#tab:Table3bMyrte">3.5</a>).
+The “Nuts, high-fibre cereals and soy” pattern was associated with lower
+early-pregnancy GWG in Model 1 in both normal-weight and overweight women.
+However, after additional adjustment (Model 2) this pattern was no longer
+significantly associated with early-pregnancy GWG. Neither the
+“Margarine, sugar and snacks” pattern nor the “Dutch Healthy Diet Index”
+pattern was associated with early-pregnancy GWG.</p>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:Table3aMyrte">Table 3.4: </span>Association of dietary patterns with gestational weight gain during early
+pregnancy in normal-weight women (n = 1849).
+Shown are regression coefficients with 95% confidence intervals from multivariable
+linear regression on imputed data, reflecting the difference in weight gain
+(g/week) for a 1 SD increase in dietary pattern score.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+
+</th>
+<th style="text-align:center;">
+
+</th>
+</tr>
+</thead>
+<tbody>
+<tr grouplength="3">
+<td colspan="3" style="border-bottom: 1px solid;">
+<strong><em>a posteriori</em> dietary patterns</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+Vegetable, Oil and Fish
+</td>
+<td style="text-align:center;background-color: white !important;">
+ 14.3 [  5.2,  23.4]
+</td>
+<td style="text-align:center;background-color: white !important;">
+ 16.0 [  6.5,  25.6]
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+Nuts, High-Fibre Cereals and Soy
+</td>
+<td style="text-align:center;background-color: white !important;">
+-14.5 [-23.7,  -5.3]
+</td>
+<td style="text-align:center;background-color: white !important;">
+ -6.5 [-16.4,   3.5]
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+Margarine, Sugar and Snacks
+</td>
+<td style="text-align:center;background-color: white !important;">
+  7.6 [ -1.7,  17.0]
+</td>
+<td style="text-align:center;background-color: white !important;">
+  4.4 [ -4.9,  13.7]
+</td>
+</tr>
+<tr grouplength="1">
+<td colspan="3" style="border-bottom: 1px solid;">
+<strong><em>a priori</em> dietary pattern</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+Dutch Healthy Diet Index
+</td>
+<td style="text-align:center;background-color: white !important;">
+  0.8 [ -8.3,   9.9]
+</td>
+<td style="text-align:center;background-color: white !important;">
+ -6.2 [-15.5,   3.1]
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:Table3bMyrte">Table 3.5: </span>Association of dietary patterns with gestational weight gain during early
+pregnancy in overweight women (n = 576).
+Shown are regression coefficients with 95% confidence intervals from multivariable
+linear regression on imputed data, reflecting the difference in weight gain
+(g/week) for a 1 SD increase in dietary pattern score.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+
+</th>
+<th style="text-align:center;">
+
+</th>
+</tr>
+</thead>
+<tbody>
+<tr grouplength="3">
+<td colspan="3" style="border-bottom: 1px solid;">
+<strong><em>a posteriori</em> dietary patterns</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+Vegetable, Oil and Fish
+</td>
+<td style="text-align:center;background-color: white !important;">
+  5.8 [-17.8,  29.5]
+</td>
+<td style="text-align:center;background-color: white !important;">
+ 14.8 [-11.2,  40.7]
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+Nuts, High-Fibre Cereals and Soy
+</td>
+<td style="text-align:center;background-color: white !important;">
+-28.8 [-52.2,  -5.4]
+</td>
+<td style="text-align:center;background-color: white !important;">
+-24.0 [-48.8,   0.7]
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+Margarine, Sugar and Snacks
+</td>
+<td style="text-align:center;background-color: white !important;">
+ 14.1 [ -7.3,  35.5]
+</td>
+<td style="text-align:center;background-color: white !important;">
+ 12.4 [ -9.0,  33.9]
+</td>
+</tr>
+<tr grouplength="1">
+<td colspan="3" style="border-bottom: 1px solid;">
+<strong><em>a priori</em> dietary pattern</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+Dutch Healthy Diet Index
+</td>
+<td style="text-align:center;background-color: white !important;">
+ 10.8 [-10.3,  31.9]
+</td>
+<td style="text-align:center;background-color: white !important;">
+  2.4 [-19.5,  24.2]
+</td>
+</tr>
+</tbody>
+</table>
+<p>No significant associations were found for any of the dietary patterns with
+mid-pregnancy GWG in normal-weight or overweight women
+(Tables <a href="ch-Myrte.html#tab:Table4aMyrte">3.6</a> and <a href="ch-Myrte.html#tab:Table4bMyrte">3.7</a>).
+Tables <a href="ch-Myrte.html#tab:Table5aMyrte">3.8</a> and <a href="ch-Myrte.html#tab:Table5bMyrte">3.9</a> show
+that in normal-weight women, only the “Nuts, high-fibre cereals and soy”
+pattern was inversely associated with late-pregnancy GWG in Model 1,
+but these results largely attenuated after adjustment for sociodemographic and
+lifestyle factors (Model 2).
+In overweight women, none of the dietary patterns was significantly associated
+with late-pregnancy GWG.</p>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:Table4aMyrte">Table 3.6: </span>Association of dietary patterns with gestational weight gain during mid
+pregnancy in normal-weight women (n = 2086).
+Shown are regression coefficients with 95% confidence intervals from multivariable
+linear regression on imputed data, reflecting the difference in weight gain
+(g/week) for a 1 SD increase in dietary pattern score.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+
+</th>
+<th style="text-align:center;">
+
+</th>
+</tr>
+</thead>
+<tbody>
+<tr grouplength="3">
+<td colspan="3" style="border-bottom: 1px solid;">
+<strong><em>a posteriori</em> dietary patterns</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+Vegetable, Oil and Fish
+</td>
+<td style="text-align:center;background-color: white !important;">
+ -8.5 [-22.0,   5.0]
+</td>
+<td style="text-align:center;background-color: white !important;">
+ -7.1 [-21.4,   7.2]
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+Nuts, High-Fibre Cereals and Soy
+</td>
+<td style="text-align:center;background-color: white !important;">
+  9.5 [ -4.1,  23.2]
+</td>
+<td style="text-align:center;background-color: white !important;">
+ 11.3 [ -3.6,  26.2]
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+Margarine, Sugar and Snacks
+</td>
+<td style="text-align:center;background-color: white !important;">
+  3.9 [ -9.7,  17.5]
+</td>
+<td style="text-align:center;background-color: white !important;">
+  4.2 [ -9.5,  18.0]
+</td>
+</tr>
+<tr grouplength="1">
+<td colspan="3" style="border-bottom: 1px solid;">
+<strong><em>a priori</em> dietary pattern</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+Dutch Healthy Diet Index
+</td>
+<td style="text-align:center;background-color: white !important;">
+  3.2 [-10.2,  16.6]
+</td>
+<td style="text-align:center;background-color: white !important;">
+  2.8 [-11.2,  16.7]
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:Table4bMyrte">Table 3.7: </span>Association of dietary patterns with gestational weight gain during mid
+pregnancy in overweight women (n = 662).
+Shown are regression coefficients with 95% confidence intervals from multivariable
+linear regression on imputed data, reflecting the difference in weight gain
+(g/week) for a 1 SD increase in dietary pattern score.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+
+</th>
+<th style="text-align:center;">
+
+</th>
+</tr>
+</thead>
+<tbody>
+<tr grouplength="3">
+<td colspan="3" style="border-bottom: 1px solid;">
+<strong><em>a posteriori</em> dietary patterns</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+Vegetable, Oil and Fish
+</td>
+<td style="text-align:center;background-color: white !important;">
+ 35.6 [  6.1,  65.1]
+</td>
+<td style="text-align:center;background-color: white !important;">
+ 19.1 [-13.8,  52.0]
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+Nuts, High-Fibre Cereals and Soy
+</td>
+<td style="text-align:center;background-color: white !important;">
+ 23.5 [ -5.7,  52.7]
+</td>
+<td style="text-align:center;background-color: white !important;">
+  3.5 [-28.0,  34.9]
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+Margarine, Sugar and Snacks
+</td>
+<td style="text-align:center;background-color: white !important;">
+  8.3 [-18.3,  34.8]
+</td>
+<td style="text-align:center;background-color: white !important;">
+ 14.5 [-12.3,  41.4]
+</td>
+</tr>
+<tr grouplength="1">
+<td colspan="3" style="border-bottom: 1px solid;">
+<strong><em>a priori</em> dietary pattern</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+Dutch Healthy Diet Index
+</td>
+<td style="text-align:center;background-color: white !important;">
+-17.9 [-44.7,   8.9]
+</td>
+<td style="text-align:center;background-color: white !important;">
+ -2.2 [-30.0,  25.7]
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:Table5aMyrte">Table 3.8: </span>Association of dietary patterns with gestational weight gain during late
+pregnancy in normal-weight women (n = 2393).
+Shown are regression coefficients with 95% confidence intervals from multivariable
+linear regression on imputed data, reflecting the difference in weight gain
+(g/week) for a 1 SD increase in dietary pattern score.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+
+</th>
+<th style="text-align:center;">
+
+</th>
+</tr>
+</thead>
+<tbody>
+<tr grouplength="3">
+<td colspan="3" style="border-bottom: 1px solid;">
+<strong><em>a posteriori</em> dietary patterns</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+Vegetable, Oil and Fish
+</td>
+<td style="text-align:center;background-color: white !important;">
+ -8.3 [-18.3,   1.6]
+</td>
+<td style="text-align:center;background-color: white !important;">
+ -3.9 [-14.4,   6.6]
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+Nuts, High-Fibre Cereals and Soy
+</td>
+<td style="text-align:center;background-color: white !important;">
+-13.2 [-23.4,  -3.0]
+</td>
+<td style="text-align:center;background-color: white !important;">
+ -4.6 [-15.6,   6.3]
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+Margarine, Sugar and Snacks
+</td>
+<td style="text-align:center;background-color: white !important;">
+  0.3 [ -9.8,  10.5]
+</td>
+<td style="text-align:center;background-color: white !important;">
+  0.4 [ -9.8,  10.5]
+</td>
+</tr>
+<tr grouplength="1">
+<td colspan="3" style="border-bottom: 1px solid;">
+<strong><em>a priori</em> dietary pattern</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+Dutch Healthy Diet Index
+</td>
+<td style="text-align:center;background-color: white !important;">
+  3.2 [ -6.7,  13.2]
+</td>
+<td style="text-align:center;background-color: white !important;">
+ -1.5 [-11.8,   8.8]
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:Table5bMyrte">Table 3.9: </span>Association of dietary patterns with gestational weight gain during late
+pregnancy in overweight women (n = 765).
+Shown are regression coefficients with 95% confidence intervals from multivariable
+linear regression on imputed data, reflecting the difference in weight gain
+(g/week) for a 1 SD increase in dietary pattern score.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+
+</th>
+<th style="text-align:center;">
+
+</th>
+</tr>
+</thead>
+<tbody>
+<tr grouplength="3">
+<td colspan="3" style="border-bottom: 1px solid;">
+<strong><em>a posteriori</em> dietary patterns</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+Vegetable, Oil and Fish
+</td>
+<td style="text-align:center;background-color: white !important;">
+ -3.8 [-24.5,  16.9]
+</td>
+<td style="text-align:center;background-color: white !important;">
+  7.4 [-15.5,  30.2]
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+Nuts, High-Fibre Cereals and Soy
+</td>
+<td style="text-align:center;background-color: white !important;">
+  4.4 [-17.0,  25.8]
+</td>
+<td style="text-align:center;background-color: white !important;">
+  9.5 [-13.4,  32.3]
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+Margarine, Sugar and Snacks
+</td>
+<td style="text-align:center;background-color: white !important;">
+ -8.5 [-28.0,  11.1]
+</td>
+<td style="text-align:center;background-color: white !important;">
+ -9.8 [-29.5,   10.0]
+</td>
+</tr>
+<tr grouplength="1">
+<td colspan="3" style="border-bottom: 1px solid;">
+<strong><em>a priori</em> dietary pattern</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+Dutch Healthy Diet Index
+</td>
+<td style="text-align:center;background-color: white !important;">
+  2.1 [-17.6,  21.7]
+</td>
+<td style="text-align:center;background-color: white !important;">
+  0.2 [-20.1,  20.5]
+</td>
+</tr>
+</tbody>
+</table>
+<!-- ### Dietary Patterns and Gestational Weight Gain Adequacy -->
+<!-- Higher adherence to the dietary patterns was not associated with the prevalence -->
+<!-- of inadequate GWG (Table&nbsp;\@ref(tab:Table6Myrte). The "Vegetable, oil and fish", the -->
+<!-- "Nuts, high-fibre cereals and soy" and the "Dutch Healthy Diet Index" -->
+<!-- pattern were also not associated with prevalence of excessive GWG. Yet, women -->
+<!-- with higher scores on the "Margarine, sugar and snacks" pattern had a higher -->
+<!-- prevalence of excessive GWG than women in the lowest quartile (ORs Q2: 1.40 -->
+<!-- (95% CI 1.04; 1.90), Q3: 1.37 (95% CI 1.00; 1.87), and Q4: 1.45 (95% CI 1.06; 1.99)). -->
+<!-- \begin{table}[!ht] -->
+<!-- \centering -->
+<!-- \small -->
+<!-- \begin{tabular}{lr@{\hskip 0.016\linewidth}lC{0.22\linewidth} -->
+<!-- r@{\hskip 0.016\linewidth}lr@{\hskip 0.016\linewidth}l}\toprule -->
+<!-- & \multicolumn{2}{C{0.22\linewidth}}{Inadequate GWG(n = 459)} & -->
+<!--                      Adequate GWG (n = 632) & -->
+<!--   \multicolumn{2}{C{0.22\linewidth}}{Excessive GWG (n = 826)}\\\midrule -->
+<!-- \multicolumn{6}{c}{``Vegetable, Oil and Fish'' Pattern}\\\midrule -->
+<!-- Q1 (low)   & \multicolumn{2}{c}{Reference}         & Reference & \multicolumn{2}{c}{Reference}\\ -->
+<!-- Q2       & 0.85 & [0.60, 1.22] & Reference & 1.08 & [0.79, 1.48]\\ -->
+<!-- Q3       & 0.86 & [0.60, 1.23] & Reference & 1.05 & [0.76, 1.46]\\ -->
+<!-- Q4 (high)  & 0.84 & [0.58, 1.22]   & Reference & 1.06 & [0.76, 1.48]\\ -->
+<!-- Per SD   & \multicolumn{2}{c}{p = 0.21} & & \multicolumn{2}{c}{p = 0.91}\\\\ -->
+<!-- \multicolumn{6}{c}{``Nuts, High-Fibre Cereals and Soy'' Pattern}\\\midrule -->
+<!-- Q1 (low)   & \multicolumn{2}{c}{Reference}         & Reference & \multicolumn{2}{c}{Reference}\\ -->
+<!-- Q2       & 0.77 & [0.53, 1.13] & Reference & 1.16 & [0.82, 1.62]\\ -->
+<!-- Q3       & 0.86 & [0.59, 1.25] & Reference & 1.26 & [0.89, 1.77]\\ -->
+<!-- Q4 (high)  & 0.85 & [0.58, 1.24]   & Reference & 1.09 & [0.77, 1.53]\\ -->
+<!-- Per SD   & \multicolumn{2}{c}{p = 0.76}              &           & \multicolumn{2}{c}{p = 0.46}\\\\ -->
+<!-- \multicolumn{6}{c}{``Margarine, Sugar and Snacks'' Pattern}\\\midrule -->
+<!-- Q1 (low)   & \multicolumn{2}{c}{Reference}         & Reference & \multicolumn{2}{c}{Reference}\\ -->
+<!-- Q2       & 0.97 & [0.69, 1.36] & Reference & 1.40 & [1.04, 1.90]\\ -->
+<!-- Q3       & 0.93 & [0.66, 1.32] & Reference & 1.37 & [1.00, 1.87]\\ -->
+<!-- Q4 (high)  & 0.98 & [0.69, 1.40]   & Reference & 1.45 & [1.06, 1.99]\\ -->
+<!-- Per SD   & \multicolumn{2}{c}{p = 0.73}              &           & \multicolumn{2}{c}{p = 0.09}\\\\ -->
+<!-- \multicolumn{6}{c}{``Dutch Healthy Diet Index'' Pattern}\\\midrule -->
+<!-- Q1 (low)   & \multicolumn{2}{c}{Reference}         & Reference & \multicolumn{2}{c}{Reference}\\ -->
+<!-- Q2       & 1.04 & [0.74, 1.45] & Reference & 0.92 & [0.69, 1.24]\\ -->
+<!-- Q3       & 0.84 & [0.59, 1.20] & Reference & 0.95 & [0.70, 1.27]\\ -->
+<!-- Q4 (high)  & 1.32 & [0.92, 1.90]   & Reference & 1.11 & [0.80, 1.53]\\ -->
+<!-- Per SD   & \multicolumn{2}{c}{p = 0.07}              &           & \multicolumn{2}{c}{p = 0.66}\\ -->
+<!-- \bottomrule -->
+<!-- \end{tabular} -->
+<!-- \label{tab:Table6Myrte} -->
+<!-- \caption{Association of dietary patterns with gestational weight gain adequacy (n = 1917). -->
+<!-- Results (OR with 95\% confidence interval) from multivariable multinomial -->
+<!-- logistic regression analyses, based on imputed data. -->
+<!-- p-values correspond to the effect of 1SD increase in dietary pattern score. -->
+<!-- Adjusted for pre-pregnancy BMI, age, educational level, household income, -->
+<!-- parity, smoking during pregnancy, alcohol consumption during pregnancy, stress -->
+<!-- during pregnancy, and fetal sex.} -->
+<!-- \end{table} -->
+</div>
+<div id="sensitivity-analyses-1" class="section level3">
+<h3><span class="header-section-number">3.3.4</span> Sensitivity Analyses</h3>
+<p>The results of the sensitivity analyses are presented in Tables
+<a href="ch-Myrte.html#tab:Table6aMyrte">3.10</a> – <a href="ch-Myrte.html#tab:Table6eMyrte">3.14</a>.
+In line with the results from early-pregnancy GWG, normal-weight women with
+a 1 SDS higher adherence to the “Vegetable, oil and fish” pattern had
+6.7 g/week (95% CI [0.9, 12.5]) higher GWG until the early-third trimester,
+whereas no association was found in overweight women.
+The other dietary patterns were not associated with GWG until
+the early-third trimester (Table <a href="ch-Myrte.html#tab:Table6aMyrte">3.10</a>).</p>
+<p>Additional adjustment for energy intake resulted in attenuation of the
+effect estimate of the “Vegetable, oil and fish” pattern with GWG until
+early-third trimester.
+<!-- Further adjustment of estimated fetal weight did not change the effect -->
+<!-- estimates of any dietary pattern with GWG in normal-weight or overweight women. -->
+The results did not alter greatly after exclusion of women who vomited more
+than once per week (Table <a href="ch-Myrte.html#tab:Table6cMyrte">3.12</a>)
+or exclusion of women with pre-existing comorbidities or
+pregnancy complications (Table <a href="ch-Myrte.html#tab:Table6dMyrte">3.13</a>).
+The evaluation of maximum GWG showed results that were in line with the results
+of the previous analyses (Table <a href="ch-Myrte.html#tab:Table6eMyrte">3.14</a>).
+<!-- that normal -->
+<!-- weight women with high adherence to the "Vegetable, oil and fish" pattern -->
+<!-- had 29 g/week (95% CI 2; 57) higher maximal GWG than women with low adherence. -->
+<!-- In addition, normal-weight women in the highest quartile of the -->
+<!-- "Dutch Healthy Diet Index" had a 28 g/week (95% CI -55; -1) lower maximal -->
+<!-- GWG than women in quartile 1.  --></p>
+<p>The association between dietary patterns and GWG
+was not modified by educational level or household income.
+<!-- , women with higher -->
+<!-- household income ($\geq$ 2200 Euro/month) and higher scores on the -->
+<!-- "Dutch Healthy Diet Index" pattern had lower GWG (p-value = 0.01 per 1SD -->
+<!-- score) than women with higher income and lower scores on this dietary pattern, -->
+<!-- whereas no association was found in women with lower household income -->
+<!-- (p-value = 0.11). --></p>
+<!-- Evaluating adequacy of GWG using weekly GWG instead of total GWG resulted in a -->
+<!-- higher percentage women being classified as having "excessive GWG" -->
+<!-- (57% vs 43%). However, also with this different definition a high adherence -->
+<!-- to the "Margarine, sugar and snacks" pattern was associated with a higher -->
+<!-- prevalence excessive weekly GWG. Nonetheless, high adherence to this pattern -->
+<!-- was also associated with higher prevalence of inadequate weekly GWG, although -->
+<!-- without dose-response association (Table&nbsp;S6). -->
+<p>Six years after childbirth, women had gained on average 3.4 kg (Q1, Q3: 0.4, 7.0)
+compared to their pre-pregnancy weight (n = 2247).
+The median (Q1, Q3) long-term weight gain was significantly different between the
+categories of GWG adequacy: women with inadequate GWG gained 2.2 kg (-0.6, 5.2),
+those with adequate GWG gained on average 2.6 kg (0.2, 5.2), and women with
+excessive GWG were 4.6 kg (1.4, 8.8) heavier (F-test 27.5, p-value &lt; 0.001).
+The weight 6 years after childbirth was highly correlated with the weight at
+the third visit in pregnancy (R = 0.85; p-value &lt; 0.001).</p>
+
+</div>
+</div>
+<div id="discussion" class="section level2">
+<h2><span class="header-section-number">3.4</span> Discussion</h2>
+<div id="summary-of-the-main-findings" class="section level3">
+<h3><span class="header-section-number">3.4.1</span> Summary of the Main Findings</h3>
+<p>The results from our analysis of a population-based Dutch cohort suggest that
+specific <em>a posteriori</em>-derived dietary patterns have limited influence
+on early-pregnancy GWG, the prevalence of excessive GWG, and weight development
+in pregnancy.
+We neither found consistent associations of any dietary pattern with the
+prevalence of inadequate GWG nor was the <em>a priori</em>-defined dietary pattern
+associated with GWG.</p>
+</div>
+<div id="interpretation-and-comparison-with-other-studies" class="section level3">
+<h3><span class="header-section-number">3.4.2</span> Interpretation and Comparison with other Studies</h3>
+<p>The association of dietary patterns during pregnancy with GWG has been
+evaluated previously in a few studies <span class="citation">(Uusitalo et al. <a href="#ref-Uusitalo2009" role="doc-biblioref">2009</a>; Shin et al. <a href="#ref-Shin2014" role="doc-biblioref">2014</a>; Rifas-Shiman et al. <a href="#ref-Rifas2009" role="doc-biblioref">2009</a>; Hillesund et al. <a href="#ref-Hillesund2014" role="doc-biblioref">2014</a>)</span>, but these studies did not
+evaluate longitudinal development of gestational weight and were conducted in
+different populations. <span class="citation">Uusitalo et al. (<a href="#ref-Uusitalo2009" role="doc-biblioref">2009</a>)</span> found that higher adherence to an
+<em>a posteriori</em>-derived dietary pattern characterized by high intake of sweets,
+fast food and snacks was associated with higher weekly GWG.
+In line with these results, we found that higher adherence to the
+unhealthy “Margarine, sugar and snacks” pattern was associated with higher prevalence of excessive GWG.
+Additionally, <span class="citation">Uusitalo et al. (<a href="#ref-Uusitalo2009" role="doc-biblioref">2009</a>)</span> reported that a pattern that was high in
+vegetables, fish and fruits was not associated with GWG.
+In contrast, we found that the “Vegetable, oil and fish” pattern, a relatively
+healthy pattern, was associated with higher GWG in early pregnancy.</p>
+<p>In our study, the <em>a priori</em>-defined “Dutch Healthy Diet Index”
+pattern was not consistently associated with any measure of GWG. This result
+was in accordance with two studies showing no relationship between the
+<em>a priori</em>-defined “US healthy eating index of 2005” (HEI-2005)
+and the “Alternate Healthy Eating Index, slightly modified for pregnancy”
+(AHEI-P) with the prevalence of inadequate or excessive GWG
+<span class="citation">(Shin et al. <a href="#ref-Shin2014" role="doc-biblioref">2014</a>; Rifas-Shiman et al. <a href="#ref-Rifas2009" role="doc-biblioref">2009</a>)</span>.
+Nevertheless, a large population-based cohort study of over 66,000 participants
+found that high adherence to the <em>a priori</em>-defined “New Nordic Diet
+score” was associated with a 7% lower prevalence of excessive GWG in normal
+weight women, compared with low adherence <span class="citation">(Hillesund et al. <a href="#ref-Hillesund2014" role="doc-biblioref">2014</a>)</span>.
+The inconsistency in findings regarding the associations between the
+<em>a priori</em>-defined dietary patterns may be due to different items that
+were included in the diet scores. The “New Nordic Diet score”
+contained items on meal patterns and the type of beverages consumed, among
+others <span class="citation">(Hillesund et al. <a href="#ref-Hillesund2014" role="doc-biblioref">2014</a>)</span>; these items were not evaluated in our
+Dutch Healthy Diet Index, nor in other <em>a priori</em>-defined dietary
+patterns <span class="citation">(Shin et al. <a href="#ref-Shin2014" role="doc-biblioref">2014</a>; Rifas-Shiman et al. <a href="#ref-Rifas2009" role="doc-biblioref">2009</a>)</span>.</p>
+<p>The association of <em>a posteriori</em>-derived dietary patterns with weight
+trajectories over pregnancy has not been evaluated previously, to our knowledge.
+Studying this association longitudinally has the advantage that all available
+weight measurements can be used while taking into account the correlation between
+these measurements. In addition, weekly GWG is not constant over pregnancy and
+differs considerably by individual <span class="citation">(Institute of Medicine and National Research Council <a href="#ref-Rasmussen2009" role="doc-biblioref">2009</a>; Carmichael, Abrams, and Selvin <a href="#ref-Carmichael1997" role="doc-biblioref">1997</a>)</span>,
+which complicates cross-sectional comparisons of GWG.
+Our longitudinal analysis showed that women with higher
+adherence to the “Nuts, high-fibre and soy” pattern had a more moderate
+increase in weight during pregnancy than did women with low adherence to this
+dietary pattern, although absolute differences were small.</p>
+<p>Results from both observational and interventional studies indicated that women
+with higher energy intake had higher GWG compared with women who have lower
+energy intake <span class="citation">(Streuling et al. <a href="#ref-Streuling2011" role="doc-biblioref">2011</a>)</span>, results that were also found in our cohort <span class="citation">(Gaillard et al. <a href="#ref-Gaillard2013" role="doc-biblioref">2013</a>)</span>.
+In our analyses, the association of the “Vegetable, oil and fish” pattern
+remained significantly associated with GWG after additional adjustment for
+energy intake. This may indicate that dietary patterns are associated with
+GWG beyond energy intake.</p>
+<p>Evaluating weight gain in pregnancy is important because GWG has been
+associated with many adverse pregnancy and birth outcomes. Gaining excessive
+weight during pregnancy can have short-term consequences such as delivery
+complications, and giving birth to a child that is large for its gestational
+age <span class="citation">(Johnson et al. <a href="#ref-Johnson2013" role="doc-biblioref">2013</a>; Gaillard et al. <a href="#ref-Gaillard2013" role="doc-biblioref">2013</a>; Institute of Medicine and National Research Council <a href="#ref-Rasmussen2009" role="doc-biblioref">2009</a>)</span>.
+Additionally, it has been associated with long-term health consequences
+including post-partum obesity of the mother <span class="citation">(Nehring et al. <a href="#ref-Nehring2011" role="doc-biblioref">2011</a>)</span> due to retaining their excess fat mass, and childhood obesity <span class="citation">(Gaillard et al. <a href="#ref-Gaillard2013" role="doc-biblioref">2013</a>)</span>.
+Indeed, in our population, six years after childbirth women had gained on
+average 3.4 kg compared to their pre-pregnancy weight.</p>
+<p>Weight gain during pregnancy consists of several maternal and fetal components
+that contribute differently to GWG over time <span class="citation">(Pitkin <a href="#ref-Pitkin1976" role="doc-biblioref">1976</a>)</span>.
+For example, during the first half of pregnancy, maternal fat gain is a major contributor of GWG <span class="citation">(Clapp et al. <a href="#ref-Clapp1988" role="doc-biblioref">1988</a>; Kopp-Hoolihan et al. <a href="#ref-Kopp1999" role="doc-biblioref">1999</a>)</span>,
+and most of the fat gain that takes place during pregnancy is in that period <span class="citation">(Forsum, Sadurskis, and Wager <a href="#ref-Forsum1988" role="doc-biblioref">1988</a>)</span>.
+In our study, the higher GWG in women with high adherence to the
+“Vegetable, oil and fish” pattern could not be explained by fetal growth
+and was mainly found in early pregnancy, meaning this higher GWG is likely
+due to maternal components, e.g., fat mass.</p>
+<p>Our results for normal-weight women differed from those for overweight women,
+particularly for the “Vegetable, oil and fish” pattern and for the
+“Nuts, high-fibre cereals and soy” pattern. Similarly, <span class="citation">Hillesund et al. (<a href="#ref-Hillesund2014" role="doc-biblioref">2014</a>)</span>
+reported differential associations for women below and above a BMI of
+25 kg/m<sup>2</sup>. These difference in findings may be explained by differences
+in the reporting of dietary intake <span class="citation">(Freisling et al. <a href="#ref-Freisling2012" role="doc-biblioref">2012</a>)</span> or by
+differing contribution of the individual components of GWG for normal-weight
+and overweight women <span class="citation">(Butte et al. <a href="#ref-Butte2003" role="doc-biblioref">2003</a>)</span>.
+In addition, our longitudinal analyses showed that over the whole course of
+pregnancy, normal-weight women with higher adherence to the “Margarine, sugar
+and snacks” pattern tend to be heavier than women with lower adherence.</p>
+</div>
+<div id="strengths-and-limitations" class="section level3">
+<h3><span class="header-section-number">3.4.3</span> Strengths and Limitations</h3>
+<p>A strength of our study is that we used a comprehensive approach to analyse
+the relation between diet and GWG by evaluating the associations of dietary
+patterns with trajectories of gestational weight and
+GWG during different phases in pregnancy. Another strength is the use of
+two distinct methods to define dietary patterns, which enabled us to evaluate
+the effects of dietary patterns derived by a data-driven and by a
+hypothesis-driven approach. Dietary patterns represent the combined effects of
+all foods consumed <span class="citation">(Hu <a href="#ref-Hu2002" role="doc-biblioref">2002</a>)</span>, which may lead to a more powerful effect than the
+effects of the individual components, although it may also have led to a
+dilution of the effects of individual components that are associated with GWG <span class="citation">(Willett <a href="#ref-Willett2012" role="doc-biblioref">2012</a>)</span>.
+For example, the food groups of vegetables and high-fat dairy products were
+strongly associated with the “Vegetable, oil and fish” dietary pattern.
+Yet, higher intake of fruits and vegetables has been associated with lower
+GWG <span class="citation">(Olson and Strawderman <a href="#ref-Olson2003" role="doc-biblioref">2003</a>)</span>, whereas dairy products were associated with higher GWG <span class="citation">(Stuebe, Oken, and Gillman <a href="#ref-Stuebe2009" role="doc-biblioref">2009</a>; Olafsdottir et al. <a href="#ref-Olafsdottir2006" role="doc-biblioref">2006</a>)</span>.
+Consequently, this may result in an overall null effect of the dietary pattern.
+Furthermore, imputing the missing covariate values in the Bayesian framework
+allowed us to use all available information in the imputation.
+Especially in settings with a longitudinal outcome, imputation methods that
+are available in standard software and, hence, are more commonly used, often
+fail to appropriately include the outcome into the imputation procedure which
+may lead to severely biased results <span class="citation">(Erler et al. <a href="#ref-Erler2016" role="doc-biblioref">2016</a>)</span>.
+Other strengths of our study are its population-based design, the collection of
+numerous covariates, and that the population was restricted to women of Dutch
+ancestry. We excluded women with other ethnicities to minimize measurement error
+since the FFQ was designed to evaluate a Dutch diet. However, this restriction
+may have reduced the generalizability of our results to other ethnicities.</p>
+<p>Our study also has some limitations. First, maternal weight before pregnancy, as
+well as maximum weight, were obtained using questionnaires, which may have
+resulted in a larger measurement error. Although we found no indication of
+systematic measurement error, random error may have resulted in loss of
+precision in GWG assessment. Furthermore, we were not able to calculate GWG
+per trimester because we did not have weight measurements at the required
+time points and the available data was insufficient for imputing those values.
+Another limitation is the lack of information on the separate components of
+GWG, in particular, maternal fat mass, and the lack of information on
+postpartum maternal weight. Future studies should collect detailed information
+on maternal body composition during pregnancy or measure the participants’
+weight a few weeks postpartum to evaluate associations with the different
+components of GWG. Furthermore, we could not use information on absolute dietary
+intake because dietary information collected using an FFQ does not provide
+this information. However, FFQs have been shown to be accurate in ranking
+participants according to their dietary intake <span class="citation">(Kipnis et al. <a href="#ref-Kipnis2003" role="doc-biblioref">2003</a><a href="#ref-Kipnis2003" role="doc-biblioref">a</a>)</span>.
+Furthermore, we assessed
+maternal diet only once during pregnancy and were therefore not able to account
+for changes in dietary intake. Nevertheless, dietary patterns and macronutrient
+composition may not change largely during pregnancy despite an increased
+energy intake <span class="citation">(Crozier et al. <a href="#ref-Crozier2009" role="doc-biblioref">2009</a>; Rad et al. <a href="#ref-Rad2011" role="doc-biblioref">2011</a>)</span>. Additionally, we found that our results did not change
+after excluding women who may have altered their dietary intake due to illness
+or vomiting. Finally, the numerous statistical analyses performed may have
+resulted in chance findings (type I error). However, our results for weight
+trajectories and early-pregnancy GWG remained statistically significant when
+a more stringent significance level of 1 - 0.05/4 = 0.9875 was used.</p>
+</div>
+<div id="conclusions-and-implications" class="section level3">
+<h3><span class="header-section-number">3.4.4</span> Conclusions and Implications</h3>
+<p>In conclusion, our results suggest that dietary composition during pregnancy
+may play a role in GWG in early pregnancy but has limited influence on total
+GWG in a population of Dutch women. The strength of the associations between
+dietary patterns and GWG differs for different definitions of dietary patterns
+and GWG. This suggests that the relationship between dietary patterns and GWG
+may be complex and may need further elucidation in order to facilitate the
+development of dietary guidelines during pregnancy and to adequately advise
+pregnant women on their diet.</p>
+</div>
+</div>
+<div id="appendix-1" class="section level2 unnumbered">
+<h2>Appendix</h2>
+<div id="a-supplementary-materials" class="section level3 unnumbered">
+<h3>3.A Supplementary Materials</h3>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:Table6aMyrte">Table 3.10: </span>Association of dietary patterns with gestational weight gain until early
+third trimester in normal-weight and overweight women (n = 2815).
+Results from multivariable linear regression on imputed data.
+Values (regression coefficients with 95% confidence interval) reflect the
+difference in gestational weight gain until early-third trimester (g/week) for a 1 SD increase in
+dietary pattern score, pooled over 10 imputed datasets.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+
+</th>
+<th style="text-align:center;">
+
+</th>
+</tr>
+</thead>
+<tbody>
+<tr grouplength="3">
+<td colspan="3" style="border-bottom: 1px solid;">
+<strong><em>a posteriori</em> dietary patterns</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+Vegetable, Oil and Fish
+</td>
+<td style="text-align:center;background-color: white !important;">
+  6.7 [  0.9,  12.5]
+</td>
+<td style="text-align:center;background-color: white !important;">
+ 10.0 [ -5.0,  25.1]
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+Nuts, High-Fibre Cereals and Soy
+</td>
+<td style="text-align:center;background-color: white !important;">
+ -2.0 [ -8.1,   4.0]
+</td>
+<td style="text-align:center;background-color: white !important;">
+ -5.6 [-20.7,   9.4]
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+Margarine, Sugar and Snacks
+</td>
+<td style="text-align:center;background-color: white !important;">
+  2.5 [ -3.2,   8.2]
+</td>
+<td style="text-align:center;background-color: white !important;">
+  6.0 [ -7.2,  19.1]
+</td>
+</tr>
+<tr grouplength="1">
+<td colspan="3" style="border-bottom: 1px solid;">
+<strong><em>a priori</em> dietary pattern</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+Dutch Healthy Diet Index
+</td>
+<td style="text-align:center;background-color: white !important;">
+ -4.3 [ -10.0,   1.4]
+</td>
+<td style="text-align:center;background-color: white !important;">
+  1.6 [-11.7,  14.9]
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:Table6bMyrte">Table 3.11: </span>Association of dietary patterns with gestational weight gain until early
+third trimester in normal-weight and overweight women (n = 2815); additionally
+adjusted for energy intake.
+Results from multivariable linear regression on imputed data.
+Values (regression coefficients with 95% confidence interval) reflect the
+difference in gestational weight gain until early-third trimester (g/week) for a 1 SD increase in
+dietary pattern score, pooled over 10 imputed datasets.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+
+</th>
+<th style="text-align:center;">
+
+</th>
+</tr>
+</thead>
+<tbody>
+<tr grouplength="3">
+<td colspan="3" style="border-bottom: 1px solid;">
+<strong><em>a posteriori</em> dietary patterns</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+Vegetable, Oil and Fish
+</td>
+<td style="text-align:center;background-color: white !important;">
+  3.4 [ -3.0,   9.8]
+</td>
+<td style="text-align:center;background-color: white !important;">
+  8.9 [ -7.3,  25.2]
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+Nuts, High-Fibre Cereals and Soy
+</td>
+<td style="text-align:center;background-color: white !important;">
+ -4.8 [-11.2,   1.7]
+</td>
+<td style="text-align:center;background-color: white !important;">
+ -6.5 [-22.3,   9.3]
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+Margarine, Sugar and Snacks
+</td>
+<td style="text-align:center;background-color: white !important;">
+-11.8 [-24.6,   1.0]
+</td>
+<td style="text-align:center;background-color: white !important;">
+  1.0 [-29.8,  31.8]
+</td>
+</tr>
+<tr grouplength="1">
+<td colspan="3" style="border-bottom: 1px solid;">
+<strong><em>a priori</em> dietary pattern</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+Dutch Healthy Diet Index
+</td>
+<td style="text-align:center;background-color: white !important;">
+ -4.3 [ -10.0,   1.4]
+</td>
+<td style="text-align:center;background-color: white !important;">
+  1.6 [-11.7,  14.9]
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:Table6cMyrte">Table 3.12: </span>Association of dietary patterns with gestational weight gain during early
+third trimester in normal-weight and overweight women, excluding women with comorbidities or pregnancy complications (n = 2469).
+Results from multivariable linear regression on imputed data.
+Values (regression coefficients with 95% confidence interval) reflect the
+difference in gestational weight gain until early-third trimester (g/week) for a 1 SD increase in
+dietary pattern score, pooled over 10 imputed datasets.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+
+</th>
+<th style="text-align:center;">
+
+</th>
+</tr>
+</thead>
+<tbody>
+<tr grouplength="3">
+<td colspan="3" style="border-bottom: 1px solid;">
+<strong><em>a posteriori</em> dietary patterns</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+Vegetable, Oil and Fish
+</td>
+<td style="text-align:center;background-color: white !important;">
+  8.0 [  2.0,  14.0]
+</td>
+<td style="text-align:center;background-color: white !important;">
+  9.5 [ -6.0,  24.9]
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+Nuts, High-Fibre Cereals and Soy
+</td>
+<td style="text-align:center;background-color: white !important;">
+ -1.4 [ -7.6,   4.9]
+</td>
+<td style="text-align:center;background-color: white !important;">
+ -6.0 [-21.6,   9.7]
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+Margarine, Sugar and Snacks
+</td>
+<td style="text-align:center;background-color: white !important;">
+  1.9 [ -4.0,   7.8]
+</td>
+<td style="text-align:center;background-color: white !important;">
+  9.5 [ -4.8,  23.8]
+</td>
+</tr>
+<tr grouplength="1">
+<td colspan="3" style="border-bottom: 1px solid;">
+<strong><em>a priori</em> dietary pattern</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+Dutch Healthy Diet Index
+</td>
+<td style="text-align:center;background-color: white !important;">
+ -5.7 [-11.6,   0.2]
+</td>
+<td style="text-align:center;background-color: white !important;">
+  1.3 [-12.6,  15.1]
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:Table6dMyrte">Table 3.13: </span>Association of dietary patterns with gestational weight gain until early
+third trimester in normal-weight and overweight women, excluding women who vomited
+more than once per week in the previous three months (n = 2450).
+Results from multivariable linear regression on imputed data.
+Values (regression coefficients with 95% confidence interval) reflect the
+difference in gestational weight gain until early-third trimester (g/week) for a 1 SD increase in
+dietary pattern score, pooled over 10 imputed datasets.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+
+</th>
+<th style="text-align:center;">
+
+</th>
+</tr>
+</thead>
+<tbody>
+<tr grouplength="3">
+<td colspan="3" style="border-bottom: 1px solid;">
+<strong><em>a posteriori</em> dietary patterns</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+Vegetable, Oil and Fish
+</td>
+<td style="text-align:center;background-color: white !important;">
+  4.8 [ -1.3,  10.8]
+</td>
+<td style="text-align:center;background-color: white !important;">
+ 14.2 [ -2.1,  30.5]
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+Nuts, High-Fibre Cereals and Soy
+</td>
+<td style="text-align:center;background-color: white !important;">
+ -2.3 [ -8.6,   4.0]
+</td>
+<td style="text-align:center;background-color: white !important;">
+ -7.7 [-23.8,   8.5]
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+Margarine, Sugar and Snacks
+</td>
+<td style="text-align:center;background-color: white !important;">
+  0.5 [ -5.3,   6.4]
+</td>
+<td style="text-align:center;background-color: white !important;">
+  5.2 [ -9.5,  19.8]
+</td>
+</tr>
+<tr grouplength="1">
+<td colspan="3" style="border-bottom: 1px solid;">
+<strong><em>a priori</em> dietary pattern</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+Dutch Healthy Diet Index
+</td>
+<td style="text-align:center;background-color: white !important;">
+ -5.2 [-11.0,   0.7]
+</td>
+<td style="text-align:center;background-color: white !important;">
+ -4.8 [-19.3,   9.7]
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:Table6eMyrte">Table 3.14: </span>Association of dietary patterns with maximal gestational weight gain
+in normal-weight and overweight women (n = 1703).
+Results from multivariable linear regression on imputed data.
+Values (regression coefficients with 95% confidence interval) reflect the
+difference in gestational weight gain until early-third trimester (g/week) for a 1 SD increase in
+dietary pattern score, pooled over 10 imputed datasets.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+
+</th>
+<th style="text-align:center;">
+
+</th>
+</tr>
+</thead>
+<tbody>
+<tr grouplength="3">
+<td colspan="3" style="border-bottom: 1px solid;">
+<strong><em>a posteriori</em> dietary patterns</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+Vegetable, Oil and Fish
+</td>
+<td style="text-align:center;background-color: white !important;">
+  4.4 [ -4.9,  13.8]
+</td>
+<td style="text-align:center;background-color: white !important;">
+ -9.3 [-34.0,  15.4]
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+Nuts, High-Fibre Cereals and Soy
+</td>
+<td style="text-align:center;background-color: white !important;">
+  1.4 [ -8.3,  11.2]
+</td>
+<td style="text-align:center;background-color: white !important;">
+  5.2 [-19.5,  29.8]
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+Margarine, Sugar and Snacks
+</td>
+<td style="text-align:center;background-color: white !important;">
+  8.1 [ -1.2,  17.5]
+</td>
+<td style="text-align:center;background-color: white !important;">
+ 17.8 [ -6.0,  41.6]
+</td>
+</tr>
+<tr grouplength="1">
+<td colspan="3" style="border-bottom: 1px solid;">
+<strong><em>a priori</em> dietary pattern</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;background-color: white !important;" indentlevel="1">
+Dutch Healthy Diet Index
+</td>
+<td style="text-align:center;background-color: white !important;">
+ -0.8 [-10.3,   8.7]
+</td>
+<td style="text-align:center;background-color: white !important;">
+ 14.4 [ -8.3,  37.2]
+</td>
+</tr>
+</tbody>
+</table>
+
+
+
+</div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-Bellamy2009">
+<p>Bellamy, Leanne, Juan-Pablo Casas, Aroon D. Hingorani, and David Williams. 2009. “Type 2 Diabetes Mellitus After Gestational Diabetes: A Systematic Review and Meta-Analysis.” <em>The Lancet</em> 373 (9677): 1773–9. <a href="https://doi.org/10.1016/S0140-6736(09)60731-5">https://doi.org/10.1016/S0140-6736(09)60731-5</a>.</p>
+</div>
+<div id="ref-Brown2013">
+<p>Brown, Morven Caroline, Kate Elizabeth Best, Mark Stephen Pearce, Jason Waugh, Stephen Courtenay Robson, and Ruth Bell. 2013. “Cardiovascular Disease Risk in Women with Pre-Eclampsia: Systematic Review and Meta-Analysis.” <em>European Journal of Epidemiology</em> 28 (1): 1–19. <a href="https://doi.org/10.1007/s10654-013-9762-6">https://doi.org/10.1007/s10654-013-9762-6</a>.</p>
+</div>
+<div id="ref-Butte2003">
+<p>Butte, Nancy F., Kenneth J. Ellis, William W. Wong, Judy M. Hopkinson, and E. O’Brian Smith. 2003. “Composition of Gestational Weight Gain Impacts Maternal Fat Retention and Infant Birth Weight.” <em>American Journal of Obstetrics &amp; Gynecology</em> 189 (5): 1423–32. <a href="https://doi.org/10.1067/S0002-9378(03)00596-9">https://doi.org/10.1067/S0002-9378(03)00596-9</a>.</p>
+</div>
+<div id="ref-Carmichael1997">
+<p>Carmichael, Suzan, Barbara Abrams, and Steve Selvin. 1997. “The Pattern of Maternal Weight Gain in Women with Good Pregnancy Outcomes.” <em>American Journal of Public Health</em> 87 (12): 1984–8. <a href="https://doi.org/10.2105/AJPH.87.12.1984">https://doi.org/10.2105/AJPH.87.12.1984</a>.</p>
+</div>
+<div id="ref-Clapp1988">
+<p>Clapp, James F., Brian L. Seaward, Robert H. Sleamaker, and John Hiser. 1988. “Maternal Physiologic Adaptations to Early Human Pregnancy.” <em>American Journal of Obstetrics &amp; Gynecology</em> 159 (6): 1456–60. <a href="https://doi.org/10.1016/0002-9378(88)90574-1">https://doi.org/10.1016/0002-9378(88)90574-1</a>.</p>
+</div>
+<div id="ref-Coolman2010">
+<p>Coolman, Marianne, Christianne J. M. de Groot, Vincent W. V. Jaddoe, Albert Hofman, Hein Raat, and Eric A. P. Steegers. 2010. “Medical Record Validation of Maternally Reported History of Preeclampsia.” <em>Journal of Clinical Epidemiology</em> 63 (8): 932–37. <a href="https://doi.org/10.1016/j.jclinepi.2009.10.010">https://doi.org/10.1016/j.jclinepi.2009.10.010</a>.</p>
+</div>
+<div id="ref-Crozier2009">
+<p>Crozier, Sarah R., Siân M Robinson, Keith M. Godfrey, Cyrus Cooper, and Hazel M. Inskip. 2009. “Women’s Dietary Patterns Change Little from Before to During Pregnancy.” <em>The Journal of Nutrition</em> 139 (10): 1956–63. <a href="https://doi.org/10.3945/jn.109.109579">https://doi.org/10.3945/jn.109.109579</a>.</p>
+</div>
+<div id="ref-Derogatis1993">
+<p>Derogatis, Leonard R., and P. M. Spencer. 1993. <em>Brief Symptom Inventory: BSI</em>. Pearson Upper Saddle River, NJ.</p>
+</div>
+<div id="ref-DondersEngelen2003">
+<p>Donders-Engelen, M., and L. van der Heijden. 2003. “Maten, Gewichten En Codenummers 2003.” In. Zeist, The Netherlands: Wageningen UR, Vakgroep Humane Voeding Wageningen; TNO Voeding.</p>
+</div>
+<div id="ref-Erler2016">
+<p>Erler, Nicole S., Dimitris Rizopoulos, Joost van Rosmalen, Vincent W. V. Jaddoe, Oscar H. Franco, and Emmanuel M. E. H. Lesaffre. 2016. “Dealing with Missing Covariates in Epidemiologic Studies: A Comparison Between Multiple Imputation and a Full Bayesian Approach.” <em>Statistics in Medicine</em> 35 (17): 2955–74. <a href="https://doi.org/10.1002/sim.6944">https://doi.org/10.1002/sim.6944</a>.</p>
+</div>
+<div id="ref-Forsum1988">
+<p>Forsum, Elisabet, Aija Sadurskis, and Jan Wager. 1988. “Resting Metabolic Rate and Body Composition of Healthy Swedish Women During Pregnancy.” <em>The American Journal of Clinical Nutrition</em> 47 (6): 942–47.</p>
+</div>
+<div id="ref-Freisling2012">
+<p>Freisling, Heinz, Marit M. E. van Bakel, Carine Biessy, Anne M. May, Graham Byrnes, Teresa Norat, Sabina Rinaldi, et al. 2012. “Dietary reporting errors on 24 h recalls and dietary questionnaires are associated with BMI across six European countries as evaluated with recovery biomarkers for protein and potassium intake.” <em>British Journal of Nutrition</em> 107 (6): 910–20. <a href="https://doi.org/10.1017/S0007114511003564">https://doi.org/10.1017/S0007114511003564</a>.</p>
+</div>
+<div id="ref-Gaillard2013">
+<p>Gaillard, Romy, Büşra Durmuş, Albert Hofman, Johan P. Mackenbach, Eric A. P. Steegers, and Vincent W. V. Jaddoe. 2013. “Risk Factors and Outcomes of Maternal Obesity and Excessive Weight Gain During Pregnancy.” <em>Obesity</em> 21 (5): 1046–55. <a href="https://doi.org/10.1002/oby.20088">https://doi.org/10.1002/oby.20088</a>.</p>
+</div>
+<div id="ref-Han2011">
+<p>Han, Zhen, Olha Lutsiv, Sohail Mulla, Allison Rosen, Joseph Beyene, and Sarah D. McDonald. 2011. “Low Gestational Weight Gain and the Risk of Preterm Birth and Low Birthweight: A Systematic Review and Meta-Analyses.” <em>Acta Obstetricia et Gynecologica Scandinavica</em> 90 (9): 935–54. <a href="https://doi.org/10.1111/j.1600-0412.2011.01185.x">https://doi.org/10.1111/j.1600-0412.2011.01185.x</a>.</p>
+</div>
+<div id="ref-HealthCounsil2006">
+<p>Health Council of the Netherlands. 2006. “Guidelines for a Healthy Diet 2006.” Health Council of the Netherlands, The Hague.</p>
+</div>
+<div id="ref-Hedderson2010">
+<p>Hedderson, Monique M., Erica P. Gunderson, and Assiamira Ferrara. 2010. “Gestational Weight Gain and Risk of Gestational Diabetes Mellitus.” <em>Obstetrics &amp; Gynecology</em> 115 (3): 597. <a href="https://doi.org/10.1097/AOG.0b013e3181cfce4f">https://doi.org/10.1097/AOG.0b013e3181cfce4f</a>.</p>
+</div>
+<div id="ref-Hillesund2014">
+<p>Hillesund, Elisabet R., Elling Bere, Margaretha Haugen, and Nina C. Øverby. 2014. “Development of a New Nordic Diet score and its association with gestational weight gain and fetal growth – a study performed in the Norwegian Mother and Child Cohort Study (MoBa).” <em>Public Health Nutrition</em> 17 (9): 1909–18. <a href="https://doi.org/10.1017/S1368980014000421">https://doi.org/10.1017/S1368980014000421</a>.</p>
+</div>
+<div id="ref-Hu2002">
+<p>Hu, Frank B. 2002. “Dietary Pattern Analysis: A New Direction in Nutritional Epidemiology.” <em>Current Opinion in Lipidology</em> 13 (1): 3–9.</p>
+</div>
+<div id="ref-Rasmussen2009">
+<p>Institute of Medicine and National Research Council. 2009. <em>Weight Gain During Pregnancy: Reexamining the Guidelines</em>. Edited by Kathleen M. Rasmussen and Ann L. Yaktine. Washington, DC: The National Academies Press. <a href="https://doi.org/10.17226/12584">https://doi.org/10.17226/12584</a>.</p>
+</div>
+<div id="ref-Johnson2013">
+<p>Johnson, Julie, Rebecca G. Clifton, James M. Roberts, Leslie Myatt, John C. Hauth, Catherine Y. Spong, Michael W. Varner, et al. 2013. “Pregnancy Outcomes With Weight Gain Above or Below the 2009 Institute of Medicine Guidelines.” <em>Obstetrics &amp; Gynecology</em> 121 (5): 969. <a href="https://doi.org/10.1097/AOG.0b013e31828aea03">https://doi.org/10.1097/AOG.0b013e31828aea03</a>.</p>
+</div>
+<div id="ref-Jolliffe2011">
+<p>Jolliffe, Ian. 2011. “Principal Component Analysis.” In <em>International Encyclopedia of Statistical Science</em>, edited by Miodrag Lovric, 1094–6. Berlin, Heidelberg: Springer. <a href="https://doi.org/10.1007/978-3-642-04898-2_455">https://doi.org/10.1007/978-3-642-04898-2_455</a>.</p>
+</div>
+<div id="ref-Kaiser1958">
+<p>Kaiser, Henry F. 1958. “The Varimax Criterion for Analytic Rotation in Factor Analysis.” <em>Psychometrika</em> 23 (3): 187–200. <a href="https://doi.org/10.1007/BF02289233">https://doi.org/10.1007/BF02289233</a>.</p>
+</div>
+<div id="ref-Kim2014">
+<p>Kim, Shin Y., Andrea J. Sharma, William Sappenfield, Hoyt G. Wilson, and Hamisu M. Salihu. 2014. “Association of Maternal Body Mass Index, Excessive Weight Gain, and Gestational Diabetes Mellitus With Large-for-Gestational-Age Births.” <em>Obstetrics &amp; Gynecology</em> 123 (4): 737. <a href="https://doi.org/10.1097/AOG.0000000000000177">https://doi.org/10.1097/AOG.0000000000000177</a>.</p>
+</div>
+<div id="ref-Kipnis2003">
+<p>Kipnis, Victor, Amy F. Subar, Douglas Midthune, Laurence S. Freedman, Rachel Ballard-Barbash, Richard P. Troiano, Sheila Bingham, Dale A. Schoeller, Arthur Schatzkin, and Raymond J. Carroll. 2003a. “Structure of Dietary Measurement Error: Results of the OPEN Biomarker Study.” <em>American Journal of Epidemiology</em> 158 (1): 14–21. <a href="https://doi.org/10.1093/aje/kwg091">https://doi.org/10.1093/aje/kwg091</a>.</p>
+</div>
+<div id="ref-KlipsteinGrobusch1998">
+<p>Klipstein-Grobusch, Kerstin, J. H. den Breeijen, R. A. Goldbohm, J. M. Geleijnse, A. Hofman, D. E. Grobbee, and J. C. M. Witteman. 1998. “Dietary Assessment in the Elderly: Validation of a Semiquantitative Food Frequency Questionnaire.” <em>European Journal of Clinical Nutrition</em> 52 (8): 588–96. <a href="https://doi.org/10.1038/sj.ejcn.1600611">https://doi.org/10.1038/sj.ejcn.1600611</a>.</p>
+</div>
+<div id="ref-Kopp1999">
+<p>Kopp-Hoolihan, L. E., M. D. Van Loan, W. W. Wong, and J. C. King. 1999. “Fat Mass Deposition During Pregnancy Using a Four-Component Model.” <em>Journal of Applied Physiology</em> 87 (1): 196–202. <a href="https://doi.org/10.1152/jappl.1999.87.1.196">https://doi.org/10.1152/jappl.1999.87.1.196</a>.</p>
+</div>
+<div id="ref-Kruithof2014">
+<p>Kruithof, Claudia J., Marjolein N. Kooijman, Cornelia M. van Duijn, Oscar H. Franco, Johan C. de Jongste, Caroline C. W. Klaver, Johan P. Mackenbach, et al. 2014. “The Generation R Study: Biobank update 2015.” <em>European Journal of Epidemiology</em> 29 (12): 911–27. <a href="https://doi.org/10.1007/s10654-014-9980-6">https://doi.org/10.1007/s10654-014-9980-6</a>.</p>
+</div>
+<div id="ref-Martins2011">
+<p>Martins, Ana Paula Bortoletto, and Maria Helena D’Aquino Benicio. 2011. “Influence of Dietary Intake During Gestation on Postpartum Weight Retention.” <em>Revista de Saúde Pública</em> 45 (5): 870–77. <a href="https://doi.org/10.1590/S0034-89102011005000056">https://doi.org/10.1590/S0034-89102011005000056</a>.</p>
+</div>
+<div id="ref-Nehring2011">
+<p>Nehring, Ina, Sylvia Schmoll, Andreas Beyerlein, Hans Hauner, and Rüdiger von Kries. 2011. “Gestational Weight Gain and Long-Term Postpartum Weight Retention: A Meta-Analysis.” <em>The American Journal of Clinical Nutrition</em> 94 (5): 1225–31. <a href="https://doi.org/10.3945/ajcn.111.015289">https://doi.org/10.3945/ajcn.111.015289</a>.</p>
+</div>
+<div id="ref-Netherlands2006">
+<p>Netherlands Nutrition Center. 2006. “Nevo: Dutch Food Composition Database 2006.” <em>The Hague, the Netherlands: Netherlands Nutrition Centre</em>.</p>
+</div>
+<div id="ref-Olafsdottir2006">
+<p>Olafsdottir, Anna S., G. V. Skuladottir, I. Thorsdottir, A. Hauksson, and L. Steingrimsdottir. 2006. “Maternal Diet in Early and Late Pregnancy in Relation to Weight Gain.” <em>International Journal of Obesity</em> 30 (3): 492. <a href="https://doi.org/10.1038/sj.ijo.0803184">https://doi.org/10.1038/sj.ijo.0803184</a>.</p>
+</div>
+<div id="ref-Olson2003">
+<p>Olson, Christine M., and Myla S. Strawderman. 2003. “Modifiable Behavioral Factors in a Biopsychosocial Model Predict Inadequate and Excessive Gestational Weight Gain.” <em>Journal of the Academy of Nutrition and Dietetics</em> 103 (1): 48–54. <a href="https://doi.org/10.1053/jada.2003.50001">https://doi.org/10.1053/jada.2003.50001</a>.</p>
+</div>
+<div id="ref-Pitkin1976">
+<p>Pitkin, Roy M. 1976. “Nutritional Support in Obstetrics and Gynecology.” <em>Clinical Obstetrics and Gynecology</em> 19 (3): 489–513.</p>
+</div>
+<div id="ref-JAGS">
+<p>Plummer, M. 2003. “JAGS: A Program for Analysis of Bayesian Graphical Models Using Gibbs Sampling.” Edited by Kurt Hornik, Friedrich Leisch, and Achim Zeileis.</p>
+</div>
+<div id="ref-Rad2011">
+<p>Rad, Neda Talai, Claudia Ritterath, Tina Siegmund, Cornelia Wascher, Gerda Siebert, Wolfgang Henrich, and Kai J. Buhling. 2011. “Longitudinal Analysis of Changes in Energy Intake and Macronutrient Composition During Pregnancy and 6 Weeks Post-Partum.” <em>Archives of Gynecology and Obstetrics</em> 283 (2): 185–90. <a href="https://doi.org/10.1007/s00404-009-1328-1">https://doi.org/10.1007/s00404-009-1328-1</a>.</p>
+</div>
+<div id="ref-Rifas2009">
+<p>Rifas-Shiman, Sheryl L, Janet W Rich-Edwards, Ken P Kleinman, Emily Oken, and Matthew W Gillman. 2009. “Dietary Quality during Pregnancy Varies by Maternal Characteristics in Project Viva: A US Cohort.” <em>Journal of the Academy of Nutrition and Dietetics</em> 109 (6): 1004–11. <a href="https://doi.org/10.1016/j.jada.2009.03.001">https://doi.org/10.1016/j.jada.2009.03.001</a>.</p>
+</div>
+<div id="ref-Rubin1987">
+<p>Rubin, Donald B. 1987. <em>Multiple Imputation for Nonresponse in Surveys</em>. Wiley Series in Probability and Statistics. Wiley. <a href="https://doi.org/10.1002/9780470316696">https://doi.org/10.1002/9780470316696</a>.</p>
+</div>
+<div id="ref-Shin2014">
+<p>Shin, Dayeon, Leonard Bianchi, Hwan Chung, Lorraine Weatherspoon, and Won O. Song. 2014. “Is Gestational Weight Gain Associated with Diet Quality During Pregnancy?” <em>Maternal and Child Health Journal</em> 18 (6): 1433–43. <a href="https://doi.org/10.1007/s10995-013-1383-x">https://doi.org/10.1007/s10995-013-1383-x</a>.</p>
+</div>
+<div id="ref-Streuling2011">
+<p>Streuling, Ina, Andreas Beyerlein, Eva Rosenfeld, Britta Schukat, and Rüdiger von Kries. 2011. “Weight Gain and Dietary Intake During Pregnancy in Industrialized Countries – a Systematic Review of Observational Studies.” <em>Journal of Perinatal Medicine</em> 39 (2): 123–29. <a href="https://doi.org/10.1515/jpm.2010.127">https://doi.org/10.1515/jpm.2010.127</a>.</p>
+</div>
+<div id="ref-Stuebe2009">
+<p>Stuebe, Alison M., Emily Oken, and Matthew W. Gillman. 2009. “Associations of Diet and Physical Activity During Pregnancy with Risk for Excessive Gestational Weight Gain.” <em>American Journal of Obstetrics &amp; Gynecology</em> 201 (1): 58–e1. <a href="https://doi.org/10.1016/j.ajog.2009.02.025">https://doi.org/10.1016/j.ajog.2009.02.025</a>.</p>
+</div>
+<div id="ref-Uusitalo2009">
+<p>Uusitalo, Ulla, Tuula Arkkola, Marja-Leena Ovaskainen, Carina Kronberg-Kippilä, Mike G. Kenward, Riitta Veijola, Olli Simell, Mikael Knip, and Suvi M. Virtanen. 2009. “Unhealthy Dietary Patterns Are Associated with Weight Gain During Pregnancy Among Finnish Women.” <em>Public Health Nutrition</em> 12 (12): 2392–9. <a href="https://doi.org/10.1017/S136898000900528X">https://doi.org/10.1017/S136898000900528X</a>.</p>
+</div>
+<div id="ref-Broek2015">
+<p>Van den Broek, Marion, Elisabeth T. M. Leermakers, Vincent W. V. Jaddoe, Eric A. P. Steegers, Fernando Rivadeneira, Hein Raat, Albert Hofman, Oscar H. Franco, and Jessica C. Kiefte-de Jong. 2015. “Maternal dietary patterns during pregnancy and body composition of the child at age 6 y: the Generation R Study.” <em>The American Journal of Clinical Nutrition</em> 102 (4): 873–80. <a href="https://doi.org/10.3945/ajcn.114.102905">https://doi.org/10.3945/ajcn.114.102905</a>.</p>
+</div>
+<div id="ref-Lee2012">
+<p>Van Lee, Linde, Anouk Geelen, Eveline J. C. Hooft van Huysduynen, Jeanne H. M. de Vries, Pieter van’t Veer, and Edith J. M. Feskens. 2012. “The Dutch Healthy Diet index (DHD-index): an instrument to measure adherence to the Dutch Guidelines for a Healthy Diet.” <em>Nutrition Journal</em> 11 (1): 49. <a href="https://doi.org/10.1186/1475-2891-11-49">https://doi.org/10.1186/1475-2891-11-49</a>.</p>
+</div>
+<div id="ref-Rossem2009">
+<p>Van Rossem, Lenie, Anke Oenema, Eric A. P. Steegers, Henriëtte A. Moll, Vincent W. V. Jaddoe, Albert Hofman, Johan P. Mackenbach, and Hein Raat. 2009. “Are Starting and Continuing Breastfeeding Related to Educational Background? The Generation R Study.” <em>Pediatrics</em> 123 (6): e1017–e1027. <a href="https://doi.org/10.1542/peds.2008-2663">https://doi.org/10.1542/peds.2008-2663</a>.</p>
+</div>
+<div id="ref-Willett2012">
+<p>Willett, Walter. 2012. <em>Nutritional Epidemiology</em>. Oxford University Press.</p>
+</div>
+<div id="ref-World1998">
+<p>World Health Organization, and Food and Agriculture Organization of the United Nations. 1998. “Preparation and Use of Food-Based Dietary Guidelines: Report of a Joint Fao/Who Consultation.”</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="ch-SIM.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ch-Vincent.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
