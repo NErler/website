@@ -15,4 +15,6 @@ publication = "*Statistics in Medicine*, 2016, 35 (17), 2955 -- 2974"
 featured = true
 url_pdf = "https://onlinelibrary.wiley.com/doi/epdf/10.1002/sim.6944"
 doi = "10.1002/sim.6944"
+
+projects = ["Dissertation"]
 +++

@@ -11,6 +11,9 @@ publication = "*Statistical Methods in Medical Research*, 2019, 28 (2), 555--568
 math = true
 publication_types = ["2"]
 
+projects = ["Dissertation"]
+
+
 featured = true
 
 tags = ["Bayesian", "epidemiology", "imputation", "missing covariate values", "time-varying covariates"]
