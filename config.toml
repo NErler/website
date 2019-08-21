@@ -52,6 +52,7 @@ preserveTaxonomyNames = true
   hrefTargetBlank = true  # `true` opens external links in a new tab. See https://github.com/gohugoio/hugo/issues/2424
 	angledQuotes = false
 	latexDashes = true
+	plainIDAnchors = true
   extensions = ["backslashLineBreak"]
 
 # Taxonomies.
