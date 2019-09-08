@@ -23,3 +23,45 @@ Materials for the part on multiple imputation can be found on
 
 * [Slides](https://nerler.github.io/EP16_Multiple_Imputation/slide/)
 * [Practicals](https://nerler.github.io/EP16_Multiple_Imputation/practical/)
+
+<hr>
+
+### FGME 2019 {#FGME2019}
+On 15 september 2019 I teach the pre-conference course on 
+[**Multiple Imputation of Missing Data in Simple and More Complex Settings**](http://www.fgme2019.de/index.php?id=15)
+at the [Tagung der Fachgruppe Methoden & Evaluation
+der Deutschen Gesellschaft für Psychologie](http://www.fgme2019.de) in Kiel:
+
+* **Slides**: (preliminary version)
+<a href="teaching/FGME2019/MICourse_Slides.pdf" >[view]</a>
+<a href="teaching/FGME2019/MICourse_Slides.pdf" download>[download]</a>
+
+* **Practicals**: (preliminary version)
+  * Multiple Imputation with the **mice** package
+    <a href="teaching/FGME2019/MImice.html" >[view]</a>
+  * Evaluating and checking the imputation
+    <a href="teaching/FGME2019/MIcheck.html" >[view]</a>
+  * Imputation with non-linear associations
+    <a href="teaching/FGME2019/MInonlin.html" >[view]</a>
+  * Imputation with multi-level data
+    <a href="teaching/FGME2019/MIlong.html" >[view]</a>
+  * .zip with all materials
+    <a href="teaching/FGME2019/MIpracticals.zip" download >[download]</a>
+
+For the practicals, please download and install
+
+* [R (version 3.6.1)](https://cran.r-project.org)
+* [JAGS (version 4.3.0)](https://sourceforge.net/projects/mcmc-jags/files/JAGS/4.x/) (necessary for JointAI)
+* R package [mice (version 3.6.0)](https://CRAN.R-project.org/package=mice)
+* R package [JointAI (version 0.6.0)](https://CRAN.R-project.org/package=JointAI)
+
+<!--
+Additional R packages used in the practicals are given at the beginning of each of the practicals
+and include [ggplot2](https://CRAN.R-project.org/package=ggplot2),
+[RColorBrewer](https://CRAN.R-project.org/package=RColorBrewer),
+[reshape2](https://CRAN.R-project.org/package=reshape2)
+[ggpubr](https://CRAN.R-project.org/package=ggpubr)
+[mitools](https://CRAN.R-project.org/package=mitools)
+[miceadds](https://CRAN.R-project.org/package=miceadds)
+[plyr](https://CRAN.R-project.org/package=plyr)
+-->
