@@ -32,11 +32,13 @@ On 15 september 2019 I teach the pre-conference course on
 at the [Tagung der Fachgruppe Methoden & Evaluation
 der Deutschen Gesellschaft für Psychologie](http://www.fgme2019.de) in Kiel:
 
-* **Slides**: (preliminary version)
+* **Slides**: (version 2019-09-13)
 <a href="teaching/FGME2019/MICourse_Slides.pdf" >[view]</a>
-<a href="teaching/FGME2019/MICourse_Slides.pdf" download>[download]</a>
+<a href="teaching/FGME2019/MICourse_Slides.pdf" download>[download]</a><br>
+Handout version of the slides:
+<a href="teaching/FGME2019/MICourse_Handout.pdf" download>[download]</a>
 
-* **Practicals**: (preliminary version)
+* **Practicals**: (version 2019-09-13)
   * Multiple Imputation with the **mice** package
     <a href="teaching/FGME2019/MImice.html" >[view]</a>
   * Evaluating and checking the imputation
