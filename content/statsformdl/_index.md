@@ -20,13 +20,9 @@ type = "docs"  # Do not modify.
 # caption = "Image credit: [**Academic**](https://github.com/gcushen/hugo-academic/)"
 +++
 
-<!---This section contains materials (small simulations, visualizations, 
-explanations and links to external materials) concerning topics relevant in and
-questions that have come up in the collaboration with clinicians.
---->
 
 ## Useful links
-* [Glossary of Statistical terms](http://biostat.mc.vanderbilt.edu/wiki/pub/Main/ClinStat/glossary.pdf)
+* [Glossary of Statistical terms](http://hbiostat.org/doc/glossary.pdf)
   (Source: Department of Biostatistics, Vanderbilt University School of Medicine)
 * [Statistics Notes in the BMJ](http://www-users.york.ac.uk/~mb55/pubs/pbstnote.htm)
 * [Common statistical issues in medical papers](http://biostat.mc.vanderbilt.edu/wiki/Main/ManuscriptChecklist)
