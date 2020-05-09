@@ -2,19 +2,47 @@
 name = "mytheme"
 
 # Is theme light or dark?
+#light = true
+
+# Primary
+#primary = "#80005e" #"#610047"
+#primary_light = "#b40084"
+#primary_dark = "#440032"
+
+# Menu
+#menu_primary = "#610047" # bar at top
+#menu_text = "#fff" # main background
+#menu_text_active = "#8c8c8c"
+#menu_title = "#fff"
+
+# Home sections
+#home_section_odd = "rgb(255, 255, 255)"
+#home_section_even = "rgb(247, 247, 247)"
+
+##################################################################################
+# Is theme light or dark?
+
 light = true
 
 # Primary
-primary = "#80005e" #"#610047"
-primary_light = "#b40084"
-primary_dark = "#440032"
+primary = "#970941" #"#610047" # outline and text on buttons? hover color for links
+primary_light = "orange"
+primary_dark = "blue"
+
+link_color = "lightgreen"
 
 # Menu
-menu_primary = "#610047" # bar at top
-menu_text = "#fff" # main background
-menu_text_active = "#8c8c8c"
-menu_title = "#fff"
+menu_primary = "#970941" # background bar at top, 
+menu_text = "yellow" # text color of sections in menu bar
+menu_text_active = "lightblue" # text color of current section in menu bar
+menu_title = "green" # text color of "Nicole S. Erler" on menu bar
 
 # Home sections
 home_section_odd = "rgb(255, 255, 255)"
 home_section_even = "rgb(247, 247, 247)"
+
+#23000E
+#3D0319
+#2E0012
+#660027
+#120007
