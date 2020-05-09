@@ -1,12 +1,11 @@
-{{ partial "header.html" . }}
-{{ partial "navbar.html" . }}
+{{- define "main" -}}
 
 {{ partial "page_header.html" . }}
 
 <div class="universal-wrapper">
 
   {{ with .Content }}
-  <div class="article-style" itemprop="articleBody">{{ . }}</div>
+  <div class="article-style">{{ . }}</div>
   {{ end }}
 
   {{ $paginator := .Paginate .Data.Pages }}
@@ -14,14 +13,14 @@
     {{ if eq $.Params.view 1 }}
       {{ partial "li_list" . }}
     {{ else if eq $.Params.view 3 }}
-      {{ partial "post_li_card" . }}
+      {{ partial "li_card" . }}
     {{ else }}
-      {{ partial "post_li_compact" . }}
+      {{ partial "li_compact" . }}
     {{ end }}
   {{ end }}
 
   {{ partial "pagination" . }}
 
 </div>
-{{ partial "footer_container.html" . }}
-{{ partial "footer.html" . }}
+
+{{- end -}}
