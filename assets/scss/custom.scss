@@ -1,0 +1,99 @@
+// Override this file to add your own SCSS styling.
+
+
+// Change colors of links
+// General links
+.dark a {
+  color: mix($sta-primary, white, $weight: 60%);
+}
+
+
+.article-metadata a:hover {
+  color: $sta-primary_light;
+}
+
+
+h3.article-title a:hover {
+  color: $sta-primary_light;
+}
+
+
+
+.dark #contact-email {
+  color: $sta-primary-light;
+  font-weight: bold;
+}
+
+.dark #contact-icon {
+  color: $sta-primary-light;
+  font-weight: bold;
+}
+
+
+// Color of the icons that link to email, github, twitter in the Biography
+.network-icon-link {
+  color: var(--primary);
+}
+
+.dark .network-icon-link {
+  color: var(--primary);
+}
+
+
+// Color and styling of the "See all ..." links (Publications, Talks, ...)
+.see-all {
+    margin-top: 2rem;
+    text-transform: uppercase;
+    font-weight:bold;
+}
+
+.dark .see-all-link {
+  color: $sta-primary_light;
+}
+
+
+
+// Class for color-inversion in images
+.img-reactive {
+   -webkit-filter: invert(0);
+   filter: invert(0);
+}
+
+.dark .img-reactive {
+   -webkit-filter: invert(1);
+   filter: invert(1);
+}
+
+
+// Color definitions for link buttons
+.btn-outline-primary {
+  color: #fff;
+  background-color: var(--primary);
+  border-color: $sta-primary_dark;
+}
+
+.dark .btn-outline-primary {
+  color: #fff;
+  background-color: var(--primary);
+  border-color: $sta-primary_light;
+}
+
+.btn-outline-primary:hover {
+  color: $sta_primary_dark;
+  border-color: $sta_primary_dark;
+  background-color: transparent;
+  font-weight: bold;
+}
+
+.dark .btn-outline-primary:hover {
+  color: $sta_primary_light;
+  border-color: $sta_primary_light;
+  background-color: transparent;
+}
+
+
+
+// Make font of title for publication pages, project pages, ... smaller
+.article-container h1 {
+  font-size: 2.0rem;
+}
