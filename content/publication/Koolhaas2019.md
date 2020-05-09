@@ -14,8 +14,7 @@ selected = false
 projects = []
 tags = []
 
-url_preprint = "https://www.sciencedirect.com/science/article/pii/S1389945718308633/pdfft?md5=717a9ed13195056035dc6d831d33e9cf&pid=1-s2.0-S1389945718308633-main.pdf"
-url_pdf = ""
+url_pdf = "https://www.sciencedirect.com/science/article/pii/S1389945718308633/pdfft?md5=717a9ed13195056035dc6d831d33e9cf&pid=1-s2.0-S1389945718308633-main.pdf"
 url_code = ""
 url_dataset = ""
 url_project = ""

@@ -21,7 +21,7 @@ projects = []
 
 tags = ["Early detection of cancer", "Pancreatic cyst", "Patient reported outcome measures", "Psychology"]
 
-url_pdf = ""
+url_pdf = "https://www.sciencedirect.com/science/article/pii/S1424390319307197/pdfft?md5=7c432b845a8d49708ab6361a2e0b9d43&pid=1-s2.0-S1424390319307197-main.pdf"
 
 doi = "10.1016/j.pan.2019.08.011"
 

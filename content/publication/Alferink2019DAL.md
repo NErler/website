@@ -22,8 +22,7 @@ tags = []
 
 # Links (optional).
 doi = "10.1210/jc.2018-02792"
-url_pdf = ""
-url_preprint = "https://academic.oup.com/jcem/advance-article-pdf/doi/10.1210/jc.2018-02792/28355470/jc.2018-02792.pdf"
+url_pdf = "https://academic.oup.com/jcem/article-pdf/104/12/6325/30385176/jc.2018-02792.pdf"
 url_code = ""
 url_dataset = ""
 url_project = ""
