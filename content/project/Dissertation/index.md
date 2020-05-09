@@ -1,37 +1,48 @@
 ---
 title: Bayesian Imputation of Missing Covariates
-subtitle: Doctoral Dissertation
+date: "2019-06-12T00:00:00Z"
+
 summary: Doctoral Dissertation
+
 tags:
 - Bayesian
 - imputation
 - missing data
-date: "2019-08-21T00:00:00Z"
+- longitudinal
+- R
+
 
 # Optional external URL for project (replaces project detail page).
 external_link: ""
 
 image:
   caption: cover image by Marijke van Zuilen
-  focal_point: Top
+  focal_point: Smart
+  preview_only: true
+
 
 links:
-- icon: twitter
-  icon_pack: fab
-  name: Follow
-  url: https://twitter.com/N_Erler
+- icon: book
+  icon_pack: fa
+  name: read online
+  url: /dissertation/_book
+
+- icon: images
+  icon_pack: fa
+  name: slides
+  url: https://nerler.github.io/Thesis_Defense/
+  
 url_code: ""
 url_pdf: ""
 url_slides: ""
 url_video: ""
-
-
 
 # Slides (optional).
 #   Associate this project with Markdown slides.
 #   Simply enter your slide deck's filename without extension.
 #   E.g. `slides = "example-slides"` references `content/slides/example-slides.md`.
 #   Otherwise, set `slides = ""`.
+slides: ""
 ---
 
 ## Abstract

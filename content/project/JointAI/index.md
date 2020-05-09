@@ -1,6 +1,10 @@
 ---
 title: Joint Analysis and Imputation of Incomplete Data in R
+
+date: "2019-08-21T00:00:00Z"
+
 summary: R package JointAI for analysis of incomplete data in the Bayesian framework.
+
 tags:
 - R
 - JAGS
@@ -11,21 +15,33 @@ tags:
 - imputation
 - congenial
 
-date: "2019-08-21T00:00:00Z"
 
 # Optional external URL for project (replaces project detail page).
 external_link: ""
 
 image:
-  caption: © 2016 The R Foundation
+  placement: 1
+  caption: ""
   focal_point: Smart
+  preview_only: true
 
 links:
-- icon: twitter
-  icon_pack: fab
-  name: Follow
-  url: https://twitter.com/N_Erler
+- icon: globe-americas
+  icon_pack: fa
+  name: website
+  url: https://nerler.github.io/JointAI
   
+- icon: r-project
+  icon_pack: fab
+  name: CRAN
+  url: https://CRAN.R-project.org/package=JointAI
+  
+- icon: github
+  icon_pack: fab
+  name: GitHub
+  url: https://github.com/NErler/JointAI
+
+
 url_code: ""
 url_pdf: ""
 url_slides: ""
@@ -36,8 +52,15 @@ url_video: ""
 #   Simply enter your slide deck's filename without extension.
 #   E.g. `slides = "example-slides"` references `content/slides/example-slides.md`.
 #   Otherwise, set `slides = ""`.
-slides: example
+slides: ""
 ---
+
+<div style="position:relative; top:-40px;">
+<img src = "featured.png" width = "40%" style="margin-left:15px; float: right;">
+</div>
+
+
+
 
 [**JointAI**](https://nerler.github.io/JointAI) is a software package
 contributed to the [Comprehensive R Archive Network
