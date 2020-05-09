@@ -52,22 +52,22 @@ at the [Tagung der Fachgruppe Methoden & Evaluation
 der Deutschen Gesellschaft für Psychologie](http://www.fgme2019.de) in Kiel:
 
 * **Slides**: (version 2019-09-13)
-<a href="teaching/FGME2019/MICourse_Slides.pdf" >[view]</a>
-<a href="teaching/FGME2019/MICourse_Slides.pdf" download>[download]</a><br>
+<a href="MICourse_Slides.pdf" >[view]</a>
+<a href="MICourse_Slides.pdf" download>[download]</a><br>
 Handout version of the slides:
-<a href="teaching/FGME2019/MICourse_Handout.pdf" download>[download]</a>
+<a href="MICourse_Handout.pdf" download>[download]</a>
 
 * **Practicals**: (version 2019-09-13)
   * Multiple Imputation with the **mice** package
-    <a href="teaching/FGME2019/MImice.html" >[view]</a>
+    <a href="MImice.html" >[view]</a>
   * Evaluating and checking the imputation
-    <a href="teaching/FGME2019/MIcheck.html" >[view]</a>
+    <a href="MIcheck.html" >[view]</a>
   * Imputation with non-linear associations
-    <a href="teaching/FGME2019/MInonlin.html" >[view]</a>
+    <a href="MInonlin.html" >[view]</a>
   * Imputation with multi-level data
-    <a href="teaching/FGME2019/MIlong.html" >[view]</a>
+    <a href="MIlong.html" >[view]</a>
   * .zip with all materials
-    <a href="teaching/FGME2019/MIpracticals.zip" download >[download]</a>
+    <a href="MIpracticals.zip" download >[download]</a>
 
 For the practicals, please download and install
 
