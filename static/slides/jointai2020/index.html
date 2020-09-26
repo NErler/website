@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>JointAI: Joint Analysis and Imputation of Incomplete Data in R</title>
+    <title>JointAI: Fully Bayesian Joint Analysis and Imputation of Incomplete Data in R</title>
     <meta charset="utf-8" />
     <meta name="author" content="Nicole Erler" />
-    <meta name="date" content="2020-09-24" />
+    <meta name="date" content="2020-09-26" />
     <link href="libs/tile-view-0.2.1/tile-view.css" rel="stylesheet" />
     <script src="libs/tile-view-0.2.1/tile-view.js"></script>
     <script src="libs/xaringanExtra_fit-screen-0.2.1/fit-screen.js"></script>
@@ -71,15 +71,13 @@ of Incomplete Data in R
 
 ???
 
-Today I would like to talk to you about Joint Analysis and Imputation of
-Incomplete Data.
+Basis assumption:
 
-I assume that we all agree that missing data are a common thing that we encounter
-many times when we analyse real data. And by now it is also widely known that
-we can't just ignore the missing data problem and do a complete case analysis 
-because that will most often lead to biased results.
+* missing data are common
+* we can't just ignore the missing data problem and do a complete case analysis
+because that will most often lead to biased results
 
-But there are of course widely known and accepted methods for handling missing
+But there are known and accepted methods for handling missing
 data, for example multiple imputation, usually used with the FCS approach.
 
 
@@ -624,8 +622,8 @@ patient and should therefore be correlated, but that they should be identical.
 If `\(\color{var(--nord15)}{\mathbf x_1}\)` is a **level-1** variable:
 
 `$$\mathbb{E}[\color{var(--nord15}{x_{i1}(t)}] = 
-\underset{\color{var(--nord3)}{\text{fixed effects}}}{\color{var(--nord3)}{\underbrace{\color{white}{\theta_0 + \theta_1 y_i(t) + \theta_2 x_{2i}(t) + \theta_3 x_{3i}(t)}}}} + 
-\underset{\color{var(--nord3)}{\substack{\text{random}\\\text{effects}}}}{\color{var(--nord3)}{\underbrace{\color{white}{\mathbf u_i \mathbf z_i(t)}}}}$$`
+\underset{\color{var(--nord3)}{\text{fixed effects}}}{\color{var(--nord3)}{\underbrace{\color{var(--nord3)}{\theta_0 + \theta_1 y_i(t) + \theta_2 x_{2i}(t) + \theta_3 x_{3i}(t)}}}} + 
+\underset{\color{var(--nord3)}{\substack{\text{random}\\\text{effects}}}}{\color{var(--nord3)}{\underbrace{\color{var(--nord3)}{\mathbf u_i \mathbf z_i(t)}}}}$$`
 ]
 
 .gr-right2[
@@ -745,10 +743,17 @@ class: animated, fadeIn
 **Alternative:** .reference[[&lt;i class = "fas fa-book"&gt;&lt;/i&gt; Erler (2016)](https://doi.org/10.1002/sim.6944)]&lt;br&gt;
 Summarize longitudinal trajectories using random effects.
 
-* more efficient
-* requires sufficient fit
-* only for incomplete baseline covariates
-
+&lt;ul class="fa-ul"&gt;
+  &lt;li&gt;&lt;span class="fa-li" style = "color:var(--nord14);"&gt;
+      &lt;i class="far fa-smile"&gt;&lt;/i&gt;&lt;/span&gt;
+      more efficient&lt;/li&gt;
+  &lt;li&gt;&lt;span class="fa-li" style = "color:var(--nord13);"&gt;
+      &lt;i class="far fa-meh"&gt;&lt;/i&gt;&lt;/span&gt;
+      requires sufficient fit&lt;/li&gt;
+  &lt;li&gt;&lt;span class="fa-li" style = "color:var(--nord11);"&gt;
+  &lt;i class="far fa-frown"&gt;&lt;/i&gt;&lt;/span&gt;
+  only for incomplete baseline covariates&lt;/li&gt;
+&lt;/ul&gt;
 
 ---
 
@@ -990,7 +995,7 @@ specify it as the product of conditional distributions we see here.
 ---
 count: false
 
-## The title
+## The Imputation Model
 
 `\begin{eqnarray*}
 p(\color{var(--nord15)}{\mathbf x_1} \mid \mathbf y, \ldots) &amp; = &amp; 
@@ -1304,6 +1309,11 @@ class: center, middle, animated, fadeIn
 ]
 ]
 
+
+.footnote[
+[Full documentation at https://nerler.github.io/JointAI/](https://nerler.github.io/JointAI/)
+]
+
 ---
 
 ## Specification
@@ -1313,7 +1323,7 @@ Specification **like standard complete data functions**:
 
 ```r
 library("JointAI")
-lm1 &lt;- lm_imp(SBP ~ gender + age + alc + creat, data = NHANES, n.iter = 200)
+lm1 &lt;- lm_imp(SBP ~ gender + age + alc * creat, data = NHANES, n.iter = 200)
 ```
 
 
@@ -1352,21 +1362,22 @@ summary(lm1, missinfo = TRUE)
 ## Bayesian linear model fitted with JointAI
 ## 
 ## Call:
-## lm_imp(formula = SBP ~ gender + age + alc + creat, data = NHANES, 
+## lm_imp(formula = SBP ~ gender + age + alc * creat, data = NHANES, 
 ##     n.iter = 200)
 ## 
 ## 
 ## Posterior summary:
-##                Mean     SD    2.5%   97.5% tail-prob. GR-crit MCE/SD
-## (Intercept)  97.977 7.7436  84.109 112.671      0.000    1.02 0.0408
-## genderfemale -3.756 2.5299  -8.765   0.673      0.103    1.00 0.0408
-## age           0.374 0.0704   0.243   0.521      0.000    1.00 0.0408
-## alc&gt;=1        7.207 2.3217   2.404  11.542      0.000    1.01 0.0534
-## creat         4.909 7.7892 -10.644  19.682      0.540    1.01 0.0408
+##                 Mean     SD    2.5%   97.5% tail-prob. GR-crit MCE/SD
+## (Intercept)  102.815  8.902  84.815 119.646      0.000    1.02 0.0458
+## genderfemale  -3.926  2.567  -8.864   1.190      0.130    1.01 0.0432
+## age            0.377  0.068   0.243   0.505      0.000    1.01 0.0408
+## alc&gt;=1        -7.997 13.490 -33.350  16.731      0.573    1.01 0.0621
+## creat         -0.827  9.236 -17.987  18.194      0.857    1.01 0.0471
+## alc&gt;=1:creat  17.472 15.294 -11.313  45.607      0.263    1.01 0.0588
 ## 
 ## Posterior summary of residual std. deviation:
 ##           Mean    SD 2.5% 97.5% GR-crit MCE/SD
-## sigma_SBP   14 0.756 12.7  15.5    1.01 0.0408
+## sigma_SBP   14 0.734 12.6  15.6       1 0.0408
 ## 
 ## 
 ## MCMC settings:
@@ -1391,6 +1402,7 @@ summary(lm1, missinfo = TRUE)
 ## alc      34 18.3
 ```
 ]
+
 
 ---
 
@@ -1418,9 +1430,9 @@ list_models(lm1)
 ##    family: gaussian 
 ##    link: identity 
 ## * Predictor variables:
-##   (Intercept), genderfemale, age, alc&gt;=1, creat 
+##   (Intercept), genderfemale, age, alc&gt;=1, creat, alc&gt;=1:creat 
 ## * Regression coefficients:
-##   beta[1:5] (normal prior(s) with mean 0 and precision 1e-04) 
+##   beta[1:6] (normal prior(s) with mean 0 and precision 1e-04) 
 ## * Precision of  "SBP" :
 ##   tau_SBP (Gamma prior with shape parameter 0.01 and rate parameter 0.01)
 ## 
@@ -1449,25 +1461,81 @@ list_models(lm1)
 
 ---
 
-## Investigating the Data
+## The JAGS model
 
-
-
-```r
-plot_all(NHANES[all.vars(formula(lm1))])
-```
-
-&lt;img src = "index_files/figure-html/plotall-lm1-1.png" width = "100%"&gt;
-
----
-
-
-## Investigating the Data
+.scroll450[
 
 ```r
-md_pattern(NHANES)
+lm1$jagsmodel
 ```
-&lt;img src="index_files/figure-html/unnamed-chunk-15-1.png" width="100%" /&gt;
+
+```
+## model { 
+## 
+##  
+  # Normal model for SBP ----------------------------------------------------------
+##   for (i in 1:186) {
+##     M_lvlone[i, 1] ~ dnorm(mu_SBP[i], tau_SBP)
+##     mu_SBP[i] &lt;- M_lvlone[i, 4] * beta[1] + M_lvlone[i, 5] * beta[2] +
+##                  (M_lvlone[i, 6] - spM_lvlone[6, 1])/spM_lvlone[6, 2] * beta[3] +
+##                  M_lvlone[i, 7] * beta[4] +
+##                  (M_lvlone[i, 3] - spM_lvlone[3, 1])/spM_lvlone[3, 2] * beta[5] +
+##                  (M_lvlone[i, 8] - spM_lvlone[8, 1])/spM_lvlone[8, 2] * beta[6]
+##   }
+## 
+##   # Priors for the model for SBP
+##   for (k in 1:6) {
+##     beta[k] ~ dnorm(mu_reg_norm, tau_reg_norm)
+##   }
+##   tau_SBP ~ dgamma(shape_tau_norm, rate_tau_norm)
+##   sigma_SBP &lt;- sqrt(1/tau_SBP)
+## 
+## 
+## 
+## 
+  # Binomial model for alc --------------------------------------------------------
+##   for (i in 1:186) {
+##     M_lvlone[i, 2] ~ dbern(max(1e-16, min(1 - 1e-16, mu_alc[i])))
+##     logit(mu_alc[i]) &lt;- M_lvlone[i, 4] * alpha[1] + M_lvlone[i, 5] * alpha[2] +
+##                         (M_lvlone[i, 6] - spM_lvlone[6, 1])/spM_lvlone[6, 2] * alpha[3] +
+##                         (M_lvlone[i, 3] - spM_lvlone[3, 1])/spM_lvlone[3, 2] * alpha[4]
+## 
+##     M_lvlone[i, 7] &lt;- ifelse(M_lvlone[i, 2] == 1, 1, 0)
+## 
+##   }
+## 
+##   # Priors for the model for alc
+##   for (k in 1:4) {
+##     alpha[k] ~ dnorm(mu_reg_binom, tau_reg_binom)
+##   }
+## 
+## 
+## 
+## 
+  # Normal model for creat --------------------------------------------------------
+##   for (i in 1:186) {
+##     M_lvlone[i, 3] ~ dnorm(mu_creat[i], tau_creat)
+##     mu_creat[i] &lt;- M_lvlone[i, 4] * alpha[5] + M_lvlone[i, 5] * alpha[6] +
+##                    (M_lvlone[i, 6] - spM_lvlone[6, 1])/spM_lvlone[6, 2] * alpha[7]
+##   }
+## 
+##   # Priors for the model for creat
+##   for (k in 5:7) {
+##     alpha[k] ~ dnorm(mu_reg_norm, tau_reg_norm)
+##   }
+##   tau_creat ~ dgamma(shape_tau_norm, rate_tau_norm)
+##   sigma_creat &lt;- sqrt(1/tau_creat)
+##  
+##  
+##   # Re-calculate interaction terms
+##   for (i in 1:186) {
+##     M_lvlone[i, 8] &lt;- M_lvlone[i, 7] * M_lvlone[i, 3]
+##   }
+## 
+##  
+}
+```
+]
 
 
 ---
@@ -1547,11 +1615,17 @@ lm2$models
   &lt;div class="modal-content"&gt;
     &lt;span class="close"&gt;&amp;times;&lt;/span&gt;
     &lt;ul&gt;
-    &lt;li&gt;auxiliary variables (&lt;code&gt;auxvars&lt;/code&gt;)&lt;/li&gt;
-    &lt;li&gt; shrinkage (ridge) (&lt;code&gt;shrinkage&lt;/code&gt;)
-    &lt;li&gt; truncation of continuous distributions (&lt;code&gt;trunc&lt;/code&gt;)
-    &lt;li&gt; setting reference categories (&lt;code&gt;refcats&lt;/code&gt;)
-    &lt;li&gt; change hyper-parameters (&lt;code&gt;hyperpars&lt;/code&gt;)
+    &lt;li&gt;auxiliary variables (&lt;a href = "https://nerler.github.io/JointAI/articles/ModelSpecification.html#auxiliary-variables"&gt;&lt;code&gt;auxvars&lt;/code&gt;&lt;/a&gt;)&lt;/li&gt;
+    &lt;li&gt; shrinkage (ridge)
+    (&lt;a href = "https://nerler.github.io/JointAI/articles/ModelSpecification.html#shrinkage"&gt;&lt;code&gt;shrinkage&lt;/code&gt;&lt;/a&gt;)
+    &lt;li&gt; truncation of continuous distributions 
+    (&lt;a href = "https://nerler.github.io/JointAI/articles/ModelSpecification.html#functions-with-restricted-support"&gt;&lt;code&gt;trunc&lt;/code&gt;&lt;/a&gt;)
+    &lt;li&gt; setting reference categories 
+    (&lt;a href="https://nerler.github.io/JointAI/articles/ModelSpecification.html#reference-categories"&gt;&lt;code&gt;refcats&lt;/code&gt;&lt;/a&gt;)
+    &lt;li&gt; change hyper-parameters 
+    (&lt;a href = "https://nerler.github.io/JointAI/articles/ModelSpecification.html#hyper-parameters"&gt;&lt;code&gt;hyperpars&lt;/code&gt;&lt;/a&gt;)
+    &lt;li&gt; parameters to be monitored 
+    (&lt;a href="https://nerler.github.io/JointAI/articles/SelectingParameters.html"&gt;&lt;code&gt;monitor_params&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt; export the JAGS model
     (&lt;code&gt;modelname&lt;/code&gt;,
     &lt;code&gt;modeldir&lt;/code&gt;,
@@ -1569,14 +1643,20 @@ lm2$models
   &lt;div class="modal-content"&gt;
     &lt;span class="close"&gt;&amp;times;&lt;/span&gt;
     &lt;ul&gt;
-    &lt;li&gt;adaptive phase (&lt;code&gt;n.adapt&lt;/code&gt;)&lt;/li&gt;
-    &lt;li&gt;sampling phase (&lt;code&gt;n.iter&lt;/code&gt;)&lt;/li&gt;
-    &lt;li&gt;number of chains (&lt;code&gt;n.chains&lt;/code&gt;)&lt;/li&gt;
-    &lt;li&gt;thinning (&lt;code&gt;thin&lt;/code&gt;)&lt;/li&gt;
-    &lt;li&gt;initial values (&lt;code&gt;inits&lt;/code&gt;,
+    &lt;li&gt;adaptive phase 
+    (&lt;a href="https://nerler.github.io/JointAI/articles/MCMCsettings.html#adaptive-phase"&gt;&lt;code&gt;n.adapt&lt;/code&gt;&lt;/a&gt;)&lt;/li&gt;
+    &lt;li&gt;sampling phase 
+        (&lt;a href="https://nerler.github.io/JointAI/articles/MCMCsettings.html#sampling-iterations"&gt;&lt;code&gt;n.iter&lt;/code&gt;&lt;/a&gt;)&lt;/li&gt;
+    &lt;li&gt;number of chains
+        (&lt;a href="https://nerler.github.io/JointAI/articles/MCMCsettings.html#number-of-chains"&gt;&lt;code&gt;n.chains&lt;/code&gt;&lt;/a&gt;)&lt;/li&gt;
+    &lt;li&gt;thinning
+        (&lt;a href="https://nerler.github.io/JointAI/articles/MCMCsettings.html#thinning"&gt;&lt;code&gt;thin&lt;/code&gt;&lt;/a&gt;)&lt;/li&gt;
+    &lt;li&gt;initial values 
+        (&lt;a href="https://nerler.github.io/JointAI/articles/MCMCsettings.html#initial-values"&gt;&lt;code&gt;inits&lt;/code&gt;&lt;/a&gt;,
     &lt;code&gt;&amp;lt;object&amp;gt;$mcmc_settings$inits&lt;/code&gt;)&lt;/li&gt;
     &lt;li&gt;seed value (&lt;code&gt;seed&lt;/code&gt;)&lt;/li&gt;
-    &lt;li&gt;continue sampling (&lt;code&gt;add_samples()&lt;/code&gt;)&lt;/li&gt;
+    &lt;li&gt;continue sampling 
+    (&lt;a href="https://nerler.github.io/JointAI/reference/add_samples.html"&gt;&lt;code&gt;add_samples()&lt;/code&gt;&lt;/a&gt;)&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/div&gt;
 &lt;/div&gt;
@@ -1588,12 +1668,22 @@ lm2$models
   &lt;div class="modal-content"&gt;
     &lt;span class="close"&gt;&amp;times;&lt;/span&gt;
     &lt;ul&gt;
-    &lt;li&gt;data distribution (&lt;code&gt;plot_all()&lt;/code&gt;)&lt;/li&gt;
-    &lt;li&gt;missing data pattern (&lt;code&gt;md_pattern()&lt;/code&gt;)&lt;/li&gt;
-    &lt;li&gt;MCMC chains (&lt;code&gt;traceplot()&lt;/code&gt;)&lt;/li&gt;
-    &lt;li&gt;posterior density (&lt;code&gt;densplot()&lt;/code&gt;)&lt;/li&gt;
-    &lt;li&gt;imputed vs observed data (&lt;code&gt;plot_imp_distr()&lt;/code&gt;)&lt;/li&gt;
-    &lt;li&gt;Monte Carlo Error (&lt;code&gt;plot(MC_error(&amp;lt;object&amp;gt;))&lt;/code&gt;)&lt;/li&gt;
+    &lt;li&gt;data distribution 
+        (&lt;a href="https://nerler.github.io/JointAI/articles/VisualizingIncompleteData.html#visualize-the-distribution-of-each-variable"&gt;
+        &lt;code&gt;plot_all()&lt;/code&gt;&lt;/a&gt;)&lt;/li&gt;
+    &lt;li&gt;missing data pattern 
+        (&lt;a href = "https://nerler.github.io/JointAI/articles/VisualizingIncompleteData.html#missing-data-pattern"&gt;
+        &lt;code&gt;md_pattern()&lt;/code&gt;&lt;/a&gt;)&lt;/li&gt;
+    &lt;li&gt;MCMC chains 
+        (&lt;a href = "https://nerler.github.io/JointAI/articles/AfterFitting.html#trace-plot"&gt;
+        &lt;code&gt;traceplot()&lt;/code&gt;&lt;/a&gt;)&lt;/li&gt;
+    &lt;li&gt;posterior density 
+        (&lt;a href="https://nerler.github.io/JointAI/articles/AfterFitting.html#density-plot"&gt;&lt;code&gt;densplot()&lt;/code&gt;&lt;/a&gt;)&lt;/li&gt;
+    &lt;li&gt;imputed vs observed data 
+        (&lt;a href="https://nerler.github.io/JointAI/articles/AfterFitting.html#export-of-imputed-values"&gt;
+        &lt;code&gt;plot_imp_distr()&lt;/code&gt;&lt;/a&gt;)&lt;/li&gt;
+    &lt;li&gt;Monte Carlo Error 
+    (&lt;a href="https://nerler.github.io/JointAI/articles/AfterFitting.html#sec:mcerror"&gt;&lt;code&gt;plot(MC_error(&amp;lt;object&amp;gt;))&lt;/code&gt;&lt;/a&gt;)&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/div&gt;
 &lt;/div&gt;
@@ -1602,13 +1692,15 @@ lm2$models
 &lt;div class="modal" id="modal-parallel"&gt;
   &lt;div class="modal-content"&gt;
     &lt;span class="close"&gt;&amp;times;&lt;/span&gt;
-    Using the R packages &lt;strong&gt;future&lt;/strong&gt; and &lt;strong&gt;doFuture&lt;/strong&gt;
+    Using the R packages &lt;strong&gt;future&lt;/strong&gt; and &lt;strong&gt;doFuture&lt;/strong&gt;:
 &lt;pre&gt;&lt;code class="r hljs remark-code"&gt;
 &lt;div class="remark-code-line"&gt;&lt;span class="hljs-keyword"&gt;library&lt;/span&gt;(&lt;span class="hljs-string"&gt;"doFuture"&lt;/span&gt;)&lt;/div&gt;
 &lt;div class="remark-code-line"&gt;plan(multiprocess(workers = &lt;span class="hljs-number"&gt;6&lt;/span&gt;))&lt;/div&gt;
 &lt;div class="remark-code-line"&gt;registerDoFuture()&lt;/div&gt;
 &lt;div class="remark-code-line"&gt;&lt;/div&gt;
-&lt;div class="remark-code-line"&gt;&lt;span class="hljs-comment"&gt;## fit JointAI model ...&lt;/span&gt;&lt;/div&gt;
+&lt;div class="remark-code-line"&gt;&lt;span class="hljs-comment"&gt;## fit JointAI model ...&lt;/span&gt;&lt;/div&gt;&lt;br&gt;
+&lt;div class="remark-code-line"&gt;&lt;span class="hljs-comment"&gt;## to re-set to sequential evaluation:&lt;/span&gt;&lt;/div&gt;
+&lt;div class="remark-code-line"&gt;plan(sequential())&lt;/div&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1623,12 +1715,14 @@ Cumulative Logit Models&lt;/button&gt;
   &lt;div class="modal-content"&gt;
     &lt;span class="close"&gt;&amp;times;&lt;/span&gt;
     &lt;ul&gt;
-    &lt;li&gt;invert the OR (&lt;code&gt;rev&lt;/code&gt;)
+    &lt;li&gt;invert the OR 
+    (&lt;a href="https://nerler.github.io/JointAI/reference/model_imp.html#cumulative-logit-mixed-models"&gt;&lt;code&gt;rev&lt;/code&gt;&lt;/a&gt;)
         \[\log\left(\frac{P(y_i \color{var(--nord14)}{&gt;} k)}{P(y_i \color{var(--nord14)}{\leq} k)}\right) = \gamma_k + \eta_i
         \quad\text{vs}\quad
         \log\left(\frac{P(y_i \color{var(--nord14)}{\leq} k)}{P(y_i \color{var(--nord14)}{&gt;} k)}\right) = \gamma_k + \eta_i\]
     &lt;/li&gt;
-    &lt;li&gt;partial proportional odds (&lt;code&gt;nonprop&lt;/code&gt;)
+    &lt;li&gt;partial proportional odds 
+        (&lt;a href="https://nerler.github.io/JointAI/reference/model_imp.html#cumulative-logit-mixed-models"&gt;&lt;code&gt;nonprop&lt;/code&gt;&lt;/a&gt;)
         \[\log\left(\frac{P(y_i &gt; k)}{P(y_i \leq k)}\right) = \gamma_k + \eta_i
         \quad\text{vs}\quad
         \log\left(\frac{P(y_i \leq k)}{P(y_i &gt; k)}\right) = \gamma_k + \eta_i \color{var(--nord14)}{+ \eta_{ki}}\]
@@ -1646,27 +1740,37 @@ Multi-level Models&lt;/button&gt;
     &lt;ul&gt;
     &lt;li&gt;&lt;strong&gt;lme4&lt;/strong&gt; or &lt;strong&gt;nlme&lt;/strong&gt; type specification&lt;/li&gt;
     &lt;li&gt;nested and crossed random effects&lt;/li&gt;
-    &lt;li&gt;2, 3, 4, ... levels of grouping&lt;/li&gt;
+    &lt;li&gt;2, 3, 4, ... levels of grouping,
+        i.e., &lt;code&gt; ... + (time | id) + (1 | group) + (1 | center ) + (1 | country) + ...&lt;/code&gt;&lt;/li&gt;
     &lt;li&gt;multi-level structure for survival models&lt;/li&gt;
     &lt;/ul&gt;
+    &lt;a href="https://nerler.github.io/JointAI/reference/model_imp.html#model-formulas"&gt;&amp;#8680; For more info see the package documentation.&lt;/a&gt;
   &lt;/div&gt;
 &lt;/div&gt;
 
 
 
 &lt;button class="modal-button" href = "#modal-survival"&gt;
-Survival with Time-varying covariates&lt;/button&gt;
+Survival with Time-varying Covariates&lt;/button&gt;
 &lt;div class="modal" id="modal-survival"&gt;
   &lt;div class="modal-content"&gt;
     &lt;span class="close"&gt;&amp;times;&lt;/span&gt;
     &lt;ul&gt;
-    &lt;li&gt;proportional hazards model with time-varying covariates
-    (&lt;code&gt; + (1 | id)&lt;/code&gt;)&lt;/li&gt;
-    &lt;li&gt;joint model for longitudinal and survival data
-    (&lt;code&gt;formula = list(...)&lt;/code&gt;, &lt;code&gt;timevar = "..."&lt;/code&gt;)&lt;/li&gt;
+    &lt;li&gt;proportional hazards model with time-varying covariates&lt;br&gt;
+    (using &lt;a href="https://nerler.github.io/JointAI/reference/model_imp.html#survival-models-with-frailties-or-time-varying-covariates"&gt;
+    &lt;code&gt; + (1 | id)&lt;/code&gt;&lt;/a&gt; and
+    &lt;a href="https://nerler.github.io/JointAI/reference/model_imp.html#survival-models-with-frailties-or-time-varying-covariates"&gt;
+    &lt;code&gt; timevar = "&amp;lt;...&amp;gt;"&lt;/code&gt;&lt;/a&gt;)&lt;/li&gt;
+    &lt;li&gt;joint model for longitudinal and survival data&lt;br&gt;
+    (using &lt;a href = "https://nerler.github.io/JointAI/reference/model_imp.html#modelling-multiple-models-simultaneously-joint-models"&gt;
+    &lt;code&gt;formula = list(&amp;lt;...&amp;gt;)&lt;/code&gt;&lt;/a&gt; and
+    &lt;a href="https://nerler.github.io/JointAI/reference/model_imp.html#modelling-multiple-models-simultaneously-joint-models"&gt;
+    &lt;code&gt;timevar = "&amp;lt;...&amp;gt;"&lt;/code&gt;&lt;/a&gt;)&lt;/li&gt;
     &lt;li&gt;association structure (&lt;code&gt;assoc_type&lt;/code&gt;)
+        &lt;ul&gt;
         &lt;li&gt;underlying value (&lt;code&gt;underl.value&lt;/code&gt;)&lt;/li&gt;
         &lt;li&gt;observed/imputed value (&lt;code&gt;obs.value&lt;/code&gt;)&lt;/li&gt;
+        &lt;/ul&gt;
     &lt;/li&gt;
     &lt;/ul&gt;
   &lt;/div&gt;
@@ -1682,7 +1786,9 @@ Shining Light into the Black Box&lt;/button&gt;
   &lt;div class="modal-content"&gt;
     &lt;span class="close"&gt;&amp;times;&lt;/span&gt;
     &lt;ul&gt;
-    &lt;li&gt;monitor any node (&lt;code&gt;monitor_params&lt;/code&gt;)&lt;/li&gt;
+    &lt;li&gt;monitor any node 
+        (&lt;a href="https://nerler.github.io/JointAI/articles/SelectingParameters.html#other-parameters"&gt;
+        &lt;code&gt;monitor_params&lt;/code&gt;&lt;/a&gt;)&lt;/li&gt;
     &lt;li&gt;see the JAGS model (&lt;code&gt;&amp;lt;object&amp;gt;$jagsmodel&lt;/code&gt;)&lt;/li&gt;
     &lt;li&gt;print model info (&lt;code&gt;list_models()&lt;/code&gt;,
     &lt;code&gt;&amp;lt;object&amp;gt;$models&lt;/code&gt;)&lt;/li&gt;
@@ -1690,7 +1796,7 @@ Shining Light into the Black Box&lt;/button&gt;
     (&lt;code&gt;&amp;lt;object&amp;gt;$model&lt;/code&gt;)&lt;/li&gt;
     &lt;li&gt;list all monitored parameters 
     (&lt;code&gt;parameters()&lt;/code&gt;)&lt;/li&gt;
-    &lt;li&gt;list all parameters 
+    &lt;li&gt;list all regression coefficients 
     (&lt;code&gt;&amp;lt;object&amp;gt;$coef_list&lt;/code&gt;)&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/div&gt;
@@ -1719,7 +1825,9 @@ Output Options&lt;/button&gt;
     &lt;ul&gt;
     &lt;li&gt;Subset selection
         &lt;ul&gt;
-        &lt;li&gt;iterations (&lt;code&gt;start&lt;/code&gt;, &lt;code&gt;end&lt;/code&gt;, &lt;code&gt;thin&lt;/code&gt;)&lt;/li&gt;
+        &lt;li&gt;iterations 
+            (&lt;a href="https://nerler.github.io/JointAI/articles/AfterFitting.html#subset-of-mcmc-samples"&gt;
+            &lt;code&gt;start&lt;/code&gt;, &lt;code&gt;end&lt;/code&gt;, &lt;code&gt;thin&lt;/code&gt;&lt;/a&gt;)&lt;/li&gt;
         &lt;li&gt;nodes (&lt;code&gt;subset&lt;/code&gt;)&lt;/li&gt;
         &lt;li&gt;chains (&lt;code&gt;exclude_chains&lt;/code&gt;)&lt;/li&gt;
         &lt;li&gt;sub-models (&lt;code&gt;outcome&lt;/code&gt;)&lt;/li&gt;
@@ -1742,81 +1850,6 @@ Output Options&lt;/button&gt;
   &lt;/div&gt;
 &lt;/div&gt;
 
-
-
-
-]
-
-
----
-
-## The JAGS model
-
-.scroll450[
-
-```r
-lm1$jagsmodel
-```
-
-```
-## model { 
-## 
-##  
-  # Normal model for SBP ----------------------------------------------------------
-##   for (i in 1:186) {
-##     M_lvlone[i, 1] ~ dnorm(mu_SBP[i], tau_SBP)
-##     mu_SBP[i] &lt;- M_lvlone[i, 4] * beta[1] + M_lvlone[i, 5] * beta[2] +
-##                  (M_lvlone[i, 6] - spM_lvlone[6, 1])/spM_lvlone[6, 2] * beta[3] +
-##                  M_lvlone[i, 7] * beta[4] +
-##                  (M_lvlone[i, 3] - spM_lvlone[3, 1])/spM_lvlone[3, 2] * beta[5]
-##   }
-## 
-##   # Priors for the model for SBP
-##   for (k in 1:5) {
-##     beta[k] ~ dnorm(mu_reg_norm, tau_reg_norm)
-##   }
-##   tau_SBP ~ dgamma(shape_tau_norm, rate_tau_norm)
-##   sigma_SBP &lt;- sqrt(1/tau_SBP)
-## 
-## 
-## 
-## 
-  # Binomial model for alc --------------------------------------------------------
-##   for (i in 1:186) {
-##     M_lvlone[i, 2] ~ dbern(max(1e-16, min(1 - 1e-16, mu_alc[i])))
-##     logit(mu_alc[i]) &lt;- M_lvlone[i, 4] * alpha[1] + M_lvlone[i, 5] * alpha[2] +
-##                         (M_lvlone[i, 6] - spM_lvlone[6, 1])/spM_lvlone[6, 2] * alpha[3] +
-##                         (M_lvlone[i, 3] - spM_lvlone[3, 1])/spM_lvlone[3, 2] * alpha[4]
-## 
-##     M_lvlone[i, 7] &lt;- ifelse(M_lvlone[i, 2] == 1, 1, 0)
-## 
-##   }
-## 
-##   # Priors for the model for alc
-##   for (k in 1:4) {
-##     alpha[k] ~ dnorm(mu_reg_binom, tau_reg_binom)
-##   }
-## 
-## 
-## 
-## 
-  # Normal model for creat --------------------------------------------------------
-##   for (i in 1:186) {
-##     M_lvlone[i, 3] ~ dnorm(mu_creat[i], tau_creat)
-##     mu_creat[i] &lt;- M_lvlone[i, 4] * alpha[5] + M_lvlone[i, 5] * alpha[6] +
-##                    (M_lvlone[i, 6] - spM_lvlone[6, 1])/spM_lvlone[6, 2] * alpha[7]
-##   }
-## 
-##   # Priors for the model for creat
-##   for (k in 5:7) {
-##     alpha[k] ~ dnorm(mu_reg_norm, tau_reg_norm)
-##   }
-##   tau_creat ~ dgamma(shape_tau_norm, rate_tau_norm)
-##   sigma_creat &lt;- sqrt(1/tau_creat)
-##  
-##  
-}
-```
 ]
 
 
@@ -1832,7 +1865,7 @@ class: center, middle, animated, fadeIn
 
 .gr-left[
 * N = 823
-* 4 time-to-event outcomes
+* 3 time-to-event outcomes
 * 15 covariates (shared)
     * 5 incomplete&lt;br&gt;(0% - 27% NA)
     * 60% complete cases
@@ -1855,8 +1888,6 @@ fmla_endo &lt;- Surv(etime_endo1, event_endo) ~
 fmla_surg &lt;- Surv(etime_surg, event_surg) ~ 
   S_length + age + sex + ... + location +
   ns(time_surgery, df = 6)
-
-...
 ```
 
 ]
@@ -1874,6 +1905,8 @@ Recurrence of Crohn's disease after ileocecal resection
 * imputation of incomplete covariates once
 * use info from all outcomes in the imputation
 * avoid a lot of copy-pasting
+
+--
 
 
 ```r
@@ -1907,12 +1940,13 @@ CD_model &lt;- coxph_imp(`formula = list(fmla_clin, fmla_endo, fmla_surg)`,
     
 ** &amp;#8680; time-dependent PH model**
 
-* random effect to "group" rows of same patient
-* `timevar`: match covariate time to event time
-
 ]
 
+--
+
 .gr-right[
+* random effect to "group" rows of the same patient
+* `timevar`: match covariate time to event time
 
 ```r
 fmla_patsurv &lt;- Surv(pat_time, pat_event) ~ 
@@ -1928,10 +1962,52 @@ patsurv &lt;- coxph_imp(fmla_patsurv,
                      n.chains = 6)
 ```
 
+]
+
+
+---
+count: false
+
+## Patient Survival in PSC patients
+
+.gr-left[
+
+* N = 1549 (3679 rows)
+* data in long format
+* 8 covariates
+    * 3 incomplete&lt;br&gt;(4% - 11% NA)
+    * 88% complete cases
+    
+** &amp;#8680; time-dependent PH model**
+
 * 6 chains (in parallel)
 * 1000 iterations each
-* computational time: 47 minutes
+* computational time:&lt;br&gt;47 minutes
+
 ]
+
+.gr-right[
+
+* random effect to "group" rows of the same patient
+* `timevar`: match covariate time to event time
+
+
+
+```r
+fmla_patsurv &lt;- Surv(pat_time, pat_event) ~ 
+  recip_sex + graft_type + ischemic_hrs +
+  ns(recip_age, df = 2) + donor_age + 
+  ns(year, df = 2) +
+  graftnr * recurrence + `(1 | ID_pat)`
+
+patsurv &lt;- coxph_imp(fmla_patsurv,
+                     data = PSC_data,
+                     `timevar = 'futime'`,
+                     n.iter = 1000,
+                     n.chains = 6)
+```
+]
+
 
 ---
 
@@ -1944,12 +2020,13 @@ patsurv &lt;- coxph_imp(fmla_patsurv,
 ## Graft Survival in PSC patients
 
 .gr-left[
-* N = 1764 grafts (3785 rows)
+* N = 1764 grafts (3785 rows)&lt;br&gt;
 * random effect to group **rows of same graft**
 * random effect to group **grafts of same patient**
-
-
-**&amp;#8680; can be seen as gap time approach for recurrent events**
+&lt;br&gt;&lt;br&gt;
+* 6 chains (in parallel)
+* each 1000 iterations
+* computational time: 38 minutes
 ]
 
 .gr-right[
@@ -1967,48 +2044,119 @@ graftsurv_Bayes &lt;- coxph_imp(fmla_graftsurv,
                              n.iter = 1000,
                              n.chains = 6)
 ```
-
-* 6 chains (in parallel)
-* each 1000 iterations
-* computational time: 38 minutes
 ]
 
+--
+
+**&amp;#8680; can be seen as gap time approach for recurrent events**
+
+---
+
+
+## Risk Factors in Chronic Hepatitis C
+
+
+
+
+* N = 713 (19709 rows)
+* 4 biomarkers
+* 8 baseline covariates
+    * 5 incomplete (0 - 19% NA)
+    * 66% complete cases
+
+--
+
+* Association between biomarkers&lt;br&gt;via fixed effects
+* Independent random effects&lt;br&gt;variance-covariance matrices
+
+&lt;img src = "figures/VC.png" width = 450px style="position:absolute; left: 55%; bottom: 10%;"&gt;
+
+--
+
+* Initial values for `\(\mathbf \beta\)`, `\(\mathbf b\)` and `\(\mathbf D^{-1}\)`&lt;br&gt;
+  from multivariate mixed model.
+
+---
+
+## Risk Factors in Chronic Hepatitis C
+
+
+```r
+fmla &lt;- list(Surv(etime, event) ~ Age0 + Sex + year +
+               Alcoholabuse + Smoking + BMI + AntiHBc + DM +
+               logBili + logALT + logAST + Plt100,
+             
+             Plt100 ~ Age0 + Sex + logAST + logALT + logBili +
+               ns(time, df = 4) + (ns(time, df = 4) | StudyID),
+             
+             logBili ~ Age0 + Sex + logAST + logALT +
+               ns(time, df = 3) + (ns(time, df = 3) | StudyID),
+             
+             logAST ~ Age0 + Sex + logALT + ns(time, df = 3) +
+               (ns(time, df = 3) | StudyID),
+             
+             logALT ~ Age0 + Sex + ns(time, df = 5) + (ns(time, df = 5) | StudyID)
+)
+
+mod &lt;- JM_imp(fmla_HCV, data = HCVdat, timevar = "time", inits = &lt;inits&gt;,
+              n.iter = 10000, n.chains = 8)
+```
+
+---
+
+## Risk Factors in Chronic Hepatitis C
+
+
+
+```r
+traceplot(mod, outcome = 4, subset = c(D_main = TRUE, analysis_main = FALSE))
+```
+
+&lt;img src = "figures/tr1.png" width = 100%&gt;
 
 ---
 
 ## Diet &amp; NAFLD
-
-* N = 963
-* **Outcome:** NAFLD (binary) at two time points
-* **Exposure:**
-    * 3 *a priori* dietary patterns (guidelines)
-    * 5 *a posteriori* dietary patterns (factor analysis)
-* 9 other covariates
-    * 3 incomplete&lt;br&gt;(0% - 7% NA)
-* 2 sets of (potential) confounders
-    * "Model 1": subset of covariates 
-    * "Model 2": all covariates
 
 .footnote[
 [&lt;i class = "fas fa-book"&gt;&lt;/i&gt; Alferink et al. (2020)](https://doi.org/10.1007/s10654-020-00627-2)
 ]
 
+.pull-left[
+* N = 963
+* **Outcome:**&lt;br&gt;NAFLD (binary) at two time points
+* **Exposure:**
+    * 3 *a priori* dietary patterns (guidelines)
+    * 5 *a posteriori* dietary patterns&lt;br&gt;(factor analysis)
+* 9 incomplete covariates
+* 2 sets of (potential) confounders
+    * "Model 1": subset of covariates 
+    * "Model 2": all covariates
+]
+
+--
+
+.pull-right[
+**Models to be fitted:**
+
+```r
+NAFLD ~ &lt;"Model 1"&gt; + WHO + (1 | id)
+NAFLD ~ &lt;"Model 1"&gt; + DDG + (1 | id)
+NAFLD ~ &lt;"Model 1"&gt; + MDS + (1 | id)
+NAFLD ~ &lt;"Model 1"&gt; + DP1 + DP2 + 
+  DP3 + DP4 + DP5  + (1 | id)
+
+NAFLD ~ &lt;"Model 2"&gt; + WHO + (1 | id)
+NAFLD ~ &lt;"Model 2"&gt; + DDG + (1 | id)
+NAFLD ~ &lt;"Model 2"&gt; + MDS + (1 | id)
+NAFLD ~ &lt;"Model 2"&gt; + DP1 + DP2 + 
+  DP3 + DP4 + DP5 + (1 | id)
+```
+]
 
 ---
 
 ## Diet &amp; NAFLD
-
-**Models to be fitted:**
-
-* `NAFLD ~ &lt;"Model 1" confounders&gt; + WHO`
-* `NAFLD ~ &lt;"Model 1" confounders&gt; + DDG`
-* `NAFLD ~ &lt;"Model 1" confounders&gt; + MDS`
-* `NAFLD ~ &lt;"Model 1" confounders&gt; + DP1 + DP2 + DP3 + DP4 + DP5`
-&lt;br&gt;&lt;br&gt;
-* `NAFLD ~ &lt;"Model 2" confounders&gt; + WHO`
-* `NAFLD ~ &lt;"Model 2" confounders&gt; + DDG`
-* `NAFLD ~ &lt;"Model 2" confounders&gt; + MDS`
-* `NAFLD ~ &lt;"Model 2" confounders&gt; + DP1 + DP2 + DP3 + DP4 + DP5`
 
 Multiple models with shared covariates **&amp;#8680; combine them?**
 
@@ -2017,20 +2165,21 @@ Multiple models with shared covariates **&amp;#8680; combine them?**
 &lt;i class="far fa-frown" style = "color: var(--nord11); size = 1.3rem;"&gt;&lt;/i&gt;
 JAGS does not allow us to use the same outcome twice.
 
----
+--
 
-## Diet &amp; NAFLD
-
-.gr-left[
-
-&lt;ul class="fa-ul"&gt;
-  &lt;li&gt;&lt;span class="fa-li" style="color:var(--noord8);"&gt;&amp;#8680;&lt;/span&gt;
-  Make multiple &lt;strong&gt;copies of&lt;/strong&gt; &lt;code&gt;NAFLD&lt;/code&gt;?&lt;/li&gt;
-  &lt;li&gt;&lt;span class="fa-li"&gt;&lt;i class="far fa-frown" style = "color: var(--nord11);"&gt;&lt;/i&gt;&lt;/span&gt;
-  Bias, unless all models are correct.&lt;/li&gt;
-&lt;/ul&gt;  
+&lt;span style="color:var(--nord8);"&gt;&amp;#8680;&lt;/span&gt;
+  Make multiple &lt;strong&gt;copies of&lt;/strong&gt; &lt;code&gt;NAFLD&lt;/code&gt;?
   
+--
+
+&lt;i class="far fa-frown" style = "color: var(--nord11);"&gt;&lt;/i&gt;
+  Bias, unless all models are correct.&lt;/li&gt;
+
+--
+
 &lt;br&gt;
+
+.nord0box[
 
 &lt;ul class="fa-ul"&gt;
   &lt;li&gt;&lt;span class="fa-li" style = "color:var(--nord8);"&gt;&amp;#8680;&lt;/span&gt;
@@ -2038,66 +2187,95 @@ JAGS does not allow us to use the same outcome twice.
   &lt;li&gt;&lt;span class="fa-li" style = "color:var(--nord8);"&gt;&amp;#8680;&lt;/span&gt;
   &lt;strong&gt;Combine&lt;/strong&gt; results using pooling or merging of MCMC samples.&lt;/li&gt;
 &lt;/ul&gt;
-
 ]
 
-.gr-right[
+---
+
+## Diet &amp; NAFLD
+
 
 ```r
-fmla &lt;- NAFLD ~ &lt;Model 2 confounders&gt; + time +
-    DP1 + DP2 + DP3 + DP4 + DP5 + (1 | id)
+fmla &lt;- NAFLD ~ &lt;"Model 2"&gt; + DP1 + DP2 + DP3 + DP4 + DP5 + (1 | id)
 
-mod_NAFLD &lt;- glmer_imp(
-  fmla, data = data_NAFLD,
-  `auxvars = ~ WHO + DDG + MDS`,
-  n.iter = 10000)
+mod_NAFLD &lt;- glmer_imp(fmla, data = data_NAFLD, `auxvars = ~ WHO + DDG + MDS`,
+                       n.iter = 10000, `monitor_params = c(imps = TRUE)`)
 
-impDF &lt;- `get_MIdat`(mod_NAFLD, m = 10,
-                     include = FALSE)
-
+## extract 10 imputed datasets
+impDF &lt;- `get_MIdat`(mod_NAFLD, m = 10, include = FALSE)
 imp_list &lt;- split(impDF, impDF$.imp)
-
-## fit model on each dataset
-## combine the MCMC samples
 ```
 
-]
+--
+
+**Option 1:** continue with MI
+
+```r
+NAFLD_mids &lt;- miceadds::datalist2mids(imp_list)
+
+library("mice")
+mod_WHO &lt;- with(NAFLD_mids, lme4::glmer(NAFLD ~ &lt;"Model 2"&gt; + WHO + (1 | id)))
+
+summary(pool(mod_WHO, conf.int = TRUE))
+```
+
+---
+
+## Diet &amp; NAFLD
+
+**Option 2:** continue fully Bayesian
+
+```r
+mod_list_WHO &lt;- lapply(imp_list, function(dat) {
+  glmer_imp(NAFLD ~ &lt;"Model 2"&gt; + WHO + (1 | id), data = dat, n.iter = 1000)
+})
+
+## ...
+```
+
+* extract MCMC sample from each JointAI model (`&lt;object&gt;$MCMC`)
+* combine them into one `mcmc.list` object (`coda::as.mcmc.list()`)
+* make a copy of one JointAI object and replace MCMC sample with combined 
+  MCMC sample
+  
+
+```r
+summary(combi_mod_WHO)
+```
 
 
 ---
 class: center, middle, animated, fadeIn
 
-# To Do &amp; To Remember
+# &lt;span style="color:var(--nord1);font-size: 2.25rem;"&gt;(almost)&lt;/span&gt;&lt;br&gt;The End
 
 
 ---
 
-## To Remember
+## To Keep in Mind
 
-Every model / method makes assumptions:
+Every model / method makes **assumptions**:
 
-* The models need to fit the data.
+* The **models need to fit** the data.
   * analysis model(s)
   * covariate models
-* ignorable missingness
-* auxiliary variables
+--
+
+* **ignorable missingness**
+    * extensions to non-ignorable missingness possible
+--
+* **auxiliary variables**
     * use them
-    * how to place them in the model sequence
+    * be aware of implied (independence) assumptions
+    
+--
 
----
+.nord0box[
 
-## To Do
+&lt;div style = "text-align: center; padding: 20px;"&gt;
+&lt;strong&gt;Feedback and ideas are very welcome!&lt;/strong&gt;
+&lt;/div&gt;
 
-* interval censoring
-* competing risk
-* correlation in multivariate models
-* association structures for joint models
-* zero-inflated / hurdle models
-* subject-specific prediction in multi-level settings
-* splines for incomplete variables
-* posterior predictive checks
-* other shrinkage priors
-* alternative prior distributions
+]
 
 
 ---
