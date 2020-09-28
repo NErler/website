@@ -589,3 +589,17 @@ table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
 .the-end .remark-slide-number {
   display: none;
 }
+
+.remark-notes-area {
+  font-size: 0.7rem;
+}
+
+/*
+.remark-notes {
+  display: none;
+}
+
+.remark-notes-preview {
+  display: none;
+}
+*/
