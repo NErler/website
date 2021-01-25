@@ -1,0 +1,2542 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Imputation of Missing Covariates in Longitudinal Data</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Nicole Erler" />
+    <meta name="date" content="2021-01-22" />
+    <script src="libs/header-attrs-2.6/header-attrs.js"></script>
+    <link href="libs/tile-view-0.2.4/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view-0.2.4/tile-view.js"></script>
+    <script src="libs/xaringanExtra_fit-screen-0.2.4/fit-screen.js"></script>
+    <script src="libs/clipboard-2.0.6/clipboard.min.js"></script>
+    <link href="libs/shareon-1.4.1/shareon.min.css" rel="stylesheet" />
+    <script src="libs/shareon-1.4.1/shareon.min.js"></script>
+    <link href="libs/xaringanExtra-shareagain-0.2.4/shareagain.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-shareagain-0.2.4/shareagain.js"></script>
+    <meta name="github-repo" content="NErler/JointAI"/>
+    <meta name="twitter:title" content="Imputation of Missing Covariates in Longitudinal Data"/>
+    <meta name="twitter:description" content="MICE and Alternatives for Imputation of Missing Covariates in Multi-level Data."/>
+    <meta name="twitter:url" content="https://nerler.com/slides/inria2020/"/>
+    <meta name="twitter:image:src" content="https://nerler.com/slides/inria2020/graphics/share-card.png"/>
+    <meta name="twitter:image:alt" content="Title slide of Imputation of Missing Covariates in Longitudinal Data by Nicole Erler"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:creator" content="@N_Erler"/>
+    <meta name="twitter:site" content="@N_Erler"/>
+    <meta property="og:title" content="Imputation of Missing Covariates in Longitudinal Data"/>
+    <meta property="og:description" content="MICE and Alternatives for Imputation of Missing Covariates in Multi-level Data."/>
+    <meta property="og:url" content="https://nerler.com/slides/inria2020/"/>
+    <meta property="og:image" content="https://nerler.com/slides/inria2020/graphics/share-card.png"/>
+    <meta property="og:image:alt" content="Title slide of Imputation of Missing Covariates in Longitudinal Data by Nicole Erler"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:locale" content="en_US"/>
+    <meta property="article:author" content="Nicole Erler"/>
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+class: title-slide-custom
+count: false
+
+
+
+
+
+&lt;div style="font-size: 46pt; font-weight: 700; color: var(--nord4); margin-top: 60px;"&gt;
+Imputation of Missing Covariates in Longitudinal Data&lt;/div&gt;
+
+&lt;div style="font-size: 26pt; color: var(--nord9); font-weight: 700; margin-top:40px;"&gt;
+MICE and Alternatives
+&lt;/div&gt;
+
+&lt;div id = "author"&gt;
+&lt;div style = "font-size: 32pt; font-weight: bolder; color: var(--nord4);"&gt; Nicole Erler&lt;/div&gt;
+&lt;div style = "color: var(--nord9);"&gt;Department of Biostatistics&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="contact"&gt;
+&lt;i class="fas fa-envelope"&gt;&lt;/i&gt; n.erler@erasmusmc.nl &amp;emsp;
+&lt;a href="https://twitter.com/N_Erler"&gt;&lt;i class="fab fa-twitter"&gt;&lt;/i&gt; N_Erler&lt;/a&gt; &amp;emsp;
+&lt;a href="https://github.com/NErler"&gt;&lt;i class="fab fa-github"&gt;&lt;/i&gt; NErler&lt;/a&gt; &amp;emsp;
+&lt;a href="https://nerler.com"&gt;&lt;i class="fas fa-globe-americas"&gt;&lt;/i&gt; https://nerler.com&lt;/a&gt;
+&lt;/div&gt;
+
+
+---
+layout: true
+
+&lt;link href="https://unpkg.com/nord-highlightjs@0.1.0/dist/nord.css" rel="stylesheet" type="text/css" /&gt;
+&lt;link href="fontawesome-free-5.14.0-web/css/all.css" rel="stylesheet"&gt;
+
+
+
+&lt;div class="my-footer"&gt;&lt;span&gt;
+&lt;a href="https://twitter.com/N_Erler"&gt;&lt;i class="fab fa-twitter"&gt;&lt;/i&gt; N_Erler&lt;/a&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&lt;a href="https://github.com/NErler"&gt;&lt;i class="fab fa-github"&gt;&lt;/i&gt; NErler&lt;/a&gt; &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&lt;a href = "https://nerler.com"&gt;&lt;i class="fas fa-globe-americas"&gt;&lt;/i&gt; nerler.com&lt;/a&gt;
+&lt;/span&gt;&lt;/div&gt; 
+
+
+---
+
+## Why?
+
+.nord0box[
+&gt; "Mixed models can handle missing values ."
+
+]
+
+&lt;br&gt;
+
+&amp;#8680; Fit mixed model to complete cases only?
+
+???
+
+You probably heard somewhere that analysis using mixed models is valid as long
+as the **missing data mechanism** is MAR.
+Which means that if we can **make the assumption** of MAR, a 
+complete case analysis  should be fine.
+
+So why then do we need to impute at all, when we can make that assumption?
+
+- - - -
+
+--
+
+* Only applies to missing values in the **response**!!!
+* Missing data mechanism needs to be **ignorable**.
+
+&lt;img src = "gifs/realization.gif", height = 250; style = "position: absolute; right: 65px; bottom: 100px;"&gt;
+
+???
+
+This statement only applies to missing values in the response, but not
+when there are missing values in covariates.
+
+- - - -
+
+--
+
+&lt;div style = "width: 50%; margin-top: 50px;"&gt;
+&lt;strong&gt;In most cases&lt;/strong&gt; complete case analysis is
+&lt;span style = "color:var(--nord11); font-weight = 300;"&gt;
+biased
+&lt;/span&gt; and
+&lt;span style = "color:var(--nord11); font-weight = 300;"&gt;
+inefficient
+&lt;/span&gt;.
+&lt;/div&gt;
+
+???
+
+Which means that in most cases **complete case analysis** is actually
+**biased and inefficient**
+
+
+---
+class: center, middle, animated, fadeIn
+
+# The Basics
+
+---
+
+## Imputation of Missing Covariates
+
+&lt;div style = "width: 75%; padding: 1.15em 2em; background-color: var(--nord0); margin: auto; display: block;"&gt;
+Sample from the predictive &lt;strong&gt;distribution&lt;/strong&gt; of the &lt;strong&gt;missing
+values given&lt;/strong&gt; the &lt;strong&gt;observed values&lt;/strong&gt;.
+&lt;/div&gt;
+
+.footnote[
+[&lt;i class = "fas fa-book"&gt;&lt;/i&gt; Rubin (2004)](https://doi.org/10.1198/000313004X6355)
+]
+
+
+???
+
+Let's start at the begining.
+In a setting where we have
+
+* missing values in covariates, and 
+* the missingness is ignorable
+
+we can impute by **sampling** from the **predictive distr. of the missing values 
+given the observed values**.
+
+- - - - -
+
+--
+
+&lt;br&gt;
+
+`\begin{align*}
+p(\color{var(--nord15)}{x_{mis}} \mid \text{everything else}) = p(\color{var(--nord15)}{x_{mis}} \;\mid\; &amp; \text{outcome},\\
+&amp; \text{other covariates},\\
+&amp;\text{parameters})
+\end{align*}`
+
+???
+
+This is the distribution of an incomplete covariate `\(x\)` conditional on 
+everything else,
+
+where: everything else = outcome, other covariates, and parameters.
+
+---
+
+## A Simple Example
+
+.gr-left[
+
+&lt;table class="simpletable"&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;\(\mathbf y\)&lt;/th&gt;
+&lt;th&gt;\(\mathbf x_1\)&lt;/th&gt;
+&lt;th&gt;\(\mathbf x_2\)&lt;/th&gt;
+&lt;th&gt;\(\mathbf x_3\)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan = "4"; style = "padding: 0px;"&gt;&lt;hr /&gt;&lt;/td&gt;&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="rownr"&gt;\(i\)&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class = "rownr"&gt;&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+
+* `\(\mathbf y\)`: **response** variable
+* `\(\color{var(--nord15)}{\mathbf x_1}\)`: **incomplete** covariate
+* `\(\mathbf x_2\)`, `\(\mathbf x_3\)`: **complete** covariates
+
+]
+
+???
+
+Let's look at a simple example.
+
+Imagine we have the following data set, with
+* a response variable `\(y\)`
+* an incomplete covariate `\(x_1\)` which is missing for subject `\(i\)`
+* and two completely observed covariates `\(x_2\)` and `\(x_3\)`
+
+- - - - -
+
+--
+
+.gr-right[
+**Idea:** "Predict" missing values&lt;br&gt;
+* Fit a model to the cases with observed
+`\(\color{var(--nord15)}{\mathbf x_1}\)`, e.g.
+`$$\color{var(--nord15)}{\mathbf x_1} = \beta_0 + \beta_1 \mathbf y +
+\beta_2 \mathbf x_2 + \beta_3 \mathbf x_3 + \varepsilon$$`
+to get estimates `\(\boldsymbol{\hat\beta}\)` (and `\(\hat\sigma\)`)
+{{content}}
+]
+
+???
+
+The idea for imputation of `\(x_1\)` is similar to predicting the missing values.
+
+We can think of this as fitting a model to the cases where `\(x_1\)` is observed,
+**for example**, this could be a **linear regression model** that has the 
+**response `\(y\)`** and the other covariates as its covariates.
+
+From this model, we can get estimates for the regression coefficients `\(\beta\)`
+and the standard deviation of the residuals `\(\sigma\)`.
+
+- - - - - 
+
+--
+
+* Calculate the fitted value(s)
+`\(\color{var(--nord15)}{\mathbf{\hat{x}_1}}\)`
+for the case(s) with missing `\(\color{var(--nord15)}{\mathbf{x_1}}\)`
+
+???
+
+And using these parameter estimates we can then calculate the fitted or
+predicted value of `\(x_1\)` for those cases where `\(x_1\)` is missing.
+
+---
+
+## Imputation of Covariates
+
+.nord0box[
+**Important:** We need to take into account uncertainty!
+]
+
+&lt;img src = "gifs/question.gif", height = 200, style = "position: absolute; right: 60px; top: 40px;"&gt;
+
+???
+
+But we can't just use the fitted value to impute the missing value.
+
+We need to take into account that there is uncertainty.
+
+- - - - -
+
+--
+
+&lt;br&gt;
+
+Uncertainty about
+- the **parameter estimates** `\(\boldsymbol{\hat{\beta}}\)`
+(and `\(\hat\sigma\)`)
+- the **fitted/predicted value**
+`\(\color{var(--nord15)}{\mathbf{\hat{x}_1}}\)`
+
+
+
+
+
+
+&lt;img src="figures/reglines_animated.gif", height = 320, style = "position:absolute; right:60px; bottom: 60px;"&gt;
+
+???
+
+Uncertainty about the
+* parameter estimates,
+* and about the fitted values
+
+
+---
+
+## Bayesian Imputation
+
+Parameters and missing values are **random variables**&lt;br&gt;
+&amp;#8680; `\(\boldsymbol\beta\)`, `\(\sigma\)` and
+`\(\color{var(--nord15}{\mathbf x_1}\)` have probability **distributions**.
+
+
+
+&lt;img src="figures/BayesDens4.png", height = 220, style = "margin: auto; display: block;"&gt;
+
+???
+
+The most natural way to take this uncertainty into account is by **making the
+assumption** that the parameters and the missing values are **random variables**
+and **have probability distribution**.
+
+This assumption is made in the Bayesian paradigm.
+
+- - - - -
+
+--
+
+Sample imputed values for `\(\color{var(--nord15)}{x_{i1}}\)` from:
+`$$p(\color{var(--nord15)}{x_{i1}} \mid \mathbf x_{-i1}, \mathbf x_2, \mathbf x_3, \mathbf y) = \int p(\color{var(--nord15)}{x_{i1}} \mid y_i, x_{i2}, x_{i3}, \boldsymbol\beta, \sigma)\;p(\boldsymbol\beta, \sigma \mid \mathbf y_{-i}, \mathbf x_{-i1}, \mathbf x_{-i2}, \mathbf x_{-i3})\, d\boldsymbol\beta\, d\sigma$$`
+???
+And under this paradigm, we would then sample the imputed value for `\(x_{i1}\)`
+from this distribution here, where we would have to integrate out the
+unknown parameters.
+
+In practice, we usually have **multiple variables** with missing values and 
+**multiple parameters**.
+So you probably **don't really want to have to solve these integrals**
+especially not if you have to do it by hand.
+
+And that's the **reason** why multiple imputation was developed.
+That was in the 1970s, where **computers** weren't quite as **strong and widely
+available** as they are today, and doing imputation in the **Bayesian 
+framework** wasn't really **feasible**.
+
+---
+
+## Multiple Imputation
+
+**"Approximation" of Bayesian imputation:**&lt;br&gt;
+&amp;#8680; Use a **small number of samples** of `\(\boldsymbol \beta\)` (and `\(\sigma\)`)
+&lt;span style = "color: var(--nord3);"&gt;instead of the full distributions&lt;/span&gt;
+
+???
+The idea in multiple imputation is to **approximate Bayesian imputation** by
+just working with a **small number of samples** instead of the full
+distributions.
+- - - - 
+
+--
+
+.nord0box[
+* **Sample** a realization of `\(\color{var(--nord8}{\hat{\boldsymbol\beta}}\)` and `\(\color{var(--nord8)}{\hat\sigma}\)`&lt;br&gt;
+
+{{content}}
+
+]
+
+???
+
+How does this work?
+- first, we sample a realization of the parameters from their posterior distribution
+
+--
+
+* Calculate expected value of `\(\color{var(--nord15)}{\hat x_{i1}}\)`,&lt;br&gt;
+  &lt;span style = "color: var(--nord3);"&gt;e.g.,
+  `\(\displaystyle \mu_{i1} = \hat\beta_0 + \hat \beta_1 y_i + \hat \beta_2 x_{i2} +   \hat\beta_3 x_{i3}\)`&lt;/span&gt;&lt;br&gt;
+
+{{content}}
+
+???
+
+- Then, using this realizations, we calculate the expected value of the missing
+value
+
+--
+
+* **Sample imputed value** `\(\color{var(--nord15)}{\hat x_{i1}}\)` from 
+  `\(p(\color{var(--nord15)}{x_i} \mid \mu_{i1}, \hat\sigma)\)`,&lt;br&gt; 
+  &lt;span style = "color: var(--nord3);"&gt;
+  e.g., `\(p(\color{var(--nord15)}{x_i} \mid \mu_{i1}, \hat\sigma) = N(\mu_{i1}, \hat\sigma^2)\)`&lt;/span&gt;
+
+???
+And using this expected value we can define the distribution we assume for the 
+missing value, and sample an imputed value from that distribution.
+
+---
+
+## Multiple Imputation
+
+Fill `\(\hat x_{i1}\)` into original data &amp;#8680; **1 imputed dataset**&lt;br&gt;
+&amp;#8680; Repeat multiple times to create **multiple imputed datasets**.
+
+???
+
+We can then **fill in** this imputed value into our original data and have
+thereby created one completed dataset.
+
+And to create **multiple imputed datasets** we repeat this multiple times.
+- - - - 
+
+--
+
+MI has 3 steps:
+1. Impute (multiple times)
+2. **Analyse** each dataset separately.
+3. Combine results: **pooling**
+
+???
+Once we have created our imputed datasets, we can continue with the other two
+steps of multiple imputation
+- analysing each complete dataset separately, and
+- combine the results, which we call pooling
+
+- - - 
+--
+
+&lt;br&gt;
+
+Pooling must take into account 
+* **within imputation** uncertainty
+* **between imputation** variation
+
+&lt;div style = "position: relative; left: 550px; bottom: 130px; width: 30%"&gt;
+.nord0box[
+&amp;#8680; "Rubin's Rules"
+]
+&lt;/div&gt;
+
+???
+
+And in the pooling we need to take into account that there is 
+- **within** imputation uncertainty, (the **uncertainty about the parameters**
+  from each analysis)
+- **between** imputation uncertainty (the **results from each analysis differ**
+  from each other)
+
+And the **most commonly used method** to do this was developed by
+**Donald Rubin** and is therefore called Rubin's Rules.
+
+---
+
+## Imputation Step
+
+**The Tricky Part:**
+* We need a (correct) model for 
+  `\(p(\color{var(--nord15)}{\mathbf x_{mis}} \mid \text{everything else})\)`.
+  
+???
+The imputation step is the tricky part of MI. 
+We need to specify a correct model for the distribution of the missing part of
+the data given everything else.
+--
+* Multiple variables could have missing values.&lt;br&gt;
+???
+
+But in practice, multiple variables may have missing values.
+--
+
+  &lt;ul class = "arrow-list"&gt;
+  &lt;li&gt;\(\color{var(--nord15)}{\mathbf x_{mis}}\) is multivariate&lt;/li&gt;
+  &lt;/ul&gt;
+???
+Which means that `\(x_{mis}\)` here is multivariate, and probably of mixed type
+--
+
+  &lt;ul class = "arrow-list"&gt;
+  &lt;li&gt; \(p(\color{var(--nord15)}{\mathbf x_{mis}} \mid \text{everything else})\) is multivariate&lt;/li&gt;
+  &lt;/ul&gt;
+???
+and so the distribution also is multivariate
+--
+
+  &lt;ul class = "arrow-list"&gt;
+  &lt;li&gt; usually no closed form&lt;/li&gt;
+  &lt;/ul&gt;
+
+&lt;img src = "gifs/panik.gif", height = 250; style = "position: absolute; right: 40px; bottom: 200px;"&gt;
+???
+and will probably not have a known closed form
+- - - - -
+--
+
+**Two main approaches:**
+* MICE 
+  &lt;span style = "color: var(--nord3);"&gt;multivariate imputation by chained equations&lt;/span&gt;&lt;br&gt;
+  FCS 
+  &lt;span style = "color: var(--nord3);"&gt;fully conditional specification&lt;/span&gt;&lt;br&gt;
+  
+* Joint Model MI   &lt;span style = "color: var(--nord3);"&gt;multiple imputation&lt;/span&gt;
+
+???
+There are two main approaches to solve this problem:
+* MICE, short for **multivariate imputation by chained equations**, also called
+  **fully conditional specification**
+* Joint model multiple imputation
+
+In the following I will give you a quick overview of what the idea behind these
+two approaches is, and then we will move on to multi-level data
+
+---
+
+## MICE / FCS
+
+Uses the **idea of the Gibbs sampler:**
+&lt;div style = "width: 60%;"&gt;
+Split the multivariate problem into a set of univariate problems
+&lt;/div&gt;
+
+&lt;img src = "graphics/gibbs.png", height = 400; style = "position: absolute; right: 60px; top: 50px;"&gt;
+  
+???
+MICE is based on the idea of the Gibbs sampler.
+The Gibbs sampler is a Markov Chain Monte Carlo algorithm, so it comes from the Bayesian world, and it allows us to split a multivariate problem into
+a set of univariate problems.
+When you need to sample from a multivariate distribution, you can instead 
+sample from each of univariate full conditional distributions, meaning the
+distributions of one of these variable given all the others.
+And when you do that in turn, over and over again, the sample that you obtain
+is a sample from the multivariate distribution.
+
+--
+
+&lt;br&gt;&lt;br&gt;
+  
+* Cycle through the incomplete variables.
+* Impute each variable using a **full conditional model**&lt;br&gt;
+  &lt;span style = "color: var(--nord3);"&gt;(e.g., regression model using all other 
+  variables)&lt;/span&gt;
+* Repeat until convergence.
+
+.footnote[
+[&lt;i class = "fas fa-book"&gt;&lt;/i&gt; Van Buuren (2018)](https://stefvanbuuren.name/fimd/)&amp;emsp;
+[&lt;i class = "fab fa-r-project"&gt;&lt;/i&gt; mice](https://amices.org/mice/)
+]
+
+---
+
+## MICE / FCS
+
+.gr-left2[
+
+Create random starting imputations.&lt;br&gt;
+
+
+Impute
+* `\(\mathbf x_1\)` using `\(\mathbf y\)`, `\(\mathbf x_2\)`, `\(\mathbf x_3\)`, ...
+* `\(\mathbf x_2\)` using `\(\mathbf y\)`, `\(\mathbf x_1\)`, `\(\mathbf x_3\)`, ...
+* `\(\mathbf x_3\)` using `\(\mathbf y\)`, `\(\mathbf x_1\)`, `\(\mathbf x_2\)`, ...&lt;br&gt;&lt;br&gt;
+* `\(\mathbf x_1\)` using `\(\mathbf y\)`, `\(\mathbf x_2\)`, `\(\mathbf x_3\)`, ...
+* `\(\mathbf x_2\)` using `\(\mathbf y\)`, `\(\mathbf x_1\)`, `\(\mathbf x_3\)`, ...
+* `\(\mathbf x_3\)` using `\(\mathbf y\)`, `\(\mathbf x_1\)`, `\(\mathbf x_2\)`, ...
+
+&lt;i class="fas fa-ellipsis-v"&gt;&lt;/i&gt;
+
+]
+
+.gr-right2[
+&lt;table class="simpletable"&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;\(\mathbf y\)&lt;/th&gt;
+&lt;th&gt;\(\mathbf x_1\)&lt;/th&gt;
+&lt;th&gt;\(\mathbf x_2\)&lt;/th&gt;
+&lt;th&gt;\(\mathbf x_3\)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan = "4"; style = "padding: 0px;"&gt;&lt;hr /&gt;&lt;/td&gt;&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="rownr"&gt;\(i\)&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class = "rownr"&gt;&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+]
+
+---
+
+## MICE / FCS
+
+.pull-left[
+
+**The Idea:**
+
+&lt;img src="graphics/Gibbs.png", height = 380&gt;
+
+]
+
+.pull-right[
+**In Practice:**
+
+&lt;img src="graphics/MICE.png", height = 380&gt;
+
+]
+
+---
+
+## Joint Model MI
+
+Approximate `\(p(\color{var(--nord15)}{\mathbf x_{mis}} \mid \text{everything else})\)` with a known multivariate distribution
+
+Usually: **multivariate normal**
+
+--
+
+&amp;#8680; each variable is assumed to be (latent) normally distributed
+
+
+
+&lt;br&gt;
+
+&lt;img src = "figures/JMMI.png" width = "1400" style = "display: block;   margin-left: auto; margin-right: auto;"&gt;
+
+
+
+---
+class: center, middle, animated, fadeIn
+
+# Multi-level Data
+
+???
+
+Not that we've covered the basics about multiple imputation and its most
+commonly used approaches, MICE, and the assumption of a multivariate
+normal distribution, let's take a look how things change in multi-level data.
+
+---
+
+## Multi-level Data
+
+
+
+
+.gr-left2[
+&lt;img src="figures/trajectories_all.png", height = 400, style = "margin: auto; display: block;"&gt;
+]
+
+
+.gr-right2[
+
+
+
+&lt;table class="simpletable"&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;\(\mathbf y\)&lt;/th&gt;
+&lt;th&gt;\(\mathbf x_1\)&lt;/th&gt;
+&lt;th&gt;\(\mathbf x_2\)&lt;/th&gt;
+&lt;th&gt;\(\mathbf x_3\)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan = "4"; style = "padding: 0px;"&gt;&lt;hr /&gt;&lt;/td&gt;&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="hlgt-row"&gt;
+&lt;td class="rownr"&gt;\(i\)&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class = "hlgt-row"&gt;
+&lt;td class="rownr"&gt;\(i\)&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class = "hlgt-row"&gt;
+&lt;td class="rownr"&gt;\(i\)&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class = "rownr"&gt;&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+]
+
+???
+
+We have multi-level data when we have measured the same variable repeatedly in
+the same patient, but also when we have a clustering structure in our data,
+for example in a multi-center study. In both cases, observations from the 
+same patient, or the same cluster are not independent.
+
+We typically represent this type of data in long format, so that we now have
+multiple rows that belong to the same patient.
+
+
+---
+class: animated, fadeIn
+
+
+## Multi-level Data
+
+.gr-left2[
+&lt;img src="figures/trajectories_allb.png", height = 400, style = "margin: auto; display: block;"&gt;
+]
+
+.gr-right2[
+* observations of the same patient / cluster are **correlated**
+
+&lt;br&gt;
+
+* **unbalanced** data
+]
+
+???
+Besides the fact that now some rows in our data are correlated, we often have
+another feature: unbalanced data.
+(different number of measurements, taken at different time points)
+
+
+---
+
+## Multi-level Data
+
+
+**(Linear) Mixed Model**
+`$$y_{ij} = \underset{\text{fixed effects}}{\underbrace{\mathbf x_{ij}^\top\boldsymbol\beta}} + 
+\underset{\text{random effects}}{\underbrace{\mathbf z_{ij}^\top\mathbf b_i}} +
+\boldsymbol\varepsilon_i$$`
+
+&lt;br&gt;
+
+* **level-1** variables:&lt;br&gt;repeatedly measured / time-varying
+* **level-2** variables:&lt;br&gt;baseline / patient (or cluster) specific / time-constant
+
+
+???
+
+For analysis: &amp;#8680; typically use a mixed model
+
+* takes into account that the repeated measurements for a patient are not independent
+* can handle unbalanced data
+
+Things get interesting when we have missing values in a baseline covariate:&lt;br&gt;
+&amp;#8680; when imputing we do not only need to take into account that multiple
+missing values may belong to the same patient and should therefore be correlated,
+**but that they should be identical.**
+
+---
+
+## FCS in Multi-level Data
+
+If `\(\color{var(--nord15)}{\mathbf x_1}\)` is **level-1**:&lt;br&gt;
+`\(p(\color{var(--nord15}{x_{i1}(t)} \mid \text{everything else})\)` could be
+a mixed model, e.g.:
+`$$x_{i1}(t) = 
+\underset{\color{var(--nord3)}{\text{fixed effects}}}{\color{var(--nord3)}{\underbrace{\color{var(--nord4)}{\theta_0 + \theta_1 y_i(t) + \theta_2 x_{2i}(t) + \theta_3 x_{3i}(t)}}}} + 
+\underset{\color{var(--nord3)}{\substack{\text{random}\\\text{effects}}}}{\color{var(--nord3)}{\underbrace{\color{var(--nord4)}{\mathbf u_i \mathbf z_i(t)}}}} +
+\varepsilon_i(t)$$`
+
+--
+
+But what if `\(\color{var(--nord15)}{\mathbf x_1}\)` is a **level-2** variable?
+???
+If `\(x_1\)` is a level-2 variable:
+
+* imputed values for the same subject should be identical
+--
+
+* Use a mixed model?&amp;emsp;
+--
+&lt;i class="fas fa-thumbs-down" style = "color:var(--nord11);"&gt;&lt;/i&gt;
+--
+
+* Use a GLM?&amp;emsp;
+--
+&lt;i class="fas fa-thumbs-down" style = "color:var(--nord11);"&gt;&lt;/i&gt;
+--
+
+&lt;br&gt;
+
+**&lt;span style="font-size:1.5rem;"&gt;&amp;#8680;&lt;/span&gt; Imputation in wide format?**
+
+???
+&amp;#8680; For incomplete baseline variables imputation in wide format might be better(?)
+
+---
+
+
+
+## Imputation in Wide Format?
+
+&lt;img src="figures/wideform0.png", height = 450, style = "margin: auto; display: block;"&gt;
+
+---
+count: false
+class: animated, fadeIn
+
+## Imputation in Wide Format?
+&lt;img src="figures/wideform1.png", height = 450, style = "margin: auto; display: block;"&gt;
+
+---
+class: animated, fadeIn
+
+## Imputation in Wide Format?
+&lt;img src="figures/wideform2.png", height = 450, style = "margin: auto; display: block;"&gt;
+
+---
+class: animated, fadeIn
+
+## Imputation in Wide Format?
+&lt;img src="figures/wideform3.png", height = 450, style = "margin: auto; display: block;"&gt;
+
+???
+
+* In yellow: unnecessary imputations = imputations that we would not need
+for the analysis with a mixed model 
+* in red: imputations after death
+
+* we would impute all these values for the outcome and each time-varying covariate
+
+---
+
+## Imputation in Wide Format?
+
+* may **not** be **feasible**
+* if feasible:
+  * may **require summarizing** the data
+  * can be (very) **inefficient**
+
+--
+&lt;br&gt;&lt;br&gt;
+
+**Alternatives?**
+
+--
+
+
+
+&lt;img src = "figures/p_none.png", height = 350, style = "position: absolute; right: 60px; bottom: 60px;"&gt;
+
+
+---
+
+## Imputation in Wide Format
+
+.pull-left[
+&lt;img src="figures/p_first.png" style="width:100%"&gt;
+]
+--
+.pull-right[
+&lt;img src="figures/p_mean.png" style="width:100%"&gt;
+]
+
+---
+
+## Imputation in Wide Format
+
+.pull-left[
+&lt;img src="figures/p_rd.png" style="width:100%"&gt;
+]
+--
+.pull-right[
+&lt;img src="figures/p_ri.png" style="width:100%"&gt;
+]
+
+---
+count: false
+
+## Imputation in Wide Format
+
+.pull-left[
+&lt;img src="figures/p_rd.png" style="width:100%"&gt;
+]
+
+.pull-right[
+&lt;img src="figures/p_rs.png" style="width:100%"&gt;
+]
+
+---
+
+## Imputation in Wide Format
+
+
+
+.gr-left2[
+&lt;img src = "figures/p_ns.png", height = 450&gt;
+]
+
+.gr-right2[
+&lt;table class="simpletable"&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th style = "color: var(--nord10);"&gt;\(\mathbf b_0\)&lt;/th&gt;
+&lt;th style = "color: var(--nord10);"&gt;\(\mathbf b_1\)&lt;/th&gt;
+&lt;th style = "color: var(--nord10);"&gt;\(\mathbf b_2\)&lt;/th&gt;
+&lt;th&gt;\(\mathbf x_1\)&lt;/th&gt;
+&lt;th&gt;\(\mathbf x_2\)&lt;/th&gt;
+&lt;th&gt;\(\mathbf x_3\)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan = "6"; style = "padding: 0px;"&gt;&lt;hr /&gt;&lt;/td&gt;&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord10);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord10);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord10);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord10);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord10);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord10);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class = "hlgt-row"&gt;
+&lt;td class="rownr"&gt;\(i\)&lt;/td&gt;
+&lt;td style = "color: var(--nord10);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord10);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord10);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord10);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord10);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord10);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord10);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord10);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord10);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord10);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord10);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord10);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class = "rownr"&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord10);"&gt;\(\vdots\)&lt;/td&gt;
+&lt;td style = "color: var(--nord10);"&gt;\(\vdots\)&lt;/td&gt;
+&lt;td style = "color: var(--nord10);"&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+.footnote[
+[&lt;i class = "far fa-hand-point-right"&gt;&lt;/i&gt; Practical (EP16)](https://nerler.github.io/EP16_Multiple_Imputation/practical/07_Imputation_of_Longitudinal_Data.html#imputation_using_mice)
+]
+]
+
+---
+
+## Imputation in Wide Format
+
+Simple summaries of longitudinal variables:&lt;br&gt;
+* may introduce bias
+
+--
+
+&lt;br&gt;
+Summarize longitudinal trajectories using random effects:
+
+&lt;ul class="fa-ul"&gt;
+&lt;li&gt;&lt;span class="fa-li" style = "color:var(--nord14);"&gt;
+&lt;i class="far fa-smile"&gt;&lt;/i&gt;&lt;/span&gt;
+more efficient&lt;/li&gt;
+&lt;li&gt;&lt;span class="fa-li" style = "color:var(--nord13);"&gt;
+&lt;i class="far fa-meh"&gt;&lt;/i&gt;&lt;/span&gt;
+requires sufficient fit&lt;/li&gt;
+&lt;li&gt;&lt;span class="fa-li" style = "color:var(--nord11);"&gt;
+&lt;i class="far fa-frown"&gt;&lt;/i&gt;&lt;/span&gt;
+only for incomplete baseline covariates&lt;/li&gt;
+&lt;/ul&gt;
+
+.footnote[
+[&lt;i class = "fas fa-book"&gt;&lt;/i&gt; Erler (2016)](https://doi.org/10.1002/sim.6944)
+]
+
+---
+
+## Imputation of Missing Covariates
+
+Specifying the **correct imputation** model directly is **not straightforward** for
+
+* multi-level settings
+--
+
+* GLMs with non-linear associations
+* time-to-event outcomes
+
+--
+
+&lt;br&gt;
+
+"Classic" FCS / MICE specifies imputation models directly.
+
+.nord0box[
+**&lt;span style="font-size: 1.5rem;"&gt;&amp;#8680;&lt;/span&gt;
+We need another approach in these settings.**
+]
+
+---
+class: center, middle, animated, fadeIn
+
+# Joint Model Multiple Imputation
+
+---
+
+## Joint Model Multiple Imputation
+
+**Idea:** approximate 
+`\(p(\color{var(--nord15)}{\mathbf x_{mis}} \mid \text{everything else})\)` as
+**multivariate normal**
+
+
+.pull-left[
+
+
+&lt;table class="simpletable"&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;\(\mathbf y\)&lt;/th&gt;
+&lt;th style = "color: var(--nord15);"&gt;\(\mathbf x_1\)&lt;/th&gt;
+&lt;th style = "color: var(--nord15);"&gt;\(\mathbf x_2\)&lt;/th&gt;
+&lt;th style = "color: var(--nord15);"&gt;\(\mathbf x_3\)&lt;/th&gt;
+&lt;th style = "color: var(--nord7);" colspan="3"&gt;\(\mathbf X_{comp}\)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan = "7"; style = "padding: 0px;"&gt;&lt;hr /&gt;&lt;/td&gt;&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;\(\ldots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;tr class = "hlgt-row"&gt;
+&lt;td class="rownr"&gt;\(i\)&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;\(\ldots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class = "hlgt-row"&gt;
+&lt;td class="rownr"&gt;\(i\)&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;\(\ldots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class = "hlgt-row"&gt;
+&lt;td class="rownr"&gt;\(i\)&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;\(\ldots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;\(\ldots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;\(\ldots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class = "rownr"&gt;&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;\(\vdots\)&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;\(\vdots\)&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;\(\vdots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+]
+
+.pull-right[
+
+* `\(\mathbf y\)`: response (complete)
+* `\(\color{var(--nord15)}{\mathbf x_1}\)`: time-varying (incomplete)
+* `\(\color{var(--nord15)}{\mathbf x_2}\)`,
+  `\(\color{var(--nord15)}{\mathbf x_3}\)`: baseline (incomplete)
+* `\(\color{var(--nord7)}{\mathbf X_{comp}}\)`: other covariates (complete)
+
+
+.footnote[
+[&lt;i class = "fas fa-book"&gt;&lt;/i&gt; Carpenter &amp; Kenward (20103)](https://www.wiley.com/en-us/Multiple+Imputation+and+its+Application+-p-9780470740521)&amp;emsp;
+[&lt;i class = "fab fa-r-project"&gt;&lt;/i&gt; jomo](https://CRAN.R-project.org/package=jomo)
+]
+
+]
+
+---
+class: animated, fadeIn
+
+## Joint Model Multiple Imputation
+
+.gr-left[
+
+
+&lt;table class="simpletable"&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;\(\mathbf y\)&lt;/th&gt;
+&lt;th style = "color: var(--nord15);"&gt;\(\mathbf x_1\)&lt;/th&gt;
+&lt;th style = "color: var(--nord15);"&gt;\(\mathbf x_2\)&lt;/th&gt;
+&lt;th style = "color: var(--nord15);"&gt;\(\mathbf x_3\)&lt;/th&gt;
+&lt;th style = "color: var(--nord7);" colspan="3"&gt;\(\mathbf X_{comp}\)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan = "7"; style = "padding: 0px;"&gt;&lt;hr /&gt;&lt;/td&gt;&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;\(\ldots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;tr class = "hlgt-row"&gt;
+&lt;td class="rownr"&gt;\(i\)&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;\(\ldots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class = "hlgt-row"&gt;
+&lt;td class="rownr"&gt;\(i\)&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;\(\ldots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class = "hlgt-row"&gt;
+&lt;td class="rownr"&gt;\(i\)&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;\(\ldots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;\(\ldots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;\(\ldots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class = "rownr"&gt;&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;\(\vdots\)&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;\(\vdots\)&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;\(\vdots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+]
+
+.gr-right[
+`\begin{align*}
+\boldsymbol y &amp;= \color{var(--nord7}{\mathbf X_{comp}^\top} \boldsymbol\theta_y + 
+                  \mathbf b_y \mathbf Z_y + \boldsymbol\varepsilon_y\\
+\color{var(--nord15)}{x_1} &amp;= \color{var(--nord7}{\mathbf X_{comp}^\top} \boldsymbol\theta_1 +
+\mathbf b_1 \mathbf Z_1 + \boldsymbol\varepsilon_1\\
+\color{var(--nord15)}{x_2} &amp;= \color{var(--nord7}{\mathbf X_{comp}^\top} \boldsymbol\theta_2 +
+\boldsymbol\varepsilon_2\\
+\color{var(--nord15)}{x_3} &amp;= \color{var(--nord7}{\mathbf X_{comp}^\top} \boldsymbol\theta_3 +
+\boldsymbol\varepsilon_3
+\end{align*}`
+
+&lt;br&gt;
+&lt;img src = "figures/JMMI.png" width = "700" style = "display: block; margin-left: auto; margin-right: auto;"&gt;
+
+]
+
+
+---
+class: animated, fadeIn
+count: false
+
+## Joint Model Multiple Imputation
+
+.gr-left[
+
+
+&lt;table class="simpletable"&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;\(\mathbf y\)&lt;/th&gt;
+&lt;th style = "color: var(--nord15);"&gt;\(\mathbf x_1\)&lt;/th&gt;
+&lt;th style = "color: var(--nord15);"&gt;\(\mathbf x_2\)&lt;/th&gt;
+&lt;th style = "color: var(--nord15);"&gt;\(\mathbf x_3\)&lt;/th&gt;
+&lt;th style = "color: var(--nord7);" colspan="3"&gt;\(\mathbf X_{comp}\)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan = "7"; style = "padding: 0px;"&gt;&lt;hr /&gt;&lt;/td&gt;&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;\(\ldots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;tr class = "hlgt-row"&gt;
+&lt;td class="rownr"&gt;\(i\)&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;\(\ldots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class = "hlgt-row"&gt;
+&lt;td class="rownr"&gt;\(i\)&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;\(\ldots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class = "hlgt-row"&gt;
+&lt;td class="rownr"&gt;\(i\)&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;\(\ldots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;\(\ldots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;\(\ldots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class = "rownr"&gt;&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;\(\vdots\)&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;\(\vdots\)&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;\(\vdots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+]
+
+.gr-right[
+`\begin{align*}
+\boldsymbol y &amp;= \color{var(--nord7}{\mathbf X_{comp}^\top} \boldsymbol\theta_y + 
+                  \color{var(--nord10}{\mathbf b_y} \mathbf Z_y +
+                  \boldsymbol\varepsilon_y\\
+\color{var(--nord15)}{x_1} &amp;= \color{var(--nord7}{\mathbf X_{comp}^\top} \boldsymbol\theta_1 +
+\color{var(--nord10}{\mathbf b_1} \mathbf Z_1 + \boldsymbol\varepsilon_1\\
+\color{var(--nord15)}{x_2} &amp;= \color{var(--nord7}{\mathbf X_{comp}^\top} \boldsymbol\theta_2 +
+\color{var(--nord10}{\boldsymbol\varepsilon_2}\\
+\color{var(--nord15)}{x_3} &amp;= \color{var(--nord7}{\mathbf X_{comp}^\top} \boldsymbol\theta_3 +
+\color{var(--nord10}{\boldsymbol\varepsilon_3}
+\end{align*}`
+
+$$
+`\begin{pmatrix}
+\color{var(--nord10)}{\mathbf b_y}\\
+\color{var(--nord10)}{\mathbf b_1}\\
+\color{var(--nord10)}{\mathbf \varepsilon_2}\\
+\color{var(--nord10)}{\mathbf \varepsilon_3}
+\end{pmatrix}`
+\sim N(\mathbf 0, \mathbf V)
+$$
+
+]
+
+---
+class: animated, fadeIn
+count: false
+
+## Joint Model Multiple Imputation
+
+.gr-left[
+
+
+&lt;table class="simpletable"&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;\(\mathbf y\)&lt;/th&gt;
+&lt;th style = "color: var(--nord15);"&gt;\(\mathbf x_1\)&lt;/th&gt;
+&lt;th style = "color: var(--nord15);"&gt;\(\mathbf x_2\)&lt;/th&gt;
+&lt;th style = "color: var(--nord15);"&gt;\(\mathbf x_3\)&lt;/th&gt;
+&lt;th style = "color: var(--nord7);" colspan="3"&gt;\(\mathbf X_{comp}\)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan = "7"; style = "padding: 0px;"&gt;&lt;hr /&gt;&lt;/td&gt;&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;\(\ldots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;tr class = "hlgt-row"&gt;
+&lt;td class="rownr"&gt;\(i\)&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;\(\ldots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class = "hlgt-row"&gt;
+&lt;td class="rownr"&gt;\(i\)&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;\(\ldots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class = "hlgt-row"&gt;
+&lt;td class="rownr"&gt;\(i\)&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;\(\ldots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;\(\ldots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--nord15);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;\(\ldots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class = "rownr"&gt;&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;\(\vdots\)&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;\(\vdots\)&lt;/td&gt;
+&lt;td style = "color: var(--nord7);"&gt;\(\vdots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+]
+
+.gr-right[
+`\begin{align*}
+\boldsymbol y &amp;= \color{var(--nord7}{\mathbf X_{comp}^\top} \boldsymbol\theta_y + 
+                  \mathbf b_y \mathbf Z_y + \color{var(--nord10)}{\boldsymbol\varepsilon_y}\\
+\color{var(--nord15)}{x_1} &amp;= \color{var(--nord7}{\mathbf X_{comp}^\top}
+\boldsymbol\theta_1 + \mathbf b_1 \mathbf Z_1 +
+\color{var(--nord10)}{\boldsymbol\varepsilon_1}\\
+\color{var(--nord15)}{x_2} &amp;= \color{var(--nord7}{\mathbf X_{comp}^\top}
+\boldsymbol\theta_2 + \boldsymbol\varepsilon_2\\
+\color{var(--nord15)}{x_3} &amp;= \color{var(--nord7}{\mathbf X_{comp}^\top}
+\boldsymbol\theta_3 + \boldsymbol\varepsilon_3
+\end{align*}`
+
+$$
+`\begin{pmatrix}
+\mathbf b_y\\
+\mathbf b_1\\
+\mathbf \varepsilon_2\\
+\mathbf \varepsilon_3
+\end{pmatrix}`
+\sim N(\mathbf 0, \mathbf V)
+\qquad
+`\begin{pmatrix}
+\color{var(--nord10)}{\mathbf \varepsilon_y}\\
+\color{var(--nord10)}{\mathbf \varepsilon_1}
+\end{pmatrix}`
+\sim N(\mathbf 0, \mathbf W)
+$$
+
+]
+
+
+---
+class: center, middle, animated, fadeIn
+
+# Bayesian Analysis
+
+---
+
+## Getting the Correct Distribution
+
+.gr-left2[
+* We need `\(\;p(\color{var(--nord15)}{\mathbf x} \mid \mathbf y, \ldots)\)`
+* We know `\(\;p(\mathbf y \mid \color{var(--nord15)}{\mathbf x}, \ldots)\)`
+]
+
+.gr-right2[
+
+&lt;div style = "color: var(--nord3);"&gt;
+&lt;ul&gt;
+&lt;li&gt;\(\mathbf x\): incomplete covariate&lt;/li&gt;
+&lt;li&gt;\(\mathbf y\): outcome&lt;/li&gt;
+&lt;li&gt;\(\ldots\): everything else &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+]
+
+???
+
+* We need to sample from the probability distribution of the incomplete variable
+`\(x\)` given the outcome `\(y\)` and everything else, including other variables and
+parameters.
+
+* But we only know the distribution of the outcome `\(y\)` given the incomplete and
+other covariates, because this is our analysis model.
+
+* But Reverend Thomas Bayes comes to the rescue:
+
+--
+
+**Bayes Theorem:**
+
+`$$p(\color{var(--nord15)}{\mathbf x} \mid \mathbf y, \ldots) = 
+\frac{p(\mathbf y \mid \color{var(--nord15)}{\mathbf x}, \ldots)\;
+p(\color{var(--nord15)}{\mathbf x},\ldots)}{p\left(\mathbf y, \ldots\right)}$$`
+
+???
+
+Bayes Theorem tells us how we can derive the conditional distribution that we
+need from the one that we have.
+
+---
+count: false
+class: animated, fadeIn
+
+## Getting the Correct Distribution
+
+.gr-left2[
+* We need `\(\;p(\color{var(--nord15)}{\mathbf x} \mid \mathbf y, \ldots)\)`
+* We know `\(\;p(\mathbf y \mid \color{var(--nord15)}{\mathbf x}, \ldots)\)`
+]
+
+.gr-right2[
+
+&lt;div style = "color: var(--nord3);"&gt;
+&lt;ul&gt;
+&lt;li&gt;\(\mathbf x\): incomplete covariate&lt;/li&gt;
+&lt;li&gt;\(\mathbf y\): outcome&lt;/li&gt;
+&lt;li&gt;\(\ldots\): everything else &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+]
+
+
+**Bayes Theorem:**
+
+`$$p(\color{var(--nord15)}{\mathbf x} \mid \mathbf y, \ldots) = 
+\frac{p(\mathbf y \mid \color{var(--nord15)}{\mathbf x}, \ldots)\;
+p(\color{var(--nord15)}{\mathbf x},\ldots)}{p\left(\mathbf y, \ldots\right)}
+\propto p(\mathbf y \mid \color{var(--nord15)}{\mathbf x}, \ldots)\;
+\underset{\downarrow}{p(\color{var(--nord15)}{\mathbf x},\ldots)}$$`
+&lt;div style="font-size: 0.8rem;width: 20%; position: relative; left: 750px; bottom: 15px;"&gt;
+joint distribution of everything except the outcome
+&lt;/div&gt;
+
+
+???
+
+Denominator does not contain our incomplete variable `\(x\)`
+
+&amp;#8680; we can omit that part and save us some integration
+
+&amp;#8680; represent the cond. distribution of `\(x\)` given `\(y\)` as the product of 
+
+* the distribution of the analysis model and
+* the joint distribution of the incomplete variable `\(x\)` and everything else.
+
+---
+
+## How to specify `\(p(\color{var(--nord15)}{\mathbf x}, \ldots)\)`?
+
+For example:
+`$$p(\color{var(--nord15)}{\mathbf x_1}, \mathbf x_2, \mathbf x_3, \boldsymbol\theta)$$`
+
+???
+
+&amp;#8680; We need to figure out how to specify this joint distribution of the
+covariates and parameters.
+
+Usually:
+* covariates of different types
+* parameters include regression coefficients but also variance parameters.
+
+&amp;#8680; we can't specify this multivariate distribution directly because it does
+not have a closed form.
+
+--
+&lt;br&gt;
+
+**From probability theory:**&amp;emsp; `\(\bbox[#2E3440, 5pt]{p(A, B) = p(A\mid B)\;p(B)}\)`
+
+???
+
+From probability theory we know that we can split the joint distribution of
+two random variables.
+
+--
+
+In the example:
+`$$p(\color{var(--nord15)}{\mathbf x_1}, \mathbf x_2, \mathbf x_3, \boldsymbol\theta) = 
+p(\color{var(--nord15)}{\mathbf x_1} \mid \mathbf x_2, \mathbf x_3, \boldsymbol\theta)\;
+p(\mathbf x_2 \mid \mathbf x_3, \boldsymbol\theta)\;
+p(\mathbf x_3 \mid \boldsymbol\theta)\; p(\boldsymbol\theta)$$`
+
+???
+
+&amp;#8680; apply this rule to our example&lt;br&gt;
+&amp;#8680; write the multivariate distribution as a sequence of univariate conditional distributions.
+
+Bayesian &amp;#8680; assume that parameters also are random variables &amp;#8680;
+distribution
+
+Only univariate distributions &amp;#8680; we can easily choose an appropriate model
+type for each of covariate
+
+
+
+---
+
+## The Imputation Model
+
+`\begin{eqnarray*}
+p(\color{var(--nord15)}{\mathbf x_1} \mid \mathbf y, \ldots) &amp; \propto &amp; 
+p(\mathbf y\mid \color{var(--nord15)}{\mathbf x_1}, \mathbf x_2, \mathbf x_3,
+\boldsymbol\theta) \;
+p(\color{var(--nord15)}{\mathbf x_1}\mid \mathbf x_2, \mathbf x_3, \boldsymbol\theta)\;
+p(\mathbf x_2 \mid \mathbf x_3, \boldsymbol\theta)\;
+p(\mathbf x_3\mid\boldsymbol\theta)\; p(\boldsymbol\theta)
+\end{eqnarray*}`
+
+???
+
+Write out the full specification of the predictive distribution for
+our incomplete covariate.
+
+---
+count: false
+
+## The Imputation Model
+
+`\begin{eqnarray*}
+p(\color{var(--nord15)}{\mathbf x_1} \mid \mathbf y, \ldots) &amp; \propto &amp; 
+p(\mathbf y\mid \color{var(--nord15)}{\mathbf x_1}, \mathbf x_2, \mathbf x_3,
+\boldsymbol\theta) \;
+p(\color{var(--nord15)}{\mathbf x_1}\mid \mathbf x_2, \mathbf x_3, \boldsymbol\theta)\;
+p(\mathbf x_2 \mid \mathbf x_3, \boldsymbol\theta)\;
+p(\mathbf x_3\mid\boldsymbol\theta)\; p(\boldsymbol\theta)\\
+&amp; = &amp; p(\mathbf y, \color{var(--nord15)}{\mathbf x_1}, \mathbf x_2, \mathbf x_3,
+\boldsymbol\theta)
+\end{eqnarray*}`
+
+???
+
+&amp;#8680; for this example the full conditional = joint distribution
+
+--
+
+.pull-left[
+
+**In General:**&lt;br&gt;
+Specify the joint distribution
+`$$p(\mathbf y, \color{var(--nord15)}{\mathbf x_1}, \mathbf x_2, \mathbf x_3, \boldsymbol\theta)$$`
+&amp;#8680; derive the full conditional 
+`$$p(\color{var(--nord15)}{\mathbf x_1} \mid \mathbf y, \ldots)$$`
+
+]
+
+???
+
+
+&amp;#8680; we can think about this approach in a slightly different way:
+* start with the joint distribution of everything and 
+* drive the full conditional distributions from the joint
+
+Because we usually don't have a closed form for the joint distribution:&lt;br&gt;
+specify the joint as the product of conditional distributions.
+- - - - -
+--
+
+.pull-right[
+&lt;img src="graphics/Gibbs.png", height = 380, style = "position: absolute; bottom: 50px;"&gt;
+]
+
+
+---
+
+## Sequence of Models
+
+`\begin{eqnarray*}
+p(A, B) &amp; = &amp; p(A \mid B)\; p(B)
+\end{eqnarray*}`
+
+
+???
+
+Before: joint distribution of two random variables A and B can be expressed as
+the conditional distribution of A given B and the distribution of B.
+
+---
+count: false
+
+## Sequence of Models
+
+`\begin{eqnarray*}
+p(A, B) &amp;=&amp; p(A \mid B)\; p(B)\\
+p(A, B) &amp;=&amp; p(B \mid A)\; p(A)
+\end{eqnarray*}`
+
+&amp;#8680; any sequence possible, but some are more **convenient**
+
+???
+
+Of course it is also possible to do it the other way around.
+
+When we represent the joint distribution using a sequence of conditional
+distributions we can **choose the order of the sequence how ever we want.**
+
+--
+
+&lt;br&gt;
+
+`$$p(\mathbf y, \mathbf x, \boldsymbol\theta) = 
+\bbox[#2E3440, 5pt]{\underset{\text{analysis model}}{\underbrace{p(\mathbf y \mid \mathbf x,
+\color{var(--nord14)}{\boldsymbol\theta_{y\mid x}})}}}\;\;\;
+p(\mathbf x \mid \boldsymbol\theta_x)\;\;\;
+p(\color{var(--nord14}{\boldsymbol\theta_{y\mid x}}, \boldsymbol\theta_x)
+\qquad \color{var(--nord3)}{\text{with } \boldsymbol\theta = (\boldsymbol\theta_{y\mid x}, \boldsymbol\theta_x)}$$`
+
+???
+
+But specifying the sequence so that **one of the factors is the model for the
+outcome** has some huge advantages.
+
+--
+
+* parameters of interest `\(\color{var(--nord14)}{\boldsymbol\theta_{y\mid x}}\)`
+estimated directly
+???
+1) parameters that we are interested in are estimated directly &amp;#8680;
+imputation and the analysis jointly in the same estimation procedure.
+
+--
+
+* non-linear associations taken into account
+
+???
+
+2) non-linear associations specified in the analysis model are automatically
+taken into account (analysis model is a factor in the full conditional 
+distribution the imputed values are sampled from)
+
+---
+
+## Sequence of Models
+
+Model for outcome `\(\color{var(--nord14)}{\mathbf y}\)` "first" in the sequence:
+
+`$$p(\mathbf y, \mathbf x, \boldsymbol\theta) = 
+\bbox[#2E3440, 5pt]{p(\color{var(--nord14)}{\mathbf y} \mid \mathbf x,
+\boldsymbol\theta_{y\mid x})}\;\;\;
+p(\mathbf x \mid \boldsymbol\theta_x)\;\;\;
+p(\boldsymbol\theta_{y\mid x}, \boldsymbol\theta_x)
+\qquad \color{var(--nord3)}{\text{with } \boldsymbol\theta = (\boldsymbol\theta_{y\mid x}, \boldsymbol\theta_x)}$$`
+
+
+&amp;#8680; outcome `\(\color{var(--nord14)}{\mathbf y}\)` not in any linear predictor&lt;br&gt;
+&amp;#8680; **no problem** to use **complex outcomes**
+
+???
+Additional advantage if we can specify the sequence so that the 
+**analysis model is the first factor** in the sequence 
+(outcome does not need to enter any of the linear predictors)
+
+&amp;#8680; allows us to specify the joint distribution (and consequently the full
+conditional distributions of incomplete covariates) for settings with 
+**complex outcomes**
+
+--
+
+&lt;br&gt;
+**For covariates:** (in the multi-level setting)
+`$$p(\color{var(--nord15)}{\mathbf x_1}, \mathbf x_2(t), \mathbf x_3) \mid \boldsymbol\theta) = 
+p(\mathbf x_2(t) \mid \color{var(--nord15)}{\mathbf x_1}, \mathbf x_3, \boldsymbol\theta)\;\;\;
+p(\color{var(--nord15)}{\mathbf x_1} \mid \mathbf x_3, \boldsymbol\theta)\;\;\;
+p(\mathbf x_3 \mid \boldsymbol\theta)$$`
+
+
+
+???
+In multi-level settings:&lt;br&gt;
+specify the sequence to our advantage: so that the models for variables on the
+lowest level are specified first so that they have the variables of higher
+levels in their linear predictor but not vice versa.
+
+---
+
+## Complex Models? Simple!
+
+
+&lt;div class = "container"&gt;
+&lt;div class = "box"&gt;
+&lt;div class = "box-row"&gt;
+&lt;div class = "box-cell" style = "background: var(--nord0);"&gt;joint&lt;br&gt;distribution&lt;/div&gt;&amp;nbsp;
+&lt;div class = "box-cell"&gt;\(=\)&lt;/div&gt; 
+&lt;div class = "box-cell" style = "background: var(--nord0);"&gt;analysis&lt;br&gt;model&lt;/div&gt;&amp;nbsp;
+&lt;div class = "box-cell" style = "background: var(--nord0);"&gt;covariate&lt;br&gt;models&lt;/div&gt;&amp;nbsp;
+&lt;div class = "box-cell" style = "background: var(--nord0)"&gt;priors&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+???
+
+It always comes down to 
+* analysis model
+* covariate models
+* priors
+
+--
+
+&lt;br&gt;
+**(Multivariate) joint model for longitudinal and survival data:**
+
+`$$p(\mathbf T, \mathbf D, \mathbf y, \mathbf x, \mathbf b, \boldsymbol\theta) =
+\underset{\text{analysis model}}{\underbrace{
+\underset{\substack{\text{survival}\\\text{model}}}{\underbrace{
+p(\mathbf T, \mathbf D \mid \mathbf b, \mathbf x, \boldsymbol \theta)}}\;\;
+\underset{\substack{\text{(multivariate)}\\\text{longitudinal}\\\text{model}}}{\underbrace{
+p(\mathbf y \mid \mathbf b, \mathbf x, \boldsymbol\theta)}}
+}}\;\;
+\underset{\substack{\text{covariate}\\\text{models}}}{\underbrace{
+p(\mathbf x \mid \boldsymbol\theta)}}\;\;
+\underset{\text{priors}}{\underbrace{p(\boldsymbol\theta)}}$$`
+
+&lt;br&gt;
+
+.footnote[
+[&lt;i class = "fas fa-book"&gt;&lt;/i&gt; Erler et al. (2020)](https://arxiv.org/abs/1907.10867)&amp;emsp;
+[&lt;i class = "fab fa-r-project"&gt;&lt;/i&gt; JointAI](https:nerler.github.io/JointAI/)
+]
+
+
+???
+
+And the covariate model part is the only addition to what we would specify in
+the complete data setting.
+
+If there are many covariates specification of the covariate models can be a 
+bit tedious.
+
+---
+
+## Complex Models? Simple!
+
+&lt;div class = "container"&gt;
+&lt;div class = "box"&gt;
+&lt;div class = "box-row"&gt;
+
+&lt;div class = "box-cell" style = "background: var(--nord0);"&gt;joint&lt;br&gt;distribution&lt;/div&gt;&amp;nbsp;
+&lt;div class = "box-cell"&gt;\(=\)&lt;/div&gt; 
+
+&lt;div class = "box-cell" style = "background: var(--nord0);"&gt;
+&lt;div style = "padding-bottom: 10px;"&gt; &lt;strong&gt;User&lt;/strong&gt;&lt;/div&gt;
+&lt;div class = "box-cell" style = "background: var(--nord1); border: 2px solid var(--nord8); "&gt;analysis&lt;br&gt;model&lt;/div&gt;
+&lt;/div&gt;
+
+&amp;nbsp;
+
+&lt;div class = "box-cell" style = "background: var(--nord0);"&gt;
+&lt;div style = "padding-bottom: 10px;"&gt; &lt;strong&gt;JointAI&lt;/strong&gt;&lt;/div&gt;
+&lt;div class = "box-row"&gt;
+&lt;div class = "box-cell" style = "background: var(--nord1);"&gt;covariate&lt;br&gt;models&lt;/div&gt;&amp;nbsp;
+&lt;div class = "box-cell" style = "background: var(--nord1)"&gt;priors&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+
+&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+
+???
+
+But here JointAI can help.
+
+
+
+---
+class: center, middle, animated, fadeIn
+
+# JointAI
+
+---
+
+## Model Types
+
+.row[
+.three-cols[
+**Univariate Models:**
+
+* `lm_imp()`
+* `glm_imp()`
+* `clm_imp()`
+* `mlogit_imp()`
+* `betareg_imp()`
+* `lognorm_imp()`
+]
+
+.three-cols[
+**Mixed Models**
+
+* `lme_imp()`
+* `glme_imp()`
+* `clmm_imp()`
+* `mlogitmm_imp()`
+* `betamm_imp()`
+* `lognormmm_imp()`
+]
+
+.three-cols[
+**Survival Models**
+
+* `coxph_imp()`
+* `survreg_imp()`
+* `JM_imp()`
+]
+]
+
+---
+
+## Specification
+
+Specification **like standard complete data functions**:
+
+
+```r
+library("JointAI")
+lm1 &lt;- lm_imp(SBP ~ gender + age + alc * creat, data = NHANES, n.iter = 200)
+```
+
+
+--
+
+&lt;br&gt;
+
+Full documentation at
+[https://nerler.github.io/JointAI/](https://nerler.github.io/JointAI/)
+
+---
+class: center, middle, animated, fadeIn
+
+# Summary
+
+---
+
+
+## Imputation of Missing Covariates
+To impute incomplete covariates `\(\color{var(--nord15)}{\mathbf x_{mis}}\)`
+we need `\(p(\color{var(--nord15)}{x_{mis}} \mid \text{everything else})\)`
+
+&amp;#8680; Difficult to specify directly.
+
+--
+
+**Strategies:**&lt;br&gt;
+* Gibbs idea: split into univariate problems&lt;br&gt;
+  &amp;#8680; **MICE/FCS**
+--
+
+* Approximate with something known &amp; easy:&lt;br&gt;
+  &amp;#8680; **Joint Model MI**
+--
+
+* Smart specification of the (correct) joint distribution:&lt;br&gt;
+  &amp;#8680; **Bayesian Analysis**
+
+---
+name: comparison
+
+## Comparison
+
+.three-cols1[
+**MICE / FCS**:
+$$
+`\begin{align}
+p(\color{var(--nord15)}{\mathbf x_1} \mid \mathbf y, \color{var(--nord15)}{\mathbf x_2},
+  \color{var(--nord15)}{\mathbf x_3}, \color{var(--nord7}{\mathbf X_{c}}, \theta_1)\\
+p(\color{var(--nord15)}{\mathbf x_2} \mid \mathbf y, \color{var(--nord15)}{\mathbf x_1},
+  \color{var(--nord15)}{\mathbf x_3}, \color{var(--nord7}{\mathbf X_{c}}, \theta_2)\\
+p(\color{var(--nord15)}{\mathbf x_3} \mid \mathbf y, \color{var(--nord15)}{\mathbf x_1},
+  \color{var(--nord15)}{\mathbf x_2}, \color{var(--nord7}{\mathbf X_{c}}, \theta_3)\\
+\end{align}`
+$$
+]
+
+.three-cols2[
+**Joint Model MI**:
+$$
+`\begin{align}
+p(\mathbf y \mid \color{var(--nord7}{\mathbf X_{c}}, \theta_y)\\
+p(\color{var(--nord15)}{\mathbf x_1} \mid \color{var(--nord7}{\mathbf X_{c}}, \theta_1)\\
+p(\color{var(--nord15)}{\mathbf x_2} \mid \color{var(--nord7}{\mathbf X_{c}}, \theta_2)\\
+p(\color{var(--nord15)}{\mathbf x_3} \mid \color{var(--nord7}{\mathbf X_{c}}, \theta_3)\\
+\end{align}`
+$$
+]
+
+.three-cols3[
+**Fully Bayesian**
+$$
+`\begin{align}
+p(\mathbf y \mid \color{var(--nord15)}{\mathbf x_1}, \color{var(--nord15)}{\mathbf x_2},
+  \color{var(--nord15)}{\mathbf x_3}, \color{var(--nord7}{\mathbf X_{c}},
+  \color{var(--nord14}{\theta_{y\mid x}})\\
+p(\color{var(--nord15)}{\mathbf x_1} \mid \color{var(--nord15)}{\mathbf x_2},
+  \color{var(--nord15)}{x_3}, \color{var(--nord7}{\mathbf X_{c}}, \theta_1)\\
+p(\color{var(--nord15)}{\mathbf x_2} \mid \color{var(--nord15)}{\mathbf x_3},
+\color{var(--nord7}{\mathbf X_{c}}, \theta_2)\\
+p(\color{var(--nord15)}{\mathbf x_3} \mid \color{var(--nord7}{\mathbf X_{c}}, \theta_3)\\
+\end{align}`
+$$
+]
+
+.three-cols1[
+always 3 steps:
+* imputation
+* analysis
+* pooling
+]
+
+.three-cols2[
+always 3 steps:&lt;br&gt;
+* imputation
+* analysis
+* pooling
+]
+
+.three-cols3[
+usually 1 step:&lt;br&gt;
+simultaneous analysis &amp; imputation
+
+MI possible
+]
+
+
+---
+
+
+## Comparison
+
+.three-cols1[
+**MICE / FCS**:
+$$
+`\begin{align}
+p(\color{var(--nord15)}{\mathbf x_1} \mid \mathbf y, \color{var(--nord15)}{\mathbf x_2},
+  \color{var(--nord15)}{\mathbf x_3}, \color{var(--nord7}{\mathbf X_{c}}, \theta_1)\\
+p(\color{var(--nord15)}{\mathbf x_2} \mid \mathbf y, \color{var(--nord15)}{\mathbf x_1},
+  \color{var(--nord15)}{\mathbf x_3}, \color{var(--nord7}{\mathbf X_{c}}, \theta_2)\\
+p(\color{var(--nord15)}{\mathbf x_3} \mid \mathbf y, \color{var(--nord15)}{\mathbf x_1},
+  \color{var(--nord15)}{\mathbf x_2}, \color{var(--nord7}{\mathbf X_{c}}, \theta_3)\\
+\end{align}`
+$$
+]
+
+.three-cols2[
+**Joint Model MI**:
+$$
+`\begin{align}
+p(\mathbf y \mid \color{var(--nord7}{\mathbf X_{c}}, \theta_y)\\
+p(\color{var(--nord15)}{\mathbf x_1} \mid \color{var(--nord7}{\mathbf X_{c}}, \theta_1)\\
+p(\color{var(--nord15)}{\mathbf x_2} \mid \color{var(--nord7}{\mathbf X_{c}}, \theta_2)\\
+p(\color{var(--nord15)}{\mathbf x_3} \mid \color{var(--nord7}{\mathbf X_{c}}, \theta_3)\\
+\end{align}`
+$$
+]
+
+.three-cols3[
+**Fully Bayesian**
+$$
+`\begin{align}
+p(\mathbf y \mid \color{var(--nord15)}{\mathbf x_1}, \color{var(--nord15)}{\mathbf x_2},
+  \color{var(--nord15)}{\mathbf x_3}, \color{var(--nord7}{\mathbf X_{c}},
+  \color{var(--nord14}{\theta_{y\mid x}})\\
+p(\color{var(--nord15)}{\mathbf x_1} \mid \color{var(--nord15)}{\mathbf x_2},
+  \color{var(--nord15)}{x_3}, \color{var(--nord7}{\mathbf X_{c}}, \theta_1)\\
+p(\color{var(--nord15)}{\mathbf x_2} \mid \color{var(--nord15)}{\mathbf x_3},
+\color{var(--nord7}{\mathbf X_{c}}, \theta_2)\\
+p(\color{var(--nord15)}{\mathbf x_3} \mid \color{var(--nord7}{\mathbf X_{c}}, \theta_3)\\
+\end{align}`
+$$
+]
+
+.three-cols[
+* potentially incompatible models
+* non-linear associations (theoretically) possible
+]
+
+.three-cols[
+* assumes linear associations
+* potentially incompatible with analysis model (extensions available)
+]
+
+
+.three-cols[
+* non-linear associations possible
+* assures compatibility
+]
+
+---
+
+## Comparison
+
+.three-cols1[
+**MICE / FCS**:
+$$
+`\begin{align}
+p(\color{var(--nord15)}{\mathbf x_1} \mid \mathbf y, \color{var(--nord15)}{\mathbf x_2},
+  \color{var(--nord15)}{\mathbf x_3}, \color{var(--nord7}{\mathbf X_{c}}, \theta_1)\\
+p(\color{var(--nord15)}{\mathbf x_2} \mid \mathbf y, \color{var(--nord15)}{\mathbf x_1},
+  \color{var(--nord15)}{\mathbf x_3}, \color{var(--nord7}{\mathbf X_{c}}, \theta_2)\\
+p(\color{var(--nord15)}{\mathbf x_3} \mid \mathbf y, \color{var(--nord15)}{\mathbf x_1},
+  \color{var(--nord15)}{\mathbf x_2}, \color{var(--nord7}{\mathbf X_{c}}, \theta_3)\\
+\end{align}`
+$$
+]
+
+.three-cols2[
+**Joint Model MI**:
+$$
+`\begin{align}
+p(\mathbf y \mid \color{var(--nord7}{\mathbf X_{c}}, \theta_y)\\
+p(\color{var(--nord15)}{\mathbf x_1} \mid \color{var(--nord7}{\mathbf X_{c}}, \theta_1)\\
+p(\color{var(--nord15)}{\mathbf x_2} \mid \color{var(--nord7}{\mathbf X_{c}}, \theta_2)\\
+p(\color{var(--nord15)}{\mathbf x_3} \mid \color{var(--nord7}{\mathbf X_{c}}, \theta_3)\\
+\end{align}`
+$$
+]
+
+.three-cols3[
+**Fully Bayesian**
+$$
+`\begin{align}
+p(\mathbf y \mid \color{var(--nord15)}{\mathbf x_1}, \color{var(--nord15)}{\mathbf x_2},
+  \color{var(--nord15)}{\mathbf x_3}, \color{var(--nord7}{\mathbf X_{c}},
+  \color{var(--nord14}{\theta_{y\mid x}})\\
+p(\color{var(--nord15)}{\mathbf x_1} \mid \color{var(--nord15)}{\mathbf x_2},
+  \color{var(--nord15)}{x_3}, \color{var(--nord7}{\mathbf X_{c}}, \theta_1)\\
+p(\color{var(--nord15)}{\mathbf x_2} \mid \color{var(--nord15)}{\mathbf x_3},
+\color{var(--nord7}{\mathbf X_{c}}, \theta_2)\\
+p(\color{var(--nord15)}{\mathbf x_3} \mid \color{var(--nord7}{\mathbf X_{c}}, \theta_3)\\
+\end{align}`
+$$
+]
+
+.three-cols[
+* not suited for complex outcomes
+* (some extensions available)
+]
+
+.three-cols[
+* works for longitudinal
+* (extensions for survival)
+]
+
+
+.three-cols[
+* well suited for complex outcomes
+]
+
+
+---
+
+## Comparison
+
+.three-cols1[
+**MICE / FCS**:
+$$
+`\begin{align}
+p(\color{var(--nord15)}{\mathbf x_1} \mid \mathbf y, \color{var(--nord15)}{\mathbf x_2},
+  \color{var(--nord15)}{\mathbf x_3}, \color{var(--nord7}{\mathbf X_{c}}, \theta_1)\\
+p(\color{var(--nord15)}{\mathbf x_2} \mid \mathbf y, \color{var(--nord15)}{\mathbf x_1},
+  \color{var(--nord15)}{\mathbf x_3}, \color{var(--nord7}{\mathbf X_{c}}, \theta_2)\\
+p(\color{var(--nord15)}{\mathbf x_3} \mid \mathbf y, \color{var(--nord15)}{\mathbf x_1},
+  \color{var(--nord15)}{\mathbf x_2}, \color{var(--nord7}{\mathbf X_{c}}, \theta_3)\\
+\end{align}`
+$$
+]
+
+.three-cols2[
+**Joint Model MI**:
+$$
+`\begin{align}
+p(\mathbf y \mid \color{var(--nord7}{\mathbf X_{c}}, \theta_y)\\
+p(\color{var(--nord15)}{\mathbf x_1} \mid \color{var(--nord7}{\mathbf X_{c}}, \theta_1)\\
+p(\color{var(--nord15)}{\mathbf x_2} \mid \color{var(--nord7}{\mathbf X_{c}}, \theta_2)\\
+p(\color{var(--nord15)}{\mathbf x_3} \mid \color{var(--nord7}{\mathbf X_{c}}, \theta_3)\\
+\end{align}`
+$$
+]
+
+.three-cols3[
+**Fully Bayesian**
+$$
+`\begin{align}
+p(\mathbf y \mid \color{var(--nord15)}{\mathbf x_1}, \color{var(--nord15)}{\mathbf x_2},
+  \color{var(--nord15)}{\mathbf x_3}, \color{var(--nord7}{\mathbf X_{c}},
+  \color{var(--nord14}{\theta_{y\mid x}})\\
+p(\color{var(--nord15)}{\mathbf x_1} \mid \color{var(--nord15)}{\mathbf x_2},
+  \color{var(--nord15)}{x_3}, \color{var(--nord7}{\mathbf X_{c}}, \theta_1)\\
+p(\color{var(--nord15)}{\mathbf x_2} \mid \color{var(--nord15)}{\mathbf x_3},
+\color{var(--nord7}{\mathbf X_{c}}, \theta_2)\\
+p(\color{var(--nord15)}{\mathbf x_3} \mid \color{var(--nord7}{\mathbf X_{c}}, \theta_3)\\
+\end{align}`
+$$
+]
+
+.three-cols[
+* usually fast
+]
+
+.three-cols[
+* efficient sampling
+* issues when many incomplete variables&lt;br&gt;(&amp;#8680; large `\(\mathbf V\)` and `\(\mathbf W\)`)
+]
+
+
+.three-cols[
+* more computationally intensive
+]
+
+---
+
+## To Keep in Mind
+
+Every model / method makes **assumptions**:
+
+The **models need to fit** the data!!!
+
+* analysis model(s)
+* covariate models
+* not straightforward to check
+
+--
+
+**Ignorable Missingness**
+* impossible to check
+* extensions to non-ignorable missingness possible
+
+
+---
+class: the-end, center, middle
+layout: true
+count: false
+
+## Thank you for your attention!
+
+
+&lt;div id="contact"&gt;
+&lt;i class="fas fa-envelope"&gt;&lt;/i&gt; n.erler@erasmusmc.nl &amp;emsp;
+&lt;a href="https://twitter.com/N_Erler"&gt;&lt;i class="fab fa-twitter"&gt;&lt;/i&gt; N_Erler&lt;/a&gt; &amp;emsp;
+&lt;a href="https://github.com/NErler"&gt;&lt;i class="fab fa-github"&gt;&lt;/i&gt; NErler&lt;/a&gt; &amp;emsp;
+&lt;a href="https://nerler.com"&gt;&lt;i class="fas fa-globe-americas"&gt;&lt;/i&gt; https://nerler.com&lt;/a&gt;
+&lt;/div&gt;
+
+---
+count: false
+
+
+
+
+
+&lt;!-- &lt;script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'&gt;&lt;/script&gt; --&gt;
+&lt;script type="text/javascript" async
+src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"&gt;
+&lt;/script&gt;
+
+
+&lt;script&gt;
+// Get the button that opens the modal
+var btn = document.querySelectorAll("button.modal-button");
+
+// All page modals
+var modals = document.querySelectorAll('.modal');
+
+// Get the &lt;span&gt; element that closes the modal
+var spans = document.getElementsByClassName("close");
+
+// When the user clicks the button, open the modal
+for (var i = 0; i &lt; btn.length; i++) {
+btn[i].onclick = function(e) {
+e.preventDefault();
+modal = document.querySelector(e.target.getAttribute("href"));
+modal.style.display = "block";
+}
+}
+
+// When the user clicks on &lt;span&gt; (x), close the modal
+for (var i = 0; i &lt; spans.length; i++) {
+spans[i].onclick = function() {
+for (var index in modals) {
+if (typeof modals[index].style !== 'undefined') modals[index].style.display = "none";    
+}
+}
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+if (event.target.classList.contains('modal')) {
+for (var index in modals) {
+if (typeof modals[index].style !== 'undefined') modals[index].style.display = "none";    
+}
+}
+}
+&lt;/script&gt;
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="libs/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "nord",
+"highlightLines": true,
+"highlightSpans": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
