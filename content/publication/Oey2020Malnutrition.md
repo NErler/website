@@ -27,7 +27,7 @@ publication_types: ["2"]
 publication: "*Clinical Nutrition ESPEN*, 2020, 36 -- 44"
 publication_short: ""
 
-abstract: "#### Background & aims\n
+abstract: "#### Background & Aims\n
 Sarcopenia is prevalent in patients with liver cirrhosis and is negatively
 associated with clinical outcomes. In a population screened for liver 
 transplantation we aimed to assess the prevalence of abnormal nutritional status

@@ -1,6 +1,6 @@
 +++
 title = "JointAI: Joint Analysis and Imputation of Incomplete Data in R"
-date = "2019-07-25"
+date = "2020-09-01"
 authors = ["Nicole S. Erler", "Dimitris Rizopoulos", "Emmanuel M.E.H. Lesaffre"]
 featured = true
 
