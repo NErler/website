@@ -22,7 +22,7 @@ event = ""
 event_url = ""
 
 # Location of event.
-location = "École polytechnique, Paris, France"
+location = "École polytechnique, Paris, France (virtual)"
 
 # Is this a featured talk? (true/false)
 featured = true
