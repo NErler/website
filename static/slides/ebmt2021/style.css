@@ -1,0 +1,751 @@
+/* @import url(https://fonts.googleapis.com/css?family=Cabin:600,600i&display=swap); */
+/* @import url(https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700&display=swap); */
+
+
+:root {
+  /* Fonts */
+  --text-font-family: 'Arial';
+  --text-font-is-google: 1;
+  --text-font-family-fallback: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, Ubuntu, roboto, noto, segoe ui, arial;
+  --text-font-base: sans-serif;
+  --header-font-family: 'Montserrat';
+  --header-font-is-google: 1;
+  --code-font-family: 'Source Code Pro';
+  --code-font-is-google: 1;
+  --base-font-size: 26px;
+  --text-font-size: 1rem;
+  --code-font-size: 0.8rem;
+  --code-inline-font-size: 1em;
+  --header-h1-font-size: 3.75rem;
+  --header-h2-font-size: 2.0rem;
+  --header-h3-font-size: 1.75rem;
+
+  /* Colors */
+  --title-slide-background-color: #3a4f92;
+  --title-slide-text-color: #FFFFFF;
+
+  --text-color: #000000;
+  --background-color: #FFFFFF;
+
+  --blue: #3a4f92;
+  --bluedk: #1D2749;
+  --turq: #2899B6;
+  --turqdk: #144D5B;
+  --skyebl: #224051;
+  --grey: #696868;
+  --lgrey: #868686;
+  --purple: #75076a;
+  --purple2: #60016d;
+  --pink: #92214c;
+
+/*
+  --text-bold-color: #88C0D0;
+  --link-color: #5E81AC;   
+
+  --code-inline-color: #B48EAD;
+
+  --primary: #5E81AC;          
+  --secondary: #81A1C1;        
+  
+*/
+}
+
+html {
+  font-size: var(--base-font-size);
+}
+
+body {
+  font-family: var(--text-font-family), var(--text-font-family-fallback), var(--text-font-base);
+  font-weight: normal;
+  color: var(--text-color);
+}
+h1, h2, h3 {
+  font-family: "Montserrat";
+  font-weight: 600;
+  color: var(--turq);
+}
+
+.remark-slide-content {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-size: 1rem;
+  padding: 10px 64px 16px 64px; /* top right bottom left */
+  width: 100%;
+  height: 100%;
+}
+.remark-slide-content h1 {
+    font-size: var(--header-h1-font-size);
+}
+
+.remark-slide-content > h2:first-of-type {
+  font-family: "Montserrat";
+  margin-top: 0px;
+  border-bottom: 1px solid;
+}
+
+.remark-slide-content h2 {
+  font-size: var(--header-h2-font-size);
+  font-weight: 700;
+}
+.remark-slide-content h3 {
+  font-size: var(--header-h3-font-size);
+}
+.remark-code, .remark-inline-code {
+  font-family: var(--code-font-family), Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
+}
+.remark-code {
+  font-size: var(--code-font-size);
+  color: white;
+}
+.remark-inline-code {
+  font-size: var(--code-inline-font-size);
+  color: var(--code-inline-color);
+}
+
+.hljs-default .hljs, .hljs-default .hljs-subst {
+    color: white;
+    background-color: var(--turqdk);
+}
+
+.hljs-default .hljs-type, .hljs-default .hljs-string, .hljs-default .hljs-number, .hljs-default .hljs-selector-id, .hljs-default .hljs-selector-class, .hljs-selector-tag, .hljs-default .hljs-quote, .hljs-default .hljs-template-tag, .hljs-default .hljs-deletion, .hljs-title {
+    color: white;
+    font-weight: normal;
+}
+
+
+
+.hljs-keyword, .hljs-literal, .hljs-symbol, .hljs-title, .hljs-function, .remark-code-line {
+  color: white;
+}
+
+
+.hljs-default .hljs-title, .hljs-default .hljs-section {
+    color: white;
+    font-weight: bold;
+}
+
+.remark-slide-number {
+  color: var(--grey);
+  opacity: 1;
+  font-size: 0.7em;
+}
+strong {
+    color: var(--blue);
+}
+a, a > code {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+.footnote {
+  position: absolute;
+  bottom: 60px;
+  padding-right: 4em;
+  font-size: 0.7em;
+  color: var(--grey);
+}
+
+
+.reference {
+    text-align: right;
+    font-size: 0.7em;
+    position: absolute;
+    right: 55px;
+}
+
+.remark-code-line-highlighted {
+  background-color: #2B5E6B;
+}
+.remark-code-span-highlighted {
+  background-color: #2B5E6B;
+}
+
+.inverse {
+  background-image: linear-gradient(to right, var(--blue) , var(--turq));
+  color: white;
+}
+.inverse h1, .inverse h2, .inverse h3 {
+  color: var(--inverse-header-color);
+}
+
+
+
+
+/* title slide ------------------------------------------------------ */
+
+.title-slide-custom {
+  background-image: linear-gradient(to right, var(--blue) , var(--turq));
+  color: white;
+  font-family: 'Montserrat';
+}
+
+.title-slide-custom .remark-slide-number {
+  display: none;
+}
+
+.title-slide-custom h1, .title-slide-custom h2 {
+    color: var(--nord4);
+    font-size: 3rem;
+    font-weight: 900;
+}
+
+.title-slide-custom > h2:first-of-type {
+    margin-top: 30px;
+}
+
+#author{
+    position: absolute;
+    bottom: 40px;
+}
+
+#contact {
+    text-align: right;
+    position: absolute;
+    bottom: 40px;
+    right: 55px;
+    font-size: 0.75em;
+    color: var(--nord9);
+}
+
+#contact a {
+  color: inherit;
+}
+
+.thanks {
+  font-size: 60pt;
+  font-weight: 700;
+  font-family: "Montserrat";
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+div.my-footer {
+    position: absolute;
+    bottom: 12px;
+    left: 20px;
+    width: 100%;
+    text-align: center;
+}
+div.my-footer span {
+    font-size:  0.7em;
+    opacity: 1;
+    color: var(--grey);
+    left: 15px;
+    bottom: 4px;
+    display: inline-block;
+}
+
+.my-footer a {
+  color: inherit;
+}
+
+.disclosure {
+  background-image: linear-gradient(to right, var(--blue) , var(--turq));
+  color: white;
+  font-family: 'Montserrat';
+}
+
+.disclosure h2 {
+  margin-top: 30px;
+  color: white;
+}
+
+.disclosure > h2:first-of-type {
+  font-family: "Montserrat";
+  margin-top: 30px;
+  border-bottom: 1px solid;
+  color: white;
+}
+
+
+.disclosure .remark-slide-number {
+  display: none;
+}
+
+
+/* Layout options for single slides ----------------------------------------------------- */
+/* Two-column layout */
+.left-column {
+  width: 20%;
+  height: 92%;
+  float: left;
+}
+.left-column h2, .left-column h3 {
+  color: #1381B0;
+}
+.left-column h2:last-of-type, .left-column h3:last-child {
+  color: #1381B0;
+}
+.right-column {
+  width: 75%;
+  float: right;
+  padding-top: 1em;
+}
+
+
+.pull-left {
+  float: left;
+  width: 47%;
+}
+.pull-right {
+  float: right;
+  width: 47%;
+}
+
+
+.three-cols {
+    float: left;
+    width: 33.33%
+}
+
+
+.three-cols60 {
+    float: left;
+    width: 66%
+}
+
+.three-cols1 {
+    float: left;
+    width: 36.66%
+}
+
+.three-cols2 {
+    float: left;
+    width: 30%
+}
+
+.three-cols3 {
+    float: left;
+    width: 33.33%
+}
+
+.three-cols60 ~ * {
+  clear: both;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.gr-left {
+    float: left;
+    width: 36.3%;
+}
+.gr-right {
+    float: right;
+    width: 58.7%;
+}
+.gr-right ~ * {
+  clear: both;
+}
+
+
+.gr-left2 {
+    float: left;
+    width: 58.7%;
+}
+.gr-right2 {
+    float: right;
+    width: 36.3%;
+}
+
+.gr-right2 ~ * {
+  clear: both;
+}
+
+.pull-right ~ * {
+  clear: both;
+}
+
+
+.left25 {
+    float: left;
+    width: 25%;
+}
+.right75 {
+    float: right;
+    width: 75%;
+}
+
+.right75 ~ * {
+  clear: both;
+}
+
+
+img, video, iframe {
+  max-width: 100%;
+}
+blockquote {
+  border-left: solid 5px var(--nord9);
+  padding-left: 1em;
+}
+.remark-slide table {
+  margin: auto;
+  border-top: 0px solid #666;
+  border-bottom: 0px solid #666;
+}
+.remark-slide table thead th {
+  border-bottom: 1px solid #ddd;
+}
+th, td {
+  padding: 5px;
+}
+/* .remark-slide thead, .remark-slide tfoot, .remark-slide tr:nth-child(even) { */
+/*   background: #FFEAD1; */
+/* } */
+table.dataTable tbody {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+/* table.dataTable.display tbody tr.odd { */
+/*   background-color: var(--background-color); */
+/* } */
+/* table.dataTable.display tbody tr.even { */
+/*   background-color: #FFEAD1; */
+/* } */
+table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate {
+  color: var(--text-color);
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  color: var(--text-color) !important;
+}
+
+/* Slide Header Background for h1 elements */
+.remark-slide-content.header_background > h1 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: var(--header-background-color);
+  color: var(--header-background-text-color);
+  padding: 2rem 64px 1.5rem 64px;
+  margin-top: 0;
+  box-sizing: border-box;
+}
+.remark-slide-content.header_background {
+  padding-top: 7rem;
+}
+
+@page { margin: 0; }
+@media print {
+  .remark-slide-scaler {
+    width: 100% !important;
+    height: 100% !important;
+    transform: scale(1) !important;
+    top: 0 !important;
+    left: 0 !important;
+  }
+}
+
+.primary {
+  color: var(--primary);
+}
+.bg-primary {
+  background-color: var(--primary);
+}
+.secondary {
+  color: var(--secondary);
+}
+.bg-secondary {
+  background-color: var(--secondary);
+}
+
+
+.turqdkbox {
+  border: solid 2px var(--turq);
+  border-radius: 10px;
+  margin-bottom: 5px;
+  padding: 0.2em 1.15em;
+  background-color: var(--turqdk);
+  color: white;
+}
+
+.turqdkbox-50 {
+  border: solid 2px var(--turq);
+  border-radius: 10px;
+  margin-bottom: 5px;
+  padding: 0.2em 1.15em;
+  background-color: var(--turqdk);
+  color: white;
+  width: 50%;
+}
+
+.centerbox {
+  margin-bottom: 5px;
+  padding: 0.2em 1.15em;
+  width: 50%;
+  display: table;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.nord7box {
+    border: 0px;
+    border-style: solid;
+    padding: 0.2em 0.2em 0.3em 0.2em;
+    margin-bottom: 5px;
+    background-color: var(--nord7)
+}
+
+
+.raisebox150 {
+  position: relative;
+  bottom: 150px;
+}
+
+
+
+
+/* tables ====================================================================*/
+.simpletable {
+    border: none;
+    border-top: none;
+    border-bottom: none;
+    border-collapse: collapse;
+    border-spacing: 0px;
+}
+
+.simpletable td {
+    text-align: center;
+}
+
+.headrow {
+  padding: 0px;
+  margin: 0px;
+}
+
+.headrow td {
+  border-bottom: 1px solid red;
+}
+
+
+.rownr {
+    color: gray;
+    padding-right: 10px;
+    font-size: 0.8em;
+}
+
+.hlgt-row {
+    background-color: #F0F0F0;
+}
+
+
+.ppt th {
+  background-color: var(--turq);
+  color: white;
+}
+
+.ppt td {
+  font-size: 0.8rem;
+  padding: 10px;
+}
+
+.ppt tr:nth-child(even) {
+  background-color: rgb(205, 222, 229);
+}
+.ppt tr:nth-child(odd) {
+  background-color: rgb(232, 239, 243);
+}
+
+.container .box {
+    margin:auto;
+    display:table;
+}
+.container .box .box-row {
+    display:table-row;
+}
+.container .box .box-cell {
+    display:table-cell;
+    vertical-align: middle;
+    padding:20px;
+    text-align:center;
+    margin: 50px;
+}
+
+.imgcontainer > img {
+  height: 100%;
+  width: auto;
+  padding: 5px;
+}
+.imgcontainer {
+  height: 360px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: -20px;
+}
+
+
+
+.imgrow {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+  flex-wrap: wrap;
+  padding: 5px 0px 5px 8px;
+  position: relative;
+  top: 0px;
+}
+
+.imgrow>img {
+  width: 7.9%;
+  height: 7.9%;
+  padding: 2px;
+}
+
+/* Create two equal columns that sits next to each other */
+.column6 {
+  flex: 6%;
+  padding: 0 2px;
+}
+
+.column6 img {
+  margin-top: 4px;
+  vertical-align: middle;
+}
+
+.imgrow:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+::-webkit-scrollbar {
+    width: 16px;
+}
+ 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 6px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    background: var(--nord0);
+    -webkit-box-shadow: inset 0 0 3px rgba(0,0,0,0.5); 
+}
+
+::-webkit-scrollbar-corner {
+  background: inherit;
+}
+
+.scroll450 {
+    max-height: 450px;
+    overflow-y: auto;
+}
+
+
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: var(--background-color);
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+.modal-button {
+  background-color: var(--nord0);
+  border: solid 1px var(--nord10);
+  color: var(--text-color);
+  width: 280px;
+  padding: 20px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1rem;
+  margin: 0px 20px;
+  cursor: pointer;
+}
+
+
+.the-end .remark-slide-number {
+  display: none;
+}
+
+
+.remark-notes-area {
+  font-size: 0.7rem;
+}
+
+
+.arrow-list {
+  list-style-type: '\21E8';
+}
+
+.arrow-list li { 
+  padding-left: 16px; 
+}
+
+
+
+.rectangle {
+  border-radius: 15px;
+  border: 3pt solid var(--nord10);
+  color: var(--nord10);
+  background-color: transparent;
+}
+
+
+
+pre {
+    display: block;
+    font-family: monospace;
+    white-space: pre;
+    margin: -0.8em 0px;
+   color: white;
+}
+
+/*
+.remark-notes {
+  display: none;
+}
+
+.remark-notes-preview {
+  display: none;
+}
+*/

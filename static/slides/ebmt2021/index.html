@@ -1,0 +1,2179 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Working with Incomplete Data</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Nicole Erler" />
+    <meta name="date" content="2021-02-10" />
+    <script src="libs/header-attrs-2.6/header-attrs.js"></script>
+    <link href="libs/tile-view-0.2.4/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view-0.2.4/tile-view.js"></script>
+    <script src="libs/xaringanExtra_fit-screen-0.2.4/fit-screen.js"></script>
+    <script src="libs/clipboard-2.0.6/clipboard.min.js"></script>
+    <link href="libs/shareon-1.4.1/shareon.min.css" rel="stylesheet" />
+    <script src="libs/shareon-1.4.1/shareon.min.js"></script>
+    <link href="libs/xaringanExtra-shareagain-0.2.4/shareagain.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-shareagain-0.2.4/shareagain.js"></script>
+    <meta name="github-repo" content="NErler/JointAI"/>
+    <meta name="twitter:title" content="Working with Incomplete Data"/>
+    <meta name="twitter:description" content="Working with incomplete data in complex settings, where assumptions of &#10;      standard approaches are violated, resuling in bias."/>
+    <meta name="twitter:url" content="https://nerler.com/slides/ebmt2021/"/>
+    <meta name="twitter:image:src" content="https://nerler.com/slides/ebmt2021/graphics/share-card.png"/>
+    <meta name="twitter:image:alt" content="Title slide of Working with Incomplete Data by Nicole Erler"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:creator" content="@N_Erler"/>
+    <meta name="twitter:site" content="@N_Erler"/>
+    <meta property="og:title" content="Working with Incomplete Data"/>
+    <meta property="og:description" content="Working with incomplete data in complex settings, where assumptions of &#10;      standard approaches are violated, resuling in bias."/>
+    <meta property="og:url" content="https://nerler.com/slides/ebmt2021/"/>
+    <meta property="og:image" content="https://nerler.com/slides/ebmt2021/graphics/share-card.png"/>
+    <meta property="og:image:alt" content="Title slide of Working with Incomplete Data by Nicole Erler"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:locale" content="en_US"/>
+    <meta property="article:author" content="Nicole Erler"/>
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+class: title-slide-custom
+count: false
+
+
+
+&lt;img src = "graphics/Logo.png" width=200 style="margin-top:20px;"&gt;
+
+&lt;div style="font-size: 64pt; font-weight: bold; position: absolute; top: 30%;"&gt;
+Working with Incomplete Data
+&lt;div style="font-size: 30pt; font-weight: 700;"&gt;
+When One-size-fits-all Does Not Fit
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;div id = "author"&gt;
+&lt;div style = "font-size: 20pt; font-weight: bold;"&gt;Nicole Erler&lt;/div&gt;
+&lt;div style = "font-size: 16pt;"&gt;Erasmus Medical Center&lt;/div&gt;
+&lt;div style = "font-size: 16pt;"&gt;Rotterdam, NL&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="contact"&gt;
+&lt;i class="fas fa-envelope"&gt;&lt;/i&gt; n.erler@erasmusmc.nl &amp;emsp;
+&lt;a href="https://twitter.com/N_Erler"&gt;&lt;i class="fab fa-twitter"&gt;&lt;/i&gt; N_Erler&lt;/a&gt; &amp;emsp;
+&lt;a href="https://github.com/NErler"&gt;&lt;i class="fab fa-github"&gt;&lt;/i&gt; NErler&lt;/a&gt; &amp;emsp;
+&lt;a href="https://nerler.com"&gt;&lt;i class="fas fa-globe-americas"&gt;&lt;/i&gt; https://nerler.com&lt;/a&gt;
+&lt;/div&gt;
+
+
+---
+
+class: disclosure
+count: false
+
+## Disclosures
+
+&lt;div style = "text-align: center; position: absolute; top: 50%; font-size: 30pt;"&gt;
+Nothing to disclose.
+&lt;/div&gt;
+
+
+&lt;div class="my-footer"&gt;&lt;span style = "color: white;"&gt;
+&lt;a href="https://twitter.com/N_Erler"&gt;&lt;i class="fab fa-twitter"&gt;&lt;/i&gt; N_Erler&lt;/a&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&lt;a href="https://github.com/NErler"&gt;&lt;i class="fab fa-github"&gt;&lt;/i&gt; NErler&lt;/a&gt; &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&lt;a href = "https://nerler.com"&gt;&lt;i class="fas fa-globe-americas"&gt;&lt;/i&gt; nerler.com&lt;/a&gt;
+&lt;/span&gt;&lt;/div&gt; 
+
+---
+layout: true
+
+&lt;!-- &lt;link href="https://unpkg.com/nord-highlightjs@0.1.0/dist/nord.css" rel="stylesheet" type="text/css" /&gt; --&gt;
+&lt;link href="fontawesome-free-5.14.0-web/css/all.css" rel="stylesheet"&gt;
+
+
+
+&lt;div class="my-footer"&gt;&lt;span&gt;
+&lt;a href="https://twitter.com/N_Erler"&gt;&lt;i class="fab fa-twitter"&gt;&lt;/i&gt; N_Erler&lt;/a&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&lt;a href="https://github.com/NErler"&gt;&lt;i class="fab fa-github"&gt;&lt;/i&gt; NErler&lt;/a&gt; &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&lt;a href = "https://nerler.com"&gt;&lt;i class="fas fa-globe-americas"&gt;&lt;/i&gt; nerler.com&lt;/a&gt;
+&lt;/span&gt;&lt;/div&gt; 
+
+---
+
+## In the Beginning...
+
+&lt;h3 style="text-align: right;"&gt;...there weren't any missing values.&lt;/h3&gt;
+
+???
+
+In the beginning there weren't really enough missing values for it to be
+considered a problem.
+- - - - -
+--
+
+.pull-left[
+**In the 1960s/70s:**&lt;br&gt;
+Development of multiple imputation
+]
+
+???
+But by the 1960s there was so much data missing in the US census that something
+had to be done about it. And, as a result, in the 1970s Donald Rubin came up
+with the idea of multiple imputation.
+
+- - - - -
+
+--
+.pull-right[
+**Also in the 1960s/70s:**&lt;br&gt;
+&lt;img src = "graphics/computer.png" width = 320 style = "position: fixed; right: 150px; bottom: 60px;"&gt;
+]
+
+???
+
+And, what is important to keep in mind is that during that period, analysing
+data must have been quite a bit different from what it is today.
+
+Not every researcher had a computer, and when they did, computers had very 
+basic statistical software, and no functionality to handle missing values,
+and analysts were not trained in missing data methodology.
+- - - - -
+--
+
+&lt;br&gt;
+
+.turqdkbox-50[
+&amp;#8680; fix the missing data problem once (centrally)&lt;br&gt;
+&amp;#8680; supply complete data to many analysts
+]
+
+???
+
+And so a very central point of the solution to the missing data problem back
+then was that the data had to be analysed by researchers who only had very basic
+statistical tools at their disposal.
+
+---
+
+
+
+
+
+
+## Multiple Imputation
+
+* **uncertainty** about the missing value
+???
+
+The important issue in imputing missing values is that there is **uncertainty**
+about what the value would have been. And so we **can't just pick** one value
+and fill it in, because then we would just ignore this uncertainty.
+- - - -
+--
+
+* some values **more likely** than others
+* relationship with **other** available **data**
+
+
+???
+Also: some values are going to be more likely than others, and usually there is
+a relationship between the variable that has missing values and the other data
+that we have collected.
+- - - - 
+
+--
+
+.pull-left[
+**&amp;#8680; missing values have a distribution**
+
+&lt;img src="figures/ImpDens.png", height = 250, style = "margin: auto; display: block;"&gt;
+
+]
+
+???
+So, in statistical terms, we can say that missing values have a distribution,
+and that we need a model to learn how the incomplete variable is related to the
+other data.
+- - - - 
+
+--
+
+.pull-right[
+
+&lt;br&gt;
+
+.turqdkbox[
+&lt;span style="font-weight: bold;"&gt;Predictive distribution&lt;/span&gt;
+of the missing values given the observed values.
+`$$p(x_{mis}\mid\text{everything else})$$`
+]
+]
+
+???
+And this means that we can impute the missing values by sampling from this
+distribution conditional on the other data.
+
+
+
+---
+
+## A Simple Example
+
+.gr-left[
+
+&lt;table class="simpletable"&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;\(\mathbf y\)&lt;/th&gt;
+&lt;th&gt;\(\mathbf x_1\)&lt;/th&gt;
+&lt;th&gt;\(\mathbf x_2\)&lt;/th&gt;
+&lt;th&gt;\(\mathbf x_3\)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan = "4"; style = "padding: 0px;"&gt;&lt;hr /&gt;&lt;/td&gt;&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="rownr"&gt;\(i\)&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--turq);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class = "rownr"&gt;&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+
+* `\(\mathbf y\)`: **response**
+* `\(\color{var(--turq)}{\mathbf x_1}\)`: **incomplete** covariate
+* `\(\mathbf x_2\)`, `\(\mathbf x_3\)`: **complete** covariates
+
+]
+
+
+.gr-right[
+**Predictive distribution:**
+`$$p(\color{var(--turq)}{\mathbf x_1} \mid \mathbf y, \mathbf x_2, \mathbf x_3,
+\boldsymbol\beta, \sigma)$$`
+
+&lt;br&gt;
+
+{{content}}
+]
+
+???
+Let's look at a simple example. Imagine, we have the following dataset, where we
+have a completely observed response variable `\(y\)`, a variable `\(x_1\)` that is
+missing for patient `\(i\)`, and two other covariates that are completely observed.
+
+And so the the predictive distribution that we need to sample the imputed value
+from, would be the distribution of `\(x_1\)`, given the response `\(y\)`, the other
+covariates, and some parameters.
+- - - 
+
+--
+For example:
+* Fit a model to the cases with observed
+`\(\color{var(--turq)}{\mathbf x_1}\)`:
+`$$\color{var(--turq)}{\mathbf x_1} = \beta_0 + \beta_1 \mathbf y +
+\beta_2 \mathbf x_2 + \beta_3 \mathbf x_3 + \boldsymbol\varepsilon$$`
+{{content}}
+
+???
+For example, we could think of this as fitting a regression model with `\(x_1\)` as
+the dependent variable, and `\(y\)` &amp; the other covariates as independent variables.
+
+We can then fit this model to all those cases for which we have `\(x_1\)` observed,...
+- - - - 
+
+--
+
+* Estimate parameters `\(\boldsymbol{\hat\beta}, \hat\sigma\)`&lt;br&gt;
+  &amp;#8680; define distribution 
+  `\(p(\color{var(--turq)}{x_{i1}} \mid y_i, x_{i2}, x_{i3}, \boldsymbol{\hat\beta}, \hat\sigma)\)`
+
+???
+... in order to estimate the parameters, and to learn how the
+distribution of `\(x_1\)` conditional on the other data looks like.
+
+And then we can use this information to specify the predictive distribution for
+the cases with missing `\(x_1\)` and sample imputed values from this distribution.
+
+
+---
+
+## Multiple Imputation
+
+
+
+&lt;img src = "figures/MI.png", height = 480, style = "margin: auto; display: block;"&gt;
+
+???
+
+The idea behind multiple imputation is that, using this principle,
+we sample imputed values and fill them into the original, incomplete data to 
+create a completed dataset.
+
+And in order to take into account the uncertainty that we have about the missing
+values, we do this multiple times, so that we obtain multiple completed datasets.
+
+Because all the missing values have now been filled in, we can analyse each of
+these datasets separately with standard statistical techniques.
+
+To obtain overall results, the results from each of these analyses need to be
+combined in a way that takes into account both the uncertainty that we have
+about the estimates from each analysis, and the variation between these estimates.
+
+---
+
+
+## In Practice
+
+.three-cols[
+
+&lt;div style = "text-align: center; margin-bottom: 25px;"&gt;
+&lt;strong&gt;Multivariate&lt;br&gt;Missingness&lt;/strong&gt;&lt;/div&gt;
+
+
+&lt;table class="simpletable"&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;\(\mathbf y\)&lt;/th&gt;
+&lt;th&gt;\(\mathbf x_1\)&lt;/th&gt;
+&lt;th&gt;\(\mathbf x_2\)&lt;/th&gt;
+&lt;th&gt;\(\mathbf x_3\)&lt;/th&gt;
+&lt;th&gt;\(\ldots\)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan = "5"; style = "padding: 0px;"&gt;&lt;hr /&gt;&lt;/td&gt;&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--turq);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;th&gt;\(\ldots\)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="rownr"&gt;\(i\)&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--turq);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;th&gt;\(\ldots\)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--turq);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--turq);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;th&gt;\(\ldots\)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;th&gt;\(\ldots\)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class = "rownr"&gt;&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+]
+
+???
+In practice, we usually have missing values in multiple variables.
+
+--
+
+.three-cols60[
+
+**Most common approach:**&lt;br&gt;
+&lt;span style = "color: var(--turqdk); font-weight: bold;"&gt;MICE&lt;/span&gt; 
+  &lt;span style = "color: var(--lgrey);"&gt;(multivariate imputation by chained equations)&lt;/span&gt;&lt;br&gt;
+  &lt;span style = "color: var(--turqdk); font-weight: bold;"&gt;FCS&lt;/span&gt; 
+  &lt;span style = "color: var(--lgrey);"&gt;(fully conditional specification)&lt;/span&gt;
+
+&lt;div&gt;
+\begin{alignat}{10}
+\color{var(--turq)}{\mathbf x_1} &amp;= \beta_0 &amp;+&amp; \beta_1 \mathbf y &amp;+&amp;
+\beta_2 \color{var(--turq)}{\mathbf x_2} &amp;+&amp; \beta_3 \color{var(--turq)}{\mathbf x_3} &amp;+&amp; \ldots &amp;+&amp; \boldsymbol\varepsilon \\
+\color{var(--turq)}{\mathbf x_2} &amp;= \alpha_0 &amp;+&amp; \alpha_1 \mathbf y &amp;+&amp;
+\alpha_2 \color{var(--turq)}{\mathbf x_1} &amp;+&amp; \alpha_3 \color{var(--turq)}{\mathbf x_3} &amp;+&amp; \ldots &amp;+&amp; \boldsymbol\varepsilon \\
+\color{var(--turq)}{\mathbf x_3} &amp;= \theta_0 &amp;+&amp; \theta_1 \mathbf y &amp;+&amp;
+\theta_2 \color{var(--turq)}{\mathbf x_1} &amp;+&amp; \theta_3 \color{var(--turq)}{\mathbf x_2} &amp;+&amp; \ldots &amp;+&amp; \boldsymbol\varepsilon
+\end{alignat} 
+&lt;/div&gt;
+
+{{content}}
+]
+
+???
+
+And the most common approach to imputation in this setting is MICE, short for
+**multivariate imputation by chained equations**, an approach that is also
+called **fully conditional specification**.
+
+The principle is an extension to what we've seen on the previous slides.
+We impute missing values using models that have all other data in their linear
+predictor.
+- - -
+
+--
+&lt;br&gt;
+
+* iterative
+{{content}}
+
+???
+Because in these imputation models we now have incomplete covariates, we use an
+iterative algorithm. We start by randomly drawing starting values from the 
+observed part of the data, and then we cycle through the
+incomplete variables and impute one at a time.
+- - - - - - 
+
+--
+* flexible model types
+???
+The models for the different variables can be specified according to the type
+of variable.
+
+Once we have imputed each missing value, we start again with the first
+variable, but now use the imputed values of the other variables instead of the
+starting values, and we do this a few times until the algorithm has converged.
+
+---
+
+## One-Size-Fits-All?
+
+In &lt;i class="fab fa-r-project" style = "color: var(--blue);"&gt;&lt;/i&gt;:
+
+```r
+mice::mice(mydata)
+```
+
+???
+The MICE algorithm is available in most statistical programms.
+In R, it is part of the package called **mice**.
+
+And using this package, we could perform multiple imputation using just a single
+line of code.
+--
+
+&lt;br&gt;
+
+Imputation strategy independent of
+* **type** of variables
+* **size** of the data
+* **analysis model** of interest
+
+???
+So it seems that MICE is an imputation strategy that works for 
+* any **type of variable**: continuous, categorical, skewed, ..., because we
+  can choose a different type of model for each incomplete variable
+* and it worksfor large or small datasets, both with respect to the number of variables 
+  and the number of observations in the data,
+* and is completely independent from the analysis that we want to perform.
+
+- - - - 
+--
+
+&lt;img src = "graphics/one-size-fits-all.gif" width = "300" style = "position: absolute; bottom: 50px; right: 60px;"&gt;
+
+&lt;div style = "width: 60%;"&gt;
+.turqdkbox[
+&amp;#8680; MICE / FCS "works" in all settings!?
+]
+&lt;/div&gt;
+
+???
+So it seems like MICE just works in all settings. One single approach that fits
+all of our missing data problems.
+
+**But does it really?**
+
+---
+
+
+
+
+
+
+
+
+## A Simple Example
+.pull-left[
+**Implied Assumption:**&lt;br&gt;
+&lt;span&gt;Linear association&lt;/span&gt;
+between `\(\color{var(--turq)}{\mathbf x_1}\)` and `\(\mathbf y\)`:
+
+`$$\color{var(--turq)}{\mathbf x_1} = 
+\beta_0 + \bbox[#E5E5E5, 2pt]{\beta_1 \mathbf y} +
+\beta_2 \mathbf x_2 + \beta_3 \mathbf x_3 + \boldsymbol\varepsilon$$`
+
+&lt;img src="figures/linplot.png", width = "450", height = "300", style="position:absolute; bottom:45px;"&gt;
+
+]
+
+???
+
+Let's go back to our simple example with missing values in just one covariate
+`\(x_1\)`.
+
+An assumption that we implicitly made during the imputation was that there is 
+a linear association between the incompl. covariate and the outcome.
+
+- - - 
+
+--
+
+.pull-right[
+&lt;br&gt;
+But what if 
+`$$\mathbf y = \theta_0 + 
+\bbox[#E5E5E5, 2pt]{\theta_1 \color{var(--turq)}{\mathbf x_1} +
+\theta_2 \color{var(--turq)}{\mathbf x_1}^2} +
+\theta_3 \mathbf x_2 + \theta_4 \mathbf x_3 + \boldsymbol\varepsilon$$`
+
+
+&lt;img src="figures/qdrplot.png", width = "450", height = "300", style="position:absolute; bottom:45px;"&gt;
+
+]
+
+???
+
+But what if we have a setting where the true association is non-linear, for 
+example, quadratic?
+In that case our analysis model for the response `\(y\)` would also include
+the quadratic term `\(x_1^2\)`.
+
+---
+
+## Non-linear Associations
+
+.pull-left[
+* &lt;span style="font-weight: bold; color:var(--blue);"&gt;true association&lt;/span&gt;: non-linear
+* &lt;span style="font-weight: bold; color:var(--turq);"&gt;imputation assumption&lt;/span&gt;: linear
+]
+
+.pull-right[
+&lt;span style="font-size: 56pt; position: relative; right: 110px; bottom: 20px; color: transparent;"&gt;
+}&amp;#8680;
+&lt;/span&gt;
+&lt;span style = "color: transparent; font-size: 1.2rem; font-weight: bold; position: relative; bottom: 30px; right: 100px;"&gt;
+bias!
+&lt;/span&gt;
+]
+
+
+
+&lt;img src="figures/impplot.png", height = 350, style = "margin: auto; display: block;"&gt;
+
+???
+
+What happens when we have data with a non-linear association, but wrongly assume
+a linear association during imputation is that the imputed values will distort
+the true association between the incomplete variable and the response.
+
+
+---
+count: false
+class: animated, fadeIn
+
+## Non-linear Associations
+
+.pull-left[
+* &lt;span style="font-weight: bold; color:var(--blue);"&gt;true association&lt;/span&gt;: non-linear
+* &lt;span style="font-weight: bold; color:var(--turq);"&gt;imputation assumption&lt;/span&gt;: linear
+]
+
+.pull-right[
+&lt;span style="font-size: 56pt; position: relative; right: 110px; bottom: 20px;"&gt;} &amp;#8680;&lt;/span&gt;
+&lt;span style = "color: var(--pink); font-size: 1.2rem; font-weight: bold; position: relative; bottom: 30px; right: 100px;"&gt;
+bias!&lt;/span&gt;
+]
+
+
+
+&lt;img src="figures/impplot2.png", height = 350, style = "margin: auto; display: block;"&gt;
+
+???
+
+And this will introduce bias, even if we analyse the imputed data with the
+correct model.
+
+---
+
+## Time-to-Event Outcomes
+
+&lt;br&gt;
+
+**Proportional Hazards Model:**
+`$$h_i(t) = h_0(t) \exp(\color{var(--turq)}{x_i} \beta_x + \mathbf z_i^\top \boldsymbol \beta_z)$$`
+
+.pull-left[
+* `\(\color{var(--turq)}{x_i}\)`: incomplete covariate
+* `\(\mathbf z_i\)`: vector of other covariates
+]
+.pull-right[
+
+&lt;div style = "color: var(--lgrey);"&gt;
+&lt;ul&gt;
+&lt;li&gt;\(h(t)\): hazard function&lt;/li&gt;
+&lt;li&gt;\(h_0(t)\): baseline hazard&lt;/li&gt;
+&lt;li&gt;\(\mathbf T\): observed event / censoring time&lt;/li&gt;
+&lt;li&gt;\(\boldsymbol\delta\): event indicator&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+]
+
+???
+
+Another setting that we encounter in many applications is that we have a 
+time-to-event outcome, and we want to model this outcome using
+a proportional hazards model such as the Cox model.
+
+To simplify the notation a bit I assume here that we have
+* one incomplete covariate `\(x\)`
+* and some completely observed covariates `\(z\)`.
+
+For the rest we use the standard notation.
+
+The proportional hazards model is written with the hazard as the 
+response, but to see the implication for imputation it is more convenient
+to look at the log likelihood.
+
+---
+
+## Time-to-Event Outcomes
+
+**Log-likelihood**
+`$$p(\mathbf T, \boldsymbol \delta \mid \color{var(--turq)}{\mathbf x}, \mathbf z, \boldsymbol\beta) =
+\boldsymbol\delta (\log h_0(T) + \color{var(--turq)}{\mathbf x} \beta_x + \mathbf z \boldsymbol\beta_z) - 
+\int_0^T h_0(s)\exp(
+\color{var(--turq)}{\mathbf x} \beta_x + \mathbf z \boldsymbol\beta_z)ds$$`
+
+???
+And what we can see here is that the response, the observed event or censoring time `\(T\)`
+and the event indicator,
+has a non-linear association with the incomplete variable `\(x\)`.
+
+--
+
+&lt;br&gt;
+
+* Proportional hazards models imply **non-linear** associations
+???
+So, proportional hazards models imply a non-linear association, ...
+- - - 
+--
+
+* Imputation with a model 
+  `$$\color{var(--turq)}{\mathbf x} = \theta_0 + \theta_1 \mathbf T + \theta_2 \boldsymbol\delta + \theta_3 \mathbf z_1 + \ldots$$`
+  is &lt;span style = "color: var(--pink); font-weight: bold;"&gt;wrong!&lt;/span&gt;
+
+
+???
+But the imputation model that we might naively use for the incomplete variable `\(x\)` 
+would assume that `\(x\)` has a linear association with event time and indicator,
+and we would get biased results when we impute our data this way.
+
+&lt;!-- --- --&gt;
+
+&lt;!-- ## Non-linear Associations --&gt;
+
+&lt;!-- The **correct predictive distribution** --&gt;
+&lt;!-- $$ p(\color{var(--turq)}{\mathbf x_{mis}} \mid \text{everything else})$$ --&gt;
+&lt;!-- may not have a closed form. --&gt;
+
+&lt;!-- &lt;br&gt; --&gt;
+
+
+&lt;!-- .turqdkbox[ --&gt;
+&lt;!-- &lt;span style="font-size: 1.5rem;"&gt;&amp;#8680;&lt;/span&gt;  --&gt;
+&lt;!-- We cannot easily specify the correct imputation model directly. --&gt;
+&lt;!-- ] --&gt;
+
+&lt;!-- ??? --&gt;
+
+&lt;!-- Both cases, the example where we had a quadratic effect, and the proportional --&gt;
+&lt;!-- hazards model demonstrate that there are settings where the specification of  --&gt;
+&lt;!-- the correct predictive distribution of the incomplete data given everything else --&gt;
+&lt;!-- is not straightforward.  --&gt;
+
+&lt;!-- And in many cases it does not even have a closed form, meaning, that we cannot --&gt;
+&lt;!-- specify the correct imputation model directly, for example by using a standard --&gt;
+&lt;!-- regression model. --&gt;
+
+&lt;!-- But imputation with MICE requires us to specify these imputation models directly, --&gt;
+&lt;!-- and usually as standard regression models. --&gt;
+&lt;!-- And so in these setting where the directly specified imputation models do not --&gt;
+&lt;!-- fit the correct distribution, we will end up with biased results. --&gt;
+
+
+---
+
+
+## Multi-level Data
+
+
+
+
+.gr-left2[
+&lt;img src="figures/trajectories_allb.png", height = 420, style = "margin: auto; display: block;"&gt;
+]
+
+
+.gr-right2[
+
+
+
+&lt;table class="simpletable"&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;\(\mathbf y\)&lt;/th&gt;
+&lt;th&gt;\(\mathbf x_1\)&lt;/th&gt;
+&lt;th&gt;\(\mathbf x_2\)&lt;/th&gt;
+&lt;th&gt;\(\mathbf x_3\)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan = "4"; style = "padding: 0px;"&gt;&lt;hr /&gt;&lt;/td&gt;&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="hlgt-row"&gt;
+&lt;td class="rownr"&gt;\(i\)&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--turq);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class = "hlgt-row"&gt;
+&lt;td class="rownr"&gt;\(i\)&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--turq);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class = "hlgt-row"&gt;
+&lt;td class="rownr"&gt;\(i\)&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--turq);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class = "rownr"&gt;&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+]
+
+???
+
+
+Another setting in which specification of the predictive distribution for
+a incomplete variable is not straightforward: **multi-level setting.**
+
+For example:
+
+* a response variable `\(y\)`: measured repeatedly over time in the same patient
+* in a multi-center study, where we need to take into account that patients from
+  the same hospital are more similar to each other than patients from different
+  hospitals
+
+&amp;#8680; data in long format&lt;br&gt;
+(multiple rows with information on the same patient "i")
+
+In this format:&lt;br&gt;
+it does not matter if we have unbalanced data 
+(different number of measurements, taken at different time points)
+
+---
+
+## Multi-level Data
+
+.gr-left[
+&lt;table class="simpletable"&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;\(\mathbf y\)&lt;/th&gt;
+&lt;th&gt;\(\mathbf x_1\)&lt;/th&gt;
+&lt;th&gt;\(\mathbf x_2\)&lt;/th&gt;
+&lt;th&gt;\(\mathbf x_3\)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan = "4"; style = "padding: 0px;"&gt;&lt;hr /&gt;&lt;/td&gt;&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="hlgt-row"&gt;
+&lt;td class="rownr"&gt;\(i\)&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--turq);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class = "hlgt-row"&gt;
+&lt;td class="rownr"&gt;\(i\)&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--turq);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class = "hlgt-row"&gt;
+&lt;td class="rownr"&gt;\(i\)&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--turq);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class = "rownr"&gt;&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+]
+
+.gr-right[
+
+**(Linear) Mixed Model**
+`$$y_{ij} = \underset{\text{fixed effects}}{\underbrace{\mathbf x_{ij}^\top\boldsymbol\beta}} + 
+\underset{\text{random effects}}{\underbrace{\mathbf z_{ij}^\top\mathbf b_i}} +
+\varepsilon_{ij}$$`
+
+&lt;br&gt;
+
+* **level-1** variables:&lt;br&gt;repeatedly measured / time-varying
+* **level-2** variables:&lt;br&gt;baseline / patient specific / time-constant
+
+]
+
+???
+
+For analysis: &amp;#8680; typically use a mixed model
+
+* takes into account that the repeated measurements for a patient are not
+  independent by extending the standard linear regression model with random
+  effects terms
+
+
+Our data can be related to different levels of the data hierarchy.
+In a longitudinal study, for example, we would have
+* level-1 variables, which are the repeatedly measured values or time-varying variables
+* and level-2 variables, which are for example patient characteristics that are time-constant
+
+---
+
+## Imputation in Multi-level Data
+
+.gr-left2[
+If `\(\color{var(--turq)}{\mathbf x_1}\)` is a **level-1** variable:
+
+`$$\color{var(--turq}{x_{1ij}} = 
+\underset{\color{var(--lgrey)}{\text{fixed effects}}}{\color{var(--lgrey)}{\underbrace{\color{#000000}{\theta_0 + \theta_1 y_{ij} + \theta_2 x_{2ij} + \theta_3 x_{3ij}}}}} + 
+\underset{\color{var(--lgrey)}{\substack{\text{random}\\\text{effects}}}}{\color{var(--lgrey)}{\underbrace{\color{#000000}{\mathbf u_i \mathbf z_i(t)}}}} + \varepsilon_{ij}$$`
+]
+
+.gr-right2[
+&lt;table class="simpletable"&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;\(\mathbf y\)&lt;/th&gt;
+&lt;th&gt;\(\mathbf x_1\)&lt;/th&gt;
+&lt;th&gt;\(\mathbf x_2\)&lt;/th&gt;
+&lt;th&gt;\(\mathbf x_3\)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan = "4"; style = "padding: 0px;"&gt;&lt;hr /&gt;&lt;/td&gt;&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="hlgt-row"&gt;
+&lt;td class="rownr"&gt;\(i\)&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--turq);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class = "hlgt-row"&gt;
+&lt;td class="rownr"&gt;\(i\)&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--turq);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class = "hlgt-row"&gt;
+&lt;td class="rownr"&gt;\(i\)&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--turq);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class = "rownr"&gt;&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+]
+
+???
+
+If the incomplete variable `\(x_1\)` was a level-1 variable (i.e. time-varying)
+we could use a mixed model as the imputation model.
+- - - 
+
+--
+.raisebox150[
+
+But if `\(\color{var(--turq)}{\mathbf x_1}\)` is a **level-2** variable?
+
+{{content}}
+
+]
+
+???
+Things get interesting when we have missing values in a baseline covariate:&lt;br&gt;
+because the repeated values of a level-2 variable should not just be correlated,
+but **identical at different time points**.
+
+--
+
+* The above would result in different `\(\color{var(--turq)}{\mathbf x_1}\)` over
+time.
+* So would a standard GLM (applied to long-format data).
+
+{{content}}
+
+???
+
+If we impute a level-2 variable with the mixed model shown here, the imputed
+values at different time points  would not be identical.
+
+And when we use a standard GLM, like we would usually do for a time-constant
+variable, would then treat the rows that belong to the same patient as
+independent and again get values for `\(x_1\)` that vary between those rows.
+- - - -
+--
+
+** &lt;span style="font-size:1.5rem;"&gt;&amp;#8680;&lt;/span&gt; Imputation in wide format?**
+
+???
+It seems that we have a problem to correctly impute level-2 variables when our
+data is in long format.
+
+So the question is, can we transform our dataset to wide format, so that we only
+have one row per patient, and have data from different time points as separate
+variables.
+
+
+---
+
+## Imputation in Wide Format
+
+
+
+&lt;img src = "figures/p0_wideForm.png", height = 450, style = "margin: auto; display: block;"&gt;
+
+???
+
+When we look at this example, it becomes quite clear that for very unbalanced
+data it is not possible to convert our data to wide format.
+
+---
+count: false
+class: animated, fadeIn
+
+## Imputation in Wide Format
+&lt;img src = "figures/p0_wide_grid.png", height = 450, style = "margin: auto; display: block;"&gt;
+
+???
+In the wide format we would have to put our data into a grid. For example, by
+creating time intervals. But with unbalanced data, patients have multiple
+measurements in some intervals, and no measurement in others.
+
+
+---
+
+## Imputation in Wide Format
+
+&lt;img src="figures/p_second.png", height = 450, style = "margin: auto; display: block;"&gt;
+
+???
+
+Or we could think about making a variable for the first observations, the second,
+and so on. But you can see here, where I have highlighted the first and 
+second observations for each patient, that the observations are at very different
+time points so that they will probably have to be interpreted differently.
+
+- - - - 
+
+For this reason, longitudinal variables are sometimes excluded from the imputation,
+or very simple summaries are used, like taking the first value or the mean over the
+repeated values.
+
+But when we do not fully include the longitudinal response and
+other longitudinal variables into the imputation model, we lose important 
+information and could introduce considerable bias.
+
+---
+
+## Imputation of Missing Covariates
+
+Specifying the **correct imputation** model 
+`$$p(\color{var(--turq)}{\mathbf x_{mis}} \mid \text{everything else})$$`
+directly is **not straightforward** for
+
+* GLMs with **non-linear associations**
+* **time-to-event** outcomes
+* **multi-level** settings
+
+&lt;img src = "graphics/ONESIDE-300x250.png" style = "position: absolute; right: 60px; bottom: 150px;"&gt;
+
+???
+
+So, in summary, we have seen that specifying the correct imputation model for
+the incomplete variables is not always straightforward, and in some settings 
+even not possible, specifically in settings with non-linear associations, 
+when we have a time-to-event outcome or in multi-level settings.
+- - - 
+--
+
+&lt;br&gt;
+
+.nord0box[
+**&lt;span style="font-size: 1.5rem;"&gt;&amp;#8680;&lt;/span&gt;
+We need another approach in these settings.**
+]
+
+
+???
+
+But the "classic" FCS / MICE approach does require us to specify the imputation
+models directly, and so in these settings we do need alternative approaches.
+
+
+---
+
+## Joint Model Multiple Imputation
+
+**Idea:**&lt;br&gt;
+Approximate `\(p(\color{var(--turq)}{\mathbf x_{mis}} \mid \text{everything else})\)`
+with a known multivariate distribution.&lt;br&gt;
+&lt;span style = "color:var(--lgrey);"&gt;(usually multivariate normal)&lt;/span&gt;
+
+???
+
+One such alternative approach is joint model multiple imputation. This is not
+a new approach, actually, it was the approach suggested when multiple
+imputation was first developed.
+
+When there are missing values in multiple variables and the variables are of 
+different type, for example continuous and binary, then the joint distribution
+does not have a closed form which makes it difficult to work with.
+
+The idea of joint model MI is to approximate this multivariate distribution with
+a known distribution that is easy to work with. And in practice this is often
+the multivariate normal distribution.
+
+- - - - 
+--
+
+&lt;br&gt;
+
+&amp;#8680; each variable is assumed to be (latent) normally distributed
+
+
+
+&lt;img src = "figures/JMMI.png" width = "1400" style = "display: block;   margin-left: auto; margin-right: auto;"&gt;
+
+
+???
+This means that we assume for each incomplete variable, that it is normally
+distributed, or has a latent normal distribution. 
+So, even when a variable has a skewed distribution, we treat it as if it had
+a normal distribution.
+
+And for categorical variables we assume that there is an underlying, normally
+distributed variable, and when that underlying value is less than a certain
+cut-off, we observe a particular category, and when it is above the cut-off we
+observe the next category.
+
+
+---
+
+## Joint Model Multiple Imputation
+
+
+
+
+.gr-left[
+
+
+&lt;table class="simpletable"&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;\(\mathbf y\)&lt;/th&gt;
+&lt;th style = "color: var(--turq);"&gt;\(\mathbf x_1\)&lt;/th&gt;
+&lt;th style = "color: var(--turq);"&gt;\(\mathbf x_2\)&lt;/th&gt;
+&lt;th style = "color: var(--turq);"&gt;\(\mathbf x_3\)&lt;/th&gt;
+&lt;th style = "color: var(--turqdk);" colspan="3"&gt;\(\mathbf X_{obs}\)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan = "7"; style = "padding: 0px;"&gt;&lt;hr /&gt;&lt;/td&gt;&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--turqdk);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--turqdk);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--turqdk);"&gt;\(\ldots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;tr class = "hlgt-row"&gt;
+&lt;td class="rownr"&gt;\(i\)&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--turq);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--turq);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--turqdk);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--turqdk);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--turqdk);"&gt;\(\ldots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class = "hlgt-row"&gt;
+&lt;td class="rownr"&gt;\(i\)&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--turq);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--turq);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--turq);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--turqdk);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--turqdk);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--turqdk);"&gt;\(\ldots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class = "hlgt-row"&gt;
+&lt;td class="rownr"&gt;\(i\)&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--turq);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--turq);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--turqdk);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--turqdk);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--turqdk);"&gt;\(\ldots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--turq);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--turq);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--turqdk);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--turqdk);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--turqdk);"&gt;\(\ldots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--turq);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--turqdk);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--turqdk);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--turqdk);"&gt;\(\ldots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class = "rownr"&gt;&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td style = "color: var(--turqdk);"&gt;\(\vdots\)&lt;/td&gt;
+&lt;td style = "color: var(--turqdk);"&gt;\(\vdots\)&lt;/td&gt;
+&lt;td style = "color: var(--turqdk);"&gt;\(\vdots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+]
+
+???
+
+It is possible to use Joint Model MI also in simpler settings, but I will 
+focus here on the multi-level setting.
+
+Say we have the following data situation, where we have missing values in 
+3 variables, `\(x_1\)` is time-varying, `\(x_2\)` and `\(x_3\)` are baseline covariates,
+and we have a bunch of other variables that are completely observed.
+
+- - - - 
+
+--
+
+.gr-right[
+
+`\begin{align*}
+\boldsymbol y &amp;= \color{var(--turqdk}{\mathbf X_{obs}^\top} \boldsymbol\theta_y + 
+                  \mathbf b_y \mathbf Z_y + \boldsymbol\varepsilon_y\\
+\color{var(--turq)}{x_1} &amp;= \color{var(--turqdk}{\mathbf X_{obs}^\top} \boldsymbol\theta_1 +
+\mathbf b_1 \mathbf Z_1 + \boldsymbol\varepsilon_1\\
+\color{var(--turq)}{x_2} &amp;= \color{var(--turqdk}{\mathbf X_{obs}^\top} \boldsymbol\theta_2 +
+\boldsymbol\varepsilon_2\\
+\color{var(--turq)}{x_3} &amp;= \color{var(--turqdk}{\mathbf X_{obs}^\top} \boldsymbol\theta_3 +
+\boldsymbol\varepsilon_3
+\end{align*}`
+
+]
+
+???
+
+In Joint Model MI we would then specify a linear mixed model for the longitudinal
+response `\(y\)` and the longitudinal incomplete variable `\(x_1\)`, and standard linear
+regression models for the other two incomplete variables.
+
+In these models, we only use the completely observed variables as covariates.
+
+
+---
+count: false
+
+
+## Joint Model Multiple Imputation
+.gr-left[
+
+
+&lt;table class="simpletable"&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;\(\mathbf y\)&lt;/th&gt;
+&lt;th style = "color: var(--turq);"&gt;\(\mathbf x_1\)&lt;/th&gt;
+&lt;th style = "color: var(--turq);"&gt;\(\mathbf x_2\)&lt;/th&gt;
+&lt;th style = "color: var(--turq);"&gt;\(\mathbf x_3\)&lt;/th&gt;
+&lt;th style = "color: var(--turqdk);" colspan="3"&gt;\(\mathbf X_{obs}\)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan = "7"; style = "padding: 0px;"&gt;&lt;hr /&gt;&lt;/td&gt;&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--turqdk);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--turqdk);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--turqdk);"&gt;\(\ldots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;tr class = "hlgt-row"&gt;
+&lt;td class="rownr"&gt;\(i\)&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--turq);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--turq);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--turqdk);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--turqdk);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--turqdk);"&gt;\(\ldots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class = "hlgt-row"&gt;
+&lt;td class="rownr"&gt;\(i\)&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--turq);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--turq);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--turq);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--turqdk);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--turqdk);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--turqdk);"&gt;\(\ldots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class = "hlgt-row"&gt;
+&lt;td class="rownr"&gt;\(i\)&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--turq);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--turq);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--turqdk);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--turqdk);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--turqdk);"&gt;\(\ldots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--turq);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--turq);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--turqdk);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--turqdk);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--turqdk);"&gt;\(\ldots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="rownr"&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style="color: var(--turq);"&gt;&lt;i class = "fas fa-question"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--turqdk);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--turqdk);"&gt;&lt;i class = "fas fa-check"&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "color: var(--turqdk);"&gt;\(\ldots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class = "rownr"&gt;&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td&gt;\(\vdots\)&lt;/td&gt;
+&lt;td style = "color: var(--turqdk);"&gt;\(\vdots\)&lt;/td&gt;
+&lt;td style = "color: var(--turqdk);"&gt;\(\vdots\)&lt;/td&gt;
+&lt;td style = "color: var(--turqdk);"&gt;\(\vdots\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+]
+
+
+.gr-right[
+
+&lt;svg width="35" height="190" style = "position: absolute; right: 318px; top: 170px;"&gt;
+  &lt;rect width="100%" height="100%" rx = "3" style="fill:rgba(58,79,146,0.3);" /&gt;
+&lt;/svg&gt;
+
+&lt;svg width="35" height="95" style = "position: absolute; right: 215px; top: 170px;"&gt;
+  &lt;rect width="100%" height="100%" rx = "3" style="fill:rgba(58,79,146,0.3);" /&gt;
+&lt;/svg&gt;
+
+`\begin{align*}
+\boldsymbol y &amp;= \color{var(--turqdk}{\mathbf X_{obs}^\top} \boldsymbol\theta_y + 
+                  \mathbf b_y \mathbf Z_y + \boldsymbol\varepsilon_y\\
+\color{var(--turq)}{x_1} &amp;= \color{var(--turqdk}{\mathbf X_{obs}^\top} \boldsymbol\theta_1 +
+\mathbf b_1 \mathbf Z_1 + \boldsymbol\varepsilon_1\\
+\color{var(--turq)}{x_2} &amp;= \color{var(--turqdk}{\mathbf X_{obs}^\top} \boldsymbol\theta_2 +
+\boldsymbol\varepsilon_2\\
+\color{var(--turq)}{x_3} &amp;= \color{var(--turqdk}{\mathbf X_{obs}^\top} \boldsymbol\theta_3 +
+\boldsymbol\varepsilon_3
+\end{align*}`
+
+&lt;br&gt;
+
+$$
+`\begin{pmatrix}
+\color{var(--blue)}{\mathbf b_y}\\
+\color{var(--blue)}{\mathbf b_1}\\
+\color{var(--blue)}{\mathbf \varepsilon_2}\\
+\color{var(--blue)}{\mathbf \varepsilon_3}
+\end{pmatrix}`
+\sim N(\mathbf 0, \mathbf V)
+\qquad
+`\begin{pmatrix}
+\color{var(--blue)}{\mathbf \varepsilon_y}\\
+\color{var(--blue)}{\mathbf \varepsilon_1}
+\end{pmatrix}`
+\sim N(\mathbf 0, \mathbf W)
+$$
+
+]
+
+???
+
+And to connect these models, to take into account that the imputed values
+are not independent from each other and from the response `\(y\)`, the random
+effects `\(b\)` and error terms `\(\varepsilon\)` are modelled together using
+multivariate normal distributions.
+
+One drawback, however, is that this connection between the models implies
+linear associations, so this approach is not appropriate if we had 
+non-linear associations between incomplete covariates and the response.
+
+---
+
+## Bayesian Analysis of Incomplete Data
+
+**Imputation:**
+`$$p(\color{var(--turq)}{\mathbf x_{mis}} \mid \text{everything else})$$`
+
+???
+
+Another alternative to MICE is to perform a fully Bayesian analysis.
+
+The idea that missing values have a distribution, which I talked about in the 
+beginning of this presentation, is essentially a Bayesian idea.
+And so it makes sense to think about analysing incomplete data in the
+Bayesian framework.
+
+When MI was developed 50 years ago the theoretical knowledge to use Bayesian
+methods for missing data was there, but because Bayesian models are often 
+computationally intensive, they were just not feasible at the time.
+- - - 
+--
+
+**Bayesian Analysis** (of complete data):
+`$${\scriptsize\phantom{\text{(posterior distribution)}\qquad}}
+p(\boldsymbol\beta, \sigma \mid \text{data}) \qquad
+\scriptsize\color{grey}{\text{(posterior distribution)}}$$`
+
+???
+
+When we perform a sBayesian analysis we determine the posterior distribution of
+the unknown parameters, given the data.
+
+--
+
+&lt;br&gt;
+
+**&amp;#8680; simultaneous analysis and imputation**
+`$$p(\color{var(--turq)}{\mathbf x_{mis}}, \boldsymbol\beta, \sigma \mid \text{observed data})$$`
+???
+
+And so, in a setting where we have incomplete data, in Bayesian analysis we
+can combine the estimation of the parameters with the imputation of the
+missing values.
+
+
+---
+
+## Bayesian Analysis of Incomplete Data
+
+**Bayes Theorem:** 
+`$$\underset{\text{posterior}}{\underbrace{p(\boldsymbol\beta, \sigma \mid \text{data})}}\propto \underset{\substack{\text{likelihood}\\\text{(analysis model)}}}{\underbrace{p(\text{data}\mid \boldsymbol\beta, \sigma)}}\;\;\underset{\text{prior}}{\underbrace{p(\boldsymbol\beta, \sigma)}}$$`
+
+???
+
+To obtain the posterior distribution, Bayes theorem is applied,
+which that tells us that the posterior is proportional to the
+product of likelihood of the data given the parameters, and our prior assumption
+about the parameters.
+- - - 
+--
+
+
+**For missing covariates:**
+`$$p(\color{var(--turq)}{\mathbf x_{mis}}, \boldsymbol\beta, \sigma \mid \underset{\color{var(--lgrey)}{\mathbf y, \mathbf x_{obs}}}{\underbrace{\text{observed data}}})\propto p(\text{observed data}\mid \color{var(--turq)}{\mathbf x_{mis}}, \boldsymbol\beta, \sigma)\;\;p(\color{var(--turq)}{\mathbf x_{mis}}, \boldsymbol\beta, \sigma)$$` 
+???
+
+In the case of missing covariate values, this formulation now slightly changes.
+We are interested in the posterior distribution of the parameters **AND** the
+missing values, conditional on the observed data. The observed data consists
+of the response variable `\(y\)` and the completely observed covariates.
+
+
+---
+count: false
+class: animated, fadeIn
+
+## Bayesian Analysis of Incomplete Data
+
+**Bayes Theorem:** 
+`$$\underset{\text{posterior}}{\underbrace{p(\boldsymbol\beta, \sigma \mid \text{data})}}\propto \underset{\substack{\text{likelihood}\\\text{(analysis model)}}}{\underbrace{p(\text{data}\mid \boldsymbol\beta, \sigma)}}\;\;\underset{\text{prior}}{\underbrace{p(\boldsymbol\beta, \sigma)}}$$`
+
+**For missing covariates:**
+`$$p(\color{var(--turq)}{\mathbf x_{mis}}, \boldsymbol\beta, \sigma \mid \underset{\color{var(--lgrey)}{\mathbf y, \mathbf x_{obs}}}{\underbrace{\text{observed data}}})\propto p(\text{observed data}\mid \color{var(--turq)}{\mathbf x_{mis}}, \boldsymbol\beta, \sigma)\;\;\underset{\underset{\substack{\text{imputation}\\\text{part}}}{{p(\color{var(--turq)}{\mathbf x_{mis}} \mid \boldsymbol\beta, \sigma)}}\;\underset{\text{prior}}{{p(\boldsymbol\beta, \sigma)}}}{\underbrace{p(\color{var(--turq)}{\mathbf x_{mis}}, \boldsymbol\beta, \sigma)}}$$` 
+???
+The last term here, the joint distribution of the missing values and parameters
+can be split up into the distribution of the missing values given parameters
+and the prior distribution of the parameters.
+
+
+---
+
+## Bayesian Analysis of Incomplete Data
+
+&lt;div class = "container"&gt;
+&lt;div class = "box"&gt;
+&lt;div class = "box-row"&gt;
+&lt;div class = "box-cell" style = "background: var(--turqdk);color: white;"&gt;posterior&lt;br&gt;distribution&lt;/div&gt;&amp;nbsp;
+&lt;div class = "box-cell"&gt;\(\propto\)&lt;/div&gt; 
+&lt;div class = "box-cell" style = "background: var(--turqdk); color: white;"&gt;analysis&lt;br&gt;model&lt;/div&gt;&amp;nbsp;
+&lt;div class = "box-cell" style = "background: var(--turqdk); color: white; border: solid 4px var(--turq);"&gt;covariate&lt;br&gt;models&lt;/div&gt;&amp;nbsp;
+&lt;div class = "box-cell" style = "background: var(--turqdk); color: white;"&gt;priors&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+???
+
+This means that in the setting with incomplete covariates, in order to obtain the 
+posterior distribution, we need to specify the analysis model, a model for the
+covariates, and prior distributions for all parameters.
+
+Compared to a Bayesian analysis of complete data, we have to additionally 
+specify models for the incomplete covariates.
+- - - 
+--
+
+&lt;br&gt;
+
+&amp;#8680;  Numeric estimation via MCMC sampling
+
+???
+In most cases, the posterior distribution will not have a closed form and so 
+we won't be able to derive it analytically.
+
+Instead, Markov Chain Monte Carlo methods are used to create a sample from the
+posterior distribution. The results from the Bayesian analysis are then
+presented as summary measures of this sample, usually the mean and the 2.5% and
+97.5% quantiles, which form the 95% credible interval.
+
+Since, in the Bayesian framework, the result is given in terms of the
+probability distribution of the unknown parameters conditional on the data that
+was observed, these results have a more intuitive interpretation than
+frequentist results.
+
+--
+
+&lt;br&gt; 
+
+**For example:**
+$$\text{Survival:}\qquad \text{posterior} \propto p(\mathbf T, \boldsymbol\delta \mid \mathbf x, \boldsymbol\theta)\;  p(\mathbf x\mid \boldsymbol\theta)\; p(\boldsymbol\theta) $$ 
+???
+
+As an example of how the Bayesian model formulation looks like, I show the
+model structure, the elements that have to be specified, for a proportional
+hazards model with incomplete covariates.
+
+---
+
+## Bayesian Proportional Hazards Model
+**Analysis model**
+`$$p(\mathbf T, \boldsymbol\delta \mid \mathbf x, \boldsymbol\theta) = h(\mathbf T \mid \mathbf x, \boldsymbol\theta)^{\boldsymbol\delta} \exp\left\{-\int_0^{\mathbf T}h(s\mid \mathbf x, \boldsymbol\theta) ds\right\}$$`
+
+???
+
+The analysis model has the known formulation of the likelihood of a 
+proportional hazards model, where the hazard consists of a population baseline hazard and a linear predictor of covariates.
+But contrary to the classic Cox model we cannot leave the baseline hazard
+unspecified. Typically we would model it flexibly, for example using splines.
+
+--
+
+&lt;br&gt;
+
+**Covariate models:**
+&lt;span style = "color: var(--lgrey); float:right;"&gt;
+for `\(\mathbf x = (\mathbf x_1, \mathbf x_2, \mathbf x_3, \mathbf x_{obs})\)`
+&lt;/span&gt;
+
+
+`\begin{align*}
+p(\color{var(--turq)}{\mathbf x_1},
+    \color{var(--turq)}{\mathbf x_2},
+    \color{var(--turq)}{\mathbf x_3},
+    \mathbf x_{obs} \mid \boldsymbol\theta) = &amp;  p(\color{var(--turq)}{\mathbf x_1} \mid\color{var(--turq)}{\mathbf x_2}, \color{var(--turq)}{\mathbf x_3}, \mathbf x_{obs}, \boldsymbol\theta) &amp; \color{var(--lgrey)}{\text{e.g., normal}}\\
+    &amp; p(\color{var(--turq)}{\mathbf x_2} \mid \color{var(--turq)}{ \mathbf x_3}, \mathbf x_{obs}, \boldsymbol\theta)&amp; \color{var(--lgrey)}{\text{e.g., binomial}}\\
+    &amp; p(\color{var(--turq)}{\mathbf x_3} \mid \mathbf x_{obs}, \boldsymbol\theta) &amp;\\
+    &amp; \color{var(--lgrey)}{p(\mathbf x_{obs}\mid\boldsymbol\theta)} &amp;
+    \scriptsize \color{var(--lgrey)}{\text{(can be omitted)}}
+\end{align*}`
+
+???
+
+If we had 3 incomplete covariates and a bunch of complete covariates 
+in this model, the covariate model part would look like this.
+
+Probability theory tells us that we can split the joint distribution for the 
+incomplete covariates into a a sequence of univariate conditional distributions.
+This allows us to choose a different type of model per variable.
+
+And because the response is not part of this specification, it is no problem
+to use this in settings where we have complex outcomes.
+In MICE, we had to specify full conditional models for the incomplete variables,
+and this requires us to explicitly include the response into the linear
+predictor of the incomplete covariates.
+
+Here, we do not directly specify the imputation model but the joint distribution
+of the covariates, and this does not involve the response.
+Because the analysis model is included in our specification of the posterior distribution, and the imputed values are sampled from that posterior, but not
+from the models shown here on the slide, the response is taken into account in
+the imputation. And this is what makes this approach so well suited for settings
+with complex outcomes, that we could not easily include into the linear 
+predictor of the models for the incomplete covariates.
+
+---
+
+## &lt;i class="fab fa-r-project" style = "color: var(--blue);"&gt;&lt;/i&gt; package JointAI
+
+
+```syntax
+library("JointAI")
+
+mod &lt;- coxph_imp(Surv(time, event) ~ x1 + x2 + x3 + x4 + x5,
+                 data = mydata,  n.iter = 1000)
+
+```
+
+???
+
+The R package JointAI makes the use of this Bayesian approach feasible also
+for researchers with limited experience in Bayesian methods.
+
+The specification of the models is straightforward and very similar to how 
+models are specified other R packages.
+Here, as an example, syntax for the proportional hazards model with five covariates. JointAI will automatically detect which of these variables are 
+incomplete and specify the covariate model part, and the prior distributions.
+The user has additional options, which are not shown here, to specify the types
+of models used for the incomplete covariates, and to change the hyperparameters
+in the prior distributions.
+
+JointAI requires JAGS to be installed. JAGS is short for just another Gibbs 
+sampler, and is a freely available software that performs Markov Chain Monte
+Carlo sampling with the help of the Gibbs sampler.
+
+--
+
+&lt;br&gt;
+
+.pull-left[
+**Also possible**
+* time-varying covariates
+* frailties/ recurrent events
+* joint model for longitudinal &amp; survival data
+* ...
+] 
+
+.pull-right[
+**Other model types:**
+* GLM
+* generalized linear mixed model
+* ordinal/multinomial (mixed) model
+* beta (mixed) model
+* ...
+]
+
+???
+But you are not restricted to simple proportional hazards models, but several
+extensions are possible.
+
+--
+
+
+Full documentation at
+[**https://nerler.github.io/JointAI/**](https://nerler.github.io/JointAI/)
+
+
+---
+
+
+## In Comparison
+
+&lt;table class = "ppt" style = "margin-top: -20px;"&gt;
+&lt;tr&gt;
+&lt;th style = "text-align: center;"&gt;&lt;/th&gt;
+&lt;th style = "width: 25%;"&gt;MICE&lt;/th&gt;
+&lt;th style = "width: 30%;"&gt;Joint Model MI&lt;/th&gt;
+&lt;th&gt;Bayesian Analysis&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td colspan = "2" style = "text-align: center;"&gt;
+ &lt;span style = "color: var(--turqdk); font-weight: bold;"&gt;separate&lt;/span&gt;
+ imputation &amp; analysis&lt;/td&gt;
+&lt;td&gt;&lt;span style = "color: var(--turqdk); font-weight: bold;"&gt;simultaneous&lt;/span&gt;
+analysis &amp; imputation&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td colspan = "2" style = "text-align: center;"&gt;&lt;span style = "color: var(--turqdk); font-weight: bold;"&gt;direct&lt;/span&gt; specification of imputation model&lt;/td&gt;
+&lt;td&gt;&lt;span style = "color: var(--turqdk); font-weight: bold;"&gt;indirect&lt;/span&gt;
+specification of imputation model&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr style = "padding-top: 0px;"&gt;
+&lt;td style = "text-align: center;"&gt;&lt;i class="fas fa-thumbs-up fa-2x" style = "color: var(--turqdk)"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;ul&gt;
+&lt;li&gt;simple settings&lt;/li&gt;
+&lt;/ul&gt;&lt;/td&gt;
+&lt;td&gt;&lt;ul&gt;
+&lt;li&gt;simple settings&lt;/li&gt;
+&lt;li&gt;multi-level data&lt;/li&gt;
+&lt;/ul&gt;&lt;/td&gt;
+&lt;td style = "padding: 0px 5px;"&gt;&lt;ul&gt;
+&lt;li&gt;non-linear associations&lt;/li&gt;
+&lt;li&gt;time-to-event outcomes&lt;/li&gt;
+&lt;li&gt;multi-level data&lt;/li&gt;
+&lt;li&gt;more complex analyses&lt;/li&gt;&lt;/ul&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style = "text-align: center;"&gt;&lt;i class="fas fa-thumbs-down fa-2x" style = "color: var(--turqdk)"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td style = "padding: 0px 5px;"&gt;
+&lt;ul&gt;
+&lt;li&gt;non-linear associations&lt;/li&gt;
+&lt;li&gt;complex outcomes / data structure&lt;/li&gt;
+&lt;/ul&gt;&lt;/td&gt;
+&lt;td style = "padding: 0px 5px;"&gt;&lt;ul&gt;
+&lt;li&gt;non-linear associations&lt;/li&gt;
+&lt;li&gt;many incomplete variables / complex random effects&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/td&gt;
+&lt;td&gt;&lt;ul&gt;
+&lt;li&gt; very large datasets&lt;/li&gt;
+&lt;/ul&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr style = "text-align: center;"&gt;
+&lt;td&gt;&lt;i class="fab fa-r-project fa-2x" style = "color: var(--turqdk);"&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span style = "color: var(--turqdk); font-weight: bold;"&gt;mice&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span style = "color: var(--turqdk); font-weight: bold;"&gt;jomo&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span style = "color: var(--turqdk); font-weight: bold;"&gt;JointAI&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+???
+
+MICE and Joint Model imputation are two different options to perform the
+imputation step in a multiple imputation procedure. This means, that in both
+cases the imputation is completely separate from the analysis. This separation
+can be convenient, when the same incomplete data is used in multiple analyses,
+but it is also introduces the risk of having imputation models that are not
+compatible with the analysis, as for example when there is a non-linear
+association in the analysis model.
+
+In the Bayesian approach, analysis and imputation are combined. This combination
+assures that the imputation and analysis models do not contradict each other. It
+is, however, possible to extract the imputed values sampled in the Bayesian
+approach so that this method could also serve as the imputation step in a
+multiple imputation.
+
+In MICE and the Joint model imputation we specify the imputation models
+directly. This is what makes these approaches difficult to use when the
+incomplete variables do not just have simple linear associations with the other
+variables.
+
+In the Bayesian approach we specify the likelihood for the data, but the imputed
+values are sampled from the posterior distribution that is derived from the
+likelihood and the prior. With all the advanced sampling techniques available
+nowadays, this also works when the posterior does not have a closed form, and so
+this approach is well suited for settings with complex associations., while MICE
+is better suited for simpler settings.
+
+Joint model imputation can handle multi-level settings, but assumes linear
+associations between all sub-models.
+
+Because the Bayesian approach is more computationally intensive, it may be less
+well suited for very large datasets.
+
+All three approaches are available in R, as the R packages mice, jomo and
+JointAI.
+
+
+---
+
+
+## Extensions
+
+&lt;i class="fab fa-r-project" style = "color: var(--blue);"&gt;&lt;/i&gt; package **smcfcs** &lt;span style = "color:var(--lgrey)"&gt;(substantive model compatible fully conditional specification)&lt;/span&gt;
+* hybrid MICE / Bayes
+  * time-to-event outcomes
+  * non-linear associations
+
+???
+
+There are of course some extensions to the basic methodology that I have
+presented so far. One package that is specifically relevant in this context is
+the package smcfcs, short for **substantive model compatible fully conditional
+specification**.
+
+It uses a hybrid approach between mice and the Bayesian approach, to ensure
+valid imputations in settings with time-to-event outcomes and non-linear
+associations.
+
+
+--
+
+&lt;i class="fab fa-r-project" style = "color: var(--blue);"&gt;&lt;/i&gt; package **jomo**
+* hybrid Joint model MI / Bayes
+  * time-to-event outcomes
+  * non-linear association
+  
+???
+
+And also the package jomo combines the classic joint model imputation with the
+Bayesian approach, in order to assure imputations that are compatible with an
+analysis model, and to impute missing covariates in survival models.
+
+--
+
+See also: 
+&lt;a href = "https://CRAN.R-project.org/view=MissingData"&gt;
+&lt;strong&gt;https://cran.r-project.org/web/views/MissingData.html&lt;/strong&gt;&lt;/a&gt;
+
+???
+
+There are a lot more packages that either extend the mice package or implement
+imputation in some form available. A good place to get an overview of what is
+available is the CRAN task view on Missing Data.
+
+
+---
+
+## Finding the Right Fit!
+
+
+
+&lt;img src = "figures/arrow.png" width = "90%" style="display: block; margin: auto"&gt;
+&lt;div class="imgcontainer"&gt;
+    &lt;img src="graphics/dog-1121623_1920.jpg"&gt;
+    &lt;img src="graphics/shelf-with-blue-jeans.jpg"&gt;
+    &lt;img src="graphics/Tailor.jpg"&gt;
+&lt;/div&gt;
+
+???
+
+One-size-fits-all can sometimes be appropriate, but mostly for scarfs and things
+like that. In statistical analysis, one-size-fits-all just does not work.
+
+Every model or method makes assumptions. And when we just blindly apply a method
+because it is the standard that everyone uses, we will likely violate some of 
+these assumptions and get biased results.
+
+Often, it is possible to work with off-the-shelf methods, meaning, methods that
+are readily available in software. But there is a variety of models and
+methods we can choose from, and we need to study them to be able to find the one
+that fits our data best.
+
+And even then, we may need to adapt the methods to really fit our data, by 
+using the more advanced options provided in the software.
+
+But the more complex our data and the analysis model of interest are, the fewer
+options we have, and in certain settings, we may have to use a completely custom
+tailored approach.
+
+And we should not forget, multiple imputation was developed 50 years ago. The
+data that we collect and the models that we use to analyse that data have
+gotten more and more complex since then. And so even though multiple imputation
+as a method is not wrong or bad, it just may not be a good fit for our research
+projects today.
+
+Luckily, also the computational power has tremendously increased over the last
+decades, and so it is now feasible to use more complex techniques for handling
+missing data.
+
+---
+
+## Reality Check
+
+Solving a missing data problem adequately in **just one line is an illusion!**
+
+```r
+mice::mice(mydata)
+```
+
+
+???
+
+And talking about complex. 
+Being able to solve a missing data problem adequately in just one line
+unfortunately is an illusion!
+
+--
+
+&lt;br&gt;
+**In real life:**
+&lt;div class="imgrow" style = "background-color:var(--turqdk);"&gt;
+  &lt;!-- &lt;div class="column6"&gt; --&gt;
+    &lt;img src="graphics/syntax/syntax_Page_01.jpg"&gt;
+    &lt;img src="graphics/syntax/syntax_Page_02.jpg"&gt;
+  &lt;!-- &lt;/div&gt; --&gt;
+  &lt;!-- &lt;div class="column6"&gt; --&gt;
+    &lt;img src="graphics/syntax/syntax_Page_03.jpg"&gt;
+    &lt;img src="graphics/syntax/syntax_Page_04.jpg"&gt;
+  &lt;!-- &lt;/div&gt; --&gt;
+  &lt;!-- &lt;div class="column6"&gt; --&gt;
+    &lt;img src="graphics/syntax/syntax_Page_05.jpg"&gt;
+    &lt;img src="graphics/syntax/syntax_Page_06.jpg"&gt;
+  &lt;!-- &lt;/div&gt; --&gt;
+  &lt;!-- &lt;div class="column6"&gt; --&gt;
+    &lt;img src="graphics/syntax/syntax_Page_07.jpg"&gt;
+    &lt;img src="graphics/syntax/syntax_Page_08.jpg"&gt;
+  &lt;!-- &lt;/div&gt; --&gt;
+  &lt;!-- &lt;div class="column6"&gt; --&gt;
+    &lt;img src="graphics/syntax/syntax_Page_09.jpg"&gt;
+    &lt;img src="graphics/syntax/syntax_Page_10.jpg"&gt;
+  &lt;!-- &lt;/div&gt; --&gt;
+  &lt;!-- &lt;div class="column6"&gt; --&gt;
+    &lt;img src="graphics/syntax/syntax_Page_11.jpg"&gt;
+    &lt;img src="graphics/syntax/syntax_Page_12.jpg"&gt;
+ &lt;!-- &lt;/div&gt; --&gt;
+&lt;/div&gt;
+
+???
+
+In reality, setting up the imputation can take quite a bit of time.
+Here is an example of syntax that we used for the imputation with mice in an
+observational cohort study. And this syntax has more than 600 lines of code.
+
+---
+class: the-end
+background-image: url(graphics/ColouredBackground.jpg)
+background-position: center
+background-size: contain
+layout: false
+count: false
+
+---
+class: center, inverse, the-end
+layout: false
+count: false
+
+&lt;div class="thanks"&gt;Thanks!&lt;/div&gt;
+
+&lt;img src = "graphics/Logo.png" width=200 style="display: block; margin: auto; position:relative; top: 420px;"&gt;
+
+&lt;div id="contact"&gt;
+&lt;i class="fas fa-envelope"&gt;&lt;/i&gt; n.erler@erasmusmc.nl &amp;emsp;
+&lt;a href="https://twitter.com/N_Erler"&gt;&lt;i class="fab fa-twitter"&gt;&lt;/i&gt; N_Erler&lt;/a&gt; &amp;emsp;
+&lt;a href="https://github.com/NErler"&gt;&lt;i class="fab fa-github"&gt;&lt;/i&gt; NErler&lt;/a&gt; &amp;emsp;
+&lt;a href="https://nerler.com"&gt;&lt;i class="fas fa-globe-americas"&gt;&lt;/i&gt; https://nerler.com&lt;/a&gt;
+&lt;/div&gt;
+
+
+
+
+
+&lt;!-- &lt;script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'&gt;&lt;/script&gt; --&gt;
+&lt;script type="text/javascript" async
+src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"&gt;
+&lt;/script&gt;
+
+
+&lt;script&gt;
+// Get the button that opens the modal
+var btn = document.querySelectorAll("button.modal-button");
+
+// All page modals
+var modals = document.querySelectorAll('.modal');
+
+// Get the &lt;span&gt; element that closes the modal
+var spans = document.getElementsByClassName("close");
+
+// When the user clicks the button, open the modal
+for (var i = 0; i &lt; btn.length; i++) {
+btn[i].onclick = function(e) {
+e.preventDefault();
+modal = document.querySelector(e.target.getAttribute("href"));
+modal.style.display = "block";
+}
+}
+
+// When the user clicks on &lt;span&gt; (x), close the modal
+for (var i = 0; i &lt; spans.length; i++) {
+spans[i].onclick = function() {
+for (var index in modals) {
+if (typeof modals[index].style !== 'undefined') modals[index].style.display = "none";    
+}
+}
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+if (event.target.classList.contains('modal')) {
+for (var index in modals) {
+if (typeof modals[index].style !== 'undefined') modals[index].style.display = "none";    
+}
+}
+}
+&lt;/script&gt;
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="libs/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightLines": true,
+"highlightSpans": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
