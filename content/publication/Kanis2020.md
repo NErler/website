@@ -30,7 +30,7 @@ authors:
 - C Janneke van der Woude
 - On behalf of the Initiative on Crohns and Colitis (ICC)
 
-date: "2020-10-12"
+date: "2021-06-07"
 doi: "10.1136/gutjnl-2019-319129"
 
 # Schedule page publish date (NOT publication's date).
@@ -43,7 +43,7 @@ publishDate: ""
 publication_types: ["2"]
 
 # Publication name and optional abbreviated publication name.
-publication: "*Gut*, 2020"
+publication: "*Gut*, 2021, 70, 1266 -- 1274"
 publication_short: ""
 
 abstract: "#### Objective\n
