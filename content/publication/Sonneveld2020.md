@@ -26,7 +26,7 @@ authors:
 - B. Maasoumy
 - for the CREATE Study Group
 
-date: "2020-12-10"
+date: "2022-04-01"
 doi: "10.1016/j.cgh.2020.12.005"
 
 # Schedule page publish date (NOT publication's date).
@@ -39,7 +39,7 @@ publishDate: ""
 publication_types: ["2"]
 
 # Publication name and optional abbreviated publication name.
-publication: "*Clinical Gastroenterology and Hepatology*, 2020"
+publication: "*Clinical Gastroenterology and Hepatology*, 2022 20(4), e784--e793"
 publication_short: ""
 
 abstract: "#### Background & Aims\n
