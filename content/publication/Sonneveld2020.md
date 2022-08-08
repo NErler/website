@@ -39,7 +39,7 @@ publishDate: ""
 publication_types: ["2"]
 
 # Publication name and optional abbreviated publication name.
-publication: "*Clinical Gastroenterology and Hepatology*, 2022 20(4), e784--e793"
+publication: "*Clinical Gastroenterology and Hepatology*, 2022, 20(4), e784--e793"
 publication_short: ""
 
 abstract: "#### Background & Aims\n
