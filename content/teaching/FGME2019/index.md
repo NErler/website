@@ -1,7 +1,7 @@
 ---
 title: Multiple Imputation of Missing Data in Simple and More Complex Settings
 date: ""
-weight: 3
+weight: 5
 
 summary: Pre-conference course on Multiple Imputation of Missing Data in Simple and More Complex Settings at the "Tagung der Fachgruppe Methoden & Evaluation der Deutschen Gesellschaft für Psychologie" in Kiel, Germany
 

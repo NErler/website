@@ -1,8 +1,8 @@
 ---
-title: "BST02: Using R for Statistics in Medical Research"
+title: "Using R for Statistics in Medical Research (BST02)"
 date: ""
 
-weight: 2
+weight: 4
 
 summary: An Introduction to R for Clinical Research
 
@@ -46,9 +46,12 @@ slides: ""
 ---
 
 
-Together with Dr. Eleni-Rosalina Andrinopoulou, I teach [BST02: Using R for Statistics in Medical Research](https://www.nihes.com/course/bst02_using_r_for_statistics_in_medical_research)
-at the [Netherlands Institute of Health Sciences (NIHES)](https://www.nihes.com/)
+Note: In 2021, this course was integratd into the [Biostatistics I & II](http://localhost:1313/teaching/biostats/) courses.
+
+
+Together with Dr. Eleni-Rosalina Andrinopoulou, I tought [BST02: Using R for Statistics in Medical Research](https://www.nihes.com/course/bst02_using_r_for_statistics_in_medical_research)
+at the [Netherlands Institute of Health Sciences (NIHES)](https://www.nihes.com/).
 
 Materials for the part on multiple imputation can be found on 
-[GitHub](https://github.com/NErler/BST02) and the associated
-[website](https://nerler.github.io/BST02):
+[GitHub <i class="fas fa-external-link-alt fa-xs"></i>](https://github.com/NErler/BST02) and the associated
+[website <i class="fas fa-external-link-alt fa-xs"></i>](https://nerler.github.io/BST02).

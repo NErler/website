@@ -1,5 +1,5 @@
 ---
-title: "EP16: Missing Data in Clinical Research"
+title: "Missing Data in Clinical Research (EL009)"
 subtitle: Multiple Imputation
 
 date: "2019-08-21T00:00:00Z"
@@ -39,12 +39,12 @@ links:
 - icon: globe-americas
   icon_pack: fa
   name: website
-  url: https://nerler.github.io/Multiple_Imputation_Course
+  url: https://nerler.github.io/EP16_Multiple_Imputation/
 
 - icon: globe-americas
   icon_pack: fa
   name: NIHES
-  url: https://www.nihes.com/course/ep16_missing_values_in_clinical_research/
+  url: https://www.nihes.com/course/el009_missing_values_in_clinical_research/
 
 url_code: ""
 url_pdf: ""
@@ -60,12 +60,12 @@ slides: ""
 ---
 
 
-Together with Prof. Geert Molenberghs, I teach [EP16: Missing Data in Clinical Research](https://www.nihes.com/course/ep16_missing_values_in_clinical_research)
-at the [Netherlands Institute of Health Sciences (NIHES)](https://www.nihes.com/)
+Together with Prof. Geert Molenberghs, I teach [EL009: Missing Data in Clinical Research](https://www.nihes.com/course/el009_missing_values_in_clinical_research/)
+at the [Netherlands Institute of Health Sciences (NIHES)](https://www.nihes.com/).
 
 Materials for the part on multiple imputation can be found on 
 [GitHub](https://github.com/NErler/EP16_Multiple_Imputation) and the associated
-[website](https://nerler.github.io/EP16_Multiple_Imputation):
+[website <i class="fas fa-external-link-alt fa-xs"></i>](https://nerler.github.io/EP16_Multiple_Imputation):
 
-* [Slides](https://nerler.github.io/EP16_Multiple_Imputation/slide/)
-* [Practicals](https://nerler.github.io/EP16_Multiple_Imputation/practical/)
+* [Slides <i class="fas fa-external-link-alt fa-xs"></i>](https://nerler.github.io/EP16_Multiple_Imputation/slide/)
+* [Practicals <i class="fas fa-external-link-alt fa-xs"></i>](https://nerler.github.io/EP16_Multiple_Imputation/practical/)
