@@ -71,8 +71,9 @@ user_groups:
 - Visitors
 ---
 
-I am a postdoctoral researcher at the Department of Biostatistics at the Erasmus Medical
-Center in Rotterdam. My research focus is on Bayesian methods for incomplete
+I am a Assistant Professor at the Department of Biostatistics at the Erasmus Medical
+Center in Rotterdam. My research focus is on personalizing screening and 
+intervention schedules and Bayesian methods for incomplete
 data, specifically for settings with missing covariates.
 Since 2017, I support the department of Gastroenterology & Hepatology
 in the planning and analysis of clinical trials and 
