@@ -36,12 +36,6 @@
   weight = 6
 
 
-[[main]]
-  name = "Resources"
-  url = "/resources/"
-  weight = 7
-
-
 #[[main]]
 #  name = "Posts"
 #  url = "#posts"
