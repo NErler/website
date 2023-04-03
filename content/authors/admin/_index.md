@@ -71,7 +71,7 @@ user_groups:
 - Visitors
 ---
 
-I am a Assistant Professor at the Department of Biostatistics at the Erasmus Medical
+I am an Assistant Professor at the Department of Biostatistics at the Erasmus Medical
 Center in Rotterdam. My research focus is on personalizing screening and 
 intervention schedules and Bayesian methods for incomplete
 data, specifically for settings with missing covariates.
