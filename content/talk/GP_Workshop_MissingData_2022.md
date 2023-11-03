@@ -22,7 +22,7 @@ event = ""
 event_url = ""
 
 # Location of event.
-location = ""
+location = "Workshop at the Department of General Practice, Erasmus Medical Center, Rotterdam"
 
 # Is this a featured talk? (true/false)
 featured = true
